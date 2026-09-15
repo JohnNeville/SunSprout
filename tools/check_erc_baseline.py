@@ -10,12 +10,31 @@ The baseline lists violations that have been reviewed and accepted, each with th
 CI fails only on violations that are not in the baseline, so a new problem breaks the build
 while the known ones stay visible rather than hidden.
 
-Violations are matched on (type, item uuid). Coordinates are deliberately ignored, so moving
-a symbol on the sheet does not invalidate its baseline entry.
+Violations are matched on (rule type, symbol reference) -- deliberately NOT on the pin or its
+uuid.
+
+The reason: for a rule like power_pin_not_driven, ERC emits one violation per net and names an
+arbitrary representative pin. U3's BAT, CE and REGIN pins all sit on VBAT, so an unrelated edit
+elsewhere in the schematic flipped the reported pin from BAT to REGIN and the run failed against
+a baseline that had recorded the uuid of the other pin. Same net, same root cause, no design
+change. Coordinates are ignored for the same reason.
+
+The tradeoff is real and worth stating: a genuinely different violation of the same rule on the
+same symbol would be absorbed by an existing entry rather than flagged. That is acceptable here
+because these entries are symbol-declaration artifacts and nets ERC cannot trace a driver
+through -- one root cause per symbol. A new rule type, or the same rule on a different symbol,
+still fails the build.
 """
 import argparse
 import json
+import re
 import sys
+
+
+def symbol_ref(description):
+    """Pull the reference designator out of 'Symbol U3 Pin 6 [REGIN, ...]'."""
+    m = re.match(r'Symbol\s+(\S+)', description or '')
+    return m.group(1) if m else (description or '')
 
 
 def load_violations(path):
@@ -25,12 +44,12 @@ def load_violations(path):
     for sheet in report.get('sheets', []):
         for v in sheet.get('violations', []):
             item = (v.get('items') or [{}])[0]
-            uuid = item.get('uuid', '')
-            out[(v['type'], uuid)] = {
+            desc = item.get('description', v.get('description', ''))
+            out[(v['type'], symbol_ref(desc))] = {
                 'type': v['type'],
-                'uuid': uuid,
+                'symbol': symbol_ref(desc),
                 'sheet': sheet.get('path', ''),
-                'description': item.get('description', v.get('description', '')),
+                'description': desc,
                 'severity': v.get('severity', ''),
             }
     return out
@@ -56,7 +75,8 @@ def main():
         return 0
 
     with open(args.baseline, encoding='utf-8') as fh:
-        accepted = {(e['type'], e['uuid']): e for e in json.load(fh)['accepted']}
+        accepted = {(e['type'], e.get('symbol') or symbol_ref(e.get('description', ''))): e
+                    for e in json.load(fh)['accepted']}
 
     new = [v for k, v in found.items() if k not in accepted]
     gone = [e for k, e in accepted.items() if k not in found]
