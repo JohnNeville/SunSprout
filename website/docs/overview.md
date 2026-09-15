@@ -34,7 +34,8 @@ auto-generated.
   thermistor connectors, and two GPIO expansion headers you fit yourself. See
   [Connectors](./connectors.md) for the full list.
 - Two LEDs: a charge-status LED driven by the charger, and a firmware-controlled status LED.
-- Three buttons: reset, boot-mode, and a wake button that brings the charger out of ship mode.
+- Three buttons: reset, boot-mode, and a wake button that brings the charger out of ship mode —
+  or, held for ~10 seconds, hard power-cycles the whole board.
 - U.FL external antenna connector (module-side), for installations where the onboard antenna
   isn't sufficient.
 
@@ -128,7 +129,7 @@ guidance.
 | Cell configuration | **1S**, set in hardware by the `PROG` resistor at power-on |
 | Chemistry | Li-ion / Li-Po and LiFePO4 (the fuel gauge carries profiles for both) |
 | Input voltage, either source | **3.6 V to 24 V** for a valid input; 30 V absolute maximum |
-| Practical solar ceiling | **20 V.** Not a charger limit — the reverse-polarity FET on that input is self-biased, so a reversed source puts the full input voltage across its ±20 V gate. See [input protection](https://github.com/JohnNeville/SunSprout/blob/main/docs/hub/modules/input-protection.md). |
+| Practical solar ceiling | **24 V**, the charger's own recommended maximum — the input protection no longer sets a lower one. The reverse-polarity FET on that input is self-biased, so the full input voltage appears across its ±20 V gate in normal operation as well as under a reversed source; a Zener gate clamp (`D2`) holds that within rating across the whole range. Size a panel by its cold-weather open-circuit voltage, which rises above the rated Voc. See [input protection](https://github.com/JohnNeville/SunSprout/blob/main/docs/hub/modules/input-protection.md). |
 | Input current limit | **2.00 A**, fixed in hardware by a resistor divider. Firmware cannot exceed it. |
 | Charge current | Firmware-set over I2C. Defaults to **1 A**; **do not exceed 2 A** (see below). |
 | Solar tracking | Autonomous open-circuit-voltage MPPT, run by the charger itself |
@@ -161,6 +162,25 @@ guidance.
 - **Firmware must not set the charge current above 2000mA.** Unlike the input limit, the charge
   current has no hardware ceiling, and in buck mode it can exceed the input current — so a
   higher setting can push the charge-side copper past its rating.
+- **Ship mode and a true hardware power cycle**, via an external ship FET (`Q3`) on the
+  charger's `SDRV` gate-driver pin. The FET sits in series in the battery path, so the charger
+  can physically disconnect the pack from the system rail. That gives three states beyond normal
+  operation: *ship mode* (FET off, I2C still alive — for shipping and storage), *shutdown* (FET
+  off, I2C down, only an adapter brings it back), and a *system power reset* that drops the FET
+  for ~350ms and actively pulls the `SYS` rail down before restoring it.
+- **Holding `SW3` (WAKE) for about 10 seconds hard power-cycles the board.** This runs entirely
+  inside the charger — no working firmware, no I2C — which makes it the recovery path when the
+  MCU is wedged. A shorter press (~1s) just wakes the charger out of ship mode.
+
+  Two caveats worth knowing. The reset cycles the `SYS` rail, so it restarts the MCU, both 3.3V
+  rails and everything downstream of them — but *not* the charger itself (it's the thing
+  performing the reset) and *not* the fuel gauge, which is deliberately wired to the pack side
+  of the ship FET so it keeps coulomb-counting straight through. And since neither I2C device
+  loses power, the reset can't unstick a hung I2C slave; that still needs the usual nine-clock
+  recovery sequence in firmware.
+- **Firmware must set the charger's `SFET_PRESENT` bit** (`REG14`, bit 7) during init. It
+  defaults to 0, and while it's 0 the charger locks out every ship-FET mode above — the board
+  behaves as though no FET were fitted.
 
 ### Current consumption
 

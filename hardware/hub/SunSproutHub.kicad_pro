@@ -576,7 +576,7 @@
     "netclass_patterns": [
       {
         "netclass": "Power_2A",
-        "pattern": "VBAT"
+        "pattern": "VBAT*"
       },
       {
         "netclass": "Power_2A",
@@ -950,7 +950,7 @@
         "uuid": "a73062bd-90e7-442f-aac6-ee7677f83b11"
       }
     ],
-    "used_designators": "TP14,U4-5,USBC1",
+    "used_designators": "#FLG2-11",
     "variants": []
   },
   "sheets": [

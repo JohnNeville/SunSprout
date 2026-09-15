@@ -1186,12 +1186,145 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:PWR_FLAG"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#FLG"
+				(at 0 1.905 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Special symbol for telling ERC where power comes from"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "flag power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_0"
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(junction
 		(at 299.72 189.23)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "243b7e70-4b10-4371-81a0-16b63702b804")
+	)
+	(junction
+		(at 224.79 236.22)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "359a5797-4435-42af-97e1-f30a4ec76964")
+	)
+	(junction
+		(at 224.79 232.41)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "383ccf80-485a-408c-b5d4-d56e09b5e1e1")
+	)
+	(junction
+		(at 283.21 241.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "710eea75-ea91-4ca6-8522-1fe624be24d7")
 	)
 	(junction
 		(at 224.79 226.06)
@@ -1301,13 +1434,23 @@
 	)
 	(wire
 		(pts
-			(xy 275.59 241.3) (xy 285.75 241.3)
+			(xy 275.59 241.3) (xy 283.21 241.3)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "46cf358d-8016-412b-bf28-deb52384c654")
+	)
+	(wire
+		(pts
+			(xy 283.21 241.3) (xy 285.75 241.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "478db4e3-cca9-4f8d-9fdf-817f2c099be3")
 	)
 	(wire
 		(pts
@@ -1351,6 +1494,26 @@
 	)
 	(wire
 		(pts
+			(xy 224.79 236.22) (xy 224.79 241.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78ff36a3-ef3a-4b6a-ac5a-3927f2ec0a23")
+	)
+	(wire
+		(pts
+			(xy 224.79 231.14) (xy 224.79 232.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f8eee6c-d8f9-48bb-8336-926265372efb")
+	)
+	(wire
+		(pts
 			(xy 234.95 231.14) (xy 224.79 231.14)
 		)
 		(stroke
@@ -1388,6 +1551,16 @@
 			(type default)
 		)
 		(uuid "b0a5e10c-b5ab-42e5-ad25-48270b895070")
+	)
+	(wire
+		(pts
+			(xy 224.79 232.41) (xy 224.79 236.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b5b82e8f-9b5d-4eaf-8e9e-4e91fc7e600e")
 	)
 	(wire
 		(pts
@@ -1513,30 +1686,6 @@
 			)
 		)
 	)
-	(global_label "VBAT"
-		(shape input)
-		(at 224.79 236.22 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "2fd88e9d-baf9-4ec1-b773-d92bc7c91870")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 217.39 236.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
 	(global_label "SCL_INT"
 		(shape input)
 		(at 285.75 215.9 0)
@@ -1558,6 +1707,30 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+			)
+		)
+	)
+	(global_label "VBAT_PROTECTED"
+		(shape input)
+		(at 182.88 189.23 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "3bc2584f-7904-42f3-822f-d8b56364d2f3")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 182.88 208.2413 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 	)
@@ -1585,6 +1758,30 @@
 			)
 		)
 	)
+	(global_label "VBAT_PROTECTED"
+		(shape input)
+		(at 224.79 236.22 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "43283010-b86e-4425-97a6-f985b97a56fe")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 205.7787 236.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
 	(global_label "SDA_INT"
 		(shape input)
 		(at 285.75 213.36 0)
@@ -1609,54 +1806,6 @@
 			)
 		)
 	)
-	(global_label "VBAT"
-		(shape input)
-		(at 224.79 231.14 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "6f7347ba-9a1d-428a-829b-226b1b888cd0")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 217.39 231.14 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
-	(global_label "VBAT"
-		(shape input)
-		(at 182.88 189.23 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "93f57903-1cbc-400b-870a-db8c0c868faf")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 182.88 196.63 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
 	(global_label "FG_SRN"
 		(shape input)
 		(at 285.75 226.06 0)
@@ -1678,30 +1827,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-			)
-		)
-	)
-	(global_label "VBAT"
-		(shape input)
-		(at 224.79 241.3 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "9aa70e7d-6300-4ec4-84d2-3f1afb670b9d")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 217.39 241.3 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 			)
 		)
 	)
@@ -2709,6 +2834,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 283.21 241.3 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c63be850-5a63-42ff-bf0f-4d33637257e3")
+		(property "Reference" "#FLG010"
+			(at 283.21 239.395 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 283.21 236.22 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 283.21 241.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 283.21 241.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 283.21 241.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "366f21d4-0b98-440e-98f7-0e18e1edefac")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/3a0e399f-7a0a-4d50-8ecb-e7abcc14a097"
+					(reference "#FLG010")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "PCM_SparkFun-Connector:TestPoint_1.0mm")
 		(at 299.72 189.23 180)
 		(unit 1)
@@ -2781,6 +2984,85 @@
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/3a0e399f-7a0a-4d50-8ecb-e7abcc14a097"
 					(reference "TP11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 224.79 232.41 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d68f3c56-81c9-420b-b1e6-ff2c23fad636")
+		(property "Reference" "#FLG09"
+			(at 222.885 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 220.98 232.4099 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 224.79 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 224.79 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 224.79 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "146c1abf-cd23-477c-9a93-6c550e88e15a")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/3a0e399f-7a0a-4d50-8ecb-e7abcc14a097"
+					(reference "#FLG09")
 					(unit 1)
 				)
 			)

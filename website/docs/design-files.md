@@ -20,7 +20,7 @@ title: Design Files & Key Components
 | U5 | TPS22918 | Load switch, switched 3.3V user rail |
 | U201 | PCA9615 | Differential I2C buffer, drives the two 8P8C jacks |
 | D5, U202 | USBLC6-4SC6-ES | USB-C and I2C-buffer ESD protection |
-| Q1, Q2 | MDD3415, DMP3098L-7 | Reverse-polarity protection on the battery and DC/solar inputs |
+| Q1, Q2, D2 | MDD3415, DMP3098L-7, BZT52C12S | Reverse-polarity protection on the battery and DC/solar inputs; D2 clamps Q2's gate |
 
 For why each of these parts was chosen, and why its surrounding passives have the values they
 do, see the per-IC design notes in the repository's `docs/hub/modules/` folder.

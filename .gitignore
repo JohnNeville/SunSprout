@@ -74,3 +74,7 @@ website/static/*.step
 
 # Editor local-history snapshots
 .history_trim/
+/tools/__pycache__
+
+# kicad-jlcpcb-tools plugin local parts cache
+/hardware/hub/jlcpcb/

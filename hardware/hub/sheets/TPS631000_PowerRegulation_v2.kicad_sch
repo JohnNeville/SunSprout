@@ -1061,7 +1061,7 @@
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U"
 				(at -12.7 11.16 0)
-				(show_name no)
+				(show_name yes)
 				(do_not_autoplace no)
 				(effects
 					(font
@@ -1072,7 +1072,7 @@
 			)
 			(property "Value" "TPS22918DBVR"
 				(at -12.7 -14.16 0)
-				(show_name no)
+				(show_name yes)
 				(do_not_autoplace no)
 				(effects
 					(font
@@ -1083,9 +1083,8 @@
 			)
 			(property "Footprint" "Snapeda:SOT95P280X145-6N"
 				(at 0 0 0)
-				(show_name no)
+				(show_name yes)
 				(do_not_autoplace no)
-				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1095,9 +1094,8 @@
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
-				(show_name no)
+				(show_name yes)
 				(do_not_autoplace no)
-				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1106,9 +1104,8 @@
 			)
 			(property "Description" ""
 				(at 0 0 0)
-				(show_name no)
+				(show_name yes)
 				(do_not_autoplace no)
-				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1217,7 +1214,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin power_out line
 					(at 17.78 2.54 180)
 					(length 5.08)
 					(name "VOUT"
@@ -1367,7 +1364,7 @@
 						(type background)
 					)
 				)
-				(pin output line
+				(pin power_out line
 					(at 15.24 10.16 180)
 					(length 5.08)
 					(name "VOUT"
@@ -1629,6 +1626,121 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:PWR_FLAG"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#FLG"
+				(at 0 1.905 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Special symbol for telling ERC where power comes from"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "flag power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_0"
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(junction
 		(at 107.95 77.47)
@@ -1689,6 +1801,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f0ed1ab3-e6ba-4d7a-9037-0ea502fd6fc3")
+	)
+	(junction
+		(at 105.41 52.07)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f35ca69e-bdb0-4331-bb40-38226e4f74ca")
 	)
 	(wire
 		(pts
@@ -1792,7 +1910,7 @@
 	)
 	(wire
 		(pts
-			(xy 107.95 52.07) (xy 96.52 52.07)
+			(xy 107.95 52.07) (xy 105.41 52.07)
 		)
 		(stroke
 			(width 0)
@@ -1889,6 +2007,16 @@
 			(type default)
 		)
 		(uuid "7429e5e7-fd97-459a-a379-304c399c8dc4")
+	)
+	(wire
+		(pts
+			(xy 105.41 52.07) (xy 96.52 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78033651-bd57-41f6-ba4b-d1205866a987")
 	)
 	(wire
 		(pts
@@ -3346,6 +3474,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 105.41 52.07 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5285ebd8-69e7-4e6b-91b3-7a61fafa95d7")
+		(property "Reference" "#FLG02"
+			(at 105.41 50.165 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 105.41 46.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 105.41 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 105.41 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 105.41 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "976384f1-c34e-4712-9dea-8c1bdcbf8908")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/bf276da2-a934-469c-a14b-6d2edeb698fa"
+					(reference "#FLG02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "PCM_SparkFun-Connector:TestPoint_1.0mm")
 		(at 175.26 82.55 0)
 		(mirror x)
@@ -4432,7 +4638,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PCM_JLCPCB:C_0402"
+		(property "Footprint" "EasyEDA:C0402"
 			(at 87.63 66.04 0)
 			(hide yes)
 			(show_name no)
