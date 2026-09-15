@@ -102,5 +102,38 @@ level gave too little margin for the MCU input. The pull-up now uses the 3.3 V r
 
 ## Battery connection
 
-The `BAT`, `CE` and `REGIN` pins all connect to the `VBAT` net. No series shunt sits between the
-battery and these pins. The current measurement happens at `R60` on the low side instead.
+The `BAT`, `CE` and `REGIN` pins all connect to the `VBAT_PROTECTED` net. No series shunt sits
+between the battery and these pins. The current measurement happens at `R60` on the low side
+instead.
+
+### Why the gauge sits on the pack side
+
+The battery path has two series FETs. `Q1` is the reverse-polarity FET. `Q3` is the ship FET that
+the charger drives. The path is `VBAT_RAW` → `Q1` → `VBAT_PROTECTED` → `Q3` → `VBAT`.
+
+`VBAT_PROTECTED` is the pack side. It sits after the reverse-polarity FET and before the ship
+FET. `VBAT` is the system side. It sits after the ship FET and feeds the charger `BAT` pins.
+
+The gauge connects to the pack side on purpose. The charger opens `Q3` in ship mode, in shutdown
+mode and during the system power reset. The `VBAT` net loses its supply in all three states, but
+`VBAT_PROTECTED` does not. The gauge therefore keeps its supply.
+
+This matters because the gauge counts coulombs continuously. It holds the state of charge in its
+own accumulated count. A supply interruption restarts the gauge. The gauge then loses the count
+and must learn the pack again. On the pack side the gauge keeps counting through every charger
+low-power state, so the state of charge stays correct.
+
+The gauge also keeps measuring the current through `R60` in these states. `R60` sits in the true
+battery return path, so it still carries any residual current.
+
+### The cost of this choice
+
+The gauge draws a small standing current from the pack at all times. Ship mode cannot remove this
+draw. A board in long storage therefore discharges its battery slowly, even in ship mode.
+
+This is a deliberate trade. The design accepts a small standing draw to keep an accurate state of
+charge. A gauge that must relearn the pack after every storage period gives a worse result for
+this application.
+
+The reverse-polarity FET `Q1` still protects the gauge. Disconnect the pack at `J4` for true
+zero-draw storage.

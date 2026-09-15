@@ -40,6 +40,38 @@ The charger controls the input selection completely. An earlier version of this 
 clamp diodes on the two inputs. The datasheet confirms that source selection is FET-based only.
 The clamp diodes did nothing, so the design removed them.
 
+## Ship FET — Q3
+
+| Item | Value |
+|---|---|
+| Reference | `Q3` |
+| Part | AO3400A, N-channel, SOT-23 |
+| Gate | `SDRV_NODE`, from the `SDRV` pin |
+| Source | `VBAT`, the system side |
+| Drain | `VBAT_PROTECTED`, the pack side |
+
+`Q3` is the ship FET. It sits in series in the battery path, between the reverse-polarity FET
+`Q1` and the charger `BAT` pins. The charger opens `Q3` to disconnect the pack from the board.
+The battery path is therefore `VBAT_RAW` → `Q1` → `VBAT_PROTECTED` → `Q3` → `VBAT`.
+
+The `SDRV` pin is a gate-driver output. An internal charge pump drives the gate to about 5 V
+above the battery voltage. The absolute maximum voltage from `SDRV` to `BAT` is 6 V. The AO3400A
+is rated at ±12 V gate-to-source, so it keeps a large margin.
+
+Read the on-resistance from the 4.5 V gate-voltage column of the AO3400A datasheet. That value
+is about 32 mΩ. Do not read the 10 V column. The charge pump never reaches 10 V above the
+battery.
+
+`Q3` uses the same AO3400A part as the four input-multiplexer FETs. This adds no new part number
+to the bill of materials.
+
+### Why the design added a ship FET
+
+An earlier revision had no ship FET. It fitted `C319`, a 1 nF capacitor, from `SDRV` to ground.
+That is the no-ship-FET variant in the datasheet. Ship mode, shutdown mode and the system power
+reset were all unavailable in that revision. The design deleted `C319` and fitted `Q3`. See
+[Ship mode, shutdown mode and the system power reset](#ship-mode-shutdown-mode-and-the-system-power-reset).
+
 ## Configuration resistors
 
 | Reference | Value | Pin | Function |
@@ -107,8 +139,9 @@ of the datasheet. Each capacitor carries its own placement note in the schematic
 | `REGN` | `C316` | 4.7 µF | Decouples the internal LDO. `REGN` drives the gate drivers and biases the `ILIM_HIZ`, `TS` and `STAT` pins. |
 | `BTST1` | `C317` | 47 nF | Bootstrap capacitor for the buck-side high-side FET driver. |
 | `BTST2` | `C318` | 47 nF | Bootstrap capacitor for the boost-side high-side FET driver. |
-| `SDRV` | `C319` | 1 nF | Gate-driver pin decoupling. |
 | `QON` | `C320` | 100 nF | Filters the wake-button node. |
+
+The `SDRV` pin has no capacitor. It drives the gate of the ship FET `Q3` directly.
 
 ### Why the 100 nF capacitor pairs with one bulk capacitor
 
@@ -133,17 +166,78 @@ Two decisions shaped these choices:
 - Several 4.7 µF capacitors moved to one common 25 V 0805 part. JLCPCB charges a feeder-loading
   fee for each unique component. One shared part costs less than two similar parts.
 
-## Ship mode and the wake button
+## Ship mode, shutdown mode and the system power reset
+
+The ship FET `Q3` gives the board three low-power or reset states. The `SDRV_CTRL[1:0]` bits
+select the state. These bits are bits 2 and 1 of register `REG11` (Charger Control 2).
+
+| Value | Mode | Ship FET | Behaviour |
+|---|---|---|---|
+| `00` | Idle | On | Normal operation. This is the power-on-reset default. |
+| `01` | Shutdown | Off | The I2C interface stops. Only an adapter wakes the charger. |
+| `10` | Ship mode | Off | The I2C interface stays alive. The charger clock slows down. |
+| `11` | System power reset | Off for about 350 ms | The charger then turns the FET on again. |
+
+The charger enters shutdown mode and ship mode only when no adapter is present. If firmware
+writes these values while an adapter supplies the board, the charger ignores the write.
+
+Three events end ship mode: firmware writes `SDRV_CTRL[1:0]` back to `00`, the user plugs in an
+adapter, or the `QON` pin goes low for the exit time. The charger then turns `Q3` on and resets
+`SDRV_CTRL[1:0]` to `00`.
+
+### The system power reset
+
+The system power reset turns `Q3` off for about 350 ms. If `VBUS` is high, the charger also puts
+the converter into HIZ mode. The charger applies a 30 mA sink current on `SYS` during this time.
+This current pulls the `SYS` rail down actively. The charger then turns `Q3` on again.
+
+The reset removes power from everything that the `SYS` rail supplies:
+
+- `U4`, the buck-boost regulator, and therefore the 3V3_SYS rail
+- `U1`, the MCU
+- `R20` and `R21`, the internal I2C pull-up resistors
+- `J6`, the STEMMA QT port
+- `U5`, the load switch, and therefore the 3V3_USER rail and everything on it
+
+The reset does **not** remove power from two parts. `U8` performs the reset itself, so `U8` stays
+powered. `U3`, the fuel gauge, sits on the `VBAT_PROTECTED` net on the pack side of `Q3`, so `U3`
+also stays powered. See [Fuel gauge](bq34z100-fuel-gauge.md).
+
+The system power reset therefore cannot clear a stuck I2C slave. The charger and the gauge both
+keep their bus state through the reset. To release a stuck bus, firmware must send the standard
+nine-clock recovery sequence on `SCL`.
+
+### Firmware requirement
+
+**Firmware must set bit 7 `SFET_PRESENT` in register `REG14` (Charger Control 5) to 1.** The
+power-on-reset value of this bit is 0. While the bit is 0, the charger locks `SDRV_CTRL[1:0]` at
+`00` and locks `EN_BATOC` at 0. Ship mode, shutdown mode and the system power reset are then all
+unavailable, and the board behaves as if no ship FET is fitted.
+
+Setting the bit to 1 also unlocks `EN_BATOC`. With `EN_BATOC` set, the charger turns `Q3` off
+when the discharge current exceeds its battery over-current threshold.
+
+## The wake button — SW3
 
 `SW3` is the wake button. It connects the `QON` pin to ground.
 
-The `QON` pin has an internal pull-up of about 200 kΩ. No external pull-up is needed. A low
-level on `QON` wakes the charger from ship mode or from shutdown mode.
+The `QON` pin has an internal pull-up of about 200 kΩ. No external pull-up is needed. A low level
+on `QON` acts on the charger directly. `SW3` does not connect to the MCU.
 
-`C320` is 100 nF. It filters ESD and noise on this track. It is not a debounce capacitor,
-because `QON` responds to the level and not to the edge. The value is smaller than the 1 µF used
-on the reset and boot buttons. The weak internal pull-up means that 100 nF already gives a
-release time constant of about 20 ms.
+The hold time selects the action:
+
+| Hold time | Action |
+|---|---|
+| About 1 second | The charger exits ship mode. A register bit can shorten this time to 15 ms. |
+| About 10 seconds | The charger runs the system power reset. |
+
+The 10-second hold works whether the board runs on the battery alone or on an adapter. It also
+works when the MCU firmware has stopped. The user can therefore power-cycle the board by hand.
+
+`C320` is 100 nF. It filters ESD and noise on this track. It is not a debounce capacitor, because
+`QON` responds to the level and not to the edge. The value is smaller than the 1 µF used on the
+reset and boot buttons. The weak internal pull-up means that 100 nF already gives a release time
+constant of about 20 ms.
 
 ## USB data-line isolation
 

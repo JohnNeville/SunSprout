@@ -315,7 +315,7 @@
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U"
 				(at 25.4 10.16 0)
-				(show_name no)
+				(show_name yes)
 				(do_not_autoplace no)
 				(effects
 					(font
@@ -325,7 +325,7 @@
 			)
 			(property "Value" "PCA9615DPZ"
 				(at 25.4 7.62 0)
-				(show_name no)
+				(show_name yes)
 				(do_not_autoplace no)
 				(effects
 					(font
@@ -333,35 +333,30 @@
 					)
 				)
 			)
-			(property "Footprint" "Snapeda:TSSOP10_SOT552-1_NXP"
+			(property "Footprint" "Snapeda:TSSOP10_SOT552-1_NXP-L"
 				(at 0 0 0)
-				(show_name no)
+				(show_name yes)
 				(do_not_autoplace no)
-				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
-						(italic yes)
 					)
 				)
 			)
-			(property "Datasheet" ""
+			(property "Datasheet" "PCA9615DPZ"
 				(at 0 0 0)
-				(show_name no)
+				(show_name yes)
 				(do_not_autoplace no)
-				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
-						(italic yes)
 					)
 				)
 			)
 			(property "Description" ""
 				(at 0 0 0)
-				(show_name no)
+				(show_name yes)
 				(do_not_autoplace no)
-				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)

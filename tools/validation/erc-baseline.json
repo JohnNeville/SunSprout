@@ -1,45 +1,4 @@
 {
-  "_comment": "ERC violations reviewed and accepted. tools/check_erc_baseline.py fails CI only on violations absent from this list. Matched on (type, uuid), so moving a symbol does not invalidate an entry.",
-  "accepted": [
-    {
-      "type": "power_pin_not_driven",
-      "symbol": "USBC1",
-      "sheet": "/",
-      "description": "Symbol USBC1 Pin A4_B9 [VBUS, Power input, Line]",
-      "severity": "error",
-      "reason": "VBUS is supplied by the attached USB-C cable. Nothing on this board drives it, by design."
-    },
-    {
-      "type": "power_pin_not_driven",
-      "symbol": "CN5",
-      "sheet": "/",
-      "description": "Symbol CN5 Pin 1 [1, Power input, Line]",
-      "severity": "error",
-      "reason": "The solar/DC input is supplied by an external source through the screw terminal. Nothing on this board drives it, by design."
-    },
-    {
-      "type": "power_pin_not_driven",
-      "symbol": "U201",
-      "sheet": "/User I2C/",
-      "description": "Symbol U201 Pin 1 [VDD(A), Power input, Line]",
-      "severity": "error",
-      "reason": "VDD(A) sits on 3V3_USER, confirmed in the netlist. The TPS22918 load switch that feeds that rail does not declare its output as a power-output pin, so ERC cannot see a driver."
-    },
-    {
-      "type": "power_pin_not_driven",
-      "symbol": "U8",
-      "sheet": "/BQ25798 Charger/",
-      "description": "Symbol U8 Pin 10 [ACDRV2, Power input, Line]",
-      "severity": "error",
-      "reason": "ACDRV2 is a gate-driver OUTPUT that drives Q303/Q304. Same symbol defect as ACDRV1."
-    },
-    {
-      "type": "power_pin_not_driven",
-      "symbol": "U3",
-      "sheet": "/BQ34Z100 Fuel Gauge/",
-      "description": "Symbol U3 Pin 7 [REG25, Power input, Line]",
-      "severity": "error",
-      "reason": "REG25 is the OUTPUT of the fuel gauge's internal 2.5V LDO. The symbol declares it as a power input, which is a symbol defect."
-    }
-  ]
+  "_comment": "ERC violations reviewed and accepted. tools/check_erc_baseline.py fails CI only on violations absent from this list. Matched on (type, symbol reference), so moving a symbol or a shift in which pin ERC names as representative does not invalidate an entry. Empty means ERC is expected to come back completely clean - add an entry only with a reason explaining why the violation is accepted rather than fixed.",
+  "accepted": []
 }

@@ -17,6 +17,20 @@
 #
 # JSON reports are written to tools/validation/erc-report.json and drc-report.json (gitignored
 # build artifacts - regenerate, don't hand-edit).
+#
+# This mirrors .github/workflows/validate-hardware.yml so a local run gates on exactly what CI
+# gates on. Two details there are load-bearing and repeated here:
+#
+#   - Errors only, not warnings. Without every external footprint library present, KiCad emits
+#     a warning per affected part ("could not compare against the library"), which says nothing
+#     about the design. Gating on warnings fails every run for an unrelated reason.
+#   - DRC needs --refill-zones. It is NOT the default: without it DRC checks the zone fills
+#     stored in the file, which go stale as soon as anything is placed near a pour, producing
+#     clearance errors the KiCad GUI never shows because the GUI refills before checking.
+#
+# ERC is compared against tools/validation/erc-baseline.json rather than required to be zero,
+# because kicad-cli ignores the project's own ERC exclusions. See tools/check_erc_baseline.py.
+# DRC has no such baseline - it is required to come back clean.
 
 set -eu
 
@@ -56,25 +70,23 @@ run_kicad_cli() {
 }
 
 echo "== ERC (electrical rules + schematic library resolution) =="
-run_kicad_cli sch erc --format json --severity-error --severity-warning \
+run_kicad_cli sch erc --format json --severity-error \
 	-o "$VALIDATION_DIR/erc-report.json" hardware/hub/SunSproutHub.kicad_sch
 
 echo "== DRC (design rules + PCB/schematic netlist parity) =="
-run_kicad_cli pcb drc --format json --severity-error --severity-warning --schematic-parity \
-	-o "$VALIDATION_DIR/drc-report.json" hardware/hub/SunSproutHub.kicad_pcb
+drc_status=0
+run_kicad_cli pcb drc --format json --severity-error --schematic-parity --refill-zones \
+	--exit-code-violations \
+	-o "$VALIDATION_DIR/drc-report.json" hardware/hub/SunSproutHub.kicad_pcb || drc_status=$?
 
 run_python() {
 	docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" python3 "$@"
 }
 
-echo "== Checking results against tools/validation/known_exceptions.json =="
+echo "== Checking ERC against tools/validation/erc-baseline.json =="
 erc_status=0
-drc_status=0
-run_python "$VALIDATION_DIR/check_violations.py" erc "$VALIDATION_DIR/erc-report.json" \
-	"$VALIDATION_DIR/known_exceptions.json" || erc_status=$?
-echo
-run_python "$VALIDATION_DIR/check_violations.py" drc "$VALIDATION_DIR/drc-report.json" \
-	"$VALIDATION_DIR/known_exceptions.json" || drc_status=$?
+run_python tools/check_erc_baseline.py "$VALIDATION_DIR/erc-report.json" \
+	"$VALIDATION_DIR/erc-baseline.json" || erc_status=$?
 
 echo
 if [ "$erc_status" -eq 0 ] && [ "$drc_status" -eq 0 ]; then

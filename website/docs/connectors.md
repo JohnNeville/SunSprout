@@ -44,7 +44,7 @@ Three buttons, all on the top side:
 |---|---|---|
 | `SW1` | RESET | Pulls the MCU's `EN` pin low. Resets the board. |
 | `SW2` | BOOT | Hold during a reset to enter firmware download mode. |
-| `SW3` | WAKE | Pulls the charger's `QON` pin low, waking it from ship mode. This is the button that brings the board back after the charger has shut down to preserve the battery — it does not go to the MCU. |
+| `SW3` | WAKE | Pulls the charger's `QON` pin low — it does not go to the MCU. The hold time picks the action: a short press (~1s) wakes the charger from ship mode, bringing the board back after it has shut down to preserve the battery. **Holding for ~10 seconds triggers a full system power reset** — the charger opens the ship FET, actively pulls the `SYS` rail down, and restores it after ~350ms, restarting the MCU and both 3.3V rails. That path is pure hardware, so it works even with no firmware running. The charger and the fuel gauge stay powered through it. |
 
 ## Headers you fit yourself
 
