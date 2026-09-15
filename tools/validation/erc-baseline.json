@@ -1,0 +1,85 @@
+{
+  "_comment": "ERC violations reviewed and accepted. tools/check_erc_baseline.py fails CI only on violations absent from this list. Matched on (type, uuid), so moving a symbol does not invalidate an entry.",
+  "accepted": [
+    {
+      "type": "power_pin_not_driven",
+      "uuid": "26c2dcf8-e6db-4ad1-bee6-eb2d8372aa2d",
+      "sheet": "/BQ25798 Charger/",
+      "description": "Symbol U8 Pin 2 [VBUS, Power input, Line]",
+      "severity": "error",
+      "reason": "VBUS reaches the charger from the USB-C connector through the input-mux FETs (Q301/Q302), so no power-output pin drives the net and there is no PWR_FLAG on it. The connection is correct; ERC cannot see a driver through a FET."
+    },
+    {
+      "type": "power_pin_not_driven",
+      "uuid": "a73398ce-c8d7-4652-9e31-8cd18482c2a4",
+      "sheet": "/BQ25798 Charger/",
+      "description": "Symbol U8 Pin 9 [VAC1, Power input, Line]",
+      "severity": "error",
+      "reason": "VAC1 is an input-source detect pin, fed from VUSB through net tie NT2. ERC does not trace a driver through a net tie."
+    },
+    {
+      "type": "power_pin_not_driven",
+      "uuid": "8423b848-44f5-474f-bb5b-ad7343af0f43",
+      "sheet": "/BQ25798 Charger/",
+      "description": "Symbol U8 Pin 8 [VAC2, Power input, Line]",
+      "severity": "error",
+      "reason": "VAC2 is an input-source detect pin, fed from VDC through net tie NT3. Same as VAC1."
+    },
+    {
+      "type": "power_pin_not_driven",
+      "uuid": "2d268b89-a5c7-40d1-85c0-3a85b462f23c",
+      "sheet": "/BQ25798 Charger/",
+      "description": "Symbol U8 Pin 11 [ACDRV1, Power input, Line]",
+      "severity": "error",
+      "reason": "ACDRV1 is a gate-driver OUTPUT that drives Q301/Q302. The symbol declares it as a power input, which is a symbol defect rather than a wiring error."
+    },
+    {
+      "type": "power_pin_not_driven",
+      "uuid": "c8bee07f-0db3-429a-914b-5f264347b306",
+      "sheet": "/BQ25798 Charger/",
+      "description": "Symbol U8 Pin 10 [ACDRV2, Power input, Line]",
+      "severity": "error",
+      "reason": "ACDRV2 is a gate-driver OUTPUT that drives Q303/Q304. Same symbol defect as ACDRV1."
+    },
+    {
+      "type": "power_pin_not_driven",
+      "uuid": "7f34eb3b-8cd1-4edf-912b-e724225be52f",
+      "sheet": "/BQ34Z100 Fuel Gauge/",
+      "description": "Symbol U3 Pin 4 [BAT, Input, Line]",
+      "severity": "error",
+      "reason": "BAT reaches the fuel gauge from the battery connector through the reverse-polarity FET Q1. No power-output pin drives VBAT and there is no PWR_FLAG on it."
+    },
+    {
+      "type": "power_pin_not_driven",
+      "uuid": "a9ddf603-e6cf-4678-9b29-a1220c01334e",
+      "sheet": "/BQ34Z100 Fuel Gauge/",
+      "description": "Symbol U3 Pin 7 [REG25, Power input, Line]",
+      "severity": "error",
+      "reason": "REG25 is the OUTPUT of the fuel gauge's internal 2.5V LDO. The symbol declares it as a power input, which is a symbol defect."
+    },
+    {
+      "type": "power_pin_not_driven",
+      "uuid": "ee42e9e9-f5bf-42a1-89a3-bc019eea3630",
+      "sheet": "/",
+      "description": "Symbol USBC1 Pin A4_B9 [VBUS, Power input, Line]",
+      "severity": "error",
+      "reason": "VBUS is supplied by the attached USB-C cable. Nothing on this board drives it, by design."
+    },
+    {
+      "type": "power_pin_not_driven",
+      "uuid": "a753b115-5bd6-4a27-938a-e19990164753",
+      "sheet": "/",
+      "description": "Symbol CN5 Pin 1 [1, Power input, Line]",
+      "severity": "error",
+      "reason": "The solar/DC input is supplied by an external source through the screw terminal. Nothing on this board drives it, by design."
+    },
+    {
+      "type": "power_pin_not_driven",
+      "uuid": "26edc8e7-fe50-4c4c-8c7e-9387bdedfa00",
+      "sheet": "/User I2C/",
+      "description": "Symbol U201 Pin 1 [VDD(A), Power input, Line]",
+      "severity": "error",
+      "reason": "VDD(A) sits on 3V3_USER, confirmed in the netlist. The TPS22918 load switch that feeds that rail does not declare its output as a power-output pin, so ERC cannot see a driver."
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name "project")(type "KiCad")(uri "${KIPRJMOD}/libraries/symbols/project.kicad_sym")(options "")(descr "Project-specific custom symbols (parts missing from stock/vendor libraries)"))
+  (lib (name "Espressif")(type "KiCad")(uri "${KIPRJMOD}/libraries/vendor/espressif-kicad-libraries/symbols/Espressif.kicad_sym")(options "")(descr "Vendored from github.com/espressif/kicad-libraries (CC BY-SA 4.0) - ESP32-C5-WROOM-1U"))
+)

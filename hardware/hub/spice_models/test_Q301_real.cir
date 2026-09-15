@@ -1,0 +1,18 @@
+* Q301 (AO3400A) re-tested with real AOSMD vendor model, same test methodology as the auto-generated check
+.include AO3400.mod
+
+VDD vdd 0 DC 5.0
+RLOAD vdd VUSB 1k
+X1 VUSB ACDRV1_NODE 0 AO3400
+Vgate ACDRV1_NODE 0 DC 0
+
+.control
+dc Vgate 0 5.0 0.05
+let id = abs(i(VDD))
+meas dc vth when id=1m
+let i_on = vecmax(id)
+echo "REAL AO3400 MODEL: vth=$&vth i_on=$&i_on vdd=5.0" > q301_real.out
+quit
+.endc
+
+.end

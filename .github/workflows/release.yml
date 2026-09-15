@@ -1,0 +1,86 @@
+# Builds the fabrication and mechanical outputs for a tagged revision and attaches them to
+# the GitHub Release.
+#
+# These are the artifacts that are deliberately NOT committed: the STEP model is ~19MB and
+# changes with every layout edit, and the gerbers are a pure build product of the board file.
+# Publishing them per release keeps them available without accumulating copies in git history.
+#
+# Tag a board revision to trigger this, for example:
+#   git tag -a hub-v1.0 -m "Hub rev A" && git push origin hub-v1.0
+
+name: Release artifacts
+
+on:
+  push:
+    tags:
+      - 'v*'
+      - 'hub-v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/kicad/kicad:10.0
+      options: --user root
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare output directory
+        run: mkdir -p release
+
+      - name: Gerbers and drill files
+        run: |
+          mkdir -p gerbers
+          kicad-cli pcb export gerbers -o gerbers/ hardware/hub/SunSproutHub.kicad_pcb
+          kicad-cli pcb export drill -o gerbers/ hardware/hub/SunSproutHub.kicad_pcb
+          cd gerbers && zip -r ../release/SunSproutHub-gerbers.zip . && cd ..
+
+      - name: Pick-and-place
+        run: |
+          kicad-cli pcb export pos \
+            --format csv --units mm --side both \
+            --exclude-dnp \
+            -o release/SunSproutHub-positions.csv \
+            hardware/hub/SunSproutHub.kicad_pcb
+
+      - name: Bill of materials
+        run: |
+          kicad-cli sch export bom \
+            --fields 'Reference,Value,Footprint,MPN,Manufacturer,LCSC Part,${QUANTITY},${DNP}' \
+            --group-by 'Value,Footprint,MPN' \
+            --exclude-dnp \
+            -o release/SunSproutHub-bom.csv \
+            hardware/hub/SunSproutHub.kicad_sch
+
+      - name: Schematic PDF
+        run: |
+          kicad-cli sch export pdf \
+            -o release/SunSproutHub-schematic.pdf \
+            hardware/hub/SunSproutHub.kicad_sch
+
+      - name: STEP model
+        run: |
+          kicad-cli pcb export step \
+            --subst-models -f \
+            -o release/SunSproutHub.step \
+            hardware/hub/SunSproutHub.kicad_pcb
+
+      - name: List artifacts
+        run: ls -lh release/
+
+      - name: Attach to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/*
+          generate_release_notes: true
+          body: |
+            Fabrication and mechanical outputs for this revision, generated from
+            `hardware/hub/SunSproutHub.kicad_pcb` by this workflow.
+
+            Some parts have no redistributable 3D model and render bodyless in the STEP
+            file. They are mechanically positioned correctly; only the visual body is
+            absent. See `hardware/hub/README.md`.

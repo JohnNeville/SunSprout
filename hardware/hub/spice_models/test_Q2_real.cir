@@ -1,0 +1,20 @@
+* Q2 (DMP3098L-7) re-tested with real Diodes Inc vendor model, same test methodology as the auto-generated check
+.include DMP3098L.spice.txt
+
+VDD vdd 0 DC 3.3
+X1 VBAT __unnamed_15 vdd DMP3098L
+RLOAD VBAT 0 1k
+Vgate __unnamed_15 0 DC 3.3
+
+.control
+dc Vgate 0 3.3 0.033
+let id = i(VDD)
+let absid = abs(id)
+meas dc vth when absid=1m
+let i_on = abs(vecmax(id))
+print vth
+print i_on
+quit
+.endc
+
+.end

@@ -1,0 +1,19 @@
+* Q1 (MDD3415) vs AO3415 stand-in - coarser sweep
+.include AO3415_clean.mod
+.options gmin=1e-9 reltol=0.01
+
+VDD vdd 0 DC 3.3
+X1 VBAT __unnamed_15 vdd AO3415
+RLOAD VBAT 0 1k
+Vgate __unnamed_15 0 DC 3.3
+
+.control
+dc Vgate 0 3.3 0.05
+let id = i(VDD)
+let absid = abs(id)
+meas dc vth when absid=1m
+let i_on = vecmax(absid)
+print vth
+print i_on
+.endc
+.end

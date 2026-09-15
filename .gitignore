@@ -1,0 +1,76 @@
+# KiCad local (machine/session) UI state, not design data
+*.kicad_prl
+
+# KiCad backups / autosave / locks
+*-bak
+*.kicad_sch-bak
+*.kicad_pcb-bak
+_autosave-*
+*.lck
+*~
+fp-info-cache
+*.rpt
+*.net.bak
+*.pro.bak
+*-backups/
+
+# KiCad plotting scratch
+plot/
+gerbers/
+
+# Freerouting round-trip exports
+*.dsn
+*.ses
+
+# OS cruft
+Thumbs.db
+.DS_Store
+
+# Editor local history
+.history/
+
+# Generated fabrication and analysis outputs - reproducible from the design files
+/production/
+/analysis/
+drc_report.json
+/tools/validation/*-report.json
+!/tools/validation/erc-baseline.json
+
+# BOM exports - regenerated from the schematic, which is where the sourcing data actually
+# lives (MPN / LCSC Part / Supplier properties on each symbol). Export with
+# tools/generate_jlcpcb_bom.sh rather than committing a stale snapshot.
+/bom/
+*.csv
+
+# Vendor SPICE models - none of these carry a redistribution grant, and the TI ones are
+# click-through downloads. The test decks (*.cir) ARE committed; see
+# hardware/hub/spice_models/README.md for where to re-download each model.
+hardware/hub/spice_models/*.mod
+hardware/hub/spice_models/*.spice.txt
+hardware/hub/spice_models/*_pspice.zip
+hardware/hub/spice_models/*_extracted/
+
+# ngspice run artifacts and scratch smoke tests - regenerate by re-running the decks
+hardware/hub/spice_models/*.log
+hardware/hub/spice_models/*.out
+hardware/hub/spice_models/*.out.*
+hardware/hub/spice_models/smoke*
+
+# Vendor CAD models under a no-redistribution license (SnapMagic / UltraLibrarian
+# downloads). Keep local only. The per-IC design notes name the exact part number so
+# these can be re-downloaded.
+/datasheets/
+
+# Saved vendor datasheet web pages
+*.htm
+*_files/
+
+# KiCad writes .bak alongside library files on save
+*.bak
+
+# The STEP model is ~19MB and regenerates from the board; it is published as a release
+# asset instead of being committed, so its blobs never accumulate in history.
+website/static/*.step
+
+# Editor local-history snapshots
+.history_trim/
