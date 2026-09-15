@@ -1,0 +1,360 @@
+# SunSprout hub board package.
+#
+# Describes the hardware only: the MCU module, both I2C buses, the charger, the
+# fuel gauge, the status LED, the alert inputs and the switched user rail. It
+# has no WiFi, API, OTA or deep-sleep configuration, so you can layer your own
+# on top. See example-device.yaml for a complete device built from this file.
+#
+# Include it as a package:
+#
+#   packages:
+#     hub: !include firmware/sunsprout-hub.yaml
+#
+# Override any of the substitutions below in your own config.
+
+substitutions:
+  # Nominal capacity of the attached cell, in mAh. Sets the charge-termination
+  # current to C/10 and the fuel gauge's Design Capacity.
+  battery_capacity: "6000"
+  battery_energy_mwh: "19200"   # capacity x 3.2 V nominal, for LiFePO4
+
+  # The cell chemistry. The charge voltage limit is derived from this and
+  # written to the charger during setup -- the charger's PROG resistor selects
+  # 4.2 V at power-on, which would damage a LiFePO4 cell. Change this if you
+  # fit a different chemistry; do not set the voltage by hand.
+  cell_chemistry: "lifepo4"
+  # Conservative default. The hardware ceiling is 2000 mA -- see below.
+  charge_current: "1000"
+
+external_components:
+  - source: github://JohnNeville/esphome-bq-drivers
+    components: [bq25798, bq34z100]
+
+esp32:
+  # ESP32-C5-WROOM-1U-N8R8: 8 MB quad-SPI flash, 8 MB quad-SPI PSRAM.
+  board: esp32-c5-devkitc-1
+  variant: esp32c5
+  flash_size: 8MB
+  framework:
+    type: esp-idf
+
+psram:
+  mode: quad
+  speed: 80MHz
+
+# --- I2C buses -------------------------------------------------------------
+# Both buses have 4.7 kOhm pull-ups on the board.
+#
+# The ESP32-C5 has one general-purpose I2C controller and one low-power one.
+# The low-power controller is hard-wired to GPIO2 for SDA and GPIO3 for SCL,
+# which is exactly how SDA_INT and SCL_INT are routed, so the internal bus
+# takes it and the user bus gets the general-purpose controller. Both run at
+# once. Do not move either internal-bus pin: the low-power controller works on
+# no other pair, and losing it puts the two buses back in contention.
+i2c:
+  # Always-on internal bus, on the low-power controller. Charger, fuel gauge
+  # and the J6 port share it.
+  - id: bus_internal
+    sda: GPIO2      # SDA_INT / LP_I2C_SDA
+    scl: GPIO3      # SCL_INT / LP_I2C_SCL
+    low_power_mode: true
+    scan: true
+
+  # Switched user bus, behind the PCA9615 differential buffer. It has no power
+  # until the 3V3_USER rail is enabled, so scanning it at boot finds nothing.
+  - id: bus_user
+    sda: GPIO9      # SDA_USER
+    scl: GPIO10     # SCL_USER
+    scan: false
+
+# --- Charger ---------------------------------------------------------------
+bq25798:
+  i2c_id: bus_internal
+  address: 0x6B
+  update_interval: 30s
+
+  battery_capacity: ${battery_capacity}
+  chemistry: ${cell_chemistry}
+  cell_count: 1
+  default_charge_current: ${charge_current}
+
+  # The board's PMID, SYS, SW1, SW2 and BAT copper is rated for 2 A, while the
+  # IC will source 5 A. R302/R303 cap the *input* current at 2.00 A in
+  # hardware, but there is no equivalent hardware limit on the charge current,
+  # and in buck mode the charge current can exceed the input current. This
+  # clamp is what keeps a firmware fault off the copper.
+  max_charge_current: 2000
+
+  # Q3 is the ship FET on SDRV, in series in the battery path between the
+  # reverse-polarity FET Q1 and the charger's BAT pins. The charger locks
+  # SDRV_CTRL (and EN_BATOC) at 0 until SFET_PRESENT is set, so this flag is
+  # what makes the power-cycle button below do anything at all.
+  ship_fet_present: true
+  # The charger otherwise waits ~10 s before acting on SDRV_CTRL, which is a
+  # long time to watch a board you just asked to reboot.
+  ship_fet_action_delay: false
+  # EN_BATOC opens Q3 above the IC's fixed ~9.3 A discharge threshold. That is
+  # far above the 2 A this board's copper is rated for, so treat it as a
+  # dead-short backstop rather than as copper protection -- the charge-current
+  # ceiling below is what guards the copper.
+  battery_ocp: true
+
+  # Disabled: a watchdog expiry would silently revert the charge voltage to
+  # the PROG default of 4.2 V, which would damage a LiFePO4 cell.
+  watchdog: disabled
+
+  # TS divider: R305 5.23 kOhm from REGN, R306 30.1 kOhm to ground, sized for
+  # a 103AT-type 10 kOhm NTC. The thermistor itself is off-board, via J302.
+  ts_resistor_upper: 5.23kOhm
+  ts_resistor_lower: 30.1kOhm
+
+  vbus_voltage:
+    name: "Input Voltage"
+    id: charger_vbus
+  vac1_voltage:
+    name: "USB Input Voltage"
+    id: charger_vac1
+  vac2_voltage:
+    name: "Solar Input Voltage"
+    id: charger_vac2
+  vbat_voltage:
+    name: "Battery Voltage"
+    id: charger_vbat
+  vsys_voltage:
+    name: "System Voltage"
+    id: charger_vsys
+    disabled_by_default: true
+  ibus_current:
+    name: "Input Current"
+    id: charger_ibus
+  ibat_current:
+    name: "Battery Current"
+    id: charger_ibat
+  battery_temperature:
+    name: "Battery Temperature"
+    id: charger_battery_temperature
+  die_temperature:
+    name: "Charger Temperature"
+    disabled_by_default: true
+
+  vbus_present:
+    name: "Input Present"
+  vac1_present:
+    name: "USB Input Present"
+  vac2_present:
+    name: "Solar Input Present"
+  power_good:
+    name: "Power Good"
+  charging:
+    name: "Charging"
+  battery_present:
+    name: "Battery Present"
+    disabled_by_default: true
+  thermal_regulation:
+    name: "Charger Thermal Regulation"
+    disabled_by_default: true
+
+  charge_status:
+    name: "Charge Status"
+  input_source:
+    name: "Input Source"
+  charger_fault:
+    name: "Charger Fault"
+
+  enable_charging:
+    name: "Enable Charging"
+    id: enable_charging
+    restore_mode: ALWAYS_ON
+  enable_mppt:
+    name: "Enable MPPT"
+    id: enable_mppt
+    restore_mode: RESTORE_DEFAULT_ON
+  enable_stat_led:
+    name: "Charger Status LED"
+    restore_mode: RESTORE_DEFAULT_ON
+    disabled_by_default: true
+  enable_acdrv1:
+    name: "Enable USB Input"
+    restore_mode: RESTORE_DEFAULT_ON
+  enable_acdrv2:
+    name: "Enable Solar Input"
+    restore_mode: RESTORE_DEFAULT_ON
+  enable_hiz:
+    name: "Charger HIZ Mode"
+    disabled_by_default: true
+
+  charge_current:
+    name: "Charge Current Limit"
+    id: charge_current_limit
+    max_value: 2000   # matches max_charge_current above
+  input_current_limit:
+    name: "Input Current Limit"
+    max_value: 2000   # R302/R303 enforce 2.00 A in hardware regardless
+    disabled_by_default: true
+  vindpm:
+    name: "Input Voltage Limit"
+    disabled_by_default: true
+  min_system_voltage:
+    name: "Minimum System Voltage"
+    disabled_by_default: true
+
+  mppt_voc_ratio:
+    name: "MPPT Voltage Ratio"
+    disabled_by_default: true
+  mppt_voc_delay:
+    name: "MPPT Measurement Delay"
+    disabled_by_default: true
+  mppt_voc_rate:
+    name: "MPPT Measurement Interval"
+    disabled_by_default: true
+
+  # Opens Q3 for ~350 ms, then closes it. Everything on the SYS rail loses
+  # power, the MCU included, so this reboots the board -- which is the point.
+  # The charger and the fuel gauge both stay powered through it: U8 performs
+  # the reset, and U3 sits on VBAT_PROTECTED on the pack side of Q3. It
+  # therefore cannot clear a stuck I2C slave.
+  power_cycle:
+    name: "Power Cycle Board"
+
+  # Both cut power until an adapter arrives or SW3 pulls QON low. The charger
+  # ignores either while an adapter is connected.
+  ship_mode:
+    name: "Charger Ship Mode"
+    disabled_by_default: true
+  shutdown:
+    name: "Charger Shutdown"
+    disabled_by_default: true
+
+  reset_registers:
+    name: "Reset Charger Registers"
+    disabled_by_default: true
+
+# --- Fuel gauge ------------------------------------------------------------
+sensor:
+  - platform: bq34z100
+    i2c_id: bus_internal
+    address: 0x55
+    update_interval: 30s
+
+    # Data flash writes are off by default. Turn this on once, with a cell
+    # attached, to write the pack parameters; each value is compared before
+    # writing, so leaving it on does not wear the flash.
+    apply_configuration: false
+    design_capacity: ${battery_capacity}
+    design_energy: ${battery_energy_mwh}
+    cell_count: 1
+    # R60, in the battery return path next to J4, Kelvin-sensed through NT4.
+    sense_resistor: 10.0
+    # The thermistor on J401 is biased from REG25 by the gauge itself.
+    external_thermistor: true
+    # Only takes effect once a 400-series chemistry is loaded, which has to be
+    # done at the bench with bqStudio -- it cannot be set over I2C.
+    lifepo4_relax: true
+
+    state_of_charge:
+      name: "Battery Level"
+      id: battery_level
+    voltage:
+      name: "Battery Voltage (gauge)"
+      disabled_by_default: true
+    current:
+      name: "Battery Current (gauge)"
+      disabled_by_default: true
+    average_current:
+      name: "Battery Average Current"
+    average_power:
+      name: "Battery Average Power"
+    temperature:
+      name: "Battery Temperature (gauge)"
+    remaining_capacity:
+      name: "Battery Remaining Capacity"
+    full_charge_capacity:
+      name: "Battery Full Charge Capacity"
+      disabled_by_default: true
+    available_energy:
+      name: "Battery Available Energy"
+    time_to_empty:
+      name: "Battery Time to Empty"
+    time_to_full:
+      name: "Battery Time to Full"
+      disabled_by_default: true
+    cycle_count:
+      name: "Battery Cycle Count"
+      disabled_by_default: true
+    state_of_health:
+      name: "Battery Health"
+    chem_id:
+      name: "Gauge Chemistry ID"
+      disabled_by_default: true
+
+    discharging:
+      name: "Battery Discharging"
+      disabled_by_default: true
+    fully_charged:
+      name: "Battery Fully Charged"
+    low_charge:
+      name: "Battery Low"
+    critical_charge:
+      name: "Battery Critically Low"
+    over_temperature:
+      name: "Battery Over Temperature"
+
+    status:
+      name: "Gauge Status"
+
+    cc_offset_calibration:
+      name: "Calibrate Gauge Current Offset"
+      disabled_by_default: true
+    board_offset_calibration:
+      name: "Calibrate Gauge Board Offset"
+      disabled_by_default: true
+    enable_impedance_track:
+      name: "Enable Impedance Track"
+      disabled_by_default: true
+
+# --- Alert inputs ----------------------------------------------------------
+# Both lines are open-drain with 10 kOhm pull-ups on the board, so they are
+# active low. The charger pulse is short; the fault registers are the reliable
+# source, which the charger component polls anyway.
+binary_sensor:
+  - platform: gpio
+    name: "Charger Interrupt"
+    id: charger_interrupt
+    pin:
+      number: GPIO8      # CHG_INT
+      inverted: true
+    entity_category: diagnostic
+    disabled_by_default: true
+
+  - platform: gpio
+    name: "Fuel Gauge Alert"
+    id: fuel_gauge_alert
+    pin:
+      number: GPIO4      # FG_ALERT
+      inverted: true
+    entity_category: diagnostic
+    disabled_by_default: true
+
+# --- User rail and status LED ----------------------------------------------
+switch:
+  # R23 pulls EN low, so the rail defaults to off and an unprogrammed board
+  # never powers a bus nothing is controlling.
+  - platform: gpio
+    name: "User 3V3 Rail"
+    id: user_rail
+    pin: GPIO23          # EN_3V3_USER
+    restore_mode: RESTORE_DEFAULT_OFF
+    entity_category: config
+
+output:
+  - platform: gpio
+    id: status_led_output
+    pin: GPIO6           # LED1_CTRL, through R3 (120 Ohm)
+
+light:
+  - platform: binary
+    name: "Status LED"
+    id: status_led
+    output: status_led_output
+    entity_category: config
+    restore_mode: RESTORE_DEFAULT_OFF
