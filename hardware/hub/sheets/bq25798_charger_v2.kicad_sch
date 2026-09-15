@@ -8233,7 +8233,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Snapeda:RQM0029A-MFG"
+		(property "Footprint" "Snapeda:RQM0029A-MFG_ModifiedCornersAndCourtyard"
 			(at 262.89 295.91 0)
 			(show_name yes)
 			(do_not_autoplace no)

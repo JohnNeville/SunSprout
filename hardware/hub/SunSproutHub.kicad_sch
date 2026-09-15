@@ -15337,7 +15337,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "PCM_Espressif:ESP32-C5-WROOM-1U"
+		(property "Footprint" "Espressif:ESP32-C5-WROOM-1U"
 			(at 435.61 237.49 0)
 			(hide yes)
 			(show_name no)
@@ -16631,7 +16631,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Snapeda:SOT23-6L_STM-M"
+		(property "Footprint" "Snapeda:SOT23-6L_STM"
 			(at 173.99 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -21671,7 +21671,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Snapeda:SAMESKY_UJ20-C-H-G-SMT-2A-P16-TR"
+		(property "Footprint" "project:USB-C_TYPE-C-31-M-12"
 			(at 36.83 52.07 0)
 			(hide yes)
 			(show_name no)

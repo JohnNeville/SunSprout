@@ -2813,7 +2813,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Snapeda:SOT23-6L_STM-M"
+		(property "Footprint" "Snapeda:SOT23-6L_STM"
 			(at 218.44 96.52 0)
 			(hide yes)
 			(show_name no)
