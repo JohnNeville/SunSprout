@@ -35,9 +35,9 @@ by [InteractiveHtmlBom](https://github.com/openscopeproject/InteractiveHtmlBom) 
 |---|---|---|---|---|---|
 | CHIP_PU/EN | Reboot button (SW1) | Fixed | No (dedicated EN pin) | R1 10kΩ pull-up to 3V3_SYS + C2 1µF | Reset button |
 | GPIO0 | Boot/flash button (SW2) | Fixed | Yes — boot-mode select | Internal pull-up + R2 10kΩ external to 3V3_SYS | Hold during reset to enter download mode |
-| GPIO1 | SCL_INT (internal I2C clock) | Assigned | No | R21 4.7kΩ pull-up to 3V3_SYS | Internal I2C bus |
-| GPIO2 | SDA_INT (internal I2C data) | Assigned | No | R20 4.7kΩ pull-up to 3V3_SYS | Internal I2C bus: charger and fuel gauge |
-| GPIO3 | Unused | Free | Yes — SDIO sampling/clock-edge select, floating default | — | Routed to expansion header J7 |
+| GPIO1 | Unused | Free | No | — | Routed to expansion header J7 |
+| GPIO2 | SDA_INT — **`LP_I2C_SDA`** | Assigned | No | R20 4.7kΩ pull-up to 3V3_SYS | Internal I2C data. Fixed-function LP pin; see below. |
+| GPIO3 | SCL_INT — **`LP_I2C_SCL`** | Assigned | Yes — SDIO sampling/clock-edge select | R21 4.7kΩ pull-up to 3V3_SYS | Internal I2C clock. Fixed-function LP pin; see below. |
 | GPIO4 | FG_ALERT (fuel gauge) | Assigned | No — deep-sleep wake capable | R401 10kΩ pull-up to 3V3_SYS | Fuel-gauge alert, wake-capable. Kept on its own net, separate from the charger's interrupt |
 | GPIO5 | Unused | Free | No | — | Routed to expansion header J8 |
 | GPIO6 | LED1_CTRL (status LED) | Assigned | No | — (push-pull output) | Drives LED1 through R3 (120Ω) |
@@ -58,13 +58,29 @@ by [InteractiveHtmlBom](https://github.com/openscopeproject/InteractiveHtmlBom) 
 | GPIO27 | Unused | Free | Yes — boot-mode strap | — | Routed to expansion header J8 |
 | GPIO28 | Unused (biased) | Free | Yes — boot-mode strap, default internal pull-up | R4 10kΩ pull-up to 3V3_SYS | Routed to expansion header J8. R4 reinforces the strap's default state; C3 is an unpopulated 0603 tuning placeholder |
 
+## Why the internal bus is on GPIO2/GPIO3
+
+The ESP32-C5 has **one** general-purpose I2C controller and **one** low-power controller
+(datasheet §4.2.1.3: *"ESP32-C5 has an I2C and an LP I2C bus interface"*). Two simultaneous I2C
+buses therefore need both.
+
+The HP controller routes to any pin through the GPIO matrix, but `LP_I2C` does not — it is
+hard-wired through the LP IO MUX to **GPIO2 (`LP_I2C_SDA`) and GPIO3 (`LP_I2C_SCL`)**. So the
+internal bus sits on exactly those two pins, and the user bus takes the HP controller on
+GPIO9/GPIO10. Put the internal bus anywhere else and both buses contend for the single HP
+controller, which won't build.
+
+That pinning also buys something: the LP peripherals and LP CPU stay powered in deep sleep, so
+the charger and fuel gauge can be polled while the main CPU is off, rather than waking the
+whole chip to read a register.
+
 ## Free IO
 
-GPIO3, GPIO5, GPIO7, GPIO24, GPIO25, GPIO26, GPIO27, and GPIO28 are unused and available for
+GPIO1, GPIO5, GPIO7, GPIO24, GPIO25, GPIO26, GPIO27, and GPIO28 are unused and available for
 your own projects. All of them are routed out to the two expansion headers (`J7` and `J8`),
 which aren't fitted at the factory — solder a 2.54mm header strip to use them.
 
-Note the strapping-pin caveats on GPIO3, GPIO7, GPIO25, GPIO26, GPIO27, and GPIO28 above: the
+Note the strapping-pin caveats on GPIO7, GPIO25, GPIO26, GPIO27, and GPIO28 above: the
 MCU samples these at reset to select a boot mode, so check what each strap does before loading
 one down at boot. Exposing strapping pins on a header follows the precedent of Espressif's own
 DevKitC-1.

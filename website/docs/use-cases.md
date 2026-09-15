@@ -97,7 +97,7 @@ the hub half does not:
 | Charger | BQ25628E @ `0x6A` | BQ25798 |
 | Fuel gauge | LC709204F @ `0x0B` | BQ34Z100 |
 | Rail monitoring | INA3221 | Charger's integrated 16-bit ADC |
-| I2C pins | GPIO35/36, GPIO47/48 | GPIO1/2 (internal), GPIO9/10 (user) — see [Pins & Signals](./pinout.md) |
+| I2C pins | GPIO35/36, GPIO47/48 | GPIO2/3 (internal, on `LP_I2C`), GPIO9/10 (user) — see [Pins & Signals](./pinout.md) |
 
 The satellite side — ADS1115 addressing, the soil-probe template, calibration voltages — needs
 no change, because nothing about it depends on which board is at the other end of the cable.

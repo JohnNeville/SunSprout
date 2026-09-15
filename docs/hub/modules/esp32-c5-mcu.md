@@ -64,8 +64,8 @@ Hold GPIO0 low during a reset to enter download mode.
 |---|---|---|
 | `EN` | `RESET_NODE` | Reset button `SW1`. |
 | GPIO0 | `BTN1_NODE` | Boot-mode button `SW2`. |
-| GPIO1 | `SCL_INT` | Internal I2C clock. `R21` pulls it up with 4.7 kΩ. |
-| GPIO2 | `SDA_INT` | Internal I2C data. `R20` pulls it up with 4.7 kΩ. |
+| GPIO2 | `SDA_INT` | Internal I2C data, and the fixed `LP_I2C_SDA` pin. `R20` pulls it up with 4.7 kΩ. |
+| GPIO3 | `SCL_INT` | Internal I2C clock, and the fixed `LP_I2C_SCL` pin. `R21` pulls it up with 4.7 kΩ. |
 | GPIO4 | `FG_ALERT` | Alert output from the fuel gauge. |
 | GPIO6 | `LED1_CTRL` | Status LED, through `R3` (120 Ω). |
 | GPIO8 | `CHG_INT` | Interrupt output from the charger. `R24` pulls it up with 10 kΩ. |
@@ -79,9 +79,22 @@ Hold GPIO0 low during a reset to enter download mode.
 The alert lines use separate GPIO pins. The charger and the fuel gauge therefore report faults
 independently. Firmware does not have to poll both devices to find which one raised an alert.
 
+## Why the internal I2C bus uses GPIO2 and GPIO3
+
+The chip has one general-purpose I2C controller and one low-power controller. Running two I2C
+buses at once needs both of them.
+
+The general-purpose controller can be routed to any pin. The low-power controller cannot: it is
+tied through the LP IO MUX to GPIO2 for data and GPIO3 for clock. The internal bus therefore
+must use those two pins, which leaves the general-purpose controller for the user bus on GPIO9
+and GPIO10.
+
+The low-power peripherals stay powered during deep sleep. Placing the charger and fuel gauge on
+this bus means their registers remain reachable while the main processor is off.
+
 ## Free pins
 
-GPIO3, GPIO5, GPIO7, GPIO24, GPIO25, GPIO26, GPIO27 and GPIO28 have no board function. They go
+GPIO1, GPIO5, GPIO7, GPIO24, GPIO25, GPIO26, GPIO27 and GPIO28 have no board function. They go
 to the two expansion headers, `J7` and `J8`. The debug UART pins also go to `J8`.
 
 Both headers are DNP. The board ships without them. Solder a header to use these pins.
