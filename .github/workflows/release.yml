@@ -84,6 +84,34 @@ jobs:
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
           echo "prerelease=$prerelease" >> "$GITHUB_OUTPUT"
 
+      # The board silkscreens ${VCSSHORTHASH}, but only the KiCad GUI resolves that variable;
+      # kicad-cli leaves it as the literal "no hash", so every headless export so far has
+      # shipped unstamped. Verified by exporting F.SilkS locally in a clean checkout and
+      # diffing against the CI gerber: byte-identical apart from the version and timestamp
+      # headers. A project text variable of the same name does override the built-in, so
+      # write the commit in here and the fab output carries the revision it was built from.
+      - name: Stamp the board with the commit it was built from
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          python3 - "$COMMIT_SHA" <<'PYEOF'
+          import json
+          import sys
+
+          short = sys.argv[1][:7]
+          path = "hardware/hub/SunSproutHub.kicad_pro"
+
+          with open(path, encoding="utf-8") as f:
+              project = json.load(f)
+
+          project.setdefault("text_variables", {})["VCSSHORTHASH"] = short
+
+          with open(path, "w", encoding="utf-8") as f:
+              json.dump(project, f, indent=2)
+
+          print(f"Silkscreen will read: {short}")
+          PYEOF
+
       - name: Prepare output directory
         run: mkdir -p release
 
