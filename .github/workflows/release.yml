@@ -121,32 +121,52 @@ jobs:
       - name: Prepare output directory
         run: mkdir -p release
 
-      - name: Gerbers and drill files
+      # The fab set comes from Fabrication Toolkit rather than kicad-cli, because JLCPCB
+      # rejects kicad-cli's pick-and-place outright: it emits Ref,Val,Package,PosX,PosY,Rot,Side
+      # where the uploader wants Designator,Mid X,Mid Y,Rotation,Layer. The toolkit writes
+      # JLCPCB's own headers, applies the rotation and offset corrections their assembler
+      # expects, and names the gerbers with the Protel extensions they recommend.
+      #
+      # Pinned to the same 5.3.1 that tools/kicad-ci.Dockerfile uses, so a release is built
+      # with the version this project has actually validated against. The stock KiCad image
+      # ships git and python3 but not xvfb, and the toolkit's CLI still imports wx, which
+      # needs a display to attach to even non-interactively.
+      - name: Install Fabrication Toolkit
         run: |
-          mkdir -p gerbers
-          kicad-cli pcb export gerbers -o gerbers/ hardware/hub/SunSproutHub.kicad_pcb
-          kicad-cli pcb export drill -o gerbers/ hardware/hub/SunSproutHub.kicad_pcb
-          # The KiCad container has no zip(1), so pack the archive with Python's zipfile,
-          # which ships with the image. Archiving from inside gerbers/ keeps the entries flat,
-          # which is what the fab houses expect.
-          cd gerbers && python3 -m zipfile -c ../release/SunSproutHub-gerbers.zip .
+          apt-get update -qq
+          apt-get install -y -qq --no-install-recommends xvfb
+          git clone --depth 1 --branch 5.3.1             https://github.com/bennymeg/Fabrication-Toolkit.git /opt/fabrication-toolkit
 
-      - name: Pick-and-place
+      - name: JLCPCB fabrication set
         run: |
-          kicad-cli pcb export pos \
-            --format csv --units mm --side both \
-            --exclude-dnp \
-            -o release/SunSproutHub-positions.csv \
-            hardware/hub/SunSproutHub.kicad_pcb
+          cd /opt/fabrication-toolkit
+          xvfb-run -a -s '-screen 0 1024x768x24' python3 -m plugins.cli             --path "$GITHUB_WORKSPACE/hardware/hub/SunSproutHub.kicad_pcb"             --autoTranslate --autoFill --excludeDNP --nonInteractive
 
-      - name: Bill of materials
+      # The toolkit writes to a production/ directory beside the board, under its own generic
+      # filenames. Rename them onto the BOM-/CPL-/GERBER- convention this project already
+      # documents, so a release asset says what it is without being opened.
+      - name: Collect the fabrication set
         run: |
-          kicad-cli sch export bom \
-            --fields 'Reference,Value,Footprint,MPN,Manufacturer,LCSC Part,${QUANTITY},${DNP}' \
-            --group-by 'Value,Footprint,MPN' \
-            --exclude-dnp \
-            -o release/SunSproutHub-bom.csv \
-            hardware/hub/SunSproutHub.kicad_sch
+          prod="hardware/hub/production"
+          if [ ! -d "$prod" ]; then
+            echo "::error::Fabrication Toolkit produced no output directory"
+            exit 1
+          fi
+
+          cp "$prod/bom.csv" release/BOM-SunSproutHub.csv
+          cp "$prod/positions.csv" release/CPL-SunSproutHub.csv
+          if [ -f "$prod/netlist.ipc" ]; then
+            cp "$prod/netlist.ipc" release/IPC-SunSproutHub.ipc
+          fi
+
+          # Named after the board's title-block revision, so match on extension, not on a
+          # filename this workflow would have to keep in step with the board.
+          archive=$(find "$prod" -maxdepth 1 -name '*.zip' | head -n1)
+          if [ -z "$archive" ]; then
+            echo "::error::Fabrication Toolkit produced no gerber archive"
+            exit 1
+          fi
+          cp "$archive" release/GERBER-SunSproutHub.zip
 
       - name: Schematic PDF
         run: |

@@ -37,8 +37,8 @@ drc_report.json
 !/tools/validation/erc-baseline.json
 
 # BOM exports - regenerated from the schematic, which is where the sourcing data actually
-# lives (MPN / LCSC Part / Supplier properties on each symbol). Export with
-# tools/generate_jlcpcb_bom.sh rather than committing a stale snapshot.
+# lives (MPN / LCSC Part / Supplier properties on each symbol). The release workflow builds
+# them per revision rather than committing a stale snapshot.
 /bom/
 *.csv
 
@@ -78,3 +78,8 @@ website/static/*.step
 
 # kicad-jlcpcb-tools plugin local parts cache
 /hardware/hub/jlcpcb/
+
+# Fabrication Toolkit output - the release workflow regenerates this per revision, and a
+# local run should not be able to slip a stale fab set into a commit
+/hardware/hub/production/
+/hardware/hub/fabrication-toolkit-options.json
