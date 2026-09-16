@@ -84,32 +84,38 @@ jobs:
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
           echo "prerelease=$prerelease" >> "$GITHUB_OUTPUT"
 
-      # The board silkscreens ${VCSSHORTHASH}, but only the KiCad GUI resolves that variable;
-      # kicad-cli leaves it as the literal "no hash", so every headless export so far has
-      # shipped unstamped. Verified by exporting F.SilkS locally in a clean checkout and
-      # diffing against the CI gerber: byte-identical apart from the version and timestamp
-      # headers. A project text variable of the same name does override the built-in, so
-      # write the commit in here and the fab output carries the revision it was built from.
+      # The board silkscreens ${VCSSHORTHASH}, which never survives a headless export.
+      # kicad-cli renders the literal "no hash" even inside the git repo (verified by plotting
+      # F.SilkS from the working tree and from a copy outside any repo - byte-identical), and
+      # Fabrication Toolkit does not apply the project's text variables at all. REV_NUM only
+      # survives because KiCad caches it into the board as a (property ...), which the hash
+      # has no equivalent of.
+      #
+      # So substitute the commit into the board itself rather than into the project: a literal
+      # needs no resolver, and every downstream tool renders it the same. Workspace-only; this
+      # is never committed back.
       - name: Stamp the board with the commit it was built from
         env:
           COMMIT_SHA: ${{ github.sha }}
         run: |
           python3 - "$COMMIT_SHA" <<'PYEOF'
-          import json
           import sys
 
           short = sys.argv[1][:7]
-          path = "hardware/hub/SunSproutHub.kicad_pro"
+          path = "hardware/hub/SunSproutHub.kicad_pcb"
 
           with open(path, encoding="utf-8") as f:
-              project = json.load(f)
+              board = f.read()
 
-          project.setdefault("text_variables", {})["VCSSHORTHASH"] = short
+          found = board.count("${VCSSHORTHASH}")
+          if not found:
+              sys.exit("No ${VCSSHORTHASH} left in the board - the silkscreen changed, "
+                       "and this step would have silently shipped an unstamped panel.")
 
-          with open(path, "w", encoding="utf-8") as f:
-              json.dump(project, f, indent=2)
+          with open(path, "w", encoding="utf-8", newline="") as f:
+              f.write(board.replace("${VCSSHORTHASH}", short))
 
-          print(f"Silkscreen will read: {short}")
+          print(f"Silkscreen will read: {short} ({found} occurrences)")
           PYEOF
 
       - name: Prepare output directory
