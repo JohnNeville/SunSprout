@@ -79,14 +79,41 @@ The firmware disables the watchdog. A watchdog that can damage the cell gives no
 
 ## The charge current limit
 
-`R302` and `R303` limit the input current to 2.00 A. That limit is analog. Firmware cannot
-exceed it.
+`R302` and `R303` limit the input current. That limit is analog. Firmware cannot exceed it.
+
+The limit is not exactly 2.00 A. The divider is referenced to `REGN`, and `REGN` tracks the
+input voltage: about 2.00 A from a 5 V USB source, about 2.14 A from a 15 V solar input, and
+1.87 A to 2.27 A across the full `REGN` spec. See
+[Battery charger](modules/bq25798-charger.md) for the derivation.
 
 The charge current has no equivalent hardware limit. In buck mode, the charge current can be
 larger than the input current. The board copper carries 2 A.
 
 The firmware therefore applies its own ceiling of 2000 mA. The driver clamps every write to
 that value. See [Battery charger](modules/bq25798-charger.md).
+
+## The battery thermistor blocks charging
+
+`J302` ships with no thermistor. The `TS` divider then sits at 85.2% of `REGN`, which is above
+every JEITA cold threshold — the 0 °C threshold is 73.3% of `REGN`. The charger reads a cell
+colder than its cold cutoff and **suspends charging**. A board with no thermistor does not
+charge, whatever the firmware does.
+
+The charger offers `TS_IGNORE`, bit 0 of `REG18`, to disable the check. **The driver does not
+expose it.** The `ts_resistor_upper`, `ts_resistor_lower`, `ts_nominal_resistance` and `ts_beta`
+options convert the `TS` reading into a reported temperature; none of them writes `REG18`.
+
+Two consequences while that remains true:
+
+- The board needs a thermistor on `J302`, or the 10 kΩ substitute resistor tracked in
+  [issue #3](https://github.com/JohnNeville/SunSprout/issues/3), before it will charge.
+- The **Battery Temperature** sensor reads implausibly cold on a board with `J302` open,
+  because the driver is solving for a thermistor that is not there. Treat a wildly cold
+  reading as "no thermistor fitted", not as a real measurement.
+
+Adding a `ts_ignore` option to the driver would make a thermistor-less board charge, at the
+cost of giving up temperature qualification entirely. The resistor is the better fix, because
+it keeps JEITA working.
 
 ## Maximum power point tracking
 
