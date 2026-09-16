@@ -22,6 +22,7 @@ const sidebars: SidebarsConfig = {
         'overview',
         'pinout',
         'connectors',
+        'firmware',
         'notes',
         'use-cases',
         'design-files',
