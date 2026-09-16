@@ -36,8 +36,10 @@ ICs, and one for sensors, buffered onto a differential pair so it can drive a lo
 
 | | |
 |---|---|
+| Documentation site | **[johnneville.github.io/SunSprout](https://johnneville.github.io/SunSprout/)** — pinout, connectors, power behaviour |
 | Design files | [hardware/hub/](hardware/hub/) — KiCad 10 project, hand-routed |
 | Why it is built this way | [docs/hub/modules/](docs/hub/modules/) — per-IC design notes |
+| Firmware | [firmware/](firmware/) — ESPHome configuration; [docs/hub/firmware.md](docs/hub/firmware.md) for the reasoning |
 | Off-board parts you need | [docs/hub/extra-components.md](docs/hub/extra-components.md) |
 
 Every IC's datasheet-required external components are drawn directly into the schematic rather
@@ -74,9 +76,11 @@ Not yet documented. This is where the sensor-side build notes will live.
 .
 ├── hardware/
 │   └── hub/                  # the hub's KiCad project, libraries, and SPICE decks
+├── firmware/                 # ESPHome configuration for the hub
 ├── docs/
 │   └── hub/
 │       ├── modules/          # per-IC design notes: part choice, passive values, constraints
+│       ├── firmware.md       # why the firmware is configured the way it is
 │       └── extra-components.md
 ├── tools/                    # Dockerised KiCad CLI: validation, fab outputs, doc assets
 └── website/                  # Docusaurus documentation site
@@ -89,8 +93,13 @@ The prose documentation is split by audience:
 - **[docs/hub/modules/](docs/hub/modules/)** explains *why* the hub is built the way it is —
   why each part was chosen, and why its passives have the values and packages they do. Written
   for someone reading the design cold. Start at the [index](docs/hub/modules/README.md).
-- **[website/](website/)** is the user-facing documentation site: pinout, connectors, power
-  behaviour, and downloads.
+- **[docs/hub/firmware.md](docs/hub/firmware.md)** explains the firmware decisions — why the
+  watchdog is off, why the charge voltage comes from the declared chemistry, and what the
+  `SFET_PRESENT` bit unlocks. The configuration itself is in [firmware/](firmware/); the chip
+  drivers live in [esphome-bq-drivers](https://github.com/JohnNeville/esphome-bq-drivers).
+- **[website/](website/)** is the source for the user-facing documentation site, published at
+  **[johnneville.github.io/SunSprout](https://johnneville.github.io/SunSprout/)**: pinout,
+  connectors, power behaviour, and downloads.
 
 Manufacturer datasheets are deliberately not redistributed here. Each design note names the
 exact part number, so you can get the datasheet from the manufacturer.

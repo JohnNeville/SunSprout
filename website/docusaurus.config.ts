@@ -66,7 +66,11 @@ const config: Config = {
           position: 'left',
           label: 'Docs',
         },
-        // TODO: add a GitHub navbar link once this project has a public repo.
+        {
+          href: 'https://github.com/JohnNeville/SunSprout',
+          label: 'GitHub',
+          position: 'right',
+        },
       ],
     },
     footer: {
@@ -85,6 +89,10 @@ const config: Config = {
           items: [
             {label: 'Design Files', to: '/docs/design-files'},
             {label: 'Attribution', to: '/docs/attribution'},
+            {
+              label: 'GitHub',
+              href: 'https://github.com/JohnNeville/SunSprout',
+            },
           ],
         },
       ],
