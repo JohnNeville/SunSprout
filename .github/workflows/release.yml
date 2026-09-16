@@ -37,7 +37,10 @@ jobs:
           mkdir -p gerbers
           kicad-cli pcb export gerbers -o gerbers/ hardware/hub/SunSproutHub.kicad_pcb
           kicad-cli pcb export drill -o gerbers/ hardware/hub/SunSproutHub.kicad_pcb
-          cd gerbers && zip -r ../release/SunSproutHub-gerbers.zip . && cd ..
+          # The KiCad container has no zip(1), so pack the archive with Python's zipfile,
+          # which ships with the image. Archiving from inside gerbers/ keeps the entries flat,
+          # which is what the fab houses expect.
+          cd gerbers && python3 -m zipfile -c ../release/SunSproutHub-gerbers.zip .
 
       - name: Pick-and-place
         run: |
