@@ -1,12 +1,20 @@
-# Builds the fabrication and mechanical outputs for a tagged revision and attaches them to
+# Builds the fabrication and mechanical outputs for a board revision and attaches them to
 # the GitHub Release.
 #
 # These are the artifacts that are deliberately NOT committed: the STEP model is ~19MB and
 # changes with every layout edit, and the gerbers are a pure build product of the board file.
 # Publishing them per release keeps them available without accumulating copies in git history.
 #
-# Tag a board revision to trigger this, for example:
-#   git tag -a hub-v1.0 -m "Hub rev A" && git push origin hub-v1.0
+# There are two ways in:
+#
+#   - Push a tag, and the release is cut from it:
+#       git tag -a hub-v1.0 -m "Hub rev A" && git push origin hub-v1.0
+#
+#   - Run it by hand from the Actions tab, naming the version to publish. The tag is created
+#     at whatever commit you dispatch from, so this can cut a release without tagging first.
+#
+# Either way the version string is the tag name. A suffix on it (hub-v1.0-rc1) means a
+# pre-release; a bare version (hub-v1.0) means a full one. The manual run can override that.
 
 name: Release artifacts
 
@@ -16,6 +24,16 @@ on:
       - 'v*'
       - 'hub-v*'
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish, e.g. hub-v1.0 or hub-v1.0-rc1. Tagged at the commit you run from.'
+        required: true
+        type: string
+      prerelease:
+        description: 'Publish as a pre-release'
+        required: false
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -28,6 +46,43 @@ jobs:
       options: --user root
     steps:
       - uses: actions/checkout@v4
+
+      # A tag push carries its version in the ref; a manual run carries it in the inputs.
+      # Settle which it is once here so the release step below has a single source to read.
+      - name: Resolve the version being released
+        id: release
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REF_NAME: ${{ github.ref_name }}
+          INPUT_VERSION: ${{ inputs.version }}
+          INPUT_PRERELEASE: ${{ inputs.prerelease }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            tag=$INPUT_VERSION
+            prerelease=$INPUT_PRERELEASE
+          else
+            tag=$REF_NAME
+            # Strip the optional board prefix before looking for a pre-release suffix, so that
+            # the hyphen in 'hub-v1.0' is not mistaken for one.
+            case "${tag#hub-}" in
+              *-*) prerelease=true ;;
+              *) prerelease=false ;;
+            esac
+          fi
+
+          # A manual run can name anything, so check it looks like a version before it becomes
+          # a tag that has to be cleaned up afterwards.
+          case "$tag" in
+            v[0-9]*|hub-v[0-9]*) ;;
+            *)
+              echo "::error::'$tag' is not a version this workflow publishes. Use v<number> or hub-v<number>, e.g. hub-v1.0 or hub-v1.0-rc1."
+              exit 1
+              ;;
+          esac
+
+          echo "Publishing $tag (prerelease=$prerelease)"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "prerelease=$prerelease" >> "$GITHUB_OUTPUT"
 
       - name: Prepare output directory
         run: mkdir -p release
@@ -79,6 +134,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: release/*
+          tag_name: ${{ steps.release.outputs.tag }}
+          prerelease: ${{ steps.release.outputs.prerelease }}
           generate_release_notes: true
           body: |
             Fabrication and mechanical outputs for this revision, generated from
