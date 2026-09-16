@@ -83,14 +83,36 @@ reset were all unavailable in that revision. The design deleted `C319` and fitte
 | `R305` | 5.23 kΩ | `TS` | Upper leg of the thermistor bias divider from `REGN`. |
 | `R306` | 30.1 kΩ | `TS` | Lower leg of the thermistor bias divider to ground. |
 
-### The 2.00 A hardware input-current limit
+### The hardware input-current limit
 
-`R302` and `R303` set a hardware limit on the input current. The limit is 2.00 A. The charger
-enforces this limit as an analog ceiling. Firmware cannot exceed it through the I2C registers.
+`R302` and `R303` set a hardware limit on the input current. The charger enforces it as an
+analog ceiling. Firmware cannot exceed it through the I2C registers.
+
+The limit is not one fixed number. The charger derives it from the `ILIM_HIZ` pin voltage as
+
+```
+V(ILIM_HIZ) = 1 V + 800 mOhm * I
+```
+
+and the divider sets that voltage as a fraction of `REGN`: 130 k / (110 k + 130 k) = 0.542.
+`REGN` is not fixed either. Its typical value is 4.8 V with a 5 V input and 5.0 V with a 15 V
+input, specified over 4.6 V to 5.2 V.
+
+| Input | `REGN`, typical | `V(ILIM_HIZ)` | Limit |
+|---|---|---|---|
+| USB-C at 5 V | 4.8 V | 2.600 V | 2.00 A |
+| Solar or DC at 15 V | 5.0 V | 2.708 V | 2.14 A |
+| Full `REGN` spec | 4.6 V to 5.2 V | 2.49 V to 2.82 V | 1.87 A to 2.27 A |
+
+The divider was sized for the 5 V case. A high-voltage input therefore raises the ceiling about
+7% above 2 A, and worst-case silicon reaches 2.27 A.
 
 The board copper for the `PMID`, `SYS`, `SW1`, `SW2` and `BAT` nets carries 2 A. The IC itself
-allows up to 5 A. The resistor divider makes the hardware match the copper. A firmware fault
-cannot then drive the copper above its rating.
+allows up to 5 A. The divider brings the hardware close to the copper rating, but not below it
+in every case — size the copper against 2.27 A, not against 2.00 A.
+
+The charger reads this pin with its ADC once, at power-on, before the converter starts
+switching. Whichever source is present at power-up therefore fixes the clamp for that session.
 
 ### Firmware constraint on the charge current
 
@@ -100,7 +122,7 @@ power-on reset, at a watchdog timeout and at a register reset.
 
 **Firmware must not set the charge current above 2000 mA.** In buck mode the charge current can
 be larger than the input current. A higher setting can therefore drive the charge-side copper
-above its rating, even with the 2.00 A input limit in place.
+above its rating, even with the input current limit in place.
 
 ### Battery temperature sensing
 
@@ -108,8 +130,22 @@ above its rating, even with the 2.00 A input limit in place.
 NTC thermistor at 25 °C. The thermistor is not on the board. It connects through `J302`. See
 [extra-components.md](../extra-components.md).
 
-The charger uses the `TS` reading for JEITA temperature qualification. Without a thermistor the
-charger still works, but it cannot qualify fast charge against the cell temperature.
+The charger uses the `TS` reading for JEITA temperature qualification.
+
+**Without a thermistor the charger does not charge at all.** With `J302` open, the divider sits
+at 30.1 / (5.23 + 30.1) = 85.2% of `REGN`. Every cold threshold is below that: the 0 °C
+threshold `VT1_RISE` is 73.3% of `REGN`, and even the -20 °C OTG threshold is 80%. The charger
+therefore reads a cell colder than its cold cutoff and suspends charging.
+
+Firmware can override this by setting `TS_IGNORE`, bit 0 of `REG18`. That bit defaults to 0, and
+the datasheet lists it as reset by the watchdog and by a register reset, so firmware has to set
+it at start-up and again after every watchdog timeout — the same handling the charge current
+needs.
+
+The divider itself is right once a thermistor is present. A 103AT at 25 °C parallels `R306` down
+to 7.48 kOhm and puts the pin at 58.9% of `REGN`, in the middle of the charging window. Only the
+unpopulated default is wrong, and the fix is a 10 kOhm resistor across the `J302` position, which
+restores that same 58.9%.
 
 ## Power inductor — L1
 
