@@ -1,0 +1,121 @@
+# A complete SunSprout hub device, built on the board package.
+#
+# Copy this, change the substitutions and the secrets, and flash it. The
+# hardware itself lives in sunsprout-hub.yaml; everything here is the part you
+# would write for any ESPHome device.
+
+substitutions:
+  name: sunsprout-hub
+  friendly_name: SunSprout Hub
+
+  # Override the board package's defaults for your cell.
+  battery_capacity: "6000"
+  battery_energy_mwh: "19200"
+
+packages:
+  hub: !include sunsprout-hub.yaml
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: JohnNeville.SunSproutHub
+    version: DIY
+  on_boot:
+    # Before the deep_sleep component starts its timer, so a held-awake board
+    # stays awake through the whole boot.
+    - priority: 600
+      then:
+        - if:
+            condition:
+              lambda: 'return id(prevent_sleep_global);'
+            then:
+              - deep_sleep.prevent: deep_sleep_control
+              - logger.log:
+                  format: "Deep sleep held off by the prevent_sleep flag."
+                  tag: setup
+
+    # After the charger and gauge have set themselves up.
+    - priority: 500
+      then:
+        - switch.turn_on: user_rail
+        - logger.log:
+            format: "User 3V3 rail enabled."
+            tag: setup
+
+logger:
+  level: INFO
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "${friendly_name} Fallback"
+    password: !secret fallback_password
+
+captive_portal:
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+globals:
+  # Flip this from Home Assistant to keep the board awake for maintenance.
+  - id: prevent_sleep_global
+    type: bool
+    restore_value: true
+    initial_value: "false"
+
+deep_sleep:
+  id: deep_sleep_control
+  run_duration: 120s
+  sleep_duration: 15min
+
+switch:
+  - platform: template
+    name: "Prevent Deep Sleep"
+    id: prevent_sleep
+    icon: "mdi:sleep-off"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on:
+      - globals.set:
+          id: prevent_sleep_global
+          value: "true"
+      - deep_sleep.prevent: deep_sleep_control
+    on_turn_off:
+      - globals.set:
+          id: prevent_sleep_global
+          value: "false"
+      - deep_sleep.allow: deep_sleep_control
+
+sensor:
+  - platform: wifi_signal
+    name: "WiFi Signal"
+    update_interval: 60s
+    entity_category: diagnostic
+
+text_sensor:
+  - platform: version
+    name: "ESPHome Version"
+    entity_category: diagnostic
+
+# Note: no INA3221 and no VINDPM-tracking script.
+#
+# The garden sensor this configuration descends from used an external power
+# monitor plus a script that nudged VINDPM up and down to chase the solar
+# panel's maximum power point. The BQ25798 does that itself: it measures the
+# panel's open-circuit voltage every few minutes and sets VINDPM to a fraction
+# of it. The `enable_mppt` switch in the board package is all that is needed,
+# and the charger's own ADC reports the input voltage and current that the
+# INA3221 used to provide.

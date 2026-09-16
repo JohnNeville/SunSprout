@@ -1,0 +1,50 @@
+# Validates the ESPHome configuration whenever the firmware changes.
+#
+# Only `esphome config` runs here, not `esphome compile`. The chip drivers live in
+# JohnNeville/esphome-bq-drivers and are compiled by that repository's own CI, which is
+# where a C++ error would surface. What this job checks is that the board package and the
+# example device still describe a valid configuration against the current driver schemas
+# and the current ESPHome release -- which is exactly what breaks when either moves.
+
+name: Validate firmware
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'firmware/**'
+      - '.github/workflows/validate-firmware.yml'
+  pull_request:
+    paths:
+      - 'firmware/**'
+      - '.github/workflows/validate-firmware.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: esphome config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ESPHome
+        run: pip install esphome
+
+      - name: Write placeholder secrets
+        # The example config reads secrets that obviously are not in the repo.
+        # `esphome config` only needs the keys to resolve, not to be real.
+        run: |
+          cat > firmware/secrets.yaml <<'EOF'
+          wifi_ssid: "placeholder"
+          wifi_password: "placeholder"
+          fallback_password: "placeholder"
+          ota_password: "placeholder"
+          api_encryption_key: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+          EOF
+
+      - name: Validate the example device
+        run: esphome config firmware/example-device.yaml
