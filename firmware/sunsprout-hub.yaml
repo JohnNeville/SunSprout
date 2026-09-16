@@ -79,8 +79,9 @@ bq25798:
   default_charge_current: ${charge_current}
 
   # The board's PMID, SYS, SW1, SW2 and BAT copper is rated for 2 A, while the
-  # IC will source 5 A. R302/R303 cap the *input* current at 2.00 A in
-  # hardware, but there is no equivalent hardware limit on the charge current,
+  # IC will source 5 A. R302/R303 cap the *input* current at roughly 2 A in
+  # hardware (REGN-dependent: ~2.00 A at 5 V in, ~2.14 A at 15 V in), but
+  # there is no equivalent hardware limit on the charge current,
   # and in buck mode the charge current can exceed the input current. This
   # clamp is what keeps a firmware fault off the copper.
   max_charge_current: 2000
@@ -105,6 +106,12 @@ bq25798:
 
   # TS divider: R305 5.23 kOhm from REGN, R306 30.1 kOhm to ground, sized for
   # a 103AT-type 10 kOhm NTC. The thermistor itself is off-board, via J302.
+  #
+  # With J302 open the divider sits at 85.2% of REGN, above every JEITA cold
+  # threshold (0 C is 73.3%), so the charger reads "too cold" and suspends
+  # charging. These options only convert the TS reading into a temperature --
+  # they do not write TS_IGNORE, and the driver does not expose it. A board
+  # with nothing on J302 will not charge. See SunSprout issue #3.
   ts_resistor_upper: 5.23kOhm
   ts_resistor_lower: 30.1kOhm
 
@@ -189,7 +196,7 @@ bq25798:
     max_value: 2000   # matches max_charge_current above
   input_current_limit:
     name: "Input Current Limit"
-    max_value: 2000   # R302/R303 enforce 2.00 A in hardware regardless
+    max_value: 2000   # R302/R303 enforce ~2.0-2.1 A in hardware regardless
     disabled_by_default: true
   vindpm:
     name: "Input Voltage Limit"

@@ -113,7 +113,8 @@ on, and 8 V below the ±20 V limit. Tolerance and temperature drift do not close
 worst case runs to about 13 V.
 
 Clamping harder than necessary would cost on-resistance, and `Q2` carries the whole input
-current. At the board's 2.00 A input limit the FET dissipates I²R, so keeping it fully enhanced
+current. At the board's roughly 2 A input limit the FET dissipates I²R, so keeping it fully
+enhanced
 matters thermally as well as electrically.
 
 ### The clamp sits below the Zener's knee

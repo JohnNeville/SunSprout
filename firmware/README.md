@@ -78,10 +78,12 @@ something anyone can drag in Home Assistant.
 If you fit a different cell, change `cell_chemistry` in the substitutions. The accepted
 values are `lifepo4`, `li_ion`, `li_ion_4_35` and `li_ion_4_40`.
 
-**The charge current ceiling.** `R302` and `R303` cap the *input* current at 2.00 A in
-hardware. There is no equivalent hardware limit on the charge current, and in buck mode
-the charge current can exceed the input current, so `max_charge_current: 2000` in the
-board package is what keeps the 2 A copper safe. Do not raise it.
+**The charge current ceiling.** `R302` and `R303` cap the *input* current at roughly 2 A in
+hardware — nearer 2.0 A on USB-C and 2.14 A on a high-voltage solar input, because the
+divider is referenced to the input-dependent `REGN` rail. There is no equivalent hardware
+limit on the charge current, and in buck mode the charge current can exceed the input
+current, so `max_charge_current: 2000` in the board package is what keeps the 2 A copper
+safe. Do not raise it.
 
 **The watchdog stays off.** The charger's I2C watchdog reverts the charge voltage and
 current to the `PROG` defaults when it expires — which for the voltage means 4.2 V. The
