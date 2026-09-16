@@ -117,10 +117,20 @@ storage — unplug the pack at `J4` for that.
 
 ## Fuel gauge setup, once per board
 
-The gauge ships with a lithium-ion chemistry profile. A LiFePO4 cell needs a 400-series
-chemistry, and **that cannot be loaded over I2C** — it takes TI's bqStudio with an EV2400
-and a `.bqz` chemistry file, once, at the bench. Until that is done the state of charge
-will be wrong no matter what else is configured.
+The gauge ships with a lithium-ion chemistry profile (`Device Chemistry` defaults to
+`LION`). A LiFePO4 cell needs a 400-series one, and until it is loaded the state of charge
+is wrong no matter what else is configured.
+
+**There is no I2C command that sets the chemistry** — `CHEM_ID` only reports it, and the
+only selection path TI documents is the BQChem feature in bqStudio (datasheet §8.1.2.1.6).
+But the chemistry lives in ordinary data flash, which §7.2.3.1 says is reachable through
+bqStudio *or* through data flash block transfers — the same protocol this driver already
+uses for capacity and calibration. The datasheet calls the captured result a Golden Image
+File that "can then be written to multiple battery packs".
+
+So: **bqStudio once, to obtain the values; not once per board.** After that the bytes can
+be replayed over I2C. What bqStudio supplies is the table contents, not exclusive write
+access — the datasheet does not publish them.
 
 Everything else the gauge needs *can* be written from firmware. Set
 `apply_configuration: true` in the `bq34z100` block with a cell attached and reflash; the

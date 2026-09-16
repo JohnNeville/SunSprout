@@ -166,12 +166,23 @@ copper. The charge-current ceiling does that.
 The gauge holds a chemistry profile in its data flash. A LiFePO4 cell needs a 400-series
 profile.
 
-**Firmware cannot load a chemistry profile.** The `CHEM_ID` command reports the active
-profile. Texas Instruments gives no I2C command to change it. The profile comes from
-bqStudio and an EV2400 programmer, with a `.bqz` chemistry file. This happens once, at the
-bench.
+**The gauge has no I2C command that sets the chemistry.** The `CHEM_ID` command reports the
+active profile. It does not change it. Texas Instruments documents one way to select a
+profile: the BQChem feature in the evaluation software, bqStudio. See datasheet section
+8.1.2.1.6.
 
-Until then, the state of charge is wrong.
+The chemistry data itself is ordinary data flash. Section 7.2.3.1 states that data flash is
+reachable through the evaluation software **or through data flash block transfers**, which
+is the same protocol the driver already uses for capacity and calibration. The datasheet
+calls the result a Golden Image File, and states that it "can then be written to multiple
+battery packs".
+
+The board therefore needs bqStudio **once**, to produce the values. It does not need
+bqStudio for every board. Once the values are known, firmware can write them over I2C.
+
+The datasheet does not publish the chemistry tables. That is what bqStudio supplies.
+
+Until a 400-series profile is loaded, the state of charge is wrong.
 
 The firmware reads the chemistry ID at start-up. It compares the ID against the configured
 value. It reports an error when the two do not match. This makes the problem visible.

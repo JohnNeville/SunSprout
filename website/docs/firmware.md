@@ -99,11 +99,22 @@ switch, and a **Power Cycle Board** button. Ship mode and shutdown are hidden by
 
 ## Two things need a bench visit
 
-**The fuel gauge chemistry profile.** The gauge ships with a lithium-ion profile. LiFePO4
-needs a 400-series one, and it **cannot be loaded over I2C** — it takes TI's bqStudio with an
-EV2400 programmer and a `.bqz` file, once per gauge. Until that is done the state of charge is
-wrong no matter what else is set. The firmware reads the gauge's chemistry ID at boot and logs
-an error if it does not match `expected_chem_id`, so the problem is at least visible.
+**The fuel gauge chemistry profile.** The gauge ships set up for lithium-ion. LiFePO4 needs a
+400-series profile, and until it is loaded the state of charge is wrong no matter what else is
+set — which matters most for exactly this chemistry, whose flat discharge curve makes
+voltage-based estimates useless.
+
+There is **no I2C command that sets the chemistry**: `CHEM_ID` only reports it, and the one
+selection path TI documents is the BQChem feature in bqStudio. The chemistry data itself,
+though, is ordinary data flash — reachable either through bqStudio or through the same data
+flash block transfers the firmware already uses, and the datasheet explicitly describes
+capturing the result as a Golden Image File that "can then be written to multiple battery
+packs".
+
+So this is a **bqStudio-once** step to obtain the values, not a per-board one. After that the
+bytes can be replayed over I2C. The firmware reads the gauge's chemistry ID at boot and logs an
+error if it does not match `expected_chem_id`, so a gauge running the wrong profile is at least
+visible.
 
 Everything else the gauge needs *can* be written from firmware: set `apply_configuration: true`
 with a cell attached, reflash once, then run **Calibrate Gauge Current Offset** and **Calibrate
