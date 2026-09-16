@@ -60,5 +60,6 @@ asset rather than living in the repository, where each regeneration would add an
 the history permanently.
 
 Everything above is a build artifact of the KiCad source. Regenerate the site assets with
-`tools/generate-docs-assets.sh` and the fabrication set with `tools/generate_jlcpcb_bom.sh`.
-Docker is the only prerequisite; no local KiCad install is needed.
+`tools/generate-docs-assets.sh`; Docker is the only prerequisite there, and no local KiCad
+install is needed. The fabrication set is built by the Release artifacts workflow, which can
+be run from the Actions tab against any commit without tagging one.

@@ -15,7 +15,7 @@
 # `kicad-cli sch erc` against this repo without that layer resolvable: 42 noise violations
 # (footprint_link_issues/lib_symbol_issues) instead of the real baseline. Cloning it needs a
 # GitHub token with read access, passed in as a build secret (never baked into an image layer) -
-# see tools/run_kicad_validation.sh and tools/generate_jlcpcb_bom.sh, which supply it from
+# see tools/run_kicad_validation.sh, which supplies it from
 # `gh auth token`. Build without this secret still works; that layer's RUN step is skipped and
 # ERC will show the library-link noise instead of the real 3-violation baseline.
 
@@ -71,7 +71,8 @@ RUN apt-get update -qq \
 # needed - unlike the private vendor-library repo above). Its plugins/ package (with its own
 # __init__.py) exposes a genuine headless CLI at plugins/cli.py, distinct from the wx GUI dialog
 # used inside pcbnew - run as `python3 -m plugins.cli --path <board> ... --nonInteractive` from
-# /opt/fabrication-toolkit. See tools/generate_jlcpcb_bom.sh.
+# /opt/fabrication-toolkit. The release workflow installs the same pinned version the same
+# way; this layer keeps it available for local runs against the same image.
 RUN git clone --depth 1 --branch 5.3.1 \
       https://github.com/bennymeg/Fabrication-Toolkit.git /opt/fabrication-toolkit \
     && rm -rf /opt/fabrication-toolkit/.git
