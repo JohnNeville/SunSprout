@@ -130,12 +130,12 @@ guidance.
 | Chemistry | Li-ion / Li-Po and LiFePO4 (the fuel gauge carries profiles for both) |
 | Input voltage, either source | **3.6 V to 24 V** for a valid input; 30 V absolute maximum |
 | Practical solar ceiling | **24 V**, the charger's own recommended maximum — the input protection no longer sets a lower one. The reverse-polarity FET on that input is self-biased, so the full input voltage appears across its ±20 V gate in normal operation as well as under a reversed source; a Zener gate clamp (`D2`) holds that within rating across the whole range. Size a panel by its cold-weather open-circuit voltage, which rises above the rated Voc. See [input protection](https://github.com/JohnNeville/SunSprout/blob/main/docs/hub/modules/input-protection.md). |
-| Input current limit | **2.00 A**, fixed in hardware by a resistor divider. Firmware cannot exceed it. |
+| Input current limit | **~2.0–2.1 A**, set in hardware by a resistor divider. Firmware cannot exceed it. The exact value tracks the charger's REGN rail, which is itself input-dependent — see below. |
 | Charge current | Firmware-set over I2C. Defaults to **1 A**; **do not exceed 2 A** (see below). |
 | Solar tracking | Autonomous open-circuit-voltage MPPT, run by the charger itself |
 | Source arbitration | Both inputs may be connected at once; the charger's internal mux selects between them |
 | Measurement | Integrated 16-bit ADC: input voltage/current, battery voltage/current, temperature |
-| Temperature qualification | JEITA, via a thermistor on `J302` (not fitted — see [Connectors](./connectors.md)) |
+| Temperature qualification | JEITA, via a thermistor on `J302` (not fitted — see [Connectors](./connectors.md)). **With no thermistor fitted the charger reads "too cold" and suspends charging** until firmware sets `TS_IGNORE`; see below. |
 
 ### Output
 
@@ -146,16 +146,45 @@ guidance.
 
 ### Charging & PMU behavior
 
-- **Input current limit: exactly 2.00A**, hardware-set by a resistor divider on the charger's
-  `ILIM_HIZ` pin. This is an analog ceiling the charger enforces regardless of what firmware
-  writes to the corresponding register. It caps the combined draw from whichever source (USB-C,
-  DC/solar, or both at once) is feeding the charge path — it isn't the battery's charge rate.
-  The limit matches what the board's copper is sized to carry, which is less than the IC itself
-  can deliver.
-- **Charging is enabled in hardware.** The charger's `CE` pin is tied to ground, so a battery
-  connected to a board with no firmware running will still charge, at the charger's power-on
-  default of 1A. The charger's own protections (OVP, OCP, thermal shutdown, UVLO) apply
-  throughout.
+- **Input current limit: roughly 2.0 A to 2.1 A**, hardware-set by the `R302`/`R303` divider on
+  the charger's `ILIM_HIZ` pin. This is an analog ceiling the charger enforces regardless of what
+  firmware writes to the corresponding register. It caps the combined draw from whichever source
+  (USB-C, DC/solar, or both at once) is feeding the charge path — it isn't the battery's charge
+  rate.
+
+  It is not a single fixed number, because the divider is referenced to `REGN`, and `REGN` itself
+  depends on the input voltage. The charger computes the clamp as
+  `V(ILIM_HIZ) = 1 V + 800 mΩ × I`, and the divider ratio is 130 k / (110 k + 130 k) = 0.542:
+
+  | Input | `REGN` (typical) | Resulting limit |
+  |---|---|---|
+  | USB-C at 5 V | 4.8 V | **2.00 A** |
+  | Solar or DC at 15 V | 5.0 V | **2.14 A** |
+  | Across the full `REGN` spec, 4.6 V to 5.2 V | | **1.87 A to 2.27 A** |
+
+  The divider was sized for the 5 V case. On a high-voltage input the ceiling sits about 7% above
+  2 A, and worst-case silicon reaches 2.27 A — budget the copper for the top of that range, not
+  for 2.00 A. The charger latches this clamp from an ADC reading taken at power-on before the
+  converter starts switching, so whichever source is present at power-up sets it for that
+  session.
+- **Charging is enabled in hardware, but not currently sufficient on its own.** The charger's
+  `CE` pin is tied to ground, so nothing has to be written to start a charge. The charger's own
+  protections (OVP, OCP, thermal shutdown, UVLO) apply throughout.
+
+  As built, though, a board with no firmware running **will not charge**, because of the
+  thermistor. `J302` ships unpopulated, and the `TS` divider (`R305` 5.23 kΩ to `REGN`, `R306`
+  30.1 kΩ to ground) then sits at 85.2% of `REGN`. Every JEITA cold threshold is below that —
+  the 0 °C threshold is 73.3% of `REGN`, and even the −20 °C OTG threshold is 80% — so the
+  charger reads a battery colder than its cold cutoff and suspends charging.
+
+  `TS_IGNORE` (register `REG18`, bit 0) disables that check, but it **defaults to 0** and TI
+  lists it as reset by the watchdog and by a register reset. Firmware therefore has to set it at
+  start-up and re-set it after every watchdog timeout, exactly as it must for the charge current.
+
+  The network is correct once a thermistor is present: a 103AT at 25 °C puts the divider at
+  58.9% of `REGN`, mid-window. The gap is only the unpopulated default, and it is tracked as a
+  hardware fix — a 10 kΩ resistor across the `J302` position restores the same 58.9% without a
+  thermistor.
 - **Battery charge current is firmware-configured** over I2C, and resets to that 1A default on
   power-up, on a watchdog timeout, and on a register reset. Program a charge current
   appropriate to your specific pack's capacity before relying on fast charging.
