@@ -135,6 +135,10 @@ jobs:
         with:
           files: release/*
           tag_name: ${{ steps.release.outputs.tag }}
+          # Without this the API tags the default branch instead, which on a manual run from
+          # a branch would point the tag at a different commit than the artifacts were built
+          # from. Pin it to the commit this job actually checked out.
+          target_commitish: ${{ github.sha }}
           prerelease: ${{ steps.release.outputs.prerelease }}
           generate_release_notes: true
           body: |
