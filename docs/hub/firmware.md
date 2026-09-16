@@ -11,8 +11,6 @@ The board is a sensor hub. Its job is to read remote sensors and report them to 
 automation system. ESPHome does that work already. It also gives OTA updates, a Home
 Assistant integration and a deep-sleep scheduler.
 
-An earlier plan used bare ESP-IDF. That plan needed its own code for each of those features.
-
 ## Where the code lives
 
 The configuration is split into two parts.
@@ -43,8 +41,6 @@ register reset.
 
 The firmware does not give a control for the charge voltage. A user must not be able to
 change a limit that protects the cell. The chemistry sets the limit, and nothing else does.
-
-This is the most important firmware requirement on the board.
 
 ## The two I2C buses
 
@@ -99,10 +95,6 @@ measures the open-circuit input voltage. It then sets its input voltage limit to
 of that voltage.
 
 The firmware enables this algorithm. It does not track the maximum power point itself.
-
-An earlier design used a separate power monitor IC and a firmware loop. The loop read the
-input voltage and wrote a new limit. The charger does the same work in hardware. The design
-removed the monitor IC, and the firmware does not need the loop.
 
 ## The ship FET and the reboot button
 
