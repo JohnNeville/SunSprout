@@ -105,15 +105,20 @@ options convert the `TS` reading into a reported temperature; none of them write
 
 Two consequences while that remains true:
 
-- The board needs a thermistor on `J302`, or the 10 kΩ substitute resistor tracked in
-  [issue #3](https://github.com/JohnNeville/SunSprout/issues/3), before it will charge.
+- The board needs a thermistor on `J302` before it will charge. Fit a 103AT-type 10 kΩ NTC,
+  which is the part the charger datasheet recommends.
 - The **Battery Temperature** sensor reads implausibly cold on a board with `J302` open,
   because the driver is solving for a thermistor that is not there. Treat a wildly cold
   reading as "no thermistor fitted", not as a real measurement.
 
-Adding a `ts_ignore` option to the driver would make a thermistor-less board charge, at the
-cost of giving up temperature qualification entirely. The resistor is the better fix, because
-it keeps JEITA working.
+Adding a `ts_ignore` option to the driver would let a thermistor-less board charge, at the cost
+of giving up temperature qualification entirely. That is the honest way to run without a
+thermistor: `TS_STAT` reports `000` and the configuration says plainly that the check is off.
+Because this board disables the charger watchdog, the bit would persist once written — only a
+register reset clears it.
+
+A fixed resistor in place of the thermistor was considered and rejected. It would make the
+charger read a constant 25 °C and publish that as a measurement.
 
 ## Maximum power point tracking
 

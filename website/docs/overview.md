@@ -177,14 +177,19 @@ guidance.
   the 0 °C threshold is 73.3% of `REGN`, and even the −20 °C OTG threshold is 80% — so the
   charger reads a battery colder than its cold cutoff and suspends charging.
 
-  `TS_IGNORE` (register `REG18`, bit 0) disables that check, but it **defaults to 0** and TI
-  lists it as reset by the watchdog and by a register reset. Firmware therefore has to set it at
-  start-up and re-set it after every watchdog timeout, exactly as it must for the charge current.
+  The network is correct once a thermistor is present: a 103AT-type 10 kΩ NTC at 25 °C puts the
+  divider at 58.9% of `REGN`, mid-window. **Fit one** — it is what the charger's datasheet
+  expects, and the only arrangement that gives real JEITA temperature protection.
 
-  The network is correct once a thermistor is present: a 103AT at 25 °C puts the divider at
-  58.9% of `REGN`, mid-window. The gap is only the unpopulated default, and it is tracked as a
-  hardware fix — a 10 kΩ resistor across the `J302` position restores the same 58.9% without a
-  thermistor.
+  To run without one, firmware must set `TS_IGNORE` (register `REG18`, bit 0), which tells the
+  charger to treat the temperature as always acceptable. The bit defaults to 0 and TI lists it
+  as reset by the watchdog and by a register reset; this board's firmware disables the watchdog,
+  so in practice only the register-reset control clears it. That route gives up temperature
+  qualification entirely, and the ESPHome driver does not currently expose the bit.
+
+  There is deliberately no fixed resistor standing in for the thermistor. It would make the
+  charger read a permanent 25 °C and report that as a real measurement, which is a worse
+  failure than having no reading at all.
 - **Battery charge current is firmware-configured** over I2C, and resets to that 1A default on
   power-up, on a watchdog timeout, and on a register reset. Program a charge current
   appropriate to your specific pack's capacity before relying on fast charging.

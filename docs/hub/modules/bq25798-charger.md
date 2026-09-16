@@ -137,15 +137,19 @@ at 30.1 / (5.23 + 30.1) = 85.2% of `REGN`. Every cold threshold is below that: t
 threshold `VT1_RISE` is 73.3% of `REGN`, and even the -20 °C OTG threshold is 80%. The charger
 therefore reads a cell colder than its cold cutoff and suspends charging.
 
-Firmware can override this by setting `TS_IGNORE`, bit 0 of `REG18`. That bit defaults to 0, and
-the datasheet lists it as reset by the watchdog and by a register reset, so firmware has to set
-it at start-up and again after every watchdog timeout — the same handling the charge current
-needs.
+The divider is right once a thermistor is present. A 103AT-type 10 kOhm NTC at 25 °C parallels
+`R306` down to 7.48 kOhm and puts the pin at 58.9% of `REGN`, in the middle of the charging
+window. Fit a thermistor. The datasheet gives no guidance for an unused `TS` pin, and recommends
+a 103AT-2 part where it describes the pin at all.
 
-The divider itself is right once a thermistor is present. A 103AT at 25 °C parallels `R306` down
-to 7.48 kOhm and puts the pin at 58.9% of `REGN`, in the middle of the charging window. Only the
-unpopulated default is wrong, and the fix is a 10 kOhm resistor across the `J302` position, which
-restores that same 58.9%.
+Firmware can override the check with `TS_IGNORE`, bit 0 of `REG18`. That bit defaults to 0. The
+datasheet lists it as reset by the watchdog and by a register reset; this board's firmware
+disables the watchdog, so only a register reset clears it in practice. Setting it gives up
+temperature qualification altogether.
+
+The design does not fit a fixed resistor in place of the thermistor. Such a resistor would put
+the pin at a constant voltage, and the charger would report a steady 25 °C that no sensor
+measured. A reading that is wrong and convincing is worse than a reading that is absent.
 
 ## Power inductor — L1
 

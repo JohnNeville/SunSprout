@@ -111,7 +111,7 @@ bq25798:
   # threshold (0 C is 73.3%), so the charger reads "too cold" and suspends
   # charging. These options only convert the TS reading into a temperature --
   # they do not write TS_IGNORE, and the driver does not expose it. A board
-  # with nothing on J302 will not charge. See SunSprout issue #3.
+  # with nothing on J302 will not charge -- fit a 103AT-type 10 kOhm NTC.
   ts_resistor_upper: 5.23kOhm
   ts_resistor_lower: 30.1kOhm
 

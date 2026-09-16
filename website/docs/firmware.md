@@ -122,10 +122,16 @@ Gauge Board Offset** with the pack at rest.
 
 **The battery thermistor.** `J302` ships with nothing fitted, and an empty thermistor input
 reads as a cell far below the charger's cold cutoff — so **the charger refuses to charge**.
-Fit a 103AT-type 10 kΩ NTC, or follow
-[issue #3](https://github.com/JohnNeville/SunSprout/issues/3), which tracks a resistor
-substitute. With nothing fitted, **Battery Temperature** reports an implausibly cold value;
-that is the signature of a missing thermistor, not a real reading.
+Fit a 103AT-type 10 kΩ NTC, which is the part the charger's datasheet recommends.
+
+There is deliberately no fixed resistor standing in for it. A resistor would hold the input at
+a constant voltage, and **Battery Temperature** would then report a steady 25 °C that no sensor
+measured — a convincing wrong reading is worse than an absent one. To run without a thermistor
+and accept losing temperature qualification, the charger's `TS_IGNORE` bit is the honest route;
+the driver does not expose it yet.
+
+With nothing fitted, **Battery Temperature** reports an implausibly cold value. That is the
+signature of a missing thermistor, not a real reading.
 
 ## Rebooting
 
