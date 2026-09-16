@@ -43,7 +43,7 @@ jobs:
           wifi_password: "placeholder"
           fallback_password: "placeholder"
           ota_password: "placeholder"
-          api_encryption_key: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+          api_encryption_key: "D11+GFGws4CFOWmGhaEY1buDfY7DTlP/E+Ap7TzmdI8="
           EOF
 
       - name: Validate the example device
