@@ -6,27 +6,28 @@ battery pack itself.
 
 ## J302 — charger thermistor input (BQ25798 TS)
 
-- **Connector:** JST ZH-style 2-pin (`S2B-ZR`), net `TS_NODE`/GND, biased on-board from the
-  charger's `REGN` rail by the R305/R306 divider (5.23kΩ / 30.1kΩ).
-- **Required part:** a **103AT-2 NTC thermistor (10kΩ @ 25°C)** mounted directly on/against the
-  battery cell.
+- **Connector:** JST PA 2-pin, side entry (`S02B-PASK-2`, LCSC `C265094`), net `TS_NODE`/GND,
+  biased on-board from the charger's `REGN` rail by the R305/R306 divider (5.23kΩ / 30.1kΩ).
+- **Required part:** a **Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C, B25/85 = 3435 K)**
+  mounted directly on/against the battery cell.
 - **Purpose:** feeds BQ25798's TS pin for JEITA charge-temperature qualification (charger
   won't fast-charge outside its configured safe temperature window without this).
 - **Status:** intended, not yet physically sourced/mounted.
 
 ## J401 — fuel gauge thermistor input (BQ34Z100 TS)
 
-- **Connector:** JST ZH-style 2-pin (`S2B-ZR`), net `FG_TS_NODE`, biased from the gauge's own
-  `REG25` rail (the IC's internal pull-down means no external bias resistor is needed here).
-- **Required part:** a second, separate **103AT-2 NTC thermistor (10kΩ @ 25°C)**, also mounted
-  on/against the battery cell.
+- **Connector:** JST PA 2-pin, side entry (`S02B-PASK-2`, LCSC `C265094`), net `FG_TS_NODE`,
+  biased from the gauge's own `REG25` rail (the IC's internal pull-down means no external bias
+  resistor is needed here).
+- **Required part:** a second, separate **Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C,
+  B25/85 = 3435 K)**, also mounted on/against the battery cell.
 - **Purpose:** lets BQ34Z100 read pack temperature directly in hardware via its TH pin, instead
   of firmware having to compute temperature elsewhere and write it into the fuel gauge's
   Temperature register over I2C. This was a deliberate choice to keep temperature reporting out
   of firmware.
 - **Why a separate thermistor from J302, not a shared one:** BQ25798 and BQ34Z100 each apply
   their own excitation/bias to whatever's on their thermistor pin — sharing one physical NTC
-  between two active bias circuits would give both ICs a bad reading. Two independent 103AT-2
+  between two active bias circuits would give both ICs a bad reading. Two independent 103AT-11
   units (both mounted at the same physical location on the cell) is the correct approach.
 - **Status:** intended, not yet physically sourced/mounted.
 

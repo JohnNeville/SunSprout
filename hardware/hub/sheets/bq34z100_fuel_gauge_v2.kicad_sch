@@ -812,265 +812,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Snapeda:S2B-ZR_LF__SN_"
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "J"
-				(at -3.81 6.35 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Value" "S2B-ZR_LF__SN_"
-				(at -4.064 -5.08 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Footprint" "S2B-ZR_LF__SN_:JST_S2B-ZR_LF__SN_"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Connector Header Surface Mount, Right Angle 2 position 0.059 (1.50mm)"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "DigiKey_Part_Number" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "SnapEDA_Link" "https://www.snapeda.com/parts/S2B-ZR%20(LF)(SN)/JST/view-part/?ref=snap"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "MAXIMUM_PACKAGE_HEIGHT" "3.7mm"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Package" "None"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Check_prices" "https://www.snapeda.com/parts/S2B-ZR%20(LF)(SN)/JST/view-part/?ref=eda"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "STANDARD" "Manufacturer Recommendations"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "PARTREV" "NA"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "MF" "JST Sales"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "MP" "S2B-ZR (LF)(SN)"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "MANUFACTURER" "JST Sales America Inc."
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(symbol "S2B-ZR_LF__SN__0_0"
-				(rectangle
-					(start -3.81 -2.54)
-					(end 5.08 5.08)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(rectangle
-					(start -3.175 2.2225)
-					(end -1.5875 2.8575)
-					(stroke
-						(width 0.1)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(rectangle
-					(start -3.175 -0.3175)
-					(end -1.5875 0.3175)
-					(stroke
-						(width 0.1)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(pin passive line
-					(at -7.62 2.54 0)
-					(length 5.08)
-					(name "1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -7.62 0 0)
-					(length 5.08)
-					(name "2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "power:GND"
 			(power global)
 			(pin_numbers
@@ -1296,6 +1037,199 @@
 					)
 					(fill
 						(type none)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "project:JST_02"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "J"
+				(at 0 7.62 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "JST_02"
+				(at 0 5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "project:JST_PA_S02B-PASK-2_1x02_P2.00mm_Horizontal"
+				(at 0 6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "JST Connector  2 pins"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "JST 2"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "project:JST_PA_S02B-PASK-2_1x02_P2.00mm_Horizontal"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "JST_02_0_1"
+				(rectangle
+					(start -1.27 2.54)
+					(end 1.27 -2.54)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 -1.778) (xy -1.27 -2.54) (xy 1.27 -2.54) (xy 1.27 -1.778) (xy 1.016 -1.778) (xy 1.016 -2.286)
+						(xy -1.016 -2.286) (xy -1.016 -1.778) (xy -1.27 -1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 0.254 1.27)
+					(radius 0.381)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 0.254 -1.27)
+					(radius 0.381)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(rectangle
+					(start 1.016 1.778)
+					(end 1.27 -1.778)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.778) (xy 1.27 2.54) (xy -1.27 2.54) (xy -1.27 1.778) (xy -1.016 1.778) (xy -1.016 2.286)
+						(xy 1.016 2.286) (xy 1.016 1.778) (xy 1.27 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+			)
+			(symbol "JST_02_1_1"
+				(pin passive line
+					(at -3.81 1.27 0)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -3.81 -1.27 0)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
 					)
 				)
 			)
@@ -2123,8 +2057,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Snapeda:S2B-ZR_LF__SN_")
-		(at 311.15 189.23 0)
+		(lib_id "project:JST_02")
+		(at 307.34 187.96 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -2135,7 +2069,7 @@
 		(fields_autoplaced yes)
 		(uuid "5d850a1b-c64e-41ca-9eb2-c31efd2a14ae")
 		(property "Reference" "J401"
-			(at 317.5 184.1499 0)
+			(at 313.69 182.8799 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2145,8 +2079,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "S2B-ZR"
-			(at 317.5 186.6899 0)
+		(property "Value" "JST_PA_S02B-PASK-2"
+			(at 313.69 185.4199 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2156,8 +2090,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Snapeda:JST_S2B-ZR_LF__SN_"
-			(at 311.15 189.23 0)
+		(property "Footprint" "project:JST_PA_S02B-PASK-2_1x02_P2.00mm_Horizontal"
+			(at 307.34 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2167,8 +2101,8 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/ea5d0349a6c3a16363d489da6a84290b.pdf?productCode=C157930"
-			(at 311.15 189.23 0)
+		(property "Datasheet" "https://www.jst-mfg.com/product/pdf/eng/ePA-F.pdf"
+			(at 307.34 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2178,8 +2112,9 @@
 				)
 			)
 		)
-		(property "Description" ""
-			(at 311.15 189.23 0)
+		(property "Description" "JST PA 2.00mm side-entry header, 2 circuits, S02B-PASK-2"
+			(at 307.34 187.96 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2188,8 +2123,8 @@
 				)
 			)
 		)
-		(property "LCSC Part" "C157930"
-			(at 311.15 189.23 0)
+		(property "LCSC Part" "C265094"
+			(at 307.34 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2200,7 +2135,8 @@
 			)
 		)
 		(property "Usage" "External 103AT-2 10k NTC thermistor connector for pack temperature sensing. Same physical connector role as the original design's J2/J3 and the earlier v2 BQ27427 sheet's J301."
-			(at 317.5 189.23 0)
+			(at 313.69 187.96 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2211,7 +2147,8 @@
 			)
 		)
 		(property "Placement" "TI BQ34Z100 SS7.2: place close to the battery pack for accurate temperature sensing; route away from switching nodes (SW1/SW2 on the charger sheet) to avoid noise pickup on the TS sense line."
-			(at 317.5 191.77 0)
+			(at 313.69 190.5 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2222,7 +2159,7 @@
 			)
 		)
 		(property "Manufacturer Product Page" ""
-			(at 311.15 189.23 0)
+			(at 307.34 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2233,7 +2170,7 @@
 			)
 		)
 		(property "Supplier" "JLCPCB"
-			(at 311.15 189.23 0)
+			(at 307.34 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2243,8 +2180,8 @@
 				)
 			)
 		)
-		(property "Supplier Part Site" ""
-			(at 311.15 189.23 0)
+		(property "Supplier Part Site" "https://jlcpcb.com/partdetail/JST-S02B_PASK_2_LF_SN/C265094"
+			(at 307.34 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2255,7 +2192,7 @@
 			)
 		)
 		(property "Manufacturer" "JST"
-			(at 1.27 1.27 0)
+			(at -2.54 0 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2265,8 +2202,8 @@
 				)
 			)
 		)
-		(property "MPN" "S2B-ZR(LF)(SN)"
-			(at 1.27 1.27 0)
+		(property "MPN" "S02B-PASK-2(LF)(SN)"
+			(at -2.54 0 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2276,8 +2213,8 @@
 				)
 			)
 		)
-		(property "DigiKey_Part_Number" ""
-			(at 311.15 189.23 0)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "6.5mm"
+			(at 307.34 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2288,8 +2225,8 @@
 				(justify bottom)
 			)
 		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/S2B-ZR%20(LF)(SN)/JST/view-part/?ref=snap"
-			(at 311.15 189.23 0)
+		(property "FT Rotation Offset" "0"
+			(at 307.34 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2297,11 +2234,10 @@
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
 			)
 		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" "3.7mm"
-			(at 311.15 189.23 0)
+		(property "FT Position Offset" "0,0"
+			(at 307.34 187.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2309,91 +2245,6 @@
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
-			)
-		)
-		(property "Package" "None"
-			(at 311.15 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/S2B-ZR%20(LF)(SN)/JST/view-part/?ref=eda"
-			(at 311.15 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "STANDARD" "Manufacturer Recommendations"
-			(at 311.15 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "PARTREV" "NA"
-			(at 311.15 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "MF" "JST Sales"
-			(at 311.15 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "MP" "S2B-ZR (LF)(SN)"
-			(at 311.15 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "MANUFACTURER" "JST Sales America Inc."
-			(at 311.15 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
 			)
 		)
 		(pin "1"
