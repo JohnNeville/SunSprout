@@ -10,6 +10,10 @@ so a solar source can't be physically mis-plugged into the battery input, and th
 temperature-probe inputs use a field-terminable connector rather than requiring a
 pre-terminated probe.
 
+The thermistor inputs use JST **PA**, not the JST **PH** of the battery input `J4`, precisely
+so a cell can never be plugged into a `TS` sense pin. Both are 2.0 mm pitch; the housings do
+not intermate.
+
 | Ref | Type | Purpose | Mating part |
 |---|---|---|---|
 | `USBC1` | USB-C receptacle | USB-C power input | Any standard USB-C cable |
@@ -18,8 +22,8 @@ pre-terminated probe.
 | `J6` | JST SH, 4-pin (STEMMA QT) | Internal I2C bus — for sensors that should share the always-on power-management bus | Any STEMMA QT / Qwiic cable |
 | `J203` | JST SH, 4-pin (STEMMA QT) | User I2C bus — for sensors on the switched, differential-buffer-side bus | Any STEMMA QT / Qwiic cable |
 | `J201` / `J202` | 8P8C (RJ45-style) | Differential I2C — connects to a [SparkFun QwiicBus EndPoint](https://www.sparkfun.com/products/16988) for remote sensors | Standard Ethernet patch cable |
-| `J302` | JST ZH, 2-pin | Charger thermistor input | 10kΩ @ 25°C NTC thermistor (103AT-2 type), mounted on the battery pack |
-| `J401` | JST ZH, 2-pin | Fuel-gauge thermistor input | A **second, separate** 10kΩ @ 25°C NTC thermistor (103AT-2 type), also mounted on the pack |
+| `J302` | JST PA, 2-pin (`S02B-PASK-2`) | Charger thermistor input | Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), mounted on the battery pack — see [below](#terminating-your-own-thermistor-probe) |
+| `J401` | JST PA, 2-pin (`S02B-PASK-2`) | Fuel-gauge thermistor input | A **second, separate** Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), also mounted on the pack |
 | `J7` / `J8` | 2.54mm header (not fitted) | Spare/expansion GPIO breakout, plus the debug UART | Standard 2.54mm header strip, hand-soldered |
 
 ## Why two separate thermistors (J302 and J401)
@@ -28,6 +32,30 @@ The charger and fuel gauge each apply their own excitation/bias to whatever's wi
 thermistor pin. Sharing a single NTC between both active bias circuits would give both ICs a
 bad reading, so each gets its own thermistor — both mounted at the same physical location on
 the battery cell.
+
+## Terminating your own thermistor probe
+
+`J302` and `J401` are JST PA 2-pin side-entry headers (`S02B-PASK-2`). To make up a probe cable:
+
+| Part | Number | Notes |
+|---|---|---|
+| Housing | `PAP-02V-S` | 2-circuit, latching |
+| Crimp contact | `SPHD-001T-P0.5` | AWG 28–22, insulation O.D. 0.76–1.5 mm |
+| Thermistor | Semitec `103AT-11` | 10 kΩ @ 25 °C, B25/85 = 3435 K, 600 mm insulated lead |
+
+The PA series is rated −40 °C to +105 °C and latches. Both matter for a probe that lives on a
+battery pack: an intermittent `TS` connection reads as out-of-range and suspends charging, and
+the connector should not be the narrowest part of the temperature range it is qualifying.
+
+**Do not substitute the Semitec 103AT-2.** It is the same element electrically, but it ships as
+a bare bead on 17 mm solid 42-alloy leads — too short for a crimp barrel, not ductile enough to
+form a gas-tight crimp, and with no insulation for the support wings to grip. If you only have
+103AT-2 parts, solder them to a 24–26 AWG stranded pigtail, heatshrink the joint, and crimp the
+pigtail instead.
+
+**A 3D-printer hotend thermistor will not work here**, despite the familiar-looking connector.
+Those are 100 kΩ, B ≈ 3950 parts; the `R305`/`R306` divider is sized for 10 kΩ. Borrow the
+connector ecosystem, not the part.
 
 ## Why two STEMMA QT ports
 

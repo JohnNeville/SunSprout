@@ -79,7 +79,8 @@ package loses no voltage margin. One shared part also avoids a second feeder-loa
 
 ## Battery temperature sensing
 
-The `TS` pin connects to `J401`. `J401` accepts an external 103AT-type 10 kΩ NTC thermistor.
+The `TS` pin connects to `J401`, a JST PA 2-pin side-entry header (`S02B-PASK-2`). It accepts an
+external 103AT-type 10 kΩ NTC thermistor — this board specifies the Semitec **103AT-11**.
 
 The `REG25` rail biases the thermistor. The IC has an internal pull-down for this pin, so the
 board needs no external bias resistor. The charger needs an external divider for its own

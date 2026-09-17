@@ -127,7 +127,8 @@ above its rating, even with the input current limit in place.
 ### Battery temperature sensing
 
 `R305` and `R306` bias the `TS` pin from the `REGN` rail. The divider suits a 103AT-type 10 kΩ
-NTC thermistor at 25 °C. The thermistor is not on the board. It connects through `J302`. See
+NTC thermistor at 25 °C. The thermistor is not on the board. It connects through `J302`, a JST
+PA 2-pin side-entry header (`S02B-PASK-2`). See
 [extra-components.md](../extra-components.md).
 
 The charger uses the `TS` reading for JEITA temperature qualification.
@@ -140,7 +141,10 @@ therefore reads a cell colder than its cold cutoff and suspends charging.
 The divider is right once a thermistor is present. A 103AT-type 10 kOhm NTC at 25 °C parallels
 `R306` down to 7.48 kOhm and puts the pin at 58.9% of `REGN`, in the middle of the charging
 window. Fit a thermistor. The datasheet gives no guidance for an unused `TS` pin, and recommends
-a 103AT-2 part where it describes the pin at all.
+a 103AT-2 part where it describes the pin at all. This board specifies the **103AT-11**: the
+same 10 kΩ / B25/85 = 3435 K element, but supplied on 600 mm of insulated lead instead of the
+103AT-2's 17 mm bare 42-alloy leads, which cannot be crimped. See
+[extra-components.md](../extra-components.md).
 
 Firmware can override the check with `TS_IGNORE`, bit 0 of `REG18`. That bit defaults to 0. The
 datasheet lists it as reset by the watchdog and by a register reset; this board's firmware

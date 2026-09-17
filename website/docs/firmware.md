@@ -122,7 +122,8 @@ Gauge Board Offset** with the pack at rest.
 
 **The battery thermistor.** `J302` ships with nothing fitted, and an empty thermistor input
 reads as a cell far below the charger's cold cutoff — so **the charger refuses to charge**.
-Fit a 103AT-type 10 kΩ NTC, which is the part the charger's datasheet recommends.
+Fit a Semitec **103AT-11** — a 103AT-type 10 kΩ NTC, the part the charger's datasheet
+recommends, in the variant supplied on 600 mm of insulated lead you can crimp.
 
 There is deliberately no fixed resistor standing in for it. A resistor would hold the input at
 a constant voltage, and **Battery Temperature** would then report a steady 25 °C that no sensor

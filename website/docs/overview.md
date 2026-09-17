@@ -178,8 +178,9 @@ guidance.
   charger reads a battery colder than its cold cutoff and suspends charging.
 
   The network is correct once a thermistor is present: a 103AT-type 10 kΩ NTC at 25 °C puts the
-  divider at 58.9% of `REGN`, mid-window. **Fit one** — it is what the charger's datasheet
-  expects, and the only arrangement that gives real JEITA temperature protection.
+  divider at 58.9% of `REGN`, mid-window. **Fit one** — a Semitec 103AT-11 is the specified
+  part; see [Connectors](./connectors.md). It is what the charger's datasheet expects, and the
+  only arrangement that gives real JEITA temperature protection.
 
   To run without one, firmware must set `TS_IGNORE` (register `REG18`, bit 0), which tells the
   charger to treat the temperature as always acceptable. The bit defaults to 0 and TI lists it

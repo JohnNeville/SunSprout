@@ -105,8 +105,9 @@ options convert the `TS` reading into a reported temperature; none of them write
 
 Two consequences while that remains true:
 
-- The board needs a thermistor on `J302` before it will charge. Fit a 103AT-type 10 kΩ NTC,
-  which is the part the charger datasheet recommends.
+- The board needs a thermistor on `J302` before it will charge. Fit a Semitec 103AT-11 — a
+  103AT-type 10 kΩ NTC, which is the part the charger datasheet recommends, in the variant
+  that ships on 600 mm of insulated lead you can crimp.
 - The **Battery Temperature** sensor reads implausibly cold on a board with `J302` open,
   because the driver is solving for a thermistor that is not there. Treat a wildly cold
   reading as "no thermistor fitted", not as a real measurement.
