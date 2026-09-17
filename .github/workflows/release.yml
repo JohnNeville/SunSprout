@@ -47,8 +47,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Get short sha
-        # This generates a string like "2026-09-17_00-04-00"
-        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
+        shell: sh
+        run: echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
 
       # A tag push carries its version in the ref; a manual run carries it in the inputs.
       # Settle which it is once here so the release step below has a single source to read.
