@@ -2793,7 +2793,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "215ea6c7-0321-4ddd-a54a-d1d3078f3d7c")
-		(property "Reference" "U202"
+		(property "Reference" "D201"
 			(at 218.44 105.156 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2933,7 +2933,7 @@
 		(instances
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/b9168fec-c503-44c7-b7b7-9f2c657dc47e"
-					(reference "U202")
+					(reference "D201")
 					(unit 1)
 				)
 			)
