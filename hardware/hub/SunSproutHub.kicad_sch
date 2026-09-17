@@ -20396,7 +20396,7 @@
 				)
 			)
 		)
-		(property "Value" "Qwiic Sys"
+		(property "Value" "Qwiic"
 			(at 393.32 381.12 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20497,6 +20497,16 @@
 		(property "MPN" "BM04B-SRSS-TB(LF)(SN)"
 			(at 0 0 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Label" "Qwiic Sys"
+			(at 401.32 382.524 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -22339,7 +22349,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "BOOT"
+		(property "Value" "SW_Push"
 			(at 303.53 135.8899 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22372,7 +22382,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "BOOT"
 			(at 302.26 134.62 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24254,7 +24264,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "RESET"
+		(property "Value" "SW_Push"
 			(at 257.81 135.8899 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24287,7 +24297,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "RESET"
 			(at 256.54 134.62 0)
 			(show_name no)
 			(do_not_autoplace no)

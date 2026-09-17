@@ -5034,7 +5034,7 @@
 				)
 			)
 		)
-		(property "Value" "WAKE"
+		(property "Value" "SW_Push"
 			(at 445.77 213.36 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5066,7 +5066,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "WAKE"
 			(at 445.77 215.9 0)
 			(show_name no)
 			(do_not_autoplace no)

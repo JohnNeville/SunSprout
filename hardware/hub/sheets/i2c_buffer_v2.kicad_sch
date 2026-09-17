@@ -2960,8 +2960,9 @@
 				)
 			)
 		)
-		(property "Value" "Qwiic User"
+		(property "Value" "Qwiic"
 			(at 111.38 149.98 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3061,6 +3062,16 @@
 		(property "MPN" "BM04B-SRSS-TB(LF)(SN)"
 			(at 0 0 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Label" "Qwiic User"
+			(at 119.38 151.384 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
