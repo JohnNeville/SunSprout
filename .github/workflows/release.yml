@@ -46,6 +46,9 @@ jobs:
       options: --user root
     steps:
       - uses: actions/checkout@v4
+      - name: Get short sha
+        # This generates a string like "2026-09-17_00-04-00"
+        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       # A tag push carries its version in the ref; a manual run carries it in the inputs.
       # Settle which it is once here so the release step below has a single source to read.
@@ -153,10 +156,10 @@ jobs:
             exit 1
           fi
 
-          cp "$prod/bom.csv" release/BOM-SunSproutHub.csv
-          cp "$prod/positions.csv" release/CPL-SunSproutHub.csv
+          cp "$prod/bom.csv" release/BOM-SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.csv
+          cp "$prod/positions.csv" release/CPL-SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.csv
           if [ -f "$prod/netlist.ipc" ]; then
-            cp "$prod/netlist.ipc" release/IPC-SunSproutHub.ipc
+            cp "$prod/netlist.ipc" release/IPC-SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.ipc
           fi
 
           # Named after the board's title-block revision, so match on extension, not on a
@@ -166,20 +169,20 @@ jobs:
             echo "::error::Fabrication Toolkit produced no gerber archive"
             exit 1
           fi
-          cp "$archive" release/GERBER-SunSproutHub.zip
-
+          cp "$archive" release/GERBER-SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.zip
+  
       - name: Schematic PDF
         run: |
           kicad-cli sch export pdf \
             -o release/SunSproutHub-schematic.pdf \
-            hardware/hub/SunSproutHub.kicad_sch
+            hardware/hub/SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.kicad_sch
 
       - name: STEP model
         run: |
           kicad-cli pcb export step \
             --subst-models -f \
             -o release/SunSproutHub.step \
-            hardware/hub/SunSproutHub.kicad_pcb
+            hardware/hub/SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.kicad_pcb
 
       - name: List artifacts
         run: ls -lh release/
