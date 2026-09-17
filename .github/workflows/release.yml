@@ -174,15 +174,15 @@ jobs:
       - name: Schematic PDF
         run: |
           kicad-cli sch export pdf \
-            -o release/SunSproutHub-schematic.pdf \
-            hardware/hub/SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.kicad_sch
+            -o release/SunSproutHub-schematic_$GITHUB_REF_NAME_$SHORT_SHA.pdf \
+            hardware/hub/SunSproutHub.kicad_sch
 
       - name: STEP model
         run: |
           kicad-cli pcb export step \
             --subst-models -f \
-            -o release/SunSproutHub.step \
-            hardware/hub/SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.kicad_pcb
+            -o release/SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.step \
+            hardware/hub/SunSproutHub.kicad_pcb
 
       - name: List artifacts
         run: ls -lh release/
