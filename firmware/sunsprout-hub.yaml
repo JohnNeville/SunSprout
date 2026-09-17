@@ -104,16 +104,16 @@ bq25798:
   # the PROG default of 4.2 V, which would damage a LiFePO4 cell.
   watchdog: disabled
 
-  # TS divider: R305 5.23 kOhm from REGN, R306 30.1 kOhm to ground, sized for
+  # TS divider: R305 5.1 kOhm from REGN, R306 30 kOhm to ground, sized for
   # a 103AT-type 10 kOhm NTC. The thermistor itself is off-board, via J302.
   #
-  # With J302 open the divider sits at 85.2% of REGN, above every JEITA cold
+  # With J302 open the divider sits at 85.5% of REGN, above every JEITA cold
   # threshold (0 C is 73.3%), so the charger reads "too cold" and suspends
   # charging. These options only convert the TS reading into a temperature --
   # they do not write TS_IGNORE, and the driver does not expose it. A board
   # with nothing on J302 will not charge -- fit a 103AT-type 10 kOhm NTC.
-  ts_resistor_upper: 5.23kOhm
-  ts_resistor_lower: 30.1kOhm
+  ts_resistor_upper: 5.1kOhm
+  ts_resistor_lower: 30kOhm
 
   vbus_voltage:
     name: "Input Voltage"

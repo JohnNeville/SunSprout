@@ -80,8 +80,8 @@ reset were all unavailable in that revision. The design deleted `C319` and fitte
 | `R302` | 110 kΩ | `ILIM_HIZ` | Upper leg of the input-current-limit divider from `REGN`. |
 | `R303` | 130 kΩ | `ILIM_HIZ` | Lower leg of the same divider to ground. |
 | `R304` | 100 Ω | `BATP` | Series isolation resistor on the battery-voltage sense input. The datasheet pin description requires it. |
-| `R305` | 5.23 kΩ | `TS` | Upper leg of the thermistor bias divider from `REGN`. |
-| `R306` | 30.1 kΩ | `TS` | Lower leg of the thermistor bias divider to ground. |
+| `R305` | 5.1 kΩ | `TS` | Upper leg of the thermistor bias divider from `REGN`. |
+| `R306` | 30 kΩ | `TS` | Lower leg of the thermistor bias divider to ground. |
 
 ### The hardware input-current limit
 
@@ -134,12 +134,12 @@ PA 2-pin side-entry header (`S02B-PASK-2`). See
 The charger uses the `TS` reading for JEITA temperature qualification.
 
 **Without a thermistor the charger does not charge at all.** With `J302` open, the divider sits
-at 30.1 / (5.23 + 30.1) = 85.2% of `REGN`. Every cold threshold is below that: the 0 °C
+at 30 / (5.1 + 30) = 85.5% of `REGN`. Every cold threshold is below that: the 0 °C
 threshold `VT1_RISE` is 73.3% of `REGN`, and even the -20 °C OTG threshold is 80%. The charger
 therefore reads a cell colder than its cold cutoff and suspends charging.
 
 The divider is right once a thermistor is present. A 103AT-type 10 kOhm NTC at 25 °C parallels
-`R306` down to 7.48 kOhm and puts the pin at 58.9% of `REGN`, in the middle of the charging
+`R306` down to 7.50 kOhm and puts the pin at 59.5% of `REGN`, in the middle of the charging
 window. Fit a thermistor. The datasheet gives no guidance for an unused `TS` pin, and recommends
 a 103AT-2 part where it describes the pin at all. This board specifies the **103AT-11**: the
 same 10 kΩ / B25/85 = 3435 K element, but supplied on 600 mm of insulated lead instead of the

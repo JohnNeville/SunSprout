@@ -4883,7 +4883,7 @@
 				(justify bottom)
 			)
 		)
-		(property "FT Rotation Offset" "0"
+		(property "FT Rotation Offset" "180"
 			(at 402.59 154.94 0)
 			(hide yes)
 			(show_name no)
@@ -4894,7 +4894,7 @@
 				)
 			)
 		)
-		(property "FT Position Offset" "0,0"
+		(property "FT Position Offset" "0,1.01600"
 			(at 402.59 154.94 0)
 			(hide yes)
 			(show_name no)
@@ -6149,7 +6149,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "30.1k"
+		(property "Value" "30k"
 			(at 355.6 148.5899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6171,7 +6171,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C23000"
+		(property "Datasheet" "https://jlcpcb.com/partdetail/23711-0603WAF3002T5E/C22984"
 			(at 353.06 147.32 0)
 			(hide yes)
 			(show_name no)
@@ -6192,7 +6192,7 @@
 				)
 			)
 		)
-		(property "LCSC Part" "C23000"
+		(property "LCSC Part" "C22984"
 			(at 353.06 147.32 0)
 			(hide yes)
 			(show_name no)
@@ -6269,7 +6269,7 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF3012T5E"
+		(property "MPN" "0603WAF3002T5E"
 			(at 66.04 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -11354,7 +11354,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "5.23k"
+		(property "Value" "5.1k"
 			(at 345.44 148.5899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11376,7 +11376,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C23068"
+		(property "Datasheet" "https://jlcpcb.com/partdetail/23913-0603WAF5101T5E/C23186"
 			(at 342.9 147.32 0)
 			(hide yes)
 			(show_name no)
@@ -11397,7 +11397,7 @@
 				)
 			)
 		)
-		(property "LCSC Part" "C23068"
+		(property "LCSC Part" "C23186"
 			(at 342.9 147.32 0)
 			(hide yes)
 			(show_name no)
@@ -11474,7 +11474,7 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF5231T5E"
+		(property "MPN" "0603WAF5101T5E"
 			(at 86.36 67.31 0)
 			(hide yes)
 			(show_name no)

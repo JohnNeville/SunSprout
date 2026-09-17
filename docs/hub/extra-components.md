@@ -7,7 +7,7 @@ battery pack itself.
 ## J302 — charger thermistor input (BQ25798 TS)
 
 - **Connector:** JST PA 2-pin, side entry (`S02B-PASK-2`, LCSC `C265094`), net `TS_NODE`/GND,
-  biased on-board from the charger's `REGN` rail by the R305/R306 divider (5.23kΩ / 30.1kΩ).
+  biased on-board from the charger's `REGN` rail by the R305/R306 divider (5.1kΩ / 30kΩ).
 - **Required part:** a **Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C, B25/85 = 3435 K)**
   mounted directly on/against the battery cell.
 - **Purpose:** feeds BQ25798's TS pin for JEITA charge-temperature qualification (charger
