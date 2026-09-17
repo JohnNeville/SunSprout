@@ -20,6 +20,7 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         'overview',
+        'dimensions',
         'pinout',
         'connectors',
         'firmware',

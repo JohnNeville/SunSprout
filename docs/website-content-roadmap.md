@@ -6,10 +6,10 @@ once done rather than letting it drift out of sync with the actual design.
 
 ## Blocking: needed before the site can go public at all
 
-- [ ] **Push this repo to GitHub** and enable Pages (Settings → Pages → Source: "GitHub
+- [x] **Push this repo to GitHub** and enable Pages (Settings → Pages → Source: "GitHub
       Actions"). The deploy workflow (`.github/workflows/deploy-docs.yml`) is already scaffolded
       and inert until this happens.
-- [ ] **Fill in the real GitHub Pages URL** in `website/docusaurus.config.ts` — `url`,
+- [x] **Fill in the real GitHub Pages URL** in `website/docusaurus.config.ts` — `url`,
       `organizationName`, and (if deploying to a project-page subpath) `baseUrl`. Currently
       placeholders.
 
@@ -34,8 +34,9 @@ once done rather than letting it drift out of sync with the actual design.
       status meanings, connecting a battery pack for the first time. This is genuinely new
       content (a "Guides" category alongside the existing "Hardware" one), not adapted from
       anything currently in `docs/`.
-- [ ] **Physical dimensions & mounting page** — exact board outline dimensions and mounting-hole
-      positions for enclosure/mechanical design. Not yet extracted from the PCB file.
+- [x] **Physical dimensions & mounting page** — done: `website/docs/dimensions.md` carries the
+      outline, the M2.5 mounting pattern, and courtyard extents for every connector and control,
+      all extracted from the PCB file.
 - [ ] **Errata / hardware revision history** — currently only Rev A exists, so there's nothing to
       track yet, but this page should exist before a Rev B happens so changes have somewhere to
       land.

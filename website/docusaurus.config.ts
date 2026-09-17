@@ -4,6 +4,11 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+// GitHub Pages project sites are served from a subpath. Docusaurus prefixes `favicon`
+// and `navbar.logo.src` with this automatically, but not `headTags`, so those hrefs
+// build on the same constant rather than hardcoding the path a second time.
+const baseUrl = '/SunSprout/';
+
 const config: Config = {
   title: 'SunSprout',
   tagline: 'USB-C, solar, and battery power management for ESP32-C5 projects',
@@ -19,7 +24,17 @@ const config: Config = {
   // GitHub Pages project sites are served from a subpath, so baseUrl must match the
   // repo name. Asset references use useBaseUrl()/relative paths so they survive it.
   url: 'https://johnneville.github.io',
-  baseUrl: '/SunSprout/',
+  baseUrl,
+
+  // The .ico carries 16/32/48/64 raster sizes for broad compatibility; the SVG is
+  // offered alongside it so browsers that support it render the mark crisply at any
+  // size instead of upscaling a 64px bitmap.
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: {rel: 'icon', type: 'image/svg+xml', href: `${baseUrl}img/favicon.svg`},
+    },
+  ],
 
   // GitHub pages deployment config.
   organizationName: 'JohnNeville',
@@ -59,6 +74,13 @@ const config: Config = {
     },
     navbar: {
       title: 'SunSprout',
+      // srcDark swaps in a light-ink copy: the navy mark is near-invisible on the dark
+      // navbar, and Docusaurus renders the logo as an <img>, so it can't inherit colour.
+      logo: {
+        alt: 'SunSprout logo: a potted seedling on a solar panel',
+        src: 'img/logo_color.svg',
+        srcDark: 'img/logo_lines_dark.svg',
+      },
       items: [
         {
           type: 'docSidebar',
