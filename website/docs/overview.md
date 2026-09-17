@@ -172,13 +172,13 @@ guidance.
   protections (OVP, OCP, thermal shutdown, UVLO) apply throughout.
 
   As built, though, a board with no firmware running **will not charge**, because of the
-  thermistor. `J302` ships unpopulated, and the `TS` divider (`R305` 5.23 kΩ to `REGN`, `R306`
-  30.1 kΩ to ground) then sits at 85.2% of `REGN`. Every JEITA cold threshold is below that —
+  thermistor. `J302` ships unpopulated, and the `TS` divider (`R305` 5.1 kΩ to `REGN`, `R306`
+  30 kΩ to ground) then sits at 85.5% of `REGN`. Every JEITA cold threshold is below that —
   the 0 °C threshold is 73.3% of `REGN`, and even the −20 °C OTG threshold is 80% — so the
   charger reads a battery colder than its cold cutoff and suspends charging.
 
   The network is correct once a thermistor is present: a 103AT-type 10 kΩ NTC at 25 °C puts the
-  divider at 58.9% of `REGN`, mid-window. **Fit one** — a Semitec 103AT-11 is the specified
+  divider at 59.5% of `REGN`, mid-window. **Fit one** — a Semitec 103AT-11 is the specified
   part; see [Connectors](./connectors.md). It is what the charger's datasheet expects, and the
   only arrangement that gives real JEITA temperature protection.
 

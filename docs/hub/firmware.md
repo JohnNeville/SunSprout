@@ -94,7 +94,7 @@ that value. See [Battery charger](modules/bq25798-charger.md).
 
 ## The battery thermistor blocks charging
 
-`J302` ships with no thermistor. The `TS` divider then sits at 85.2% of `REGN`, which is above
+`J302` ships with no thermistor. The `TS` divider then sits at 85.5% of `REGN`, which is above
 every JEITA cold threshold — the 0 °C threshold is 73.3% of `REGN`. The charger reads a cell
 colder than its cold cutoff and **suspends charging**. A board with no thermistor does not
 charge, whatever the firmware does.
