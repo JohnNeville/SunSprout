@@ -45,7 +45,7 @@ jobs:
       image: ghcr.io/kicad/kicad:10.0
       options: --user root
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Get short sha
         shell: sh
         run: echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
@@ -188,7 +188,7 @@ jobs:
         run: ls -lh release/
 
       - name: Attach to release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: release/*
           tag_name: ${{ steps.release.outputs.tag }}
