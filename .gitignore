@@ -83,3 +83,4 @@ website/static/*.step
 # local run should not be able to slip a stale fab set into a commit
 /hardware/hub/production/
 /hardware/hub/fabrication-toolkit-options.json
+/.claude/worktrees
