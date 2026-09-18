@@ -5983,11 +5983,10 @@
 		(pad "1c" smd rect
 			(at -1.57475 -1.59 180)
 			(size 0.75 0.5588)
-			(layers "F.Cu" "F.Mask" "F.Paste")
+			(layers "F.Cu")
 			(net "Net-(D5-IO1-Pad1c)")
 			(pinfunction "IO1_1c")
 			(pintype "unspecified")
-			(solder_mask_margin 0.102)
 			(teardrops
 				(best_length_ratio 0.5)
 				(max_length 1)
@@ -6067,11 +6066,10 @@
 		(pad "3c" smd rect
 			(at -1.57475 1.6)
 			(size 0.75 0.5588)
-			(layers "F.Cu" "F.Mask" "F.Paste")
+			(layers "F.Cu")
 			(net "Net-(D5-IO2-Pad3c)")
 			(pinfunction "IO2_3c")
 			(pintype "unspecified")
-			(solder_mask_margin 0.102)
 			(teardrops
 				(best_length_ratio 0.5)
 				(max_length 1)

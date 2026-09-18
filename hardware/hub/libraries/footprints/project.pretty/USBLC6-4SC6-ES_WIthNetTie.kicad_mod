@@ -625,8 +625,7 @@
 	(pad "1c" smd rect
 		(at -1.57475 -1.59 90)
 		(size 0.75 0.5588)
-		(layers "F.Cu" "F.Mask" "F.Paste")
-		(solder_mask_margin 0.102)
+		(layers "F.Cu")
 		(teardrops
 			(best_length_ratio 0.5)
 			(max_length 1)
@@ -697,8 +696,7 @@
 	(pad "3c" smd rect
 		(at -1.57475 1.6 270)
 		(size 0.75 0.5588)
-		(layers "F.Cu" "F.Mask" "F.Paste")
-		(solder_mask_margin 0.102)
+		(layers "F.Cu")
 		(teardrops
 			(best_length_ratio 0.5)
 			(max_length 1)
