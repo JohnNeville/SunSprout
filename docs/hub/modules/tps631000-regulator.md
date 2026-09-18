@@ -46,8 +46,18 @@ more sensitive to noise.
 
 ## Power inductor — L2
 
-`L2` is 1 µH. Its saturation current is 4 A. Its DC resistance is 48 mΩ. The part comes from the
-manufacturer's own recommended-inductor table in the datasheet.
+`L2` is 1 µH. Its saturation current is 6.5 A. Its DC resistance is 16 mΩ.
+
+The part is not one of the four listed in Table 7-2 of the datasheet, but it beats all of them.
+The strongest entry there, the Murata DFE252012P-1R0M=P2, is rated 4.3 A with 42 mΩ in the same
+2.5 × 2.0 × 1.2 mm body. `L2` has half the DC resistance and half again the saturation margin at
+the same size and price.
+
+Section 7.2.2.2 asks for a saturation current 20 percent above the calculated peak. At the worst
+case for this board — boost mode, 3.0 V in, 3.3 V out, 1.5 A out — Equation 3 gives a peak of
+about 1.9 A, so the requirement is roughly 2.3 A. The converter cannot exceed this by much in
+any case: section 6.1 sets the Q1 peak current limit at typically 3 A, which caps the inductor
+current in hardware. The 6.5 A rating covers that ceiling more than twice over.
 
 An earlier revision used a small-signal multilayer inductor rated at 50 mA. The rating was 40
 times too small for this circuit. Such a part saturates under load. A saturated inductor loses

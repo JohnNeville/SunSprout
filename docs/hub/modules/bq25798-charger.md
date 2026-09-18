@@ -76,7 +76,7 @@ reset were all unavailable in that revision. The design deleted `C319` and fitte
 
 | Reference | Value | Pin | Function |
 |---|---|---|---|
-| `R301` | 3.0 kΩ | `PROG` | Sets the power-on default cell count to 1S. Also selects the 1.5 MHz switching frequency. The IC reads this resistor only at power-on reset. |
+| `R301` | 4.7 kΩ | `PROG` | Sets the power-on default cell count to 1S. Also selects the 750 kHz switching frequency. The IC reads this resistor only at power-on reset. |
 | `R302` | 110 kΩ | `ILIM_HIZ` | Upper leg of the input-current-limit divider from `REGN`. |
 | `R303` | 130 kΩ | `ILIM_HIZ` | Lower leg of the same divider to ground. |
 | `R304` | 100 Ω | `BATP` | Series isolation resistor on the battery-voltage sense input. The datasheet pin description requires it. |
@@ -157,14 +157,25 @@ measured. A reading that is wrong and convincing is worse than a reading that is
 
 ## Power inductor — L1
 
-`L1` is 1 µH. Its saturation current is 4 A. Its DC resistance is 48 mΩ.
+`L1` is 2.2 µH. Its saturation current is 10.5 A. Its DC resistance is 22 mΩ.
 
-The datasheet requires a saturation current of 2 A or more for this design. The 1.5 MHz
-switching mode requires an inductance of exactly 1 µH.
+The inductance is not a free choice. Section 8.2.2.2 ties it to the switching frequency: the
+1.5 MHz mode works only with a 1 µH inductor, and the 750 kHz mode works only with a 2.2 µH
+inductor. `R301` selects 750 kHz, so `L1` must be 2.2 µH.
+
+The datasheet states a floor of 2 A for the saturation current, to cover PFM pulses. That floor
+is not the worst case. Section 8.2.2.1 describes a peak inductor current of 3.3 A when the load
+rises close to the point of leaving PFM, and that path does not depend on the out-of-audio
+setting. The 10.5 A rating clears it with wide margin.
+
+The board runs 750 kHz rather than 1.5 MHz because the lower frequency is more efficient. TI
+notes that it suits designs with room for the larger inductor. A 4.1 × 4.1 × 3.0 mm part is the
+cost of that choice.
 
 An earlier revision used a small-signal multilayer inductor rated at 50 mA. That part was 40
-times too small for the current in this circuit. The design replaced it with a true power
-inductor from the manufacturer's own recommended-inductor table.
+times too small for the current in this circuit. A later revision fitted a molded power inductor
+on a generic 0805 chip land. The land was too small for the part, which JLCPCB flagged during
+review. The current part carries a footprint drawn from the manufacturer's own land pattern.
 
 ## Capacitors
 

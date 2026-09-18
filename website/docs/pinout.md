@@ -48,7 +48,7 @@ by [InteractiveHtmlBom](https://github.com/openscopeproject/InteractiveHtmlBom) 
 | GPIO11 | U0TXD | Fixed | No | — | Debug console UART, also routed to J8 |
 | GPIO12 | U0RXD | Fixed | No | — | Debug console UART, also routed to J8 |
 | USB_D− | USB_DN | Fixed | No | R7, 22Ω series | Native USB peripheral. The series resistor Espressif recommends. |
-| USB_D+ | USB_DP | Fixed | No | R8, 22Ω series | Native USB peripheral. Shared with the charger's BC1.2 detection input, isolated by R9/R11 (10kΩ). |
+| USB_D+ | USB_DP | Fixed | No | R8, 22Ω series | Native USB peripheral. Shared with the charger's BC1.2 detection input via R9/R11, which ship as cuttable 0Ω bridges. See [Notes](notes.md#the-charger-taps-the-usb-data-lines-through-cuttable-bridges). |
 | GPIO15 | Reserved — in-package PSRAM chip-select | Reserved | No | — | Consumed inside the module, not by this board. See below. |
 | GPIO16–22 | Not exposed | Reserved | — | — | Internal to the module, not broken out |
 | GPIO23 | EN_3V3_USER | Assigned | No | R23 100kΩ pull-down to GND | Enables the switched 3V3_USER rail; defaults OFF at power-up |
