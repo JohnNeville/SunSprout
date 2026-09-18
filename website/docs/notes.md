@@ -55,6 +55,36 @@ Double-check your battery pack's JST-PH cable polarity against the board's silks
 before connecting. JST-PH battery cables aren't universally standardized across vendors, and a
 mismatched cable is one of the few ways to damage the board despite the onboard protection.
 
+## The charger taps the USB data lines through cuttable bridges
+
+The USB-C D+ and D- lines are shared. Each one meets the ESD diode `D5`, the MCU's native USB
+peripheral, and the charger's BC1.2 detection input. The three branches join at `D5` itself,
+whose footprint carries the junction internally so the clamp sits at a single star point.
+
+The charger's branch runs through `R9` (D+) and `R11` (D-). These are **not** fitted resistors.
+They are 0603 pads with a 0.3 mm copper bridge built into the footprint, shorted from the
+factory and excluded from the assembly BOM. The charger therefore sees the data lines directly,
+and BC1.2 detection works as intended on a prototype out of the box.
+
+The bridges exist so the link can be broken later without a board revision. If the charger's
+input capacitance turns out to disturb USB enumeration — most likely during firmware flashing —
+cut the bridge through the soldermask window and, if a real value is wanted, hand-solder a 0603
+resistor onto the same pads.
+
+`JUMP_CHGR_GND2` is a three-way solder jumper that grounds the charger-side pins after a cut:
+bridge the centre pad to one outer pad to ground D+, to the other to ground D-. Grounded is the
+correct resting state for those pins, since a floating detection input can read as anything.
+
+:::warning Cut before you ground
+Bridging `JUMP_CHGR_GND2` while `R9`/`R11` are still intact shorts the live USB data lines to
+ground and kills the port. Cut the bridges first, then ground. Nothing on the board prevents
+this — the jumper is an open footprint and the bridges are declared as net ties, so neither
+DRC nor the ratsnest will flag the mistake.
+:::
+
+Cutting a bridge also puts the board out of step with the design files, which continue to show
+the nets as connected.
+
 ## Thermistors are required, not optional, for full charger/fuel-gauge behavior
 
 The charger's JEITA temperature-qualified fast charging and the fuel gauge's temperature

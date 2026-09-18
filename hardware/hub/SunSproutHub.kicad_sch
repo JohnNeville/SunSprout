@@ -2495,198 +2495,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:NetTie_4_Cross"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom no)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "NT"
-				(at 0.635 1.27 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "NetTie_4_Cross"
-				(at 0.635 -1.27 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Net tie, 4 pins, cross"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "net tie short"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "Net*Tie*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "NetTie_4_Cross_0_1"
-				(polyline
-					(pts
-						(xy -1.27 0) (xy 1.27 0)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -1.27) (xy 0 1.27)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "NetTie_4_Cross_1_1"
-				(pin passive line
-					(at -2.54 0 0)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 0 180)
-					(length 2.54)
-					(name "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.54)
-					(name "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.54)
-					(name "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:R"
 			(pin_numbers
 				(hide yes)
@@ -11108,33 +10916,35 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "project:USBLC6-4SC6-ES"
+		(symbol "project:USBLC6-4SC6-ES_WIthNetTie"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "U202"
-				(at 0 -1.524 0)
+			(property "Reference" "D5"
+				(at -1.2701 -1.27 90)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify right)
 				)
 			)
-			(property "Value" "USBLC6-4SC6-ES"
-				(at 0 -3.81 0)
+			(property "Value" "USBLC6-4SC6-ES_WIthNetTie"
+				(at 1.2699 -1.27 90)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify right)
 				)
 			)
-			(property "Footprint" "Snapeda:SOT23-6L_STM-M"
+			(property "Footprint" "project:USBLC6-4SC6-ES_WIthNetTie"
 				(at 0 -10.16 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -11146,39 +10956,6 @@
 				)
 			)
 			(property "Datasheet" "https://www.lcsc.com/datasheet/C5180279.pdf"
-				(at 0 -12.7 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Manufacturer" "ElecSuper(静芯)"
-				(at 0 -15.24 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "MPN" "USBLC6-4SC6-ES"
 				(at 0 -17.78 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -11189,8 +10966,140 @@
 					)
 				)
 			)
-			(property "LCSC Part" "C5180279"
+			(property "Description" "USB D+/D- ESD protection, consolidated onto the same 4-channel part used at U202. NOT YET REWIRED: pin functions differ from the old 2-channel part, GND and VBUS swap position and each I/O channel is a single pad not dual-pad. Pin assignments must be corrected in the schematic editor before this nets correctly."
+				(at 19.05 -92.202 90)
+				(show_name no)
+				(do_not_autoplace yes)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "ElecSuper"
 				(at 0 -20.32 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "USBLC6-4SC6-ES"
+				(at 0 -22.86 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC Part" "C5180279"
+				(at 0 -25.4 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer Product Page" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Supplier" "JLCPCB"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Supplier Part Site" "https://jlcpcb.com/partdetail/ElecSuper-USBLC6_4SC6ES/C5180279"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Check_prices" ""
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "DigiKey_Part_Number" ""
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MF" ""
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MP" ""
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Package" ""
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "SnapEDA_Link" ""
+				(at 0 0 90)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -11211,10 +11120,10 @@
 					)
 				)
 			)
-			(symbol "USBLC6-4SC6-ES_0_1"
+			(symbol "USBLC6-4SC6-ES_WIthNetTie_0_1"
 				(rectangle
-					(start -6.35 11.43)
-					(end 6.35 0)
+					(start -6.35 17.78)
+					(end 6.35 -2.54)
 					(stroke
 						(width 0)
 						(type default)
@@ -11235,25 +11144,7 @@
 					)
 				)
 				(pin unspecified line
-					(at -8.89 10.16 0)
-					(length 2.54)
-					(name "IO1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 8.89 8.89 180)
+					(at -8.89 7.62 0)
 					(length 2.54)
 					(name "GND"
 						(effects
@@ -11271,25 +11162,7 @@
 					)
 				)
 				(pin unspecified line
-					(at -8.89 5.08 0)
-					(length 2.54)
-					(name "IO2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at -8.89 7.62 0)
+					(at 8.89 2.54 180)
 					(length 2.54)
 					(name "IO3"
 						(effects
@@ -11307,7 +11180,7 @@
 					)
 				)
 				(pin unspecified line
-					(at 8.89 2.54 180)
+					(at 8.89 7.62 180)
 					(length 2.54)
 					(name "Vcc"
 						(effects
@@ -11325,7 +11198,7 @@
 					)
 				)
 				(pin unspecified line
-					(at -8.89 2.54 0)
+					(at 8.89 12.7 180)
 					(length 2.54)
 					(name "IO4"
 						(effects
@@ -11343,17 +11216,127 @@
 					)
 				)
 			)
+			(symbol "USBLC6-4SC6-ES_WIthNetTie_1_1"
+				(pin unspecified line
+					(at -8.89 15.24 0)
+					(length 2.54)
+					(name "IO1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1a"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -8.89 12.7 0)
+					(length 2.54)
+					(name "IO1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1b"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -8.89 10.16 0)
+					(length 2.54)
+					(name "IO1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1c"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -8.89 5.08 0)
+					(length 2.54)
+					(name "IO2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3a"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -8.89 2.54 0)
+					(length 2.54)
+					(name "IO2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3b"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -8.89 0 0)
+					(length 2.54)
+					(name "IO2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3c"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
 			(embedded_fonts no)
 		)
 	)
 	(junction
-		(at 54.61 54.61)
+		(at 68.58 66.04)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "065b7555-28f8-4ddf-a86c-45516bac295e")
 	)
 	(junction
-		(at 62.23 80.01)
+		(at 76.2 91.44)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "0745173b-3844-4e49-a50d-df7fd5d50ee7")
@@ -11365,7 +11348,7 @@
 		(uuid "15ed563f-88cb-4552-ba3e-b3368364cb2b")
 	)
 	(junction
-		(at 57.15 19.05)
+		(at 71.12 30.48)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "19b933d4-a062-4277-8814-666b338e78d6")
@@ -11389,7 +11372,7 @@
 		(uuid "25cb7e39-5ca4-47c2-bec5-6bfc1b92fbe6")
 	)
 	(junction
-		(at 59.69 72.39)
+		(at 73.66 83.82)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "3d2ddc9e-3fbd-4012-b176-9ba37edade84")
@@ -11413,7 +11396,7 @@
 		(uuid "47682e18-9a05-4f19-bc9c-356b2429be8b")
 	)
 	(junction
-		(at 57.15 24.13)
+		(at 71.12 35.56)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "53d835fa-7a07-477d-990b-08d141ebb0de")
@@ -11449,19 +11432,19 @@
 		(uuid "8dc6bc6a-ddf3-4671-be20-c125de1509c4")
 	)
 	(junction
-		(at 57.15 58.42)
+		(at 71.12 69.85)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "920d0e11-6e1d-4ad0-ba7d-d3fb800ab115")
 	)
 	(junction
-		(at 57.15 21.59)
+		(at 71.12 33.02)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9684d444-0a1a-4514-b84b-c035834aceb4")
 	)
 	(junction
-		(at 54.61 31.75)
+		(at 68.58 43.18)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "99a3c065-e228-4b9c-995c-df69b48aa778")
@@ -11509,16 +11492,10 @@
 		(uuid "e2249710-4f78-42f7-8229-5fedc57b4bbc")
 	)
 	(junction
-		(at 46.99 80.01)
+		(at 60.96 91.44)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e5e6af73-df46-4021-93ac-e6eedb4fed7b")
-	)
-	(junction
-		(at 66.04 72.39)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ec0a646d-dc47-4c69-bc14-3e9cf30a9259")
 	)
 	(junction
 		(at 143.51 276.86)
@@ -11527,29 +11504,35 @@
 		(uuid "f242ad14-9517-4ce3-af05-ff77e1698f4f")
 	)
 	(junction
+		(at 80.01 83.82)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f291e351-1606-48da-8cd2-f7ac5728e1f2")
+	)
+	(junction
 		(at 529.59 232.41)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fa513e7d-613a-482e-9ecb-3e606a2548e7")
 	)
 	(no_connect
-		(at 49.53 39.37)
+		(at 63.5 50.8)
 		(uuid "0e984bf3-4755-44ad-96aa-45040d241fad")
 	)
 	(no_connect
-		(at 153.67 60.96)
-		(uuid "34da4a33-4cd1-4d3b-bb40-3f092ca6c381")
+		(at 175.26 90.17)
+		(uuid "13bf735d-d9be-4ce6-8113-c3cdb5ce0b3c")
 	)
 	(no_connect
-		(at 158.75 60.96)
-		(uuid "3a279196-89f7-41b9-aa83-ac3a211c142f")
+		(at 165.1 90.17)
+		(uuid "47dff230-2741-43ea-8481-bdbac54c3a03")
 	)
 	(no_connect
 		(at 405.13 219.71)
 		(uuid "4b180491-3e56-45ef-b6f5-9050d6833630")
 	)
 	(no_connect
-		(at 49.53 46.99)
+		(at 63.5 58.42)
 		(uuid "ded29b90-9526-4eae-9f93-b7c5405af60f")
 	)
 	(no_connect
@@ -11558,17 +11541,7 @@
 	)
 	(wire
 		(pts
-			(xy 161.29 49.53) (xy 196.85 49.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "01beb9a1-ee01-4a5b-8d0c-2f938969cd59")
-	)
-	(wire
-		(pts
-			(xy 62.23 91.44) (xy 62.23 95.25)
+			(xy 76.2 102.87) (xy 76.2 106.68)
 		)
 		(stroke
 			(width 0)
@@ -11588,7 +11561,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 64.77) (xy 57.15 64.77)
+			(xy 63.5 76.2) (xy 71.12 76.2)
 		)
 		(stroke
 			(width 0)
@@ -11608,7 +11581,7 @@
 	)
 	(wire
 		(pts
-			(xy 54.61 62.23) (xy 54.61 54.61)
+			(xy 68.58 73.66) (xy 68.58 66.04)
 		)
 		(stroke
 			(width 0)
@@ -11638,7 +11611,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 21.59) (xy 57.15 19.05)
+			(xy 71.12 33.02) (xy 71.12 30.48)
 		)
 		(stroke
 			(width 0)
@@ -11678,17 +11651,7 @@
 	)
 	(wire
 		(pts
-			(xy 156.21 60.96) (xy 156.21 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "16ac59f9-1ccb-43e6-bce4-8513d7cef354")
-	)
-	(wire
-		(pts
-			(xy 54.61 31.75) (xy 49.53 31.75)
+			(xy 68.58 43.18) (xy 63.5 43.18)
 		)
 		(stroke
 			(width 0)
@@ -11698,7 +11661,7 @@
 	)
 	(wire
 		(pts
-			(xy 46.99 80.01) (xy 62.23 80.01)
+			(xy 60.96 91.44) (xy 76.2 91.44)
 		)
 		(stroke
 			(width 0)
@@ -11715,16 +11678,6 @@
 			(type default)
 		)
 		(uuid "1a6da153-c4a6-4301-adff-8bde076e9887")
-	)
-	(wire
-		(pts
-			(xy 135.89 48.26) (xy 135.89 43.18)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1dd1238b-ac54-4969-92e0-9782c0c2bd5e")
 	)
 	(wire
 		(pts
@@ -11768,7 +11721,7 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 31.75) (xy 54.61 31.75)
+			(xy 76.2 43.18) (xy 68.58 43.18)
 		)
 		(stroke
 			(width 0)
@@ -11785,16 +11738,6 @@
 			(type default)
 		)
 		(uuid "2613117d-f859-406d-b174-4bb85d0dc1a6")
-	)
-	(wire
-		(pts
-			(xy 135.89 48.26) (xy 156.21 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "275cc6ac-d1d6-4cbf-a3ed-3c0087d97a02")
 	)
 	(wire
 		(pts
@@ -11868,7 +11811,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 24.13) (xy 57.15 21.59)
+			(xy 71.12 35.56) (xy 71.12 33.02)
 		)
 		(stroke
 			(width 0)
@@ -11878,7 +11821,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 26.67) (xy 57.15 26.67)
+			(xy 63.5 38.1) (xy 71.12 38.1)
 		)
 		(stroke
 			(width 0)
@@ -11938,6 +11881,16 @@
 	)
 	(wire
 		(pts
+			(xy 172.72 63.5) (xy 172.72 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "35b47bc1-a52c-4c74-93f3-6d8bf7dbc14e")
+	)
+	(wire
+		(pts
 			(xy 256.54 140.97) (xy 271.78 140.97)
 		)
 		(stroke
@@ -11988,7 +11941,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 19.05) (xy 57.15 16.51)
+			(xy 71.12 30.48) (xy 71.12 27.94)
 		)
 		(stroke
 			(width 0)
@@ -12008,7 +11961,7 @@
 	)
 	(wire
 		(pts
-			(xy 46.99 91.44) (xy 46.99 95.25)
+			(xy 60.96 102.87) (xy 60.96 106.68)
 		)
 		(stroke
 			(width 0)
@@ -12028,7 +11981,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 72.39) (xy 59.69 72.39)
+			(xy 63.5 83.82) (xy 73.66 83.82)
 		)
 		(stroke
 			(width 0)
@@ -12048,6 +12001,16 @@
 	)
 	(wire
 		(pts
+			(xy 167.64 58.42) (xy 167.64 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "477f0cdb-1ab4-4568-8763-e5c8cc64c75b")
+	)
+	(wire
+		(pts
 			(xy 495.3 273.05) (xy 502.92 273.05)
 		)
 		(stroke
@@ -12058,7 +12021,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 58.42) (xy 76.2 58.42)
+			(xy 71.12 69.85) (xy 90.17 69.85)
 		)
 		(stroke
 			(width 0)
@@ -12108,7 +12071,7 @@
 	)
 	(wire
 		(pts
-			(xy 46.99 80.01) (xy 46.99 83.82)
+			(xy 60.96 91.44) (xy 60.96 95.25)
 		)
 		(stroke
 			(width 0)
@@ -12128,7 +12091,7 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 72.39) (xy 68.58 72.39)
+			(xy 80.01 83.82) (xy 82.55 83.82)
 		)
 		(stroke
 			(width 0)
@@ -12158,7 +12121,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 64.77) (xy 57.15 58.42)
+			(xy 71.12 76.2) (xy 71.12 69.85)
 		)
 		(stroke
 			(width 0)
@@ -12208,7 +12171,7 @@
 	)
 	(wire
 		(pts
-			(xy 74.93 91.44) (xy 74.93 95.25)
+			(xy 88.9 102.87) (xy 88.9 106.68)
 		)
 		(stroke
 			(width 0)
@@ -12248,13 +12211,23 @@
 	)
 	(wire
 		(pts
-			(xy 54.61 34.29) (xy 54.61 31.75)
+			(xy 68.58 45.72) (xy 68.58 43.18)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "6407849c-bf0a-4210-a99c-39ed362ea8a9")
+	)
+	(wire
+		(pts
+			(xy 175.26 55.88) (xy 175.26 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "65da2968-c1de-4f72-9f15-1a607221b3c5")
 	)
 	(wire
 		(pts
@@ -12318,16 +12291,6 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 40.64) (xy 129.54 40.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "795da235-4fbc-4214-957d-ed64a5d82796")
-	)
-	(wire
-		(pts
 			(xy 165.1 247.65) (xy 165.1 254)
 		)
 		(stroke
@@ -12358,7 +12321,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 26.67) (xy 57.15 24.13)
+			(xy 71.12 38.1) (xy 71.12 35.56)
 		)
 		(stroke
 			(width 0)
@@ -12438,7 +12401,7 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 80.01) (xy 46.99 80.01)
+			(xy 57.15 91.44) (xy 60.96 91.44)
 		)
 		(stroke
 			(width 0)
@@ -12448,7 +12411,7 @@
 	)
 	(wire
 		(pts
-			(xy 87.63 49.53) (xy 91.44 49.53)
+			(xy 101.6 60.96) (xy 105.41 60.96)
 		)
 		(stroke
 			(width 0)
@@ -12468,26 +12431,6 @@
 	)
 	(wire
 		(pts
-			(xy 196.85 49.53) (xy 196.85 43.18)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "91320b3b-1933-4e37-addb-9e7ff74af6e3")
-	)
-	(wire
-		(pts
-			(xy 199.39 40.64) (xy 208.28 40.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "93e52739-a2cf-4915-bed0-9aa008489937")
-	)
-	(wire
-		(pts
 			(xy 466.09 227.33) (xy 487.68 227.33)
 		)
 		(stroke
@@ -12498,7 +12441,7 @@
 	)
 	(wire
 		(pts
-			(xy 54.61 54.61) (xy 64.77 54.61)
+			(xy 68.58 66.04) (xy 78.74 66.04)
 		)
 		(stroke
 			(width 0)
@@ -12508,17 +12451,7 @@
 	)
 	(wire
 		(pts
-			(xy 138.43 40.64) (xy 146.05 40.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "97f98ae5-9dec-4531-8cc5-50eab1c82805")
-	)
-	(wire
-		(pts
-			(xy 49.53 24.13) (xy 57.15 24.13)
+			(xy 63.5 35.56) (xy 71.12 35.56)
 		)
 		(stroke
 			(width 0)
@@ -12568,7 +12501,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 41.91) (xy 74.93 41.91)
+			(xy 63.5 53.34) (xy 88.9 53.34)
 		)
 		(stroke
 			(width 0)
@@ -12678,7 +12611,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 34.29) (xy 54.61 34.29)
+			(xy 63.5 45.72) (xy 68.58 45.72)
 		)
 		(stroke
 			(width 0)
@@ -12728,7 +12661,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 69.85) (xy 59.69 69.85)
+			(xy 63.5 81.28) (xy 73.66 81.28)
 		)
 		(stroke
 			(width 0)
@@ -12738,7 +12671,7 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 41.91) (xy 88.9 41.91)
+			(xy 96.52 53.34) (xy 102.87 53.34)
 		)
 		(stroke
 			(width 0)
@@ -12808,7 +12741,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 57.15) (xy 57.15 57.15)
+			(xy 63.5 68.58) (xy 71.12 68.58)
 		)
 		(stroke
 			(width 0)
@@ -12818,7 +12751,7 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 80.01) (xy 74.93 80.01)
+			(xy 76.2 91.44) (xy 88.9 91.44)
 		)
 		(stroke
 			(width 0)
@@ -12898,7 +12831,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 21.59) (xy 57.15 21.59)
+			(xy 63.5 33.02) (xy 71.12 33.02)
 		)
 		(stroke
 			(width 0)
@@ -12908,7 +12841,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 54.61) (xy 54.61 54.61)
+			(xy 63.5 66.04) (xy 68.58 66.04)
 		)
 		(stroke
 			(width 0)
@@ -12948,7 +12881,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 62.23) (xy 54.61 62.23)
+			(xy 63.5 73.66) (xy 68.58 73.66)
 		)
 		(stroke
 			(width 0)
@@ -12958,7 +12891,7 @@
 	)
 	(wire
 		(pts
-			(xy 74.93 80.01) (xy 74.93 83.82)
+			(xy 88.9 91.44) (xy 88.9 95.25)
 		)
 		(stroke
 			(width 0)
@@ -12998,7 +12931,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 19.05) (xy 57.15 19.05)
+			(xy 63.5 30.48) (xy 71.12 30.48)
 		)
 		(stroke
 			(width 0)
@@ -13008,7 +12941,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 49.53) (xy 80.01 49.53)
+			(xy 63.5 60.96) (xy 93.98 60.96)
 		)
 		(stroke
 			(width 0)
@@ -13028,7 +12961,7 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 80.01) (xy 62.23 83.82)
+			(xy 76.2 91.44) (xy 76.2 95.25)
 		)
 		(stroke
 			(width 0)
@@ -13058,7 +12991,7 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 69.85) (xy 59.69 72.39)
+			(xy 73.66 81.28) (xy 73.66 83.82)
 		)
 		(stroke
 			(width 0)
@@ -13078,7 +13011,7 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 72.39) (xy 66.04 72.39)
+			(xy 73.66 83.82) (xy 80.01 83.82)
 		)
 		(stroke
 			(width 0)
@@ -13115,16 +13048,6 @@
 			(type default)
 		)
 		(uuid "f2a864b0-0040-421c-80b8-e11778e71f35")
-	)
-	(wire
-		(pts
-			(xy 161.29 49.53) (xy 161.29 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f2cc82ce-af52-4a5c-ab22-f3a24b81b0af")
 	)
 	(wire
 		(pts
@@ -13178,7 +13101,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 57.15) (xy 57.15 58.42)
+			(xy 71.12 68.58) (xy 71.12 69.85)
 		)
 		(stroke
 			(width 0)
@@ -13237,7 +13160,7 @@
 		(uuid "1d491ad4-f97a-4dd4-a104-28d68c14bdd9")
 	)
 	(label "USB_CC1"
-		(at 67.31 49.53 0)
+		(at 81.28 60.96 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -13266,18 +13189,8 @@
 		)
 		(uuid "7e4151d5-f84c-4a54-88d7-9b7aa868fc40")
 	)
-	(label "USB_DN_ESD"
-		(at 196.85 49.53 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "82547466-f296-46f5-a30b-41ce8adb9d0c")
-	)
 	(label "USB_CC2"
-		(at 53.34 41.91 0)
+		(at 67.31 53.34 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -13285,16 +13198,6 @@
 			(justify left bottom)
 		)
 		(uuid "b9ee5777-eb53-430f-a918-c71e5814be16")
-	)
-	(label "USB_DP_ESD"
-		(at 143.51 48.26 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "eacb1abe-c123-4637-9481-bf92befa880f")
 	)
 	(global_label "LED1_CTRL"
 		(shape input)
@@ -13512,7 +13415,7 @@
 	)
 	(global_label "USB_DP"
 		(shape bidirectional)
-		(at 135.89 38.1 90)
+		(at 175.26 55.88 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13520,9 +13423,9 @@
 			)
 			(justify left)
 		)
-		(uuid "19b23a43-4825-419e-8bf6-2ce04b00d7ec")
+		(uuid "1787ec5b-9bd4-41a8-9155-f41946e6632b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 135.89 26.6859 90)
+			(at 175.26 44.4659 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13606,9 +13509,33 @@
 			)
 		)
 	)
+	(global_label "VUSB"
+		(shape bidirectional)
+		(at 170.18 90.17 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2045f5e7-7bea-4f27-b935-0e0e64be2c71")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 170.18 99.1651 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
 	(global_label "USB_DATA_RAW_P"
 		(shape output)
-		(at 64.77 54.61 0)
+		(at 78.74 66.04 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13618,7 +13545,7 @@
 		)
 		(uuid "262579b5-0afa-40ae-accc-3df5f5230c38")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 83.9628 54.61 0)
+			(at 97.9328 66.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13894,6 +13821,54 @@
 			)
 		)
 	)
+	(global_label "USB_DATA_RAW_P"
+		(shape bidirectional)
+		(at 172.72 63.5 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "4949aae0-dd44-4acf-92a3-26b942c07354")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 172.72 43.1959 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "CHGR_USB_DP"
+		(shape bidirectional)
+		(at 177.8 64.77 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "4da0db90-76b9-4019-920b-292575998abb")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 177.8 47.2478 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "3V3_SYS"
 		(shape input)
 		(at 422.91 370.84 90)
@@ -13968,7 +13943,7 @@
 	)
 	(global_label "VUSB"
 		(shape output)
-		(at 68.58 72.39 0)
+		(at 82.55 83.82 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13978,7 +13953,7 @@
 		)
 		(uuid "5b2d0a3f-3da5-47e4-b92e-b18a97e6ce7e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 87.4099 72.39 0)
+			(at 101.3799 83.82 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14035,6 +14010,30 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+	)
+	(global_label "CHGR_USB_DN"
+		(shape bidirectional)
+		(at 167.64 50.8 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "64d4507e-ca06-46b6-a7c9-74f47fa02484")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 167.64 33.2173 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 	)
@@ -14184,7 +14183,7 @@
 	)
 	(global_label "USB_DATA_RAW_N"
 		(shape output)
-		(at 76.2 58.42 0)
+		(at 90.17 69.85 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -14194,7 +14193,7 @@
 		)
 		(uuid "7425a957-a6ec-4fce-8c1a-3cdb0295ae99")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 95.4533 58.42 0)
+			(at 109.4233 69.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14232,7 +14231,7 @@
 	)
 	(global_label "VUSB"
 		(shape input)
-		(at 43.18 80.01 180)
+		(at 57.15 91.44 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -14242,7 +14241,7 @@
 		)
 		(uuid "7c462d99-e96f-46bc-baf0-e4c75261ee12")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 24.3501 80.01 0)
+			(at 38.3201 91.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14422,30 +14421,6 @@
 			)
 		)
 	)
-	(global_label "CHGR_USB_DP"
-		(shape bidirectional)
-		(at 121.92 40.64 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "9c3d7784-d4a4-4d2e-bb88-4516289478ad")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 104.3978 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
 	(global_label "VDC"
 		(shape output)
 		(at 55.88 129.54 90)
@@ -14590,30 +14565,6 @@
 			)
 		)
 	)
-	(global_label "VUSB"
-		(shape bidirectional)
-		(at 161.29 78.74 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "b0af450c-3853-4e7e-8183-ab38cd2ba77d")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 161.29 87.7351 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
 	(global_label "VBAT_PROTECTED"
 		(shape output)
 		(at 165.1 247.65 90)
@@ -14712,7 +14663,7 @@
 	)
 	(global_label "USB_DN"
 		(shape bidirectional)
-		(at 208.28 40.64 0)
+		(at 165.1 72.39 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -14720,9 +14671,9 @@
 			)
 			(justify left)
 		)
-		(uuid "c3b86c04-5129-48d6-949d-ca1573bf607d")
+		(uuid "c4028184-77df-4517-b0d5-7c1f73e60328")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 219.7546 40.64 0)
+			(at 165.1 60.9154 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14758,54 +14709,6 @@
 			)
 		)
 	)
-	(global_label "USB_DATA_RAW_P"
-		(shape bidirectional)
-		(at 146.05 40.64 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "c561c509-30db-451b-87b4-c3b579768509")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 166.3541 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
-	(global_label "USB_DATA_RAW_N"
-		(shape bidirectional)
-		(at 196.85 38.1 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "c5e8439f-46cf-4bc6-b1dc-519411181467")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 196.85 17.7354 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
 	(global_label "GPIO27"
 		(shape bidirectional)
 		(at 469.9 234.95 0)
@@ -14819,6 +14722,30 @@
 		(uuid "c99124ac-9dbc-4d49-abbb-d4c945b7798b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 480.8908 234.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "USB_DATA_RAW_N"
+		(shape bidirectional)
+		(at 162.56 72.39 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ccfdb67e-50fd-4f3f-be31-3562592347c7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 162.56 52.0254 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14947,30 +14874,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-			)
-		)
-	)
-	(global_label "CHGR_USB_DN"
-		(shape bidirectional)
-		(at 186.69 40.64 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "e6da6e6a-3596-4e40-b86c-9a63b42bb377")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 169.1073 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 			)
 		)
 	)
@@ -15143,94 +15046,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:NetTie_4_Cross")
-		(at 135.89 40.64 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "07747141-ce0a-4508-96a4-c110b92aa288")
-		(property "Reference" "NT5"
-			(at 144.78 35.6868 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "NetTie_USB_DP"
-			(at 144.78 38.2268 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "NetTie:NetTie-4_SMD_Pad0.5mm"
-			(at 135.89 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 135.89 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Net tie, 4 pins, cross"
-			(at 135.89 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "76e95679-fbc4-4ac7-9285-74eb2733aaf9")
-		)
-		(pin "3"
-			(uuid "fd876945-c520-4fc4-ac17-b98a73624d98")
-		)
-		(pin "1"
-			(uuid "e6b6650d-77fa-499c-9867-4d32f9a1889d")
-		)
-		(pin "4"
-			(uuid "9a243a27-2810-4887-8b31-844822b54840")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
-					(reference "NT5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
-		(at 74.93 95.25 0)
+		(at 170.18 72.39 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15238,9 +15055,10 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "077ebfbc-94c8-441a-a6de-1b2a43972285")
-		(property "Reference" "#PWR045"
-			(at 74.93 88.9 0)
+		(fields_autoplaced yes)
+		(uuid "072c4925-3d8a-4a4d-91ff-6e201d870f49")
+		(property "Reference" "#PWR057"
+			(at 170.18 78.74 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15251,7 +15069,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 78.74 97.066 0)
+			(at 170.18 67.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15261,7 +15079,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 74.93 95.25 0)
+			(at 170.18 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15272,7 +15090,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 74.93 95.25 0)
+			(at 170.18 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15283,7 +15101,83 @@
 			)
 		)
 		(property "Description" ""
-			(at 74.93 95.25 0)
+			(at 170.18 72.39 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "57ee6364-40d1-4727-b655-a0c00b8352d1")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
+					(reference "#PWR057")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 88.9 106.68 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "077ebfbc-94c8-441a-a6de-1b2a43972285")
+		(property "Reference" "#PWR045"
+			(at 88.9 100.33 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 92.71 108.496 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 88.9 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 88.9 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 88.9 106.68 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15447,6 +15341,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 435.61 237.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 435.61 237.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 435.61 237.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 435.61 237.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 435.61 237.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 435.61 237.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "e38e67f9-3c72-4cc1-8a44-c8e8d300298b")
 		)
@@ -15559,7 +15519,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 78.74 41.91 90)
+		(at 92.71 53.34 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15570,7 +15530,7 @@
 		(fields_autoplaced yes)
 		(uuid "0cef753b-f3e9-4f76-bb91-2603cb0bf0da")
 		(property "Reference" "R6"
-			(at 78.74 35.56 90)
+			(at 92.71 46.99 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15580,7 +15540,7 @@
 			)
 		)
 		(property "Value" "5.1k"
-			(at 78.74 38.1 90)
+			(at 92.71 49.53 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15590,7 +15550,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 78.74 41.91 0)
+			(at 92.71 53.34 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15601,7 +15561,7 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/partdetail/23913-0603WAF5101T5E/C23186"
-			(at 78.74 41.91 0)
+			(at 92.71 53.34 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15612,7 +15572,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 78.74 41.91 0)
+			(at 92.71 53.34 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15622,7 +15582,7 @@
 			)
 		)
 		(property "LCSC Part" "C23186"
-			(at 78.74 41.91 0)
+			(at 92.71 53.34 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15633,7 +15593,7 @@
 			)
 		)
 		(property "Manufacturer Product Page" ""
-			(at 78.74 41.91 90)
+			(at 92.71 53.34 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15644,7 +15604,7 @@
 			)
 		)
 		(property "Supplier" "JLCPCB"
-			(at 78.74 41.91 90)
+			(at 92.71 53.34 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15655,7 +15615,7 @@
 			)
 		)
 		(property "Supplier Part Site" ""
-			(at 78.74 41.91 90)
+			(at 92.71 53.34 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15666,7 +15626,7 @@
 			)
 		)
 		(property "Manufacturer" "UNI-ROYAL"
-			(at 1.27 5.08 0)
+			(at 15.24 16.51 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15677,7 +15637,73 @@
 			)
 		)
 		(property "MPN" "0603WAF5101T5E"
-			(at 1.27 5.08 0)
+			(at 15.24 16.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 92.71 53.34 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 92.71 53.34 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 92.71 53.34 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 92.71 53.34 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 92.71 53.34 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 92.71 53.34 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15757,6 +15783,72 @@
 			)
 		)
 		(property "Description" "Net tie, 2 pins"
+			(at 161.29 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 161.29 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 161.29 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 161.29 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 161.29 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 161.29 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
 			(at 161.29 276.86 0)
 			(hide yes)
 			(show_name no)
@@ -15994,6 +16086,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 361.95 123.19 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 361.95 123.19 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 361.95 123.19 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 361.95 123.19 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 361.95 123.19 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 361.95 123.19 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "ed3c362b-260e-458e-88b7-d96840158ac3")
 		)
@@ -16151,6 +16309,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 27.94 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 27.94 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 27.94 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 27.94 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 27.94 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 27.94 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "a753b115-5bd6-4a27-938a-e19990164753")
 		)
@@ -16161,92 +16385,6 @@
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
 					(reference "CN5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:NetTie_4_Cross")
-		(at 196.85 40.64 0)
-		(mirror y)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "1b8fdae8-5011-4131-9b08-bde58f59e32b")
-		(property "Reference" "NT6"
-			(at 187.96 35.6868 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "NetTie_USB_DN"
-			(at 187.96 38.2268 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "NetTie:NetTie-4_SMD_Pad0.5mm"
-			(at 196.85 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 196.85 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Net tie, 4 pins, cross"
-			(at 196.85 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "4230464a-e665-49c9-90f1-46d113ce55a1")
-		)
-		(pin "3"
-			(uuid "4fdb0a19-3a53-458c-b315-811d8748e4bc")
-		)
-		(pin "1"
-			(uuid "e066238a-b4e8-40ed-9151-f29893d95e94")
-		)
-		(pin "4"
-			(uuid "272bfafd-3bd1-466b-bffd-a8a363a0a8a8")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
-					(reference "NT6")
 					(unit 1)
 				)
 			)
@@ -16382,6 +16520,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 491.49 273.05 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 491.49 273.05 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 491.49 273.05 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 491.49 273.05 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 491.49 273.05 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 491.49 273.05 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "26101eb2-5ae8-4e25-9d7b-3ed7ecfc9148")
 		)
@@ -16463,6 +16667,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 410.21 274.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 410.21 274.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 410.21 274.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 410.21 274.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 410.21 274.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 410.21 274.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "af5b4f4c-0d18-407d-8ba2-82701f425e7d")
 		)
@@ -16477,7 +16747,7 @@
 	)
 	(symbol
 		(lib_id "Device:D_TVS")
-		(at 46.99 87.63 270)
+		(at 60.96 99.06 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -16487,7 +16757,7 @@
 		(dnp no)
 		(uuid "20991697-56e1-4379-ab3d-a9cd99c0d9c4")
 		(property "Reference" "D3"
-			(at 51.308 88.392 0)
+			(at 65.278 99.822 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16497,7 +16767,7 @@
 			)
 		)
 		(property "Value" "PESD5V0S1BA"
-			(at 49.808 88.392 0)
+			(at 63.778 99.822 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16507,7 +16777,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SOD-523"
-			(at 46.99 87.63 0)
+			(at 60.96 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16518,7 +16788,7 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/partdetail/hongjiacheng-H5VND5B/C20615818"
-			(at 46.99 87.63 0)
+			(at 60.96 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16529,7 +16799,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 46.99 87.63 0)
+			(at 60.96 99.06 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16539,7 +16809,7 @@
 			)
 		)
 		(property "LCSC Part" "C20615818"
-			(at 46.99 87.63 0)
+			(at 60.96 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16550,7 +16820,7 @@
 			)
 		)
 		(property "Manufacturer Product Page" ""
-			(at 46.99 87.63 0)
+			(at 60.96 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16561,7 +16831,7 @@
 			)
 		)
 		(property "Supplier" "JLCPCB"
-			(at 46.99 87.63 0)
+			(at 60.96 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16572,7 +16842,73 @@
 			)
 		)
 		(property "Supplier Part Site" "https://jlcpcb.com/partdetail/hongjiacheng-H5VND5B/C20615818"
-			(at 46.99 87.63 0)
+			(at 60.96 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 60.96 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 60.96 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 60.96 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 60.96 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 60.96 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 60.96 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16598,8 +16934,8 @@
 		)
 	)
 	(symbol
-		(lib_id "project:USBLC6-4SC6-ES")
-		(at 163.83 69.85 90)
+		(lib_id "project:USBLC6-4SC6-ES_WIthNetTie")
+		(at 177.8 81.28 90)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -16610,7 +16946,7 @@
 		(dnp no)
 		(uuid "22fd7790-2d20-4def-982d-fa2503a401cc")
 		(property "Reference" "D5"
-			(at 165.1 68.5799 90)
+			(at 179.07 80.0099 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16621,7 +16957,7 @@
 			)
 		)
 		(property "Value" "USBLC6-4SC6-ES"
-			(at 165.1 71.1199 90)
+			(at 179.07 82.5499 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16631,8 +16967,8 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Snapeda:SOT23-6L_STM"
-			(at 173.99 69.85 0)
+		(property "Footprint" "project:USBLC6-4SC6-ES_WIthNetTie"
+			(at 187.96 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16643,7 +16979,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/datasheet/C5180279.pdf"
-			(at 181.61 69.85 0)
+			(at 195.58 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16654,7 +16990,7 @@
 			)
 		)
 		(property "Description" "USB D+/D- ESD protection, consolidated onto the same 4-channel part used at U202. NOT YET REWIRED: pin functions differ from the old 2-channel part, GND and VBUS swap position and each I/O channel is a single pad not dual-pad. Pin assignments must be corrected in the schematic editor before this nets correctly."
-			(at 256.032 88.9 90)
+			(at 270.002 100.33 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace yes)
@@ -16664,8 +17000,8 @@
 				)
 			)
 		)
-		(property "Manufacturer" "ElecSuper"
-			(at 184.15 69.85 0)
+		(property "Manufacturer" "ElecSuper(静芯)"
+			(at 198.12 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16676,7 +17012,7 @@
 			)
 		)
 		(property "MPN" "USBLC6-4SC6-ES"
-			(at 186.69 69.85 0)
+			(at 200.66 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16687,7 +17023,7 @@
 			)
 		)
 		(property "LCSC Part" "C5180279"
-			(at 189.23 69.85 0)
+			(at 203.2 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16698,7 +17034,7 @@
 			)
 		)
 		(property "Manufacturer Product Page" ""
-			(at 163.83 69.85 0)
+			(at 177.8 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16709,7 +17045,7 @@
 			)
 		)
 		(property "Supplier" "JLCPCB"
-			(at 163.83 69.85 0)
+			(at 177.8 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16720,7 +17056,7 @@
 			)
 		)
 		(property "Supplier Part Site" "https://jlcpcb.com/partdetail/ElecSuper-USBLC6_4SC6ES/C5180279"
-			(at 163.83 69.85 0)
+			(at 177.8 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16730,14 +17066,74 @@
 				)
 			)
 		)
-		(pin "1"
-			(uuid "aae4772c-d2ea-4f88-ab0a-9f34f9232d48")
+		(property "Check_prices" ""
+			(at 177.8 81.28 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 177.8 81.28 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 177.8 81.28 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 177.8 81.28 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 177.8 81.28 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 177.8 81.28 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(pin "2"
 			(uuid "cca170a2-0bce-41e7-83cf-a048d6130981")
-		)
-		(pin "3"
-			(uuid "bb8d0bc4-59a3-4093-9d79-e2abc1a93b80")
 		)
 		(pin "4"
 			(uuid "a726b340-475d-4924-b4e9-c4738909c6f9")
@@ -16747,6 +17143,24 @@
 		)
 		(pin "5"
 			(uuid "7c7263fa-b395-47b7-86fc-b300939c85d5")
+		)
+		(pin "1c"
+			(uuid "e3dac154-20b3-4a9c-b3d8-f0e1a77c4a12")
+		)
+		(pin "1a"
+			(uuid "8e96a242-b56e-4cfa-a3b6-6c4f8cb3c4cc")
+		)
+		(pin "3c"
+			(uuid "4f122297-8d21-45a6-9389-8291b71ae9ae")
+		)
+		(pin "1b"
+			(uuid "5d029c6a-2b8b-4761-98de-955f105b6b63")
+		)
+		(pin "3a"
+			(uuid "54e8ca66-618b-4958-8d52-78d01f707384")
+		)
+		(pin "3b"
+			(uuid "048965b5-8fef-483c-8798-57092273f682")
 		)
 		(instances
 			(project "SunSproutHub"
@@ -16759,7 +17173,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 62.23 87.63 0)
+		(at 76.2 99.06 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -16769,7 +17183,7 @@
 		(dnp no)
 		(uuid "29b273bb-78b0-439f-bc80-9e2b65a62934")
 		(property "Reference" "C16"
-			(at 56.374 86.944 0)
+			(at 70.344 98.374 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16779,7 +17193,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 56.374 88.444 0)
+			(at 70.344 99.874 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16789,7 +17203,7 @@
 			)
 		)
 		(property "Footprint" "PCM_JLCPCB:C_0402"
-			(at 62.23 87.63 0)
+			(at 76.2 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16800,7 +17214,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/product-detail/C307331.html"
-			(at 62.23 87.63 0)
+			(at 76.2 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16811,7 +17225,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 87.63 0)
+			(at 76.2 99.06 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16821,7 +17235,7 @@
 			)
 		)
 		(property "Usage" "J1 VBUS local high-frequency decoupling (USB 2.0 recommends 100nF)"
-			(at 62.23 87.63 0)
+			(at 76.2 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16832,7 +17246,7 @@
 			)
 		)
 		(property "LCSC Part" "C307331"
-			(at 62.23 87.63 0)
+			(at 76.2 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16843,7 +17257,7 @@
 			)
 		)
 		(property "Manufacturer Product Page" ""
-			(at 62.23 87.63 0)
+			(at 76.2 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16854,7 +17268,7 @@
 			)
 		)
 		(property "Supplier" "JLCPCB"
-			(at 62.23 87.63 0)
+			(at 76.2 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16865,7 +17279,7 @@
 			)
 		)
 		(property "Supplier Part Site" ""
-			(at 62.23 87.63 0)
+			(at 76.2 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16876,7 +17290,7 @@
 			)
 		)
 		(property "Manufacturer" "Samsung Electro-Mechanics"
-			(at 10.16 5.08 0)
+			(at 24.13 16.51 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16887,7 +17301,73 @@
 			)
 		)
 		(property "MPN" "CL05B104KB54PNC"
-			(at 10.16 5.08 0)
+			(at 24.13 16.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 76.2 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 76.2 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 76.2 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 76.2 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 76.2 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 76.2 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17022,6 +17502,94 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 364.49 251.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 364.49 251.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 364.49 251.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 364.49 251.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0603WAF1002T5E"
+			(at 364.49 251.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at 364.49 251.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 364.49 251.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 364.49 251.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "eabc9a5e-a19a-419a-aa18-87e2943e579f")
 		)
@@ -17103,6 +17671,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 401.32 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 401.32 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 401.32 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 401.32 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 401.32 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 401.32 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "58f62ed9-0950-4f77-999f-67266b4df997")
 		)
@@ -17110,6 +17744,241 @@
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
 					(reference "TP3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 177.8 68.58 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2db8dbfe-ebc2-4b5b-aaf4-5ba8344b709c")
+		(property "Reference" "R9"
+			(at 180.34 67.3099 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "0R (bridged)"
+			(at 180.34 69.8499 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "project:R_0603_1608Metric_CuttableBridge"
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 177.8 68.58 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" ""
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Usage" "Isolation resistor to isolate the charger from the main data lines going to the esp32, left as 0R (bridged) to allow for setting this up if it causes problems with firmware programming over usb "
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Placement" ""
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Product Page" ""
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "JLCPCB"
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part Site" ""
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at -55.88 -106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" ""
+			(at -55.88 -106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "cc5c1e70-3b83-4118-a2f8-b9ecd0db2c3d")
+		)
+		(pin "2"
+			(uuid "9f35e8e0-67cd-4285-8169-2aa8f66efc6b")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -17226,6 +18095,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 543.56 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 543.56 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 543.56 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 543.56 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 543.56 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 543.56 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "5cf15219-6141-420c-8af5-e303b9f9675e")
 		)
@@ -17267,7 +18202,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 83.82 49.53 90)
+		(at 97.79 60.96 90)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -17279,7 +18214,7 @@
 		(fields_autoplaced yes)
 		(uuid "495690f8-26dd-4773-ba21-6ce527ae6677")
 		(property "Reference" "R5"
-			(at 83.82 43.18 90)
+			(at 97.79 54.61 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17289,7 +18224,7 @@
 			)
 		)
 		(property "Value" "5.1k"
-			(at 83.82 45.72 90)
+			(at 97.79 57.15 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17299,7 +18234,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 83.82 49.53 0)
+			(at 97.79 60.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17310,7 +18245,7 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/partdetail/23913-0603WAF5101T5E/C23186"
-			(at 83.82 49.53 0)
+			(at 97.79 60.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17321,7 +18256,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 83.82 49.53 0)
+			(at 97.79 60.96 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17331,7 +18266,7 @@
 			)
 		)
 		(property "LCSC Part" "C23186"
-			(at 83.82 49.53 0)
+			(at 97.79 60.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17342,7 +18277,7 @@
 			)
 		)
 		(property "Manufacturer Product Page" ""
-			(at 83.82 49.53 90)
+			(at 97.79 60.96 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17353,7 +18288,7 @@
 			)
 		)
 		(property "Supplier" "JLCPCB"
-			(at 83.82 49.53 90)
+			(at 97.79 60.96 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17364,7 +18299,7 @@
 			)
 		)
 		(property "Supplier Part Site" ""
-			(at 83.82 49.53 90)
+			(at 97.79 60.96 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17375,7 +18310,7 @@
 			)
 		)
 		(property "Manufacturer" "UNI-ROYAL"
-			(at 2.54 -2.54 0)
+			(at 16.51 8.89 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17386,7 +18321,73 @@
 			)
 		)
 		(property "MPN" "0603WAF5101T5E"
-			(at 2.54 -2.54 0)
+			(at 16.51 8.89 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 97.79 60.96 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 97.79 60.96 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 97.79 60.96 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 97.79 60.96 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 97.79 60.96 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 97.79 60.96 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17620,6 +18621,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 256.54 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 256.54 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 256.54 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 256.54 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 256.54 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 256.54 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "4e8bd85f-c57b-444a-b447-8042286ec85c")
 		)
@@ -17766,6 +18833,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 153.67 250.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 153.67 250.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 153.67 250.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 153.67 250.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 153.67 250.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 153.67 250.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "21123d9f-0356-4ce1-9a68-0ff676d69794")
 		)
@@ -17901,6 +19034,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 52.07 139.7 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 52.07 139.7 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 52.07 139.7 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 52.07 139.7 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 52.07 139.7 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 52.07 139.7 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "bb720b23-98e8-4ad2-b52c-ba0d66a18631")
 		)
@@ -17911,175 +19110,6 @@
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
 					(reference "C28")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 190.5 40.64 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "54353b72-8dfa-4eae-8d1c-302ffc85282b")
-		(property "Reference" "R11"
-			(at 189.2299 38.1 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10k"
-			(at 191.7699 38.1 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 190.5 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://jlcpcb.com/partdetail/26547-0603WAF1002T5E/C25804"
-			(at 190.5 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 190.5 40.64 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part" "C25804"
-			(at 190.5 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Usage" "Isolation resistor to isolate the charger from the main data lines going to the esp32"
-			(at 190.5 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Placement" ""
-			(at 190.5 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer Product Page" ""
-			(at 190.5 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier" "JLCPCB"
-			(at 190.5 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier Part Site" ""
-			(at 190.5 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "UNI-ROYAL"
-			(at 15.24 274.32 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0603WAF1002T5E"
-			(at 15.24 274.32 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e64bdaea-e0cb-4d32-93d5-1a59c9613cb1")
-		)
-		(pin "2"
-			(uuid "cbef76e5-2444-4561-a3bc-2f8969bcdad1")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
-					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -18217,6 +19247,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 529.59 226.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 529.59 226.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 529.59 226.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 529.59 226.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 529.59 226.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 529.59 226.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "3c20d4c5-296a-4c8c-b09f-e135e6b347f2")
 		)
@@ -18321,6 +19417,72 @@
 			)
 		)
 		(property "Supplier Part Site" ""
+			(at 532.13 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 532.13 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 532.13 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 532.13 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 532.13 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 532.13 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
 			(at 532.13 238.76 0)
 			(hide yes)
 			(show_name no)
@@ -18578,6 +19740,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 439.42 193.04 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 439.42 193.04 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 439.42 193.04 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 439.42 193.04 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 439.42 193.04 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 439.42 193.04 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "a1c3ebf7-5073-4ef8-8dc5-20b788c6091b")
 		)
@@ -18722,6 +19950,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 158.75 259.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 158.75 259.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 158.75 259.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 158.75 259.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 158.75 259.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 158.75 259.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "013df0bd-2436-4e4f-8a8c-0c4c5408615a")
 		)
@@ -18742,7 +20036,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 88.9 41.91 90)
+		(at 102.87 53.34 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -18753,7 +20047,7 @@
 		(fields_autoplaced yes)
 		(uuid "5dd9b8f6-d6c2-403f-ba97-3b01c3c3456e")
 		(property "Reference" "#PWR015"
-			(at 82.55 41.91 0)
+			(at 96.52 53.34 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18764,7 +20058,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 92.71 41.9099 90)
+			(at 106.68 53.3399 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18775,7 +20069,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 88.9 41.91 0)
+			(at 102.87 53.34 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18786,7 +20080,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 88.9 41.91 0)
+			(at 102.87 53.34 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18797,7 +20091,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 88.9 41.91 0)
+			(at 102.87 53.34 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18897,7 +20191,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 62.23 95.25 0)
+		(at 76.2 106.68 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -18907,7 +20201,7 @@
 		(dnp no)
 		(uuid "61e5df25-6659-4f7e-9b83-571d0c6405e3")
 		(property "Reference" "#PWR046"
-			(at 62.23 88.9 0)
+			(at 76.2 100.33 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18918,7 +20212,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 65.786 96.774 0)
+			(at 79.756 108.204 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18928,7 +20222,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 62.23 95.25 0)
+			(at 76.2 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18939,7 +20233,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 95.25 0)
+			(at 76.2 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18950,7 +20244,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 95.25 0)
+			(at 76.2 106.68 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -19344,6 +20638,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 184.15 222.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 184.15 222.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 184.15 222.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 184.15 222.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 184.15 222.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 184.15 222.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "701eba80-3883-4b9b-af22-eb0b7ead2ba1")
 		)
@@ -19480,6 +20840,72 @@
 		)
 		(property "MPN" "DMP3098L-7"
 			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 58.42 149.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 58.42 149.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 58.42 149.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 58.42 149.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 58.42 149.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 58.42 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19776,6 +21202,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 180.34 242.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 180.34 242.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 180.34 242.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 180.34 242.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 180.34 242.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 180.34 242.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "be2eb7f8-9e9a-461f-ac8e-ab67795b7e05")
 		)
@@ -19935,7 +21427,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C19077447"
+		(property "LCSC" ""
 			(at 64.77 156.21 0)
 			(hide yes)
 			(show_name no)
@@ -19946,7 +21438,7 @@
 				)
 			)
 		)
-		(property "Stock" "60444"
+		(property "Stock" ""
 			(at 64.77 156.21 0)
 			(hide yes)
 			(show_name no)
@@ -19957,7 +21449,7 @@
 				)
 			)
 		)
-		(property "Price" "0.018USD"
+		(property "Price" ""
 			(at 64.77 156.21 0)
 			(hide yes)
 			(show_name no)
@@ -19968,7 +21460,7 @@
 				)
 			)
 		)
-		(property "Process" "SMT"
+		(property "Process" ""
 			(at 64.77 156.21 0)
 			(hide yes)
 			(show_name no)
@@ -20001,7 +21493,7 @@
 				)
 			)
 		)
-		(property "Class" "Preferred Component"
+		(property "Class" ""
 			(at 64.77 156.21 0)
 			(hide yes)
 			(show_name no)
@@ -20012,7 +21504,7 @@
 				)
 			)
 		)
-		(property "Category" "Diodes,Zener Diodes"
+		(property "Category" ""
 			(at 64.77 156.21 0)
 			(hide yes)
 			(show_name no)
@@ -20034,8 +21526,96 @@
 				)
 			)
 		)
-		(property "Part" "BZT52C12S"
+		(property "Part" ""
 			(at 64.77 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 64.77 156.21 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 64.77 156.21 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C19077447"
+			(at 64.77 156.21 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 64.77 156.21 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 64.77 156.21 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "BZT52C12S"
+			(at 64.77 156.21 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 64.77 156.21 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 64.77 156.21 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20192,6 +21772,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 302.26 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 302.26 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 302.26 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 302.26 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 302.26 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 302.26 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "206671d3-e7ef-404f-8d43-0dde89b7f9e0")
 		)
@@ -20251,7 +21897,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C96446.html"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/24d8eb2e4bec5cc4dad0f294a4a8fd8e.pdf?productCode=C96446"
 			(at 439.42 181.61 0)
 			(hide yes)
 			(show_name no)
@@ -20351,6 +21997,72 @@
 		)
 		(property "MPN" "CL10A106MA8NRNC"
 			(at 13.97 34.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 439.42 181.61 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 439.42 181.61 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 439.42 181.61 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 439.42 181.61 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 439.42 181.61 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 439.42 181.61 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20515,6 +22227,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 401.32 388.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 401.32 388.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 401.32 388.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 401.32 388.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 401.32 388.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 401.32 388.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "1ceafc8d-9b5c-4ae6-8356-41efc285c51c")
 		)
@@ -20668,6 +22446,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 72.39 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 72.39 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 72.39 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 72.39 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 72.39 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 72.39 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "cd28cb5b-fba7-48be-b0bc-3a9d82e27aaf")
 		)
@@ -20803,6 +22647,72 @@
 		)
 		(property "MPN" "0603WAF4701T5E"
 			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 433.07 377.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 433.07 377.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 433.07 377.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 433.07 377.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 433.07 377.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 433.07 377.19 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20958,6 +22868,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 151.13 276.86 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 151.13 276.86 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 151.13 276.86 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 151.13 276.86 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 151.13 276.86 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 151.13 276.86 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "669bdce2-152a-4b6d-9bf6-8ae24191462e")
 		)
@@ -20975,7 +22951,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 62.23 31.75 90)
+		(at 76.2 43.18 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -20985,7 +22961,7 @@
 		(dnp no)
 		(uuid "91feac5f-d7ea-4fd2-a22a-37edefff1acc")
 		(property "Reference" "#PWR013"
-			(at 55.88 31.75 0)
+			(at 69.85 43.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20996,7 +22972,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 64.008 34.29 90)
+			(at 77.978 45.72 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -21006,7 +22982,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 62.23 31.75 0)
+			(at 76.2 43.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21017,7 +22993,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 31.75 0)
+			(at 76.2 43.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21028,7 +23004,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 31.75 0)
+			(at 76.2 43.18 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -21178,6 +23154,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 85.09 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 85.09 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 85.09 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 85.09 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 85.09 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 85.09 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "885ad440-63be-4ea1-95f4-056501b402e5")
 		)
@@ -21250,6 +23292,72 @@
 		)
 		(property "Description" "Test Point"
 			(at 394.97 287.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 394.97 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 394.97 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 394.97 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 394.97 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 394.97 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 394.97 276.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21351,7 +23459,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 46.99 95.25 0)
+		(at 60.96 106.68 0)
 		(mirror y)
 		(unit 1)
 		(body_style 1)
@@ -21362,7 +23470,7 @@
 		(dnp no)
 		(uuid "984369f9-a102-4f88-87a3-4eadf8a8a5c1")
 		(property "Reference" "#PWR047"
-			(at 46.99 88.9 0)
+			(at 60.96 100.33 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21373,7 +23481,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 43.942 97.028 0)
+			(at 57.912 108.458 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -21383,7 +23491,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 46.99 95.25 0)
+			(at 60.96 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21394,7 +23502,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 46.99 95.25 0)
+			(at 60.96 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21405,7 +23513,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 46.99 95.25 0)
+			(at 60.96 106.68 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -21632,6 +23740,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 138.43 264.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 138.43 264.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 138.43 264.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 138.43 264.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 138.43 264.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 138.43 264.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "6c7a2552-edbc-482c-a895-81def0205dd4")
 		)
@@ -21649,7 +23823,7 @@
 	)
 	(symbol
 		(lib_id "Snapeda:UJ20-C-H-G-SMT-2A-P16-TR")
-		(at 36.83 52.07 0)
+		(at 50.8 63.5 0)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -21660,7 +23834,7 @@
 		(dnp no)
 		(uuid "9cb4892c-da3b-4e2b-8f75-b4bc265a34f7")
 		(property "Reference" "USBC1"
-			(at 27.94 44.4499 0)
+			(at 41.91 55.8799 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -21671,7 +23845,7 @@
 			)
 		)
 		(property "Value" "TYPE-C-31-M-12"
-			(at 27.94 46.9899 0)
+			(at 41.91 58.4199 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -21682,7 +23856,7 @@
 			)
 		)
 		(property "Footprint" "project:USB-C_TYPE-C-31-M-12"
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21694,7 +23868,7 @@
 			)
 		)
 		(property "Datasheet" "https://lcsc.com/product-detail/USB-Type-C_Korean-Hroparts-Elec-TYPE-C-31-M-12_C165948.html"
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21705,7 +23879,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21716,7 +23890,7 @@
 			)
 		)
 		(property "Manufacturer" "Korean Hroparts Elec"
-			(at 36.83 25.4 0)
+			(at 50.8 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21727,7 +23901,7 @@
 			)
 		)
 		(property "MPN" "TYPE-C-31-M-12"
-			(at 36.83 22.86 0)
+			(at 50.8 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21738,7 +23912,7 @@
 			)
 		)
 		(property "LCSC Part" "C165948"
-			(at 36.83 20.32 0)
+			(at 50.8 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21749,7 +23923,7 @@
 			)
 		)
 		(property "Manufacturer Product Page" ""
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21760,7 +23934,7 @@
 			)
 		)
 		(property "Supplier" "JLCPCB"
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21771,7 +23945,7 @@
 			)
 		)
 		(property "Supplier Part Site" "https://jlcpcb.com/partdetail/Korean_HropartsElec-TYPE_C_31_M12/C165948"
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21782,7 +23956,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" "3.20mm"
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21794,7 +23968,7 @@
 			)
 		)
 		(property "CREATOR" "ASHISH"
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21806,7 +23980,7 @@
 			)
 		)
 		(property "NOTES" ""
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21818,7 +23992,7 @@
 			)
 		)
 		(property "STANDARD" "Manufacturer Recommendations"
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21830,7 +24004,7 @@
 			)
 		)
 		(property "PARTREV" "1.0"
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21842,7 +24016,7 @@
 			)
 		)
 		(property "VERIFIER" ""
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21854,7 +24028,7 @@
 			)
 		)
 		(property "UNIT" "mm"
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21866,7 +24040,7 @@
 			)
 		)
 		(property "MANUFACTURER" "Same Sky"
-			(at 36.83 52.07 0)
+			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21875,6 +24049,72 @@
 					(size 1.27 1.27)
 				)
 				(justify bottom)
+			)
+		)
+		(property "Check_prices" ""
+			(at 50.8 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 50.8 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 50.8 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 50.8 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 50.8 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 50.8 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "B4_A9"
@@ -22153,6 +24393,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 448.31 201.93 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 448.31 201.93 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 448.31 201.93 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 448.31 201.93 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 448.31 201.93 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 448.31 201.93 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "f9d1ed80-cc9b-45cc-b86b-c300172f331e")
 		)
@@ -22170,7 +24476,7 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 66.04 72.39 0)
+		(at 80.01 83.82 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -22181,7 +24487,7 @@
 		(fields_autoplaced yes)
 		(uuid "a676db8e-7990-4719-8c7c-32725972eba2")
 		(property "Reference" "#FLG04"
-			(at 66.04 70.485 0)
+			(at 80.01 81.915 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22192,7 +24498,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 66.04 67.31 0)
+			(at 80.01 78.74 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -22202,7 +24508,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 66.04 72.39 0)
+			(at 80.01 83.82 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22213,7 +24519,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 66.04 72.39 0)
+			(at 80.01 83.82 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22224,7 +24530,7 @@
 			)
 		)
 		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 66.04 72.39 0)
+			(at 80.01 83.82 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22458,6 +24764,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 302.26 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 302.26 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 302.26 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 302.26 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 302.26 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 302.26 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "985588ff-fc3f-4dff-880d-d83e52c9e584")
 		)
@@ -22475,7 +24847,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 57.15 16.51 0)
+		(at 71.12 27.94 0)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -22486,7 +24858,7 @@
 		(dnp no)
 		(uuid "abe69494-47ef-4013-a847-f88f214f5305")
 		(property "Reference" "#PWR017"
-			(at 57.15 22.86 0)
+			(at 71.12 34.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22497,7 +24869,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 54.102 16.51 0)
+			(at 68.072 27.94 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -22507,7 +24879,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 57.15 16.51 0)
+			(at 71.12 27.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22518,7 +24890,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 57.15 16.51 0)
+			(at 71.12 27.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22529,7 +24901,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 57.15 16.51 0)
+			(at 71.12 27.94 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -22545,175 +24917,6 @@
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
 					(reference "#PWR017")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 125.73 40.64 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "afe41e98-0712-4942-9cfa-37850c6090cf")
-		(property "Reference" "R9"
-			(at 124.4599 38.1 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10k"
-			(at 126.9999 38.1 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 125.73 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://jlcpcb.com/partdetail/26547-0603WAF1002T5E/C25804"
-			(at 125.73 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 125.73 40.64 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part" "C25804"
-			(at 125.73 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Usage" "Isolation resistor to isolate the charger from the main data lines going to the esp32"
-			(at 125.73 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Placement" ""
-			(at 125.73 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer Product Page" ""
-			(at 125.73 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier" "JLCPCB"
-			(at 125.73 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier Part Site" ""
-			(at 125.73 40.64 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "UNI-ROYAL"
-			(at -49.53 274.32 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0603WAF1002T5E"
-			(at -49.53 274.32 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0850a7ba-bf87-4ed1-9fe0-05eee4a632c6")
-		)
-		(pin "2"
-			(uuid "8b01dfce-0861-446b-8d5a-4d07547bdc22")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
-					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -22839,6 +25042,72 @@
 		)
 		(property "MPN" "0603WAF4701T5E"
 			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 422.91 379.73 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 422.91 379.73 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 422.91 379.73 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 422.91 379.73 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 422.91 379.73 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 422.91 379.73 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -23005,6 +25274,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 175.26 254 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 175.26 254 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 175.26 254 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 175.26 254 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 175.26 254 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 175.26 254 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "5b366edc-6de1-4c57-9c0e-7bc13596d34c")
 		)
@@ -23161,6 +25496,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 271.78 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 271.78 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 271.78 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 271.78 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 271.78 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 271.78 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "c4d2b3e6-1835-411c-b895-4d11c03c1d33")
 		)
@@ -23171,83 +25572,6 @@
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
 					(reference "C2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 154.94 78.74 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "bd9a4af8-3ca0-4c0f-9fd8-a27a7e7ab909")
-		(property "Reference" "#PWR057"
-			(at 154.94 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 154.94 83.82 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 154.94 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 154.94 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 154.94 78.74 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "b95bc402-ab04-4343-b962-fcc7a5c0f8c5")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
-					(reference "#PWR057")
 					(unit 1)
 				)
 			)
@@ -23397,6 +25721,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 317.5 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 317.5 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 317.5 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 317.5 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 317.5 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 317.5 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "facc6247-8e2b-43dc-bc5b-48997cdebdf6")
 		)
@@ -23413,8 +25803,244 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 167.64 54.61 0)
+		(mirror y)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c97ad567-a34c-46ae-86f2-5d7377033624")
+		(property "Reference" "R11"
+			(at 165.1 53.3399 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "0R (bridged)"
+			(at 165.1 55.8799 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "project:R_0603_1608Metric_CuttableBridge"
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 167.64 54.61 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" ""
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Usage" "Isolation resistor to isolate the charger from the main data lines going to the esp32, left as 0R (bridged) to allow for setting this up if it causes problems with firmware programming over usb "
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Placement" ""
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Product Page" ""
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "JLCPCB"
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part Site" ""
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at 401.32 -120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" ""
+			(at 401.32 -120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 167.64 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b938479d-ca0e-4f97-96db-e54b61798f29")
+		)
+		(pin "2"
+			(uuid "82f4c239-4e3c-4e2a-9105-a4a2a48e5364")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
+					(reference "R11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
-		(at 91.44 49.53 90)
+		(at 105.41 60.96 90)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -23426,7 +26052,7 @@
 		(fields_autoplaced yes)
 		(uuid "cb0c844c-791e-41e8-8d89-fb7f562d2ac5")
 		(property "Reference" "#PWR014"
-			(at 85.09 49.53 0)
+			(at 99.06 60.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -23437,7 +26063,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 95.25 49.5299 90)
+			(at 109.22 60.9599 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -23448,7 +26074,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 91.44 49.53 0)
+			(at 105.41 60.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -23459,7 +26085,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 91.44 49.53 0)
+			(at 105.41 60.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -23470,7 +26096,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 91.44 49.53 0)
+			(at 105.41 60.96 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -23776,6 +26402,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 483.87 264.16 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 483.87 264.16 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 483.87 264.16 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 483.87 264.16 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 483.87 264.16 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 483.87 264.16 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "ba72ed8c-8437-4b6d-a86b-639b3e56b1a7")
 		)
@@ -24002,6 +26694,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 361.95 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 361.95 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 361.95 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 361.95 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 361.95 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 361.95 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "057affd8-bd4b-4f4c-b67e-298782eef5ae")
 		)
@@ -24137,6 +26895,72 @@
 		)
 		(property "MPN" "KT-0603R"
 			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 85.09 219.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 85.09 219.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 85.09 219.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 85.09 219.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 85.09 219.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 85.09 219.71 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24373,6 +27197,72 @@
 				)
 			)
 		)
+		(property "Check_prices" ""
+			(at 256.54 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 256.54 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 256.54 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 256.54 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 256.54 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 256.54 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "87a16188-8daf-4c4d-bad4-4314cfbcfe1e")
 		)
@@ -24390,7 +27280,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 74.93 87.63 0)
+		(at 88.9 99.06 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -24400,7 +27290,7 @@
 		(dnp no)
 		(uuid "e503b9c2-2e81-439a-866b-1cc8e7cd67e5")
 		(property "Reference" "C15"
-			(at 68.834 86.69 0)
+			(at 82.804 98.12 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -24410,7 +27300,7 @@
 			)
 		)
 		(property "Value" "4.7uF"
-			(at 68.834 88.19 0)
+			(at 82.804 99.62 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -24420,7 +27310,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 74.93 87.63 0)
+			(at 88.9 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24431,7 +27321,7 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/partdetail/2131-CL21A475KAQNNNE/C1779"
-			(at 74.93 87.63 0)
+			(at 88.9 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24442,7 +27332,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 74.93 87.63 0)
+			(at 88.9 99.06 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -24452,7 +27342,7 @@
 			)
 		)
 		(property "Usage" "VBUS bulk decoupling, local to the connector (USB 2.0 recommends >=1uF)"
-			(at 74.93 87.63 0)
+			(at 88.9 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24463,7 +27353,7 @@
 			)
 		)
 		(property "LCSC Part" "C1779"
-			(at 74.93 87.63 0)
+			(at 88.9 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24474,7 +27364,7 @@
 			)
 		)
 		(property "Manufacturer Product Page" ""
-			(at 74.93 87.63 0)
+			(at 88.9 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24485,7 +27375,7 @@
 			)
 		)
 		(property "Supplier" "JLCPCB"
-			(at 74.93 87.63 0)
+			(at 88.9 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24496,7 +27386,7 @@
 			)
 		)
 		(property "Supplier Part Site" ""
-			(at 74.93 87.63 0)
+			(at 88.9 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24507,7 +27397,7 @@
 			)
 		)
 		(property "Manufacturer" "Samsung Electro-Mechanics"
-			(at 10.16 5.08 0)
+			(at 24.13 16.51 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24518,7 +27408,73 @@
 			)
 		)
 		(property "MPN" "CL21A475KAQNNNE"
-			(at 10.16 5.08 0)
+			(at 24.13 16.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 88.9 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 88.9 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 88.9 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 88.9 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 88.9 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 88.9 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24644,6 +27600,72 @@
 			)
 		)
 		(property "Supplier Part Site" ""
+			(at 542.29 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Check_prices" ""
+			(at 542.29 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigiKey_Part_Number" ""
+			(at 542.29 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MF" ""
+			(at 542.29 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MP" ""
+			(at 542.29 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" ""
+			(at 542.29 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SnapEDA_Link" ""
 			(at 542.29 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -24789,54 +27811,50 @@
 		)
 	)
 	(group "USB Port"
-		(uuid "5527a403-9064-4975-92d8-74cec18d8864")
-		(members "01beb9a1-ee01-4a5b-8d0c-2f938969cd59" "03652f23-320f-47ba-bdb7-bdb8bb2e8065"
-			"04f07a17-8f7f-4132-84ca-30374dcc72ba" "065b7555-28f8-4ddf-a86c-45516bac295e"
-			"0745173b-3844-4e49-a50d-df7fd5d50ee7" "07747141-ce0a-4508-96a4-c110b92aa288"
-			"077ebfbc-94c8-441a-a6de-1b2a43972285" "0baa662c-0fc5-4340-8fcd-992f3fea05a9"
-			"0cef753b-f3e9-4f76-bb91-2603cb0bf0da" "0e984bf3-4755-44ad-96aa-45040d241fad"
-			"13605b74-e546-434d-a410-0219633c3d82" "16ac59f9-1ccb-43e6-bce4-8513d7cef354"
-			"17c2560a-22e4-4067-a0df-c2967b689ba3" "18ba3f70-06d3-4f9b-91b5-992530b86295"
-			"19b23a43-4825-419e-8bf6-2ce04b00d7ec" "19b933d4-a062-4277-8814-666b338e78d6"
-			"1b8fdae8-5011-4131-9b08-bde58f59e32b" "1dd1238b-ac54-4969-92e0-9782c0c2bd5e"
-			"20991697-56e1-4379-ab3d-a9cd99c0d9c4" "22fd7790-2d20-4def-982d-fa2503a401cc"
-			"2484d2c5-48e0-41e9-b597-5c257da3f418" "262579b5-0afa-40ae-accc-3df5f5230c38"
-			"275cc6ac-d1d6-4cbf-a3ed-3c0087d97a02" "29b273bb-78b0-439f-bc80-9e2b65a62934"
-			"2e9863b9-7209-42e9-b79a-23701e53be85" "2ee5d55e-4918-4cf6-a22f-bb424d0d743e"
-			"34da4a33-4cd1-4d3b-bb40-3f092ca6c381" "38be1ff6-4e79-4b97-b936-0a5ad4d81518"
-			"3a279196-89f7-41b9-aa83-ac3a211c142f" "3ab036b3-53af-44cb-8d97-6e7283d2edc4"
+		(uuid "5527a403-9064-4975-92d8-74cec18d8865")
+		(members "03652f23-320f-47ba-bdb7-bdb8bb2e8065" "04f07a17-8f7f-4132-84ca-30374dcc72ba"
+			"065b7555-28f8-4ddf-a86c-45516bac295e" "072c4925-3d8a-4a4d-91ff-6e201d870f49"
+			"0745173b-3844-4e49-a50d-df7fd5d50ee7" "077ebfbc-94c8-441a-a6de-1b2a43972285"
+			"0baa662c-0fc5-4340-8fcd-992f3fea05a9" "0cef753b-f3e9-4f76-bb91-2603cb0bf0da"
+			"0e984bf3-4755-44ad-96aa-45040d241fad" "13605b74-e546-434d-a410-0219633c3d82"
+			"1787ec5b-9bd4-41a8-9155-f41946e6632b" "17c2560a-22e4-4067-a0df-c2967b689ba3"
+			"18ba3f70-06d3-4f9b-91b5-992530b86295" "19b933d4-a062-4277-8814-666b338e78d6"
+			"2045f5e7-7bea-4f27-b935-0e0e64be2c71" "20991697-56e1-4379-ab3d-a9cd99c0d9c4"
+			"22fd7790-2d20-4def-982d-fa2503a401cc" "2484d2c5-48e0-41e9-b597-5c257da3f418"
+			"262579b5-0afa-40ae-accc-3df5f5230c38" "29b273bb-78b0-439f-bc80-9e2b65a62934"
+			"2db8dbfe-ebc2-4b5b-aaf4-5ba8344b709c" "2e9863b9-7209-42e9-b79a-23701e53be85"
+			"2ee5d55e-4918-4cf6-a22f-bb424d0d743e" "35b47bc1-a52c-4c74-93f3-6d8bf7dbc14e"
+			"38be1ff6-4e79-4b97-b936-0a5ad4d81518" "3ab036b3-53af-44cb-8d97-6e7283d2edc4"
 			"3d2ddc9e-3fbd-4012-b176-9ba37edade84" "426f91de-5122-4616-8ab6-f50f2ed67ee4"
+			"477f0cdb-1ab4-4568-8763-e5c8cc64c75b" "4949aae0-dd44-4acf-92a3-26b942c07354"
 			"495690f8-26dd-4773-ba21-6ce527ae6677" "4a1d7cc0-233a-433b-88ca-11838f8211cf"
-			"4eb67f8a-0b8c-475b-a9d1-90df1e077e40" "51387dbd-9408-4b13-9844-a5100b9e90d0"
-			"53d835fa-7a07-477d-990b-08d141ebb0de" "54353b72-8dfa-4eae-8d1c-302ffc85282b"
-			"5a2e990b-66e9-42a5-b905-53f157ac27cc" "5b2d0a3f-3da5-47e4-b92e-b18a97e6ce7e"
-			"5dd9b8f6-d6c2-403f-ba97-3b01c3c3456e" "6076b156-688a-48b1-8c84-7d51a845bdf9"
-			"61e5df25-6659-4f7e-9b83-571d0c6405e3" "6407849c-bf0a-4210-a99c-39ed362ea8a9"
-			"7425a957-a6ec-4fce-8c1a-3cdb0295ae99" "795da235-4fbc-4214-957d-ed64a5d82796"
+			"4da0db90-76b9-4019-920b-292575998abb" "4eb67f8a-0b8c-475b-a9d1-90df1e077e40"
+			"51387dbd-9408-4b13-9844-a5100b9e90d0" "53d835fa-7a07-477d-990b-08d141ebb0de"
+			"543982cf-e908-4943-af8d-414336c2616d" "5a2e990b-66e9-42a5-b905-53f157ac27cc"
+			"5b2d0a3f-3da5-47e4-b92e-b18a97e6ce7e" "5dd9b8f6-d6c2-403f-ba97-3b01c3c3456e"
+			"6076b156-688a-48b1-8c84-7d51a845bdf9" "61e5df25-6659-4f7e-9b83-571d0c6405e3"
+			"6407849c-bf0a-4210-a99c-39ed362ea8a9" "64d4507e-ca06-46b6-a7c9-74f47fa02484"
+			"65da2968-c1de-4f72-9f15-1a607221b3c5" "7425a957-a6ec-4fce-8c1a-3cdb0295ae99"
 			"7c462d99-e96f-46bc-baf0-e4c75261ee12" "7ecd5077-87b1-4e54-b2da-b566d1c39464"
-			"82547466-f296-46f5-a30b-41ce8adb9d0c" "8d5fd194-15f9-4476-a857-0d827b002f1e"
-			"8e1316c0-e01a-45d1-895e-28b81535a129" "91320b3b-1933-4e37-addb-9e7ff74af6e3"
+			"8d5fd194-15f9-4476-a857-0d827b002f1e" "8e1316c0-e01a-45d1-895e-28b81535a129"
 			"91feac5f-d7ea-4fd2-a22a-37edefff1acc" "920d0e11-6e1d-4ad0-ba7d-d3fb800ab115"
-			"93e52739-a2cf-4915-bed0-9aa008489937" "9684d444-0a1a-4514-b84b-c035834aceb4"
-			"975aa859-2cd5-44bc-8120-f3afae8bdfde" "97f98ae5-9dec-4531-8cc5-50eab1c82805"
+			"9684d444-0a1a-4514-b84b-c035834aceb4" "975aa859-2cd5-44bc-8120-f3afae8bdfde"
 			"984369f9-a102-4f88-87a3-4eadf8a8a5c1" "997e1563-9bef-4b19-93dc-5e4318228b54"
-			"99a3c065-e228-4b9c-995c-df69b48aa778" "9c3d7784-d4a4-4d2e-bb88-4516289478ad"
-			"9cb4892c-da3b-4e2b-8f75-b4bc265a34f7" "a12ac2dd-35d3-4513-b00e-67f3143c3469"
-			"abe69494-47ef-4013-a847-f88f214f5305" "afe41e98-0712-4942-9cfa-37850c6090cf"
-			"b0af450c-3853-4e7e-8183-ab38cd2ba77d" "b17f2c26-66ae-4a76-b612-04b6e89eb924"
+			"99a3c065-e228-4b9c-995c-df69b48aa778" "9cb4892c-da3b-4e2b-8f75-b4bc265a34f7"
+			"a12ac2dd-35d3-4513-b00e-67f3143c3469" "a676db8e-7990-4719-8c7c-32725972eba2"
+			"abe69494-47ef-4013-a847-f88f214f5305" "b17f2c26-66ae-4a76-b612-04b6e89eb924"
 			"b87ac647-dd01-401f-92ec-0e739ec0e849" "b9b080a0-714e-4b02-8f8d-1230c89a5503"
-			"b9ee5777-eb53-430f-a918-c71e5814be16" "bd9a4af8-3ca0-4c0f-9fd8-a27a7e7ab909"
-			"c136219d-5d39-47f7-bfc3-cf08d401a208" "c1d16c50-9d26-49b0-aa14-a6f2d31d1ad1"
-			"c3b86c04-5129-48d6-949d-ca1573bf607d" "c561c509-30db-451b-87b4-c3b579768509"
-			"c5e8439f-46cf-4bc6-b1dc-519411181467" "ca8d7bba-8cdd-4e4d-8f0b-b517022afe6f"
+			"b9ee5777-eb53-430f-a918-c71e5814be16" "c136219d-5d39-47f7-bfc3-cf08d401a208"
+			"c1d16c50-9d26-49b0-aa14-a6f2d31d1ad1" "c4028184-77df-4517-b0d5-7c1f73e60328"
+			"c97ad567-a34c-46ae-86f2-5d7377033624" "ca8d7bba-8cdd-4e4d-8f0b-b517022afe6f"
 			"caff168a-4a3b-475f-bc49-fb665b8a73ab" "cb0c844c-791e-41e8-8d89-fb7f562d2ac5"
-			"d2ecb117-e520-49d6-9422-389d68507afc" "d355a610-7a42-48dd-b434-05e55a168261"
-			"deab7e94-508f-42ce-ba6d-6bf896cfc192" "ded29b90-9526-4eae-9f93-b7c5405af60f"
-			"df50ceda-4ebb-4a0a-8378-4cf9a5742ca6" "e1bdc16c-16ac-4581-a38b-7f126b23970c"
-			"e503b9c2-2e81-439a-866b-1cc8e7cd67e5" "e5e6af73-df46-4021-93ac-e6eedb4fed7b"
-			"e6da6e6a-3596-4e40-b86c-9a63b42bb377" "e716150b-757e-4275-a3b3-279b15a1a181"
-			"eabd7a9d-ad55-4c2b-baed-74afc9ec0a6e" "eacb1abe-c123-4637-9481-bf92befa880f"
-			"f2cc82ce-af52-4a5c-ab22-f3a24b81b0af" "f9690d93-9d7b-48d2-904a-3ce09b9c6d68"
+			"ccfdb67e-50fd-4f3f-be31-3562592347c7" "d2ecb117-e520-49d6-9422-389d68507afc"
+			"d355a610-7a42-48dd-b434-05e55a168261" "deab7e94-508f-42ce-ba6d-6bf896cfc192"
+			"ded29b90-9526-4eae-9f93-b7c5405af60f" "df50ceda-4ebb-4a0a-8378-4cf9a5742ca6"
+			"e1bdc16c-16ac-4581-a38b-7f126b23970c" "e503b9c2-2e81-439a-866b-1cc8e7cd67e5"
+			"e5e6af73-df46-4021-93ac-e6eedb4fed7b" "e716150b-757e-4275-a3b3-279b15a1a181"
+			"eabd7a9d-ad55-4c2b-baed-74afc9ec0a6e" "f291e351-1606-48da-8cd2-f7ac5728e1f2"
+			"f9690d93-9d7b-48d2-904a-3ce09b9c6d68"
 		)
 	)
 	(group "GPIO Headers"

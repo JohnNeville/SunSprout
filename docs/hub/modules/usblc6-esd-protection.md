@@ -56,6 +56,27 @@ circuits, so it clamps a discharge before it reaches either one.
 An additional part, `D3`, protects the USB `VBUS` rail. `D3` is a PESD5V0S1BA bidirectional TVS
 diode. It protects the power line, not the data lines.
 
+### The star point on D+ and D-
+
+Each data line meets three places at `D5`: the connector, the MCU and, through its isolation
+resistor, the charger. A clamp works from one point. If the line branched somewhere else on the
+board, a discharge would reach part of the circuit before the clamp saw it.
+
+An earlier revision made that junction with a separate net tie component. The tie carried its own
+footprint and its own reference, and the joint sat next to `D5` rather than inside it.
+
+The board now uses `project:USBLC6-4SC6-ES_WIthNetTie`, a local footprint that builds the
+junction into the part. Pins 1 and 3 each split into three pads — `1a`/`1b`/`1c` and
+`3a`/`3b`/`3c` — declared to KiCad as two tie groups:
+
+```
+(net_tie_pad_groups "1a,1b,1c" "3a,3b,3c")
+```
+
+Each branch lands on its own pad, so the three nets join at the die pin itself. The separate net
+tie component is gone. DRC accepts the shorted pads because the footprint declares the groups;
+without that declaration it would report the joins as errors.
+
 ## Series resistors on the USB data lines
 
 | Reference | Value | Status |
