@@ -64,6 +64,30 @@ The load switch controls the rail. See [tps22918-load-switch.md](tps22918-load-s
 Both supply pins get their own 100 nF capacitor. The part has two supply domains, so one shared
 capacitor would leave one domain without local decoupling.
 
+## VCC_2 — optional independent power rail
+
+The two 8P8C jacks carry two separate power nets, mirroring the SparkFun QwiicBus reference
+layout rather than collapsing them into one rail:
+
+| Net | Carries | Default state |
+|---|---|---|
+| `VCC_1` | The board's own `3V3_USER` rail, feeding `U201` directly | Always connected — this is the buffer's supply |
+| `VCC_2` / `GRN_P` | A second rail on the green wire pair, independent of the buffer's supply | Bridged to `3V3_USER` by `JP2` |
+| `GRN_N` | Return path for `VCC_2` | Bridged to `GND` by `JP3` |
+
+`JP2` and `JP3` are cuttable solder-jumper bridges, shorted as fabricated. Cutting both fully
+isolates `VCC_2`/`GRN_N` from this board's 3.3 V rail and ground.
+
+`J2` sits on the `VCC_2`/`GRN_N` pair with no other connection on this board. It was added late,
+specifically so that an external supply — a 5 V or 12 V boost converter, for example — can be
+injected onto `VCC_2` later without changing this sheet, once `JP2` and `JP3` are cut. The intent
+is to support satellite sensors (e.g. soil-moisture ADCs) that may need more than 3.3 V, without
+making that a first-class part of this revision.
+
+Cutting the jumpers only isolates the rail on this board. The EndPoint at the far end of the
+cable needs its own BP/PSEL jumpers (see the SparkFun QwiicBus EndPoint schematic) set to accept
+the injected voltage instead of pulling `VCC_2` from its own `VCC_1`.
+
 ## Bus pull-up resistors
 
 | Reference | Value | Net |

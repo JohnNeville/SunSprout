@@ -653,6 +653,14 @@
       {
         "netclass": "USB_90Ohm",
         "pattern": "CHGR_USB_D*"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "GRN_P"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "GRN_N"
       }
     ]
   },
@@ -1039,7 +1047,7 @@
         "uuid": "a73062bd-90e7-442f-aac6-ee7677f83b11"
       }
     ],
-    "used_designators": "R9,R11,J402,#FLG2-11,#PWR57,#PWR123,#PWR130,C319,JP2,JUMP_CHGR_GND2",
+    "used_designators": "#FLG2-11,J2,J201-202,J402,R9,R11,#PWR7,#PWR23-26,#PWR57,#PWR123,#PWR130,D201,C319,JP2-3,JUMP_CHGR_GND2",
     "variants": []
   },
   "sheets": [
