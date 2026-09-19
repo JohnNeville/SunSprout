@@ -66,3 +66,9 @@ down slowly and unpredictably.
 | Reference | Value | Function |
 |---|---|---|
 | `C19` | 1 µF | Input decoupling at `VIN`. |
+
+## Output decoupling
+
+| Reference | Value | Function |
+|---|---|---|
+| `C18` | 100 nF | Decoupling at `VOUT`, on the 3V3_USER rail. |

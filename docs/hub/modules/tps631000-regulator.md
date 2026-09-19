@@ -70,12 +70,11 @@ replaced it with a true power inductor.
 |---|---|---|
 | `C13` | 10 µF | Input capacitor at `VIN`. |
 | `C14` | 47 µF | Output capacitor at `VOUT`. This matches the value that the datasheet recommends. |
-| `C18` | 100 nF | High-frequency decoupling on the output. |
-| `C29` | 1 nF | High-frequency capacitor on the output for the power distribution network. |
 
-The three output capacitors work over different frequency ranges. The 47 µF part holds the rail
-during a load step. The 100 nF part and the 1 nF part have lower parasitic inductance, so they
-respond to faster edges.
+The design removed a second, 1 nF output capacitor (`C29`) that an earlier revision placed between
+`U4` and `C14`. The datasheet asks for a single output capacitor placed as close as possible to
+`VOUT`/`PGND` (Section 7.4.1); the extra part only pushed `C14` further from the IC and was not a
+datasheet requirement.
 
 ## Enable pin
 

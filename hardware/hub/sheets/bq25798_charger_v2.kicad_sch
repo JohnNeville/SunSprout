@@ -9882,6 +9882,7 @@
 		)
 		(property "Firmware Constraint" "PCB copper for PMID/SYS/SW1/SW2/BAT (Power_2A net class) is sized for 2A, not the IC's 5A max. R302/R303 hardware-clamp INPUT current (IINDPM) to 2.00A via ILIM_HIZ, independent of firmware. There is NO equivalent hardware clamp on ICHG (charge current) -- it is a pure I2C register (REG03, 50mA-5000mA, resets to PROG-resistor default of 1A on POR/watchdog/REG_RST). Firmware MUST NOT set ICHG above 2000mA (2A); doing so can drive charge-side copper beyond its rated current, since in buck mode (VBUS greater than VBAT) charge current can exceed input current."
 			(at 262.89 300.99 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
