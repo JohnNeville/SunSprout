@@ -31,6 +31,23 @@ Downstream STEMMA QT/Qwiic accessories typically carry their own pull-up resisto
 combine in parallel as you chain more devices onto a bus — worth keeping in mind if you chain
 many devices onto the user bus.
 
+## VCC_2 is a separate, cuttable power rail on the 8P8C jacks
+
+Each 8P8C jack carries two power nets, not one. `VCC_1` feeds the differential I2C buffer
+itself and is always tied to the board's 3.3V user rail. `VCC_2` — routed on its own wire pair
+— is a second, independent rail that only reaches `VCC_1`/`GND` through two solder-jumper
+bridges (`JP2` and `JP3`), which are shorted as shipped.
+
+This mirrors the SparkFun QwiicBus reference layout, and it exists for one reason: to leave the
+door open for powering hungrier sensors — soil-moisture ADCs, for example — at something other
+than 3.3V, without a board revision. Cut `JP2` and `JP3` and `VCC_2` is fully isolated from this
+board's own supply and ground. An unpopulated 2-pin header sits on that same net pair, ready to
+accept an external 5V or 12V boost converter once the jumpers are cut.
+
+Cutting the jumpers only isolates the rail here. The EndPoint at the far end of the cable needs
+its own jumpers set to accept the injected voltage instead of drawing `VCC_2` from its own
+`VCC_1`.
+
 ## J7 and J8 aren't fitted at the factory
 
 These headers exist in the schematic and PCB layout, but they're excluded from both the bill of

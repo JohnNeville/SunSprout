@@ -22,6 +22,7 @@ not intermate.
 | `J6` | JST SH, 4-pin (STEMMA QT) | Internal I2C bus — for sensors that should share the always-on power-management bus | Any STEMMA QT / Qwiic cable |
 | `J203` | JST SH, 4-pin (STEMMA QT) | User I2C bus — for sensors on the switched, differential-buffer-side bus | Any STEMMA QT / Qwiic cable |
 | `J201` / `J202` | 8P8C (RJ45-style) | Differential I2C — connects to a [SparkFun QwiicBus EndPoint](https://www.sparkfun.com/products/16988) for remote sensors | Standard Ethernet patch cable |
+| `J2` | 2.54mm header (not fitted) | Optional external supply for the `VCC_2` rail on the 8P8C jacks — see [Notes](./notes.md#vcc_2-is-a-separate-cuttable-power-rail-on-the-8p8c-jacks) | Standard 2.54mm header strip, hand-soldered |
 | `J302` | JST PA, 2-pin (`S02B-PASK-2`) | Charger thermistor input | Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), mounted on the battery pack — see [below](#terminating-your-own-thermistor-probe) |
 | `J401` | JST PA, 2-pin (`S02B-PASK-2`) | Fuel-gauge thermistor input | A **second, separate** Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), also mounted on the pack |
 | `J7` / `J8` | 2.54mm header (not fitted) | Spare/expansion GPIO breakout, plus the debug UART | Standard 2.54mm header strip, hand-soldered |
