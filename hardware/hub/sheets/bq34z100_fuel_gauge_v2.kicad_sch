@@ -2291,7 +2291,7 @@
 				(justify bottom)
 			)
 		)
-		(property "FT Rotation Offset" "180"
+		(property "FT Rotation Offset" ""
 			(at 307.34 187.96 0)
 			(hide yes)
 			(show_name no)
@@ -2302,7 +2302,7 @@
 				)
 			)
 		)
-		(property "FT Position Offset" "0,1.01600"
+		(property "FT Position Offset" ""
 			(at 307.34 187.96 0)
 			(hide yes)
 			(show_name no)

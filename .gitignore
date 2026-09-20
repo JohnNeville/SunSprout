@@ -78,9 +78,14 @@ website/static/*.step
 
 # kicad-jlcpcb-tools plugin local parts cache
 /hardware/hub/jlcpcb/
+/hardware/satellite/jlcpcb/
 
 # Fabrication Toolkit output - the release workflow regenerates this per revision, and a
 # local run should not be able to slip a stale fab set into a commit
 /hardware/hub/production/
 /hardware/hub/fabrication-toolkit-options.json
+/hardware/satellite/production/
+/hardware/satellite/fabrication-toolkit-options.json
 /.claude/worktrees
+/hardware/satellite/.circuit-json-poc
+__pycache__

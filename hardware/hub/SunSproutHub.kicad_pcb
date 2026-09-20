@@ -55612,7 +55612,7 @@
 		(uuid "9123c025-c0f8-4e1d-a2dd-6eb08d183bba")
 	)
 	(via
-		(at 38.94 28.047)
+		(at 38.765 28.822)
 		(size 0.45)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
