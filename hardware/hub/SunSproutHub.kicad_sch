@@ -16298,7 +16298,7 @@
 				)
 			)
 		)
-		(property "Supplier Website" "https://jlcpcb.com/partdetail/DORABO-DB125_2_54_2P_GNS/C918120"
+		(property "Supplier Website" ""
 			(at 27.432 165.862 0)
 			(hide yes)
 			(show_name no)
@@ -21471,7 +21471,7 @@
 				)
 			)
 		)
-		(property "Minimum Qty" "20"
+		(property "Minimum Qty" ""
 			(at 64.77 156.21 0)
 			(hide yes)
 			(show_name no)
@@ -21482,7 +21482,7 @@
 				)
 			)
 		)
-		(property "Attrition Qty" "6"
+		(property "Attrition Qty" ""
 			(at 64.77 156.21 0)
 			(hide yes)
 			(show_name no)
@@ -21615,6 +21615,17 @@
 			)
 		)
 		(property "SnapEDA_Link" ""
+			(at 64.77 156.21 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "JLCPCB"
 			(at 64.77 156.21 90)
 			(hide yes)
 			(show_name no)
@@ -23967,7 +23978,7 @@
 				(justify bottom)
 			)
 		)
-		(property "CREATOR" "ASHISH"
+		(property "CREATOR" ""
 			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -24027,7 +24038,7 @@
 				(justify bottom)
 			)
 		)
-		(property "UNIT" "mm"
+		(property "UNIT" ""
 			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)

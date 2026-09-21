@@ -1,0 +1,2350 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "e5588b12-2498-4e97-87b3-4d3fcd02ed07")
+	(paper "A4")
+	(title_block
+		(title "ADC Soil Moisture Sensors")
+		(company "SunSproutSatellite")
+	)
+	(lib_symbols
+(symbol "Analog_ADC:ADS1115IDGS"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "U"
+			(at 2.54 13.97 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "ADS1115IDGS"
+			(at 7.62 11.43 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_SO:TSSOP-10_3x3mm_P0.5mm"
+			(at 0 -12.7 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ads1015.pdf"
+			(at -1.27 -22.86 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Ultra-Small, Low-Power, I2C-Compatible, 3.3-kSPS, 12-Bit ADCs With Internal Reference, Oscillator, and Programmable Comparator, VSSOP-10"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "12 bit 4 channel I2C ADC"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "TSSOP*3x3mm*P0.5mm*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "ADS1115IDGS_0_1"
+			(rectangle
+				(start -7.62 10.16)
+				(end 7.62 -7.62)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+		)
+		(symbol "ADS1115IDGS_1_1"
+			(pin input line
+				(at 10.16 -5.08 180)
+				(length 2.54)
+				(name "ADDR"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin output line
+				(at 10.16 5.08 180)
+				(length 2.54)
+				(name "ALERT/RDY"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 0 -10.16 90)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin input line
+				(at -10.16 2.54 0)
+				(length 2.54)
+				(name "AIN0"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin input line
+				(at -10.16 0 0)
+				(length 2.54)
+				(name "AIN1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin input line
+				(at -10.16 -2.54 0)
+				(length 2.54)
+				(name "AIN2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin input line
+				(at -10.16 -5.08 0)
+				(length 2.54)
+				(name "AIN3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "7"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 0 12.7 270)
+				(length 2.54)
+				(name "VDD"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "8"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 10.16 -2.54 180)
+				(length 2.54)
+				(name "SDA"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "9"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin input line
+				(at 10.16 0 180)
+				(length 2.54)
+				(name "SCL"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "10"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+(symbol "Connector_Generic:Conn_01x03"
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "J"
+			(at 0 5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x03"
+			(at 0 -5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "connector"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "Connector*:*_1x??_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "Conn_01x03_1_1"
+			(rectangle
+				(start -1.27 3.81)
+				(end 1.27 -3.81)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(rectangle
+				(start -1.27 2.667)
+				(end 0 2.413)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 0.127)
+				(end 0 -0.127)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 -2.413)
+				(end 0 -2.667)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin passive line
+				(at -5.08 2.54 0)
+				(length 3.81)
+				(name "Pin_1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 0 0)
+				(length 3.81)
+				(name "Pin_2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 -2.54 0)
+				(length 3.81)
+				(name "Pin_3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+(symbol "Device:C"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.254)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "C"
+			(at 0.635 2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "C"
+			(at 0.635 -2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 0.9652 -3.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "cap capacitor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "C_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "C_0_1"
+			(polyline
+				(pts
+					(xy -2.032 0.762) (xy 2.032 0.762)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -2.032 -0.762) (xy 2.032 -0.762)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "C_1_1"
+			(pin passive line
+				(at 0 3.81 270)
+				(length 2.794)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -3.81 90)
+				(length 2.794)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+(symbol "power:GND"
+		(power global)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "#PWR"
+			(at 0 -6.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 0 -3.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "global power"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "GND_0_1"
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "GND_1_1"
+			(pin power_in line
+				(at 0 0 270)
+				(length 0)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+(symbol "project:SolderJumper_4_Bridged12"
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "JP"
+			(at -2.54 6.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SolderJumper_4_Bridged12"
+			(at 0 6.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "project:SolderJumper-4_P1.3mm_Bridged12_RoundedPad1.0x1.5mm"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "4-way address solder jumper with 1-2 bridged"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "SolderJumper_4_Bridged12_0_1"
+			(polyline
+				(pts
+					(xy -2.54 3.81) (xy -2.54 -3.81)
+				)
+				(stroke (width 0.254) (type default))
+				(fill (type none))
+			)
+			(polyline
+				(pts
+					(xy -5.08 0) (xy -2.54 0)
+				)
+				(stroke (width 0) (type default))
+				(fill (type none))
+			)
+			(polyline
+				(pts
+					(xy -2.54 3.81) (xy -1.016 3.81)
+				)
+				(stroke (width 0) (type default))
+				(fill (type none))
+			)
+			(polyline
+				(pts
+					(xy -2.54 1.27) (xy -1.016 1.27)
+				)
+				(stroke (width 0) (type default))
+				(fill (type none))
+			)
+			(polyline
+				(pts
+					(xy -2.54 -1.27) (xy -1.016 -1.27)
+				)
+				(stroke (width 0) (type default))
+				(fill (type none))
+			)
+			(polyline
+				(pts
+					(xy -2.54 -3.81) (xy -1.016 -3.81)
+				)
+				(stroke (width 0) (type default))
+				(fill (type none))
+			)
+			(arc
+				(start -1.016 2.794)
+				(mid -2.0276 3.81)
+				(end -1.016 4.826)
+				(stroke (width 0) (type default))
+				(fill (type outline))
+			)
+			(arc
+				(start -1.016 0.254)
+				(mid -2.0276 1.27)
+				(end -1.016 2.286)
+				(stroke (width 0) (type default))
+				(fill (type outline))
+			)
+			(arc
+				(start -1.016 -2.286)
+				(mid -2.0276 -1.27)
+				(end -1.016 -0.254)
+				(stroke (width 0) (type default))
+				(fill (type outline))
+			)
+			(arc
+				(start -1.016 -4.826)
+				(mid -2.0276 -3.81)
+				(end -1.016 -2.794)
+				(stroke (width 0) (type default))
+				(fill (type outline))
+			)
+			(rectangle
+				(start -1.016 4.318)
+				(end -0.508 3.302)
+				(stroke (width 0) (type default))
+				(fill (type outline))
+			)
+			(rectangle
+				(start -0.508 4.318)
+				(end 0.508 3.302)
+				(stroke (width 0) (type default))
+				(fill (type outline))
+			)
+			(rectangle
+				(start 0.508 4.318)
+				(end 1.016 3.302)
+				(stroke (width 0) (type default))
+				(fill (type outline))
+			)
+			(arc
+				(start 1.016 4.826)
+				(mid 2.0276 3.81)
+				(end 1.016 2.794)
+				(stroke (width 0) (type default))
+				(fill (type outline))
+			)
+			(polyline
+				(pts
+					(xy 1.016 3.81) (xy 2.54 3.81)
+				)
+				(stroke (width 0) (type default))
+				(fill (type none))
+			)
+			(arc
+				(start 1.016 2.286)
+				(mid 2.0276 1.27)
+				(end 1.016 0.254)
+				(stroke (width 0) (type default))
+				(fill (type outline))
+			)
+			(polyline
+				(pts
+					(xy 1.016 1.27) (xy 2.54 1.27)
+				)
+				(stroke (width 0) (type default))
+				(fill (type none))
+			)
+			(arc
+				(start 1.016 -0.254)
+				(mid 2.0276 -1.27)
+				(end 1.016 -2.286)
+				(stroke (width 0) (type default))
+				(fill (type outline))
+			)
+			(polyline
+				(pts
+					(xy 1.016 -1.27) (xy 2.54 -1.27)
+				)
+				(stroke (width 0) (type default))
+				(fill (type none))
+			)
+			(arc
+				(start 1.016 -2.794)
+				(mid 2.0276 -3.81)
+				(end 1.016 -4.826)
+				(stroke (width 0) (type default))
+				(fill (type outline))
+			)
+			(polyline
+				(pts
+					(xy 1.016 -3.81) (xy 2.54 -3.81)
+				)
+				(stroke (width 0) (type default))
+				(fill (type none))
+			)
+		)
+		(symbol "SolderJumper_4_Bridged12_1_1"
+			(pin passive line
+				(at -5.08 0 0)
+				(length 2.54)
+				(name "ADDR"
+					(effects (font (size 1.27 1.27)))
+				)
+				(number "1"
+					(effects (font (size 1.27 1.27)))
+				)
+			)
+			(pin passive line
+				(at 5.08 3.81 180)
+				(length 2.54)
+				(name "0x48"
+					(effects (font (size 1.27 1.27)))
+				)
+				(number "2"
+					(effects (font (size 1.27 1.27)))
+				)
+			)
+			(pin passive line
+				(at 5.08 1.27 180)
+				(length 2.54)
+				(name "0x49"
+					(effects (font (size 1.27 1.27)))
+				)
+				(number "3"
+					(effects (font (size 1.27 1.27)))
+				)
+			)
+			(pin passive line
+				(at 5.08 -1.27 180)
+				(length 2.54)
+				(name "0x4B"
+					(effects (font (size 1.27 1.27)))
+				)
+				(number "4"
+					(effects (font (size 1.27 1.27)))
+				)
+			)
+			(pin passive line
+				(at 5.08 -3.81 180)
+				(length 2.54)
+				(name "0x4A"
+					(effects (font (size 1.27 1.27)))
+				)
+				(number "5"
+					(effects (font (size 1.27 1.27)))
+				)
+			)
+		)
+	)
+	)
+
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x03")
+		(at 38.1 38.1 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "558f7ea0-39f4-4d52-9e0a-9d0276694ead")
+		(fields_autoplaced no)
+		(property "Reference" "J2"
+			(id 0)
+			(at 30.48 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x03"
+			(id 1)
+			(at 30.48 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical"
+			(id 2)
+			(at 38.1 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(id 3)
+			(at 38.1 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Usage" "DFRobot Gravity PH2.0-3P connector for analog capacitive soil moisture sensor 1 (Channel A0)"
+			(id 4)
+			(at 38.1 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part" "C157929"
+			(id 5)
+			(at 38.1 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Position Offset" ""
+			(id 6)
+			(at 38.1 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(id 7)
+			(at 38.1 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+
+		(pin "1"
+			(uuid "13bfe587-aa97-4c66-bfc0-71fe650ee22b")
+		)
+		(pin "2"
+			(uuid "2a7d8790-77a0-41ae-806d-912be5cd006d")
+		)
+		(pin "3"
+			(uuid "29c6c487-8365-4f78-914b-e20f95258822")
+		)
+		(instances
+			(project "SunSproutSatellite"
+				(path "/b8ad246c-0963-44e9-b36f-20d138e559cc/5c3db235-7c84-4784-89d3-95a10e8212da"
+					(reference "J2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x03")
+		(at 38.1 63.5 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "90d795de-a536-46e8-aec8-5d17d1330534")
+		(fields_autoplaced no)
+		(property "Reference" "J3"
+			(id 0)
+			(at 30.48 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x03"
+			(id 1)
+			(at 30.48 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical"
+			(id 2)
+			(at 38.1 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(id 3)
+			(at 38.1 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Usage" "DFRobot Gravity PH2.0-3P connector for analog capacitive soil moisture sensor 2 (Channel A1)"
+			(id 4)
+			(at 38.1 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part" "C157929"
+			(id 5)
+			(at 38.1 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Position Offset" ""
+			(id 6)
+			(at 38.1 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(id 7)
+			(at 38.1 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+
+		(pin "1"
+			(uuid "b60a34b3-2994-4fd6-bf0f-c8c7d75b8fff")
+		)
+		(pin "2"
+			(uuid "6eeb1789-17d5-41f2-86e3-4b568aa68499")
+		)
+		(pin "3"
+			(uuid "fd5cc046-3161-4f34-857d-c69471b8abf2")
+		)
+		(instances
+			(project "SunSproutSatellite"
+				(path "/b8ad246c-0963-44e9-b36f-20d138e559cc/5c3db235-7c84-4784-89d3-95a10e8212da"
+					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x03")
+		(at 38.1 88.9 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "93d42036-7d18-40f8-bbbf-cd719eed827d")
+		(fields_autoplaced no)
+		(property "Reference" "J4"
+			(id 0)
+			(at 30.48 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x03"
+			(id 1)
+			(at 30.48 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical"
+			(id 2)
+			(at 38.1 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(id 3)
+			(at 38.1 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Usage" "DFRobot Gravity PH2.0-3P connector for analog capacitive soil moisture sensor 3 (Channel A2)"
+			(id 4)
+			(at 38.1 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part" "C157929"
+			(id 5)
+			(at 38.1 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Position Offset" ""
+			(id 6)
+			(at 38.1 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(id 7)
+			(at 38.1 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+
+		(pin "1"
+			(uuid "38ff6345-203d-462b-81eb-5a9cc04fedfb")
+		)
+		(pin "2"
+			(uuid "16c75660-190e-4a4d-82bf-1370b61379da")
+		)
+		(pin "3"
+			(uuid "50eda5ad-e063-46d8-bed2-d258c9dc8a8f")
+		)
+		(instances
+			(project "SunSproutSatellite"
+				(path "/b8ad246c-0963-44e9-b36f-20d138e559cc/5c3db235-7c84-4784-89d3-95a10e8212da"
+					(reference "J4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x03")
+		(at 38.1 114.3 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "dc9f0811-9c64-43f5-8362-654ca79fa8b2")
+		(fields_autoplaced no)
+		(property "Reference" "J5"
+			(id 0)
+			(at 30.48 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x03"
+			(id 1)
+			(at 30.48 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical"
+			(id 2)
+			(at 38.1 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(id 3)
+			(at 38.1 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Usage" "DFRobot Gravity PH2.0-3P connector for analog capacitive soil moisture sensor 4 (Channel A3)"
+			(id 4)
+			(at 38.1 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part" "C157929"
+			(id 5)
+			(at 38.1 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Position Offset" ""
+			(id 6)
+			(at 38.1 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(id 7)
+			(at 38.1 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+
+		(pin "1"
+			(uuid "6b7909e8-3373-49bc-a7cb-c23bc35f0b9f")
+		)
+		(pin "2"
+			(uuid "811a385b-ac3e-4d87-bc7d-f9f724e0ecd1")
+		)
+		(pin "3"
+			(uuid "97bf42e9-abb8-416a-aaa0-3ff95990f94f")
+		)
+		(instances
+			(project "SunSproutSatellite"
+				(path "/b8ad246c-0963-44e9-b36f-20d138e559cc/5c3db235-7c84-4784-89d3-95a10e8212da"
+					(reference "J5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Analog_ADC:ADS1115IDGS")
+		(at 101.6 76.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "9eee3793-3338-4187-bb48-eee9e5297924")
+		(fields_autoplaced no)
+		(property "Reference" "U2"
+			(id 0)
+			(at 93.98 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "ADS1115IDGS"
+			(id 1)
+			(at 93.98 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_SO:TSSOP-10_3x3mm_P0.5mm"
+			(id 2)
+			(at 101.6 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(id 3)
+			(at 101.6 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Usage" "16-bit 4-channel precision delta-sigma ADC measuring analog soil moisture sensor voltages over I2C"
+			(id 4)
+			(at 101.6 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part" "C37593"
+			(id 5)
+			(at 101.6 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Position Offset" ""
+			(id 6)
+			(at 101.6 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(id 7)
+			(at 101.6 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+
+		(pin "1"
+			(uuid "bcefbdec-8488-42e0-a036-3411fcf2bd39")
+		)
+		(pin "2"
+			(uuid "88e7ef37-0be5-4d19-a31e-4c7be7dc6ee4")
+		)
+		(pin "3"
+			(uuid "fd54c8db-26e8-4377-a4e8-b4d5e7e7bc89")
+		)
+		(pin "4"
+			(uuid "47ada473-652a-48aa-a078-5f04df16482f")
+		)
+		(pin "5"
+			(uuid "db71bea7-3ef5-4053-a202-638d94c6e775")
+		)
+		(pin "6"
+			(uuid "fb3a8267-38c8-4c99-8869-2d9a7e424131")
+		)
+		(pin "7"
+			(uuid "949fb3e4-8d59-42e7-9f2b-5f2b6cdb4df3")
+		)
+		(pin "8"
+			(uuid "ccc283e7-bff9-4b05-b4c4-98bad77b7dfe")
+		)
+		(pin "9"
+			(uuid "6d7c5489-d050-42ce-9b66-4acce60897ef")
+		)
+		(pin "10"
+			(uuid "e4a2f350-d0ea-4ce4-acba-b636240e7f62")
+		)
+		(instances
+			(project "SunSproutSatellite"
+				(path "/b8ad246c-0963-44e9-b36f-20d138e559cc/5c3db235-7c84-4784-89d3-95a10e8212da"
+					(reference "U2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 101.6 127 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "12077318-e8f8-4eed-8664-9e555873564f")
+		(fields_autoplaced no)
+		(property "Reference" "C4"
+			(id 0)
+			(at 93.98 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF"
+			(id 1)
+			(at 93.98 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(id 2)
+			(at 101.6 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(id 3)
+			(at 101.6 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Usage" "High-frequency local bypass decoupling for ADS1115 VDD supply rail"
+			(id 4)
+			(at 101.6 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part" "C14663"
+			(id 5)
+			(at 101.6 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Position Offset" ""
+			(id 6)
+			(at 101.6 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(id 7)
+			(at 101.6 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+
+		(pin "1"
+			(uuid "ef33b41c-5ec0-4d92-ac05-9a6d25a29974")
+		)
+		(pin "2"
+			(uuid "56a596be-8deb-47c0-9abd-5e3e334d44da")
+		)
+		(instances
+			(project "SunSproutSatellite"
+				(path "/b8ad246c-0963-44e9-b36f-20d138e559cc/5c3db235-7c84-4784-89d3-95a10e8212da"
+					(reference "C4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "project:SolderJumper_4_Bridged12")
+		(at 152.4 76.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "12054f5b-7c61-449b-9bc5-06be7ae37650")
+		(fields_autoplaced no)
+		(property "Reference" "JP1"
+			(id 0)
+			(at 144.78 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SolderJumper_4_Bridged12"
+			(id 1)
+			(at 144.78 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "project:SolderJumper-4_P1.3mm_Bridged12_RoundedPad1.0x1.5mm"
+			(id 2)
+			(at 152.4 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(id 3)
+			(at 152.4 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Usage" "4-way address selector solder jumper block (Pin 1: ADDR; Pin 2: GND for 0x48 default bridged; Pin 3: SAT_3V3 for 0x49; Pin 4: SCL for 0x4B; Pin 5: SDA for 0x4A)"
+			(id 4)
+			(at 152.4 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part" ""
+			(id 5)
+			(at 152.4 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Position Offset" ""
+			(id 6)
+			(at 152.4 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "FT Rotation Offset" ""
+			(id 7)
+			(at 152.4 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+
+		(pin "1"
+			(uuid "2ce4ce7c-2946-432a-a5bf-c71f9f905f56")
+		)
+		(pin "2"
+			(uuid "e6abe2a3-e434-4497-872a-75c9a773c871")
+		)
+		(pin "3"
+			(uuid "377ea3da-22d3-4930-8bed-0f84e48b9ba9")
+		)
+		(pin "4"
+			(uuid "aff82586-13ea-4d96-8c01-331eb8196ac3")
+		)
+		(pin "5"
+			(uuid "eff44aa1-1866-4252-a54a-15cb0cdc7e7a")
+		)
+		(instances
+			(project "SunSproutSatellite"
+				(path "/b8ad246c-0963-44e9-b36f-20d138e559cc/5c3db235-7c84-4784-89d3-95a10e8212da"
+					(reference "JP1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts (xy 101.6 63.5) (xy 101.6 53.34))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e50540e4-2630-41f6-a7b0-a3fdf0a9c7ce")
+	)
+	(wire
+		(pts (xy 101.6 123.19) (xy 101.6 113.03))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a1785b73-fc5e-4770-8603-a8b6b31c010c")
+	)
+	(wire
+		(pts (xy 33.02 38.1) (xy 22.86 38.1))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "afa875ad-b1ba-4e56-89cc-ff0196dafe0f")
+	)
+	(wire
+		(pts (xy 33.02 63.5) (xy 22.86 63.5))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "86f5794c-dc28-4587-afdc-2ae378b95d28")
+	)
+	(wire
+		(pts (xy 33.02 88.9) (xy 22.86 88.9))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fa9a8e89-3755-4cbf-89da-dd0f71fdf79f")
+	)
+	(wire
+		(pts (xy 33.02 114.3) (xy 22.86 114.3))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9c946352-40f5-4c05-acf6-bf9640225e55")
+	)
+	(wire
+		(pts (xy 157.48 74.93) (xy 167.64 74.93))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ec2f9077-47ff-413d-9b30-18f91ca27532")
+	)
+	(wire
+		(pts (xy 101.6 86.36) (xy 101.6 96.52))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f0432af-e31d-4795-8d73-a4d1bc17d801")
+	)
+	(wire
+		(pts (xy 101.6 130.81) (xy 101.6 140.97))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "056f5cbc-f618-4823-a911-c77dd6ad11a0")
+	)
+	(wire
+		(pts (xy 33.02 35.56) (xy 22.86 35.56))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e237fba0-0c6e-4265-9163-71f66826a99a")
+	)
+	(wire
+		(pts (xy 33.02 60.96) (xy 22.86 60.96))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b5932414-7131-46cd-894f-0222a8a4da46")
+	)
+	(wire
+		(pts (xy 33.02 86.36) (xy 22.86 86.36))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7363fab4-9b7c-4358-b0bd-991526b1d7d8")
+	)
+	(wire
+		(pts (xy 33.02 111.76) (xy 22.86 111.76))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "331e4f85-a2d2-4bd8-9881-59c2fa3a9031")
+	)
+	(wire
+		(pts (xy 157.48 72.39) (xy 167.64 72.39))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1788af7d-7383-4644-b070-50ec477ea4da")
+	)
+	(wire
+		(pts (xy 111.76 76.2) (xy 121.92 76.2))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1ac8590a-764c-461a-b186-6157b8ebe42f")
+	)
+	(wire
+		(pts (xy 157.48 77.47) (xy 167.64 77.47))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8db88c71-1d93-47ac-9e35-1cb3ed733436")
+	)
+	(wire
+		(pts (xy 111.76 78.74) (xy 121.92 78.74))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7b52134d-3d77-407b-ac54-9992f00dc6b3")
+	)
+	(wire
+		(pts (xy 157.48 80.01) (xy 167.64 80.01))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "43fee35a-ae2d-4b53-878a-1570c3b0f8ef")
+	)
+	(wire
+		(pts (xy 111.76 81.28) (xy 121.92 81.28))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd78914c-3207-4cfa-ba78-1bf606c42764")
+	)
+	(wire
+		(pts (xy 147.32 76.2) (xy 137.16 76.2))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "92e312ff-a885-4fd5-8f4e-3a04a1baf1bb")
+	)
+	(wire
+		(pts (xy 91.44 73.66) (xy 81.28 73.66))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "70d6c4b6-4fb7-4b6c-816d-aadaccb08414")
+	)
+	(wire
+		(pts (xy 33.02 40.64) (xy 22.86 40.64))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "beec1262-8172-49a0-aece-a1105d0942b4")
+	)
+	(wire
+		(pts (xy 91.44 76.2) (xy 81.28 76.2))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "057426de-2c35-4254-b86c-915915ba2f71")
+	)
+	(wire
+		(pts (xy 33.02 66.04) (xy 22.86 66.04))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "26c7e39e-ecf1-4c00-9434-9105e724fd8e")
+	)
+	(wire
+		(pts (xy 91.44 78.74) (xy 81.28 78.74))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f4945262-8810-4f01-a1f6-34eaff699e1b")
+	)
+	(wire
+		(pts (xy 33.02 91.44) (xy 22.86 91.44))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1279bb22-d825-4c66-b661-14041e06e875")
+	)
+	(wire
+		(pts (xy 91.44 81.28) (xy 81.28 81.28))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a00eef6a-980a-4d34-b912-5c47eb90ede5")
+	)
+	(wire
+		(pts (xy 33.02 116.84) (xy 22.86 116.84))
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5f75c1e7-f488-42fa-89f8-fbbc5199bb7c")
+	)
+	(global_label "SAT_3V3"
+		(shape input)
+		(at 101.6 53.34 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "67323c4d-e78c-4f62-a777-19ddd6cc6462")
+		(fields_autoplaced no)
+	)
+	(global_label "SAT_3V3"
+		(shape input)
+		(at 101.6 113.03 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "36e5a80e-ddff-4cf5-8bee-3a0973779393")
+		(fields_autoplaced no)
+	)
+	(global_label "SAT_3V3"
+		(shape input)
+		(at 22.86 38.1 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e8d80caf-a0c5-468f-98a1-090833427de3")
+		(fields_autoplaced no)
+	)
+	(global_label "SAT_3V3"
+		(shape input)
+		(at 22.86 63.5 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "b865e3ee-ed80-4b1c-af99-97633eebeb09")
+		(fields_autoplaced no)
+	)
+	(global_label "SAT_3V3"
+		(shape input)
+		(at 22.86 88.9 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "b87442fa-d225-4a57-86e8-f04bc29c5858")
+		(fields_autoplaced no)
+	)
+	(global_label "SAT_3V3"
+		(shape input)
+		(at 22.86 114.3 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e6676f50-518a-4cc8-97f6-d2a6befb5519")
+		(fields_autoplaced no)
+	)
+	(global_label "SAT_3V3"
+		(shape input)
+		(at 167.64 74.93 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2ac84a3c-4217-40a8-8396-cb5c7ae1ba8d")
+		(fields_autoplaced no)
+	)
+	(global_label "GND"
+		(shape input)
+		(at 101.6 96.52 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "a7f0b26d-81f5-419a-b024-48e169f380da")
+		(fields_autoplaced no)
+	)
+	(global_label "GND"
+		(shape input)
+		(at 101.6 140.97 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6a65f8e9-51b0-41d7-8186-3a22fce125a9")
+		(fields_autoplaced no)
+	)
+	(global_label "GND"
+		(shape input)
+		(at 22.86 35.56 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "284ca14a-85f9-465a-8cf6-1d7d30c9e76a")
+		(fields_autoplaced no)
+	)
+	(global_label "GND"
+		(shape input)
+		(at 22.86 60.96 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6d5ef4a9-c81c-4d72-a97c-0b21e57609d3")
+		(fields_autoplaced no)
+	)
+	(global_label "GND"
+		(shape input)
+		(at 22.86 86.36 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "4a2161bc-1321-45d7-aa64-3fb89f65952a")
+		(fields_autoplaced no)
+	)
+	(global_label "GND"
+		(shape input)
+		(at 22.86 111.76 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d115f937-5abc-4141-8d59-af68cc72e982")
+		(fields_autoplaced no)
+	)
+	(global_label "GND"
+		(shape input)
+		(at 167.64 72.39 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f0170d5f-6ccf-46eb-b999-1696ee764b98")
+		(fields_autoplaced no)
+	)
+	(global_label "SCL_LOCAL"
+		(shape input)
+		(at 121.92 76.2 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6e80a4e5-3e99-4a33-b0f9-62566eb87642")
+		(fields_autoplaced no)
+	)
+	(global_label "SCL_LOCAL"
+		(shape input)
+		(at 167.64 77.47 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6d06fa4e-f1d4-4651-8fee-e3ea32dc0fdc")
+		(fields_autoplaced no)
+	)
+	(global_label "SDA_LOCAL"
+		(shape input)
+		(at 121.92 78.74 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c7fd4d7c-26b0-4d19-9dde-fd14ce09b487")
+		(fields_autoplaced no)
+	)
+	(global_label "SDA_LOCAL"
+		(shape input)
+		(at 167.64 80.01 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a124d334-1729-4ee2-9f1d-d6c386471612")
+		(fields_autoplaced no)
+	)
+	(global_label "ADDR_SEL"
+		(shape input)
+		(at 121.92 81.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d260ee29-6a72-49f9-ab81-1cbe2bb65639")
+		(fields_autoplaced no)
+	)
+	(global_label "ADDR_SEL"
+		(shape input)
+		(at 137.16 76.2 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "781f54a7-fcdb-45ac-af4d-33f085050da6")
+		(fields_autoplaced no)
+	)
+	(global_label "MOIST1"
+		(shape input)
+		(at 81.28 73.66 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "de8283f7-e4d1-4601-8752-b0a964507e32")
+		(fields_autoplaced no)
+	)
+	(global_label "MOIST1"
+		(shape input)
+		(at 22.86 40.64 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "976c448f-db89-45c6-9613-d75182baffa8")
+		(fields_autoplaced no)
+	)
+	(global_label "MOIST2"
+		(shape input)
+		(at 81.28 76.2 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d3a7fd6a-25a5-44ed-8cfb-26b812ad4df3")
+		(fields_autoplaced no)
+	)
+	(global_label "MOIST2"
+		(shape input)
+		(at 22.86 66.04 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ba62c639-8718-4f32-9f00-eeec61e0038f")
+		(fields_autoplaced no)
+	)
+	(global_label "MOIST3"
+		(shape input)
+		(at 81.28 78.74 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8e0791e6-f2e8-4d90-a8fb-c143b63f1714")
+		(fields_autoplaced no)
+	)
+	(global_label "MOIST3"
+		(shape input)
+		(at 22.86 91.44 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e555d3ed-aea9-45c0-aac6-d9427d2e650e")
+		(fields_autoplaced no)
+	)
+	(global_label "MOIST4"
+		(shape input)
+		(at 81.28 81.28 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "0decbb49-082c-4b04-851b-97a696c9df4b")
+		(fields_autoplaced no)
+	)
+	(global_label "MOIST4"
+		(shape input)
+		(at 22.86 116.84 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "9cb6b9f2-6d39-4ae4-9548-944a62c5ad95")
+		(fields_autoplaced no)
+	)
+	(no_connect
+		(at 111.76 71.12)
+		(uuid "5465f7b7-7a91-4b9f-a0bd-3aa4ca9eee84")
+	)
+	(embedded_fonts no)
+)

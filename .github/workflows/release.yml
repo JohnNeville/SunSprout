@@ -1,4 +1,4 @@
-# Builds the fabrication and mechanical outputs for a board revision and attaches them to
+# Builds the fabrication and mechanical outputs for board revisions and attaches them to
 # the GitHub Release.
 #
 # These are the artifacts that are deliberately NOT committed: the STEP model is ~19MB and
@@ -9,6 +9,7 @@
 #
 #   - Push a tag, and the release is cut from it:
 #       git tag -a hub-v1.0 -m "Hub rev A" && git push origin hub-v1.0
+#       git tag -a satellite-v1.0 -m "Satellite rev A" && git push origin satellite-v1.0
 #
 #   - Run it by hand from the Actions tab, naming the version to publish. The tag is created
 #     at whatever commit you dispatch from, so this can cut a release without tagging first.
@@ -23,10 +24,12 @@ on:
     tags:
       - 'v*'
       - 'hub-v*'
+      - 'satellite-v*'
+      - 'sat-v*'
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version to publish, e.g. hub-v1.0 or hub-v1.0-rc1. Tagged at the commit you run from.'
+        description: 'Version to publish, e.g. hub-v1.0, satellite-v1.0, or v1.0. Tagged at the commit you run from.'
         required: true
         type: string
       prerelease:
@@ -45,7 +48,7 @@ jobs:
       image: ghcr.io/kicad/kicad:10.0
       options: --user root
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
       - name: Get short sha
         shell: sh
         run: echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
@@ -66,8 +69,12 @@ jobs:
           else
             tag=$REF_NAME
             # Strip the optional board prefix before looking for a pre-release suffix, so that
-            # the hyphen in 'hub-v1.0' is not mistaken for one.
-            case "${tag#hub-}" in
+            # the hyphen in 'hub-v1.0' or 'satellite-v1.0' or 'sat-v1.0' is not mistaken for one.
+            stripped="$tag"
+            stripped="${stripped#hub-}"
+            stripped="${stripped#satellite-}"
+            stripped="${stripped#sat-}"
+            case "$stripped" in
               *-*) prerelease=true ;;
               *) prerelease=false ;;
             esac
@@ -76,9 +83,9 @@ jobs:
           # A manual run can name anything, so check it looks like a version before it becomes
           # a tag that has to be cleaned up afterwards.
           case "$tag" in
-            v[0-9]*|hub-v[0-9]*) ;;
+            v[0-9]*|hub-v[0-9]*|satellite-v[0-9]*|sat-v[0-9]*) ;;
             *)
-              echo "::error::'$tag' is not a version this workflow publishes. Use v<number> or hub-v<number>, e.g. hub-v1.0 or hub-v1.0-rc1."
+              echo "::error::'$tag' is not a version this workflow publishes. Use v<number>, hub-v<number>, or satellite-v<number>, e.g. hub-v1.0, satellite-v1.0, or satellite-v1.0-rc1."
               exit 1
               ;;
           esac
@@ -86,6 +93,7 @@ jobs:
           echo "Publishing $tag (prerelease=$prerelease)"
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
           echo "prerelease=$prerelease" >> "$GITHUB_OUTPUT"
+          echo "RELEASE_TAG=$tag" >> "$GITHUB_ENV"
 
       # The board silkscreens ${VCSSHORTHASH}, which never survives a headless export.
       # kicad-cli renders the literal "no hash" even inside the git repo (verified by plotting
@@ -105,20 +113,22 @@ jobs:
           import sys
 
           short = sys.argv[1][:7]
-          path = "hardware/hub/SunSproutHub.kicad_pcb"
+          hub_path = "hardware/hub/SunSproutHub.kicad_pcb"
+          sat_path = "hardware/satellite/SunSproutSatellite.kicad_pcb"
 
-          with open(path, encoding="utf-8") as f:
-              board = f.read()
+          for path in [hub_path, sat_path]:
+              with open(path, encoding="utf-8") as f:
+                  board = f.read()
 
-          found = board.count("${VCSSHORTHASH}")
-          if not found:
-              sys.exit("No ${VCSSHORTHASH} left in the board - the silkscreen changed, "
-                       "and this step would have silently shipped an unstamped panel.")
+              found = board.count("${VCSSHORTHASH}")
+              if path == hub_path and not found:
+                  sys.exit("No ${VCSSHORTHASH} left in the hub board - the silkscreen changed, "
+                           "and this step would have silently shipped an unstamped panel.")
 
-          with open(path, "w", encoding="utf-8", newline="") as f:
-              f.write(board.replace("${VCSSHORTHASH}", short))
-
-          print(f"Silkscreen will read: {short} ({found} occurrences)")
+              if found:
+                  with open(path, "w", encoding="utf-8", newline="") as f:
+                      f.write(board.replace("${VCSSHORTHASH}", short))
+                  print(f"Stamped {path}: {short} ({found} occurrences)")
           PYEOF
 
       - name: Prepare output directory
@@ -138,51 +148,89 @@ jobs:
         run: |
           apt-get update -qq
           apt-get install -y -qq --no-install-recommends xvfb
-          git clone --depth 1 --branch 5.3.1             https://github.com/bennymeg/Fabrication-Toolkit.git /opt/fabrication-toolkit
+          git clone --depth 1 --branch 5.3.1 \
+            https://github.com/bennymeg/Fabrication-Toolkit.git /opt/fabrication-toolkit
 
-      - name: JLCPCB fabrication set
+      - name: Hub JLCPCB fabrication set
         run: |
           cd /opt/fabrication-toolkit
-          xvfb-run -a -s '-screen 0 1024x768x24' python3 -m plugins.cli             --path "$GITHUB_WORKSPACE/hardware/hub/SunSproutHub.kicad_pcb"             --autoTranslate --autoFill --excludeDNP --nonInteractive
+          xvfb-run -a -s '-screen 0 1024x768x24' python3 -m plugins.cli \
+            --path "$GITHUB_WORKSPACE/hardware/hub/SunSproutHub.kicad_pcb" \
+            --autoTranslate --autoFill --excludeDNP --nonInteractive
 
-      # The toolkit writes to a production/ directory beside the board, under its own generic
+      - name: Satellite JLCPCB fabrication set
+        run: |
+          cd /opt/fabrication-toolkit
+          xvfb-run -a -s '-screen 0 1024x768x24' python3 -m plugins.cli \
+            --path "$GITHUB_WORKSPACE/hardware/satellite/SunSproutSatellite.kicad_pcb" \
+            --autoTranslate --autoFill --excludeDNP --nonInteractive
+
+      # The toolkit writes to a production/ directory beside each board, under its own generic
       # filenames. Rename them onto the BOM-/CPL-/GERBER- convention this project already
       # documents, so a release asset says what it is without being opened.
-      - name: Collect the fabrication set
+      - name: Collect Hub fabrication set
         run: |
           prod="hardware/hub/production"
           if [ ! -d "$prod" ]; then
-            echo "::error::Fabrication Toolkit produced no output directory"
+            echo "::error::Fabrication Toolkit produced no Hub output directory"
             exit 1
           fi
 
-          cp "$prod/bom.csv" release/BOM-SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.csv
-          cp "$prod/positions.csv" release/CPL-SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.csv
+          cp "$prod/bom.csv" "release/BOM-SunSproutHub_${RELEASE_TAG}_$SHORT_SHA.csv"
+          cp "$prod/positions.csv" "release/CPL-SunSproutHub_${RELEASE_TAG}_$SHORT_SHA.csv"
           if [ -f "$prod/netlist.ipc" ]; then
-            cp "$prod/netlist.ipc" release/IPC-SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.ipc
+            cp "$prod/netlist.ipc" "release/IPC-SunSproutHub_${RELEASE_TAG}_$SHORT_SHA.ipc"
           fi
 
           # Named after the board's title-block revision, so match on extension, not on a
           # filename this workflow would have to keep in step with the board.
           archive=$(find "$prod" -maxdepth 1 -name '*.zip' | head -n1)
           if [ -z "$archive" ]; then
-            echo "::error::Fabrication Toolkit produced no gerber archive"
+            echo "::error::Fabrication Toolkit produced no Hub gerber archive"
             exit 1
           fi
-          cp "$archive" release/GERBER-SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.zip
-  
-      - name: Schematic PDF
+          cp "$archive" "release/GERBER-SunSproutHub_${RELEASE_TAG}_$SHORT_SHA.zip"
+
+      - name: Collect Satellite fabrication set
+        run: |
+          prod="hardware/satellite/production"
+          if [ ! -d "$prod" ]; then
+            echo "::error::Fabrication Toolkit produced no Satellite output directory"
+            exit 1
+          fi
+
+          cp "$prod/bom.csv" "release/BOM-SunSproutSatellite_${RELEASE_TAG}_$SHORT_SHA.csv"
+          cp "$prod/positions.csv" "release/CPL-SunSproutSatellite_${RELEASE_TAG}_$SHORT_SHA.csv"
+          if [ -f "$prod/netlist.ipc" ]; then
+            cp "$prod/netlist.ipc" "release/IPC-SunSproutSatellite_${RELEASE_TAG}_$SHORT_SHA.ipc"
+          fi
+
+          archive=$(find "$prod" -maxdepth 1 -name '*.zip' | head -n1)
+          if [ -z "$archive" ]; then
+            echo "::error::Fabrication Toolkit produced no Satellite gerber archive"
+            exit 1
+          fi
+          cp "$archive" "release/GERBER-SunSproutSatellite_${RELEASE_TAG}_$SHORT_SHA.zip"
+
+      - name: Schematic PDFs
         run: |
           kicad-cli sch export pdf \
-            -o release/SunSproutHub-schematic_$GITHUB_REF_NAME_$SHORT_SHA.pdf \
+            -o "release/SunSproutHub-schematic_${RELEASE_TAG}_$SHORT_SHA.pdf" \
             hardware/hub/SunSproutHub.kicad_sch
+          kicad-cli sch export pdf \
+            -o "release/SunSproutSatellite-schematic_${RELEASE_TAG}_$SHORT_SHA.pdf" \
+            hardware/satellite/SunSproutSatellite.kicad_sch
 
-      - name: STEP model
+      - name: STEP models
         run: |
           kicad-cli pcb export step \
             --subst-models -f \
-            -o release/SunSproutHub_$GITHUB_REF_NAME_$SHORT_SHA.step \
+            -o "release/SunSproutHub_${RELEASE_TAG}_$SHORT_SHA.step" \
             hardware/hub/SunSproutHub.kicad_pcb
+          kicad-cli pcb export step \
+            --subst-models -f \
+            -o "release/SunSproutSatellite_${RELEASE_TAG}_$SHORT_SHA.step" \
+            hardware/satellite/SunSproutSatellite.kicad_pcb
 
       - name: List artifacts
         run: ls -lh release/
@@ -200,7 +248,7 @@ jobs:
           generate_release_notes: true
           body: |
             Fabrication and mechanical outputs for this revision, generated from
-            `hardware/hub/SunSproutHub.kicad_pcb` by this workflow.
+            `hardware/hub/SunSproutHub.kicad_pcb` and `hardware/satellite/SunSproutSatellite.kicad_pcb` by this workflow.
 
             Some parts have no redistributable 3D model and render bodyless in the STEP
             file. They are mechanically positioned correctly; only the visual body is

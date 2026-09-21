@@ -1,0 +1,156 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "b8ad246c-0963-44e9-b36f-20d138e559cc")
+	(paper "A4")
+	(title_block
+		(title "SunSproutSatellite")
+		(company "SunSproutSatellite")
+	)
+	(lib_symbols)
+	(sheet
+		(at 25.4 25.4)
+		(size 63.5 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "39f0f462-a3ef-4464-92a2-10c435d9a480")
+		(property "Sheetname" "Differential I2C Endpoint"
+			(at 25.4 24.6484 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "sheets/i2c_endpoint_v1.kicad_sch"
+			(at 25.4 51.6746 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "SunSproutSatellite"
+				(path "/b8ad246c-0963-44e9-b36f-20d138e559cc"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 101.6 25.4)
+		(size 63.5 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "5c3db235-7c84-4784-89d3-95a10e8212da")
+		(property "Sheetname" "ADC Soil Moisture Sensors"
+			(at 101.6 24.6484 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "sheets/adc_sensors_v1.kicad_sch"
+			(at 101.6 51.6746 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "SunSproutSatellite"
+				(path "/b8ad246c-0963-44e9-b36f-20d138e559cc"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 177.8 25.4)
+		(size 63.5 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "7d42e811-9a1b-4f5c-89b2-3e2c918a5411")
+		(property "Sheetname" "1-Wire Temperature Interface"
+			(at 177.8 24.6484 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "sheets/onewire_v1.kicad_sch"
+			(at 177.8 51.6746 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "SunSproutSatellite"
+				(path "/b8ad246c-0963-44e9-b36f-20d138e559cc"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

@@ -68,20 +68,32 @@ KiCad; there is no generator producing them.
 
 ## Remote sensors
 
-Not yet documented. This is where the sensor-side build notes will live.
+A custom board, `SunSproutSatellite` ([hardware/satellite/](hardware/satellite/)), is the
+differential-I2C endpoint that sits at the plant end of the cable — it terminates the line,
+converts back to standard I2C, and reads four capacitive soil-moisture probes plus one
+1-Wire soil-temperature probe. It integrates what was previously an off-the-shelf SparkFun
+QwiicBus EndPoint wired to a breadboarded ADS1115. See
+[docs/satellite/modules/](docs/satellite/modules/) for the per-IC design notes, and
+[Use Cases](https://johnneville.github.io/SunSprout/use-cases) for the deployed topology.
+
+**Status: schematic-capture spec only** — the KiCad project is scaffolded but no board has
+been fabricated yet.
 
 ## Repository layout
 
 ```
 .
 ├── hardware/
-│   └── hub/                  # the hub's KiCad project, libraries, and SPICE decks
+│   ├── hub/                  # the hub's KiCad project, libraries, and SPICE decks
+│   └── satellite/            # the satellite's KiCad project and libraries
 ├── firmware/                 # ESPHome configuration for the hub
 ├── docs/
-│   └── hub/
-│       ├── modules/          # per-IC design notes: part choice, passive values, constraints
-│       ├── firmware.md       # why the firmware is configured the way it is
-│       └── extra-components.md
+│   ├── hub/
+│   │   ├── modules/          # per-IC design notes: part choice, passive values, constraints
+│   │   ├── firmware.md       # why the firmware is configured the way it is
+│   │   └── extra-components.md
+│   └── satellite/
+│       └── modules/          # per-IC design notes for the satellite board
 ├── tools/                    # Dockerised KiCad CLI: validation, fab outputs, doc assets
 └── website/                  # Docusaurus documentation site
 ```
