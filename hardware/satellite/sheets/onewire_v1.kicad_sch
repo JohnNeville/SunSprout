@@ -2110,7 +2110,7 @@
 				)
 			)
 		)
-		(property "Description" "3-pole Solder Jumper, pins 1+2 closed/bridged"
+		(property "Description" "Dual Jumper with both connected to pin 1 with independantly cuttable connections."
 			(at 52.832 71.628 0)
 			(hide yes)
 			(show_name no)

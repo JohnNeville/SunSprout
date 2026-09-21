@@ -2770,7 +2770,7 @@
 			(uuid "4fd92723-ca17-420f-833e-f6b655144875")
 		)
 		(embedded_fonts no)
-		(model "kicad-embed://JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical.step"
+		(model "${KIPRJMOD}/libraries/3dmodels/JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical_Blue.step"
 			(offset
 				(xyz 0 0 0)
 			)
