@@ -28,9 +28,9 @@
         },
         "fab_line_width": 0.1,
         "fab_text_italic": false,
-        "fab_text_size_h": 1.0,
-        "fab_text_size_v": 1.0,
-        "fab_text_thickness": 0.15,
+        "fab_text_size_h": 0.5,
+        "fab_text_size_v": 0.5,
+        "fab_text_thickness": 0.05,
         "fab_text_upright": false,
         "other_line_width": 0.1,
         "other_text_italic": false,
@@ -948,7 +948,7 @@
         "uuid": "b8ad246c-0963-44e9-b36f-20d138e559cc"
       }
     ],
-    "used_designators": "#PWR2,J7,U4-5",
+    "used_designators": "#PWR2,#PWR58,J7-8,J203,U4-5",
     "variants": []
   },
   "sheets": [
