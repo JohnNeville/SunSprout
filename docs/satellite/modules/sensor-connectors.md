@@ -44,7 +44,7 @@ but in the 3-circuit housing:
 |---|---|---|
 | Housing | `PAP-03V-S` | 3-circuit, latching — the 3-circuit sibling of the hub's 2-circuit `PAP-02V-S` |
 | Crimp contact | `SPHD-001T-P0.5` | Same crimp as the hub's thermistor probes, AWG 28–22 |
-| Board connector | `S03B-PASK-2` | JLCPCB/LCSC `C265095` |
+| Board connector | `S03B-PASK-2` | JLCPCB/LCSC `C131339` |
 
 A generic waterproof DS18B20 probe typically ships with three loose or lightly-jacketed
 leads (`VDD`, `GND`, `DQ`) rather than a pre-terminated connector — crimp them into the

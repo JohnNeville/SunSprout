@@ -12,7 +12,7 @@ For the design reasoning behind each IC and its passives, see [docs/hub/modules/
 | `sheets/` | Hierarchical sub-sheets (charger, fuel gauge, regulator, user I2C) |
 | `SunSproutHub.kicad_pcb` | Board layout, hand-routed |
 | `SunSproutHub.kicad_dru` | Custom design rules |
-| `libraries/` | Project-specific and vendored symbol/footprint libraries |
+| `../libraries/` | Project-specific and vendored symbol/footprint libraries (shared with Satellite) |
 | `spice_models/` | ngspice decks used to verify the reverse-polarity FETs |
 
 ## What you can do without any extra setup
@@ -45,8 +45,8 @@ install the matching PCM packages and point `KICAD_3RD_PARTY` at your own third-
 directory, or remove the unused entries from `fp-lib-table`.
 
 The `USBC1` USB-C footprint and the `CN5` screw terminal are project footprints, in
-`libraries/footprints/project.pretty/`. The Espressif module's footprint and 3D model are
-vendored under `libraries/vendor/`.
+`../libraries/footprints/project.pretty/`. The Espressif module's footprint and 3D model are
+vendored under `../libraries/vendor/`.
 
 ### A note on licensing
 

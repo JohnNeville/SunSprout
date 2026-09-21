@@ -69,7 +69,7 @@ At the endpoint, the board translates the differential clock and data signals ba
 - **Configurable I2C Address (`JP16`)**: Dual solder jumper selects address bits `AD0` and `AD1` (default: `0x18`).
 
 ### 4. Power & Auxiliary Flexibility
-- **Zero Local Regulator Overhead**: Designed to operate directly from `SAT_3V3` delivered by the Hub over conductor 4 (`VCC_1`). At typical cable lengths (<20 m) and satellite currents (~15–25 mA), round-trip IR drop is negligible (~0.1–0.2 V).
+- **Zero Local Regulator Overhead**: Designed to operate directly from `SAT_3V3` delivered by the Hub over conductor 4 (`VCC_1`). At typical cable lengths (under 20 m) and satellite currents (~15–25 mA), round-trip IR drop is negligible (~0.1–0.2 V).
 - **Decoupling & Reservoir**: An onboard 22 µF bulk capacitor (`C1`) buffers cable transients, accompanied by dedicated 100 nF high-frequency ceramic decoupling capacitors directly adjacent to every active IC pin.
 - **Auxiliary Power Path (`J7`, `JP14`, `JP15`)**:
   - `VCC_2` (conductor 3) and `GND_2` (conductor 6) pass directly to header `J7`.

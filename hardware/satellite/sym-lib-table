@@ -1,6 +1,6 @@
 (sym_lib_table
 	(version 7)
-	(lib (name "project")(type "KiCad")(uri "${KIPRJMOD}/libraries/symbols/project.kicad_sym")(options "")(descr "Project-specific custom symbols (parts with no stock/vendor equivalent: PCA9615DPZ, RJHSE5380_QwiicBusCompatible)"))
+	(lib (name "project")(type "KiCad")(uri "${KIPRJMOD}/../libraries/symbols/project.kicad_sym")(options "")(descr "Project-specific custom symbols (parts with no stock/vendor equivalent: PCA9615DPZ, RJHSE5380_QwiicBusCompatible)"))
 	(lib (name "Interface_Expansion")(type "KiCad")(uri "${KICAD10_SYMBOL_DIR}/Interface_Expansion.kicad_sym")(options "")(descr "I/O expansion devices, shift registers, etc"))
 	(lib (name "Power_Protection")(type "KiCad")(uri "${KICAD10_SYMBOL_DIR}/Power_Protection.kicad_sym")(options "")(descr "Power protection devices"))
 )

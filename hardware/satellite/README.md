@@ -20,7 +20,7 @@ the exact wiring spec (nets, part values, footprints) to key in by hand in the K
 | `sheets/` | Hierarchical sub-sheets (differential I2C endpoint, sensors) — currently empty |
 | `SunSproutSatellite.kicad_pcb` | Board outline only — no layout yet |
 | `SunSproutSatellite.kicad_dru` | Generic JLCPCB design rules (no board-specific power/zone rules — this board has no high-current path) |
-| `libraries/` | Project-specific symbol library (footprints are all stock this board) |
+| `../libraries/` | Project-specific symbol & footprint library (shared with Hub) |
 
 ## External library dependencies
 

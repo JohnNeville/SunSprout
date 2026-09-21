@@ -1,6 +1,6 @@
 (fp_lib_table
 	(version 7)
-	(lib (name "project") (type "KiCad") (uri "${KIPRJMOD}/libraries/footprints/project.pretty") (options "") (descr "Project-specific custom footprints"))
-	(lib (name "Espressif") (type "KiCad") (uri "${KIPRJMOD}/libraries/vendor/espressif-kicad-libraries/footprints") (options "") (descr "Vendored from github.com/espressif/kicad-libraries (CC BY-SA 4.0) - ESP32-C5-WROOM-1U"))
+	(lib (name "project") (type "KiCad") (uri "${KIPRJMOD}/../libraries/footprints/project.pretty") (options "") (descr "Project-specific custom footprints"))
+	(lib (name "Espressif") (type "KiCad") (uri "${KIPRJMOD}/../libraries/vendor/espressif-kicad-libraries/footprints") (options "") (descr "Vendored from github.com/espressif/kicad-libraries (CC BY-SA 4.0) - ESP32-C5-WROOM-1U"))
 	(lib (name "Snapeda") (type "KiCad") (uri "${KICAD_3RD_PARTY}/Snapeda.pretty") (options "") (descr "External library, resolved through the KICAD_3RD_PARTY environment variable - see hardware/hub/README.md. Supplies the J201/J202 8P8C jacks (AMPHENOL_RJHSE5380), whose 3D model is embedded in the library file rather than referenced. The board file already embeds this footprint's geometry, so the board opens and fabricates without this library; it is only needed to update a footprint from its library."))
 )
