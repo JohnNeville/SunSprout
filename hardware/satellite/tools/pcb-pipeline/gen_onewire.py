@@ -102,7 +102,7 @@ j6_block, J6 = B.symbol_instance(
     "Connector_Generic:Conn_01x03", "J6", "Conn_01x03", 203.2, 76.2, 0, SHEET_UUID,
     footprint="Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
     usage="JST PA 3-pin connector for daisy-chained external DS18B20 1-Wire waterproof temperature probes",
-    lcsc="C265095", ft_pos="", ft_rot=""
+    lcsc="C131339", ft_pos="", ft_rot=""
 )
 parts.append(j6_block)
 

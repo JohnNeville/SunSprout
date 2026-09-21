@@ -47,25 +47,25 @@ j2_block, J2 = B.symbol_instance(
     "Connector_Generic:Conn_01x03", "J2", "Conn_01x03", 38.1, 25.4, 0, SHEET_UUID,
     footprint="Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
     usage="DFRobot Gravity PH2.0-3P connector for analog capacitive soil moisture sensor 1 (Channel A0)",
-    lcsc="C157929", ft_pos="", ft_rot=""
+    lcsc="C131339", ft_pos="", ft_rot=""
 )
 j3_block, J3 = B.symbol_instance(
     "Connector_Generic:Conn_01x03", "J3", "Conn_01x03", 38.1, 50.8, 0, SHEET_UUID,
     footprint="Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
     usage="DFRobot Gravity PH2.0-3P connector for analog capacitive soil moisture sensor 2 (Channel A1)",
-    lcsc="C157929", ft_pos="", ft_rot=""
+    lcsc="C131339", ft_pos="", ft_rot=""
 )
 j4_block, J4 = B.symbol_instance(
     "Connector_Generic:Conn_01x03", "J4", "Conn_01x03", 38.1, 76.2, 0, SHEET_UUID,
     footprint="Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
     usage="DFRobot Gravity PH2.0-3P connector for analog capacitive soil moisture sensor 3 (Channel A2)",
-    lcsc="C157929", ft_pos="", ft_rot=""
+    lcsc="C131339", ft_pos="", ft_rot=""
 )
 j5_block, J5 = B.symbol_instance(
     "Connector_Generic:Conn_01x03", "J5", "Conn_01x03", 38.1, 101.6, 0, SHEET_UUID,
     footprint="Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
     usage="DFRobot Gravity PH2.0-3P connector for analog capacitive soil moisture sensor 4 (Channel A3)",
-    lcsc="C157929", ft_pos="", ft_rot=""
+    lcsc="C131339", ft_pos="", ft_rot=""
 )
 parts += [j2_block, j3_block, j4_block, j5_block]
 
@@ -119,7 +119,7 @@ j6_block, J6 = B.symbol_instance(
     "Connector_Generic:Conn_01x03", "J6", "Conn_01x03", 241.3, 88.9, 0, SHEET_UUID,
     footprint="Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
     usage="JST PA 3-pin connector for daisy-chained external DS18B20 1-Wire waterproof temperature probes",
-    lcsc="C265095", ft_pos="", ft_rot=""
+    lcsc="C131339", ft_pos="", ft_rot=""
 )
 parts.append(j6_block)
 

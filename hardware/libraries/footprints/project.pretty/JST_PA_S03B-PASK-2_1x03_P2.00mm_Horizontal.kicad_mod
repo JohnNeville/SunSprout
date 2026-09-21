@@ -3,7 +3,7 @@
 	(generator "pcbnew")
 	(generator_version "10.0")
 	(layer "F.Cu")
-	(descr "JST PA series connector, S03B-PASK-2, side entry (right angle) through-hole header, 2.00mm pitch, 3 circuits. Dimensions per JST PA FAMILY/PA-PAL datasheet (https://www.jst-mfg.com/product/pdf/eng/ePA-F.pdf): PC board layout p.3, header dimensions p.9 (A=4.0, B=8.0). Signal holes 0.7+0.1/0mm, boss holes 1.1+0.1/0mm NPTH, boss offset 1.5mm outboard of end pins and 2.1mm from the pin row. Body 8.0 x 11.7mm, 7.7mm tall, pin row 8.2mm from the mating face. Rated 3A / 250V, -40degC to +105degC. Mates with PAP-03V-S housing using SPHD-001T-P0.5 crimp contacts (AWG 28-22, insulation OD 0.76-1.5mm). LCSC C265095.")
+	(descr "JST PA series connector, S03B-PASK-2, side entry (right angle) through-hole header, 2.00mm pitch, 3 circuits. Dimensions per JST PA FAMILY/PA-PAL datasheet (https://www.jst-mfg.com/product/pdf/eng/ePA-F.pdf): PC board layout p.3, header dimensions p.9 (A=4.0, B=8.0). Signal holes 0.7+0.1/0mm, boss holes 1.1+0.1/0mm NPTH, boss offset 1.5mm outboard of end pins and 2.1mm from the pin row. Body 8.0 x 11.7mm, 7.7mm tall, pin row 8.2mm from the mating face. Rated 3A / 250V, -40degC to +105degC. Mates with PAP-03V-S housing using SPHD-001T-P0.5 crimp contacts (AWG 28-22, insulation OD 0.76-1.5mm). LCSC C131339.")
 	(tags "connector JST PA horizontal side-entry 2.00mm 3pin")
 	(property "Reference" "REF**"
 		(at 0 -10.5 0)
@@ -52,7 +52,7 @@
 			)
 		)
 	)
-	(property "LCSC Part" "C265095"
+	(property "LCSC Part" "C131339"
 		(at 0 0 0)
 		(layer "F.SilkS")
 		(hide yes)
@@ -88,7 +88,7 @@
 			)
 		)
 	)
-	(property "Supplier Part Site" "https://jlcpcb.com/partdetail/JST-S03B_PASK_2_LF_SN/C265095"
+	(property "Supplier Part Site" "https://jlcpcb.com/partdetail/JST-S03B_PASK_2_LF_SN/C131339"
 		(at 0 0 0)
 		(layer "F.SilkS")
 		(hide yes)

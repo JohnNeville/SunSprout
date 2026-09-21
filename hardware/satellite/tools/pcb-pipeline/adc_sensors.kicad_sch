@@ -1066,7 +1066,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC Part" "C157929"
+		(property "LCSC Part" "C131339"
 			(id 5)
 			(at 38.1 38.1 0)
 			(effects
@@ -1173,7 +1173,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC Part" "C157929"
+		(property "LCSC Part" "C131339"
 			(id 5)
 			(at 38.1 63.5 0)
 			(effects
@@ -1280,7 +1280,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC Part" "C157929"
+		(property "LCSC Part" "C131339"
 			(id 5)
 			(at 38.1 88.9 0)
 			(effects
@@ -1387,7 +1387,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC Part" "C157929"
+		(property "LCSC Part" "C131339"
 			(id 5)
 			(at 38.1 114.3 0)
 			(effects

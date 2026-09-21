@@ -1190,7 +1190,7 @@
 				)
 			)
 		)
-		(property "LCSC Part" "C157929"
+		(property "LCSC Part" "C131339"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -2371,7 +2371,7 @@
 				)
 			)
 		)
-		(property "LCSC Part" "C265095"
+		(property "LCSC Part" "C131339"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5771,7 +5771,7 @@
 				)
 			)
 		)
-		(property "LCSC Part" "C157929"
+		(property "LCSC Part" "C131339"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -6444,7 +6444,7 @@
 				)
 			)
 		)
-		(property "LCSC Part" "C157929"
+		(property "LCSC Part" "C131339"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -6920,7 +6920,7 @@
 				)
 			)
 		)
-		(property "LCSC Part" "C157929"
+		(property "LCSC Part" "C131339"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -11297,8 +11297,14 @@
 		(path "/7d42e811-9a1b-4f5c-89b2-3e2c918a5411/8f7749ee-9ece-49a4-a5a6-33bbf36d622f")
 		(sheetname "/1-Wire Temperature Interface/")
 		(sheetfile "sheets/onewire_v1.kicad_sch")
+		(units
+			(unit
+				(name "A")
+				(pins "1" "2B" "2A" "3")
+			)
+		)
 		(zone_connect 1)
-		(attr exclude_from_pos_files exclude_from_bom allow_soldermask_bridges)
+		(attr exclude_from_bom allow_soldermask_bridges)
 		(net_tie_pad_groups "1, 2A,2B, 3")
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_poly
