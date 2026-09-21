@@ -6,10 +6,9 @@ title: Satellite Dimensions & Mounting
 # Satellite Dimensions & Mounting
 
 Everything on this page is measured from the production layout in
-`hardware/satellite/SunSproutSatellite.kicad_pcb`. If you need exact three-dimensional CAD geometry — component heights, connector bodies, mating clearances — use the STEP model linked below rather than approximating from these numbers:
-
-- [SunSproutSatellite.step](/SunSprout/SunSproutSatellite.step) (3D STEP Model)
-- [SunSproutSatellite-schematic.pdf](/SunSprout/SunSproutSatellite-schematic.pdf) (Complete Multi-sheet Schematic PDF)
+`hardware/satellite/SunSproutSatellite.kicad_pcb`. If you need exact three-dimensional geometry — component
+heights, connector bodies, mating clearances — use the STEP model linked from
+[Design Files](./design-files.md) rather than working from the numbers here.
 
 ---
 
