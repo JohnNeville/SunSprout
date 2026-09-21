@@ -1,12 +1,12 @@
-# Runs ERC and DRC on the hub board whenever the design changes.
+# Runs ERC and DRC on the hub and satellite boards whenever the design changes.
 #
 # Uses the official KiCad image directly rather than this repo's tools/*.Dockerfile, because
 # those images clone extra library repositories that CI does not need: KiCad writes full
 # symbol and footprint geometry into the .kicad_sch/.kicad_pcb at placement time, so ERC and
 # DRC are unaffected by missing libraries. Verified locally -- with every external library
-# path broken, DRC still reports 0 violations and ERC reports the same 9 as with them present.
+# path broken, DRC still reports 0 violations and ERC reports the same baseline as with them present.
 #
-# ERC violations are checked against tools/validation/erc-baseline.json rather than required
+# ERC violations are checked against tools/validation/erc-baseline*.json rather than required
 # to be zero. kicad-cli ignores the project's ERC exclusions, so the baseline is the headless
 # equivalent: CI fails on violations that are not in it. See tools/check_erc_baseline.py.
 
@@ -38,45 +38,70 @@ jobs:
       - uses: actions/checkout@v4
 
       # Errors only. CI has none of the external footprint libraries, which makes KiCad emit
-      # a warning per affected part (17 footprint_link_issues + 1 lib_symbol_mismatch on ERC,
-      # 17 lib_footprint_issues on DRC). Those say "I could not compare against the library",
+      # a warning per affected part (footprint_link_issues + lib_symbol_mismatch on ERC,
+      # lib_footprint_issues on DRC). Those say "I could not compare against the library",
       # not "the design is wrong" -- the geometry in the board file is authoritative. Gating
       # on warnings here would fail every run for a reason that has nothing to do with the
       # design. The full report is uploaded below for human review.
 
-      - name: Electrical rules check
+      - name: Hub electrical rules check
         run: |
           kicad-cli sch erc \
             --format json --severity-error \
-            -o erc-report.json \
+            -o erc-report-hub.json \
             hardware/hub/SunSproutHub.kicad_sch
 
-      - name: Compare ERC against accepted baseline
+      - name: Compare Hub ERC against accepted baseline
         run: |
           python3 tools/check_erc_baseline.py \
-            erc-report.json tools/validation/erc-baseline.json
+            erc-report-hub.json tools/validation/erc-baseline.json
+
+      - name: Satellite electrical rules check
+        run: |
+          kicad-cli sch erc \
+            --format json --severity-error \
+            -o erc-report-satellite.json \
+            hardware/satellite/SunSproutSatellite.kicad_sch
+
+      - name: Compare Satellite ERC against accepted baseline
+        run: |
+          python3 tools/check_erc_baseline.py \
+            erc-report-satellite.json tools/validation/erc-baseline-satellite.json
 
       # --refill-zones is NOT the default. Without it, DRC checks the zone fills stored in the
       # file, which go stale as soon as anything is added near a pour -- producing clearance
       # and hole-clearance errors against vias that the KiCad GUI does not report, because the
       # GUI refills before checking. --save-board is deliberately omitted so CI never writes
       # to the board.
-      - name: Design rules check
+      - name: Hub design rules check
         run: |
           kicad-cli pcb drc \
             --refill-zones --schematic-parity \
             --format json --severity-error \
             --exit-code-violations \
-            -o drc-report.json \
+            -o drc-report-hub.json \
             hardware/hub/SunSproutHub.kicad_pcb
+
+      - name: Satellite design rules check
+        run: |
+          kicad-cli pcb drc \
+            --refill-zones --schematic-parity \
+            --format json --severity-error \
+            --exit-code-violations \
+            -o drc-report-satellite.json \
+            hardware/satellite/SunSproutSatellite.kicad_pcb
 
       - name: Full reports for review
         if: always()
         run: |
           kicad-cli sch erc --format json --severity-all \
-            -o erc-report-all.json hardware/hub/SunSproutHub.kicad_sch || true
+            -o erc-report-hub-all.json hardware/hub/SunSproutHub.kicad_sch || true
           kicad-cli pcb drc --refill-zones --format json --severity-all \
-            -o drc-report-all.json hardware/hub/SunSproutHub.kicad_pcb || true
+            -o drc-report-hub-all.json hardware/hub/SunSproutHub.kicad_pcb || true
+          kicad-cli sch erc --format json --severity-all \
+            -o erc-report-satellite-all.json hardware/satellite/SunSproutSatellite.kicad_sch || true
+          kicad-cli pcb drc --refill-zones --format json --severity-all \
+            -o drc-report-satellite-all.json hardware/satellite/SunSproutSatellite.kicad_pcb || true
 
       - name: Upload reports
         if: always()
@@ -84,8 +109,5 @@ jobs:
         with:
           name: validation-reports
           path: |
-            erc-report.json
-            drc-report.json
-            erc-report-all.json
-            drc-report-all.json
+            *-report*.json
           retention-days: 30

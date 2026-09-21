@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 # Runs this project's KiCad validation suite: ERC (electrical rules + schematic library
 # resolution), DRC (design rules + PCB/schematic netlist parity), against
-# hardware/hub/SunSproutHub.kicad_sch / .kicad_pcb. Fails (nonzero exit) on any violation that isn't
-# a pre-approved known-benign entry in tools/validation/known_exceptions.json - see that file
+# hardware/hub and hardware/satellite. Fails (nonzero exit) on any violation that isn't
+# a pre-approved known-benign entry in tools/validation/erc-baseline*.json - see those files
 # for what's currently allowlisted and why. Run from the repo root:
 #
 #     tools/run_kicad_validation.sh
@@ -15,7 +15,7 @@
 # installed/authenticated, the build still succeeds, but ERC/DRC will additionally report
 # Snapeda/EasyEDA library-link noise on top of the known exceptions.
 #
-# JSON reports are written to tools/validation/erc-report.json and drc-report.json (gitignored
+# JSON reports are written to tools/validation/*-report.json (gitignored
 # build artifacts - regenerate, don't hand-edit).
 #
 # This mirrors .github/workflows/validate-hardware.yml so a local run gates on exactly what CI
@@ -28,7 +28,7 @@
 #     stored in the file, which go stale as soon as anything is placed near a pour, producing
 #     clearance errors the KiCad GUI never shows because the GUI refills before checking.
 #
-# ERC is compared against tools/validation/erc-baseline.json rather than required to be zero,
+# ERC is compared against tools/validation/erc-baseline*.json rather than required to be zero,
 # because kicad-cli ignores the project's own ERC exclusions. See tools/check_erc_baseline.py.
 # DRC has no such baseline - it is required to come back clean.
 
@@ -69,30 +69,45 @@ run_kicad_cli() {
 	docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" kicad-cli "$@"
 }
 
-echo "== ERC (electrical rules + schematic library resolution) =="
+echo "== Hub ERC =="
 run_kicad_cli sch erc --format json --severity-error \
-	-o "$VALIDATION_DIR/erc-report.json" hardware/hub/SunSproutHub.kicad_sch
+	-o "$VALIDATION_DIR/erc-report-hub.json" hardware/hub/SunSproutHub.kicad_sch
 
-echo "== DRC (design rules + PCB/schematic netlist parity) =="
-drc_status=0
+echo "== Satellite ERC =="
+run_kicad_cli sch erc --format json --severity-error \
+	-o "$VALIDATION_DIR/erc-report-satellite.json" hardware/satellite/SunSproutSatellite.kicad_sch
+
+echo "== Hub DRC =="
+drc_hub_status=0
 run_kicad_cli pcb drc --format json --severity-error --schematic-parity --refill-zones \
 	--exit-code-violations \
-	-o "$VALIDATION_DIR/drc-report.json" hardware/hub/SunSproutHub.kicad_pcb || drc_status=$?
+	-o "$VALIDATION_DIR/drc-report-hub.json" hardware/hub/SunSproutHub.kicad_pcb || drc_hub_status=$?
+
+echo "== Satellite DRC =="
+drc_sat_status=0
+run_kicad_cli pcb drc --format json --severity-error --schematic-parity --refill-zones \
+	--exit-code-violations \
+	-o "$VALIDATION_DIR/drc-report-satellite.json" hardware/satellite/SunSproutSatellite.kicad_pcb || drc_sat_status=$?
 
 run_python() {
 	docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" python3 "$@"
 }
 
-echo "== Checking ERC against tools/validation/erc-baseline.json =="
-erc_status=0
-run_python tools/check_erc_baseline.py "$VALIDATION_DIR/erc-report.json" \
-	"$VALIDATION_DIR/erc-baseline.json" || erc_status=$?
+echo "== Checking Hub ERC against baseline =="
+erc_hub_status=0
+run_python tools/check_erc_baseline.py "$VALIDATION_DIR/erc-report-hub.json" \
+	"$VALIDATION_DIR/erc-baseline.json" || erc_hub_status=$?
+
+echo "== Checking Satellite ERC against baseline =="
+erc_sat_status=0
+run_python tools/check_erc_baseline.py "$VALIDATION_DIR/erc-report-satellite.json" \
+	"$VALIDATION_DIR/erc-baseline-satellite.json" || erc_sat_status=$?
 
 echo
-if [ "$erc_status" -eq 0 ] && [ "$drc_status" -eq 0 ]; then
+if [ "$erc_hub_status" -eq 0 ] && [ "$erc_sat_status" -eq 0 ] && [ "$drc_hub_status" -eq 0 ] && [ "$drc_sat_status" -eq 0 ]; then
 	echo "== VALIDATION PASSED =="
 	exit 0
 else
-	echo "== VALIDATION FAILED (erc exit=$erc_status, drc exit=$drc_status) =="
+	echo "== VALIDATION FAILED (hub erc=$erc_hub_status drc=$drc_hub_status; sat erc=$erc_sat_status drc=$drc_sat_status) =="
 	exit 1
 fi

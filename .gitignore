@@ -33,8 +33,8 @@ Thumbs.db
 /production/
 /analysis/
 drc_report.json
-/tools/validation/*-report.json
-!/tools/validation/erc-baseline.json
+/tools/validation/*report*.json
+!/tools/validation/erc-baseline*.json
 
 # BOM exports - regenerated from the schematic, which is where the sourcing data actually
 # lives (MPN / LCSC Part / Supplier properties on each symbol). The release workflow builds
