@@ -1,4 +1,4 @@
 (fp_lib_table
 	(version 7)
-	(lib (name "project") (type "KiCad") (uri "${KIPRJMOD}/libraries/footprints/project.pretty") (options "") (descr "Project-specific custom footprints (currently empty — PCA9615DPZ and RJHSE5380_QwiicBusCompatible resolve their footprint geometry by being placed once and embedded, same as the hub does; everything else on this board uses stock KiCad footprints and needs no table entry)"))
+	(lib (name "project") (type "KiCad") (uri "${KIPRJMOD}/../libraries/footprints/project.pretty") (options "") (descr "Project-specific custom footprints (shared across SunSprout projects)"))
 )

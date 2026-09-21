@@ -13,7 +13,7 @@ license, which applies to the design itself.
 Source: [github.com/espressif/kicad-libraries](https://github.com/espressif/kicad-libraries).
 License: **CC BY-SA 4.0**, © Espressif Systems.
 Used for: the `ESP32-C5-WROOM-1U` MCU symbol and footprint
-(`hardware/hub/libraries/vendor/espressif-kicad-libraries/`), plus its 3D model, which is
+(`hardware/libraries/vendor/espressif-kicad-libraries/`), plus its 3D model, which is
 embedded in the board file.
 
 ### SnapMagic Search (SnapEDA)
@@ -65,7 +65,7 @@ Models". The board therefore renders completely with no external library install
 separate model files are stored in this repository.
 
 Those models come from the three sources credited above, from KiCad's own bundled libraries,
-and from `hardware/hub/libraries/DB125-2.54-XXP-C-S.step`, drawn for this project and covered
+and from `hardware/libraries/3dmodels/DB125-2.54-XXP-C-S.step`, drawn for this project and covered
 by this repository's own CERN-OHL-S licence.
 
 ## Acknowledgments

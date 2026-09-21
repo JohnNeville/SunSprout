@@ -115,7 +115,6 @@
 		)
 		(capping no)
 		(filling no)
-		(zone_defaults)
 		(pcbplotparams
 			(layerselection 0x00000000_00000000_00000000_000000a5)
 			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
@@ -11526,8 +11525,19 @@
 			(justify left bottom)
 		)
 	)
+	(gr_text "SunSproutSatellite\nREV ${REV_NUM}(${VCSSHORTHASH})"
+		(at 121.1 110.2 270)
+		(layer "B.SilkS")
+		(uuid "fd3b170f-d034-4ee0-9af5-fca212f83cd9")
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify mirror)
+		)
+	)
 	(gr_text "GND_1↔GND_2"
-		(at 122.7 130.1 0)
+		(at 118.4 132.9 270)
 		(layer "B.SilkS")
 		(uuid "56c40da5-e7bf-4ebf-b895-67f20ecdac67")
 		(effects
@@ -11577,6 +11587,27 @@
 			)
 			(justify left bottom mirror)
 		)
+	)
+	(gr_text_box "Licensed under CERN-OHL-S v2\ngithub.com/JohnNeville/SunSprout"
+		(start 112.75 112.9)
+		(end 116.45 138.9)
+		(margins 0 0 0 0)
+		(angle 270)
+		(layer "B.SilkS")
+		(uuid "a9d0e3fc-2e27-4dce-9aba-fae2bb35231d")
+		(effects
+			(font
+				(size 1 0.95)
+				(thickness 0.15)
+			)
+			(justify left top mirror)
+		)
+		(border no)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(knockout no)
 	)
 	(segment
 		(start 118.625001 117.231625)
