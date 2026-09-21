@@ -45,5 +45,4 @@ zero setup.
 
 ## Regenerating the documentation assets
 
-Not wired up yet for this board — see the plan's Phase 5 for what's needed. For now, this
-board isn't part of `tools/generate-docs-assets.sh`'s output.
+Documentation assets (3D board renders, schematic PDF, STEP model, and pinout draft SVG) are generated via `tools/generate-docs-assets.sh` (or `kicad-cli pcb render` / `kicad-cli sch export`). The generated assets live under `website/static/` and `website/static/img/`.

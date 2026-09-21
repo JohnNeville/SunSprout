@@ -34,6 +34,7 @@ REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 IMG_DIR="website/static/img"
 STATIC_DIR="website/static"
 HUB_DIR="hardware/hub"
+SAT_DIR="hardware/satellite"
 
 # On Windows git-bash (MSYS), bash rewrites args that look like absolute Unix paths (e.g. the
 # container's /work below) into Windows paths before docker.exe ever sees them - this disables
@@ -68,31 +69,31 @@ run_kicad_cli() {
 	docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" kicad-cli "$@"
 }
 
-echo "== Board render (top) =="
+echo "== Hub Board render (top) =="
 run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
 	--side top --quality high --floor --background opaque --rotate "-30,0,30" \
 	-w 1600 -h 1200 -o "$IMG_DIR/board-top.png"
 
-echo "== Board render (bottom) =="
+echo "== Hub Board render (bottom) =="
 run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
 	--side bottom --quality high --floor --background opaque --rotate "-30,0,-30" \
 	-w 1600 -h 1200 -o "$IMG_DIR/board-bottom.png"
 
-echo "== Schematic PDF (all sheets) =="
+echo "== Hub Schematic PDF (all sheets) =="
 run_kicad_cli sch export pdf "$HUB_DIR/SunSproutHub.kicad_sch" \
 	-o "$STATIC_DIR/SunSproutHub-schematic.pdf"
 
-echo "== PCB STEP model =="
+echo "== Hub PCB STEP model =="
 run_kicad_cli pcb export step "$HUB_DIR/SunSproutHub.kicad_pcb" \
 	--subst-models -f -o "$STATIC_DIR/SunSproutHub.step"
 
-echo "== Pinout diagram draft (top silkscreen + edge cuts, board-only crop) =="
+echo "== Hub Pinout diagram draft (top silkscreen + edge cuts, board-only crop) =="
 run_kicad_cli pcb export svg "$HUB_DIR/SunSproutHub.kicad_pcb" \
 	--layers "F.Silkscreen,Edge.Cuts" --mode-single --page-size-mode 2 --fit-page-to-board \
 	--exclude-drawing-sheet \
 	-o "$IMG_DIR/pinout-top-draft.svg"
 
-echo "== Interactive HTML BOM =="
+echo "== Hub Interactive HTML BOM =="
 # xvfb-run manages a background Xvfb process via shell job control (backgrounds it, then
 # `wait`s) - that breaks if xvfb-run itself is the container's PID 1, which is what happens if
 # it's docker's direct argv command. Routing it through `sh -c` gives it a real parent shell
@@ -102,5 +103,33 @@ echo "== Interactive HTML BOM =="
 # container path instead.
 docker run --rm -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/$STATIC_DIR" -e HUB_DIR="$HUB_DIR" "$IMAGE" \
 	sh -c 'xvfb-run -a -s "-screen 0 1024x768x24" generate_interactive_bom --no-browser --dest-dir "$STATIC_DIR/ibom" --name-format "index" "$HUB_DIR/SunSproutHub.kicad_pcb"'
+
+echo "== Satellite Board render (top) =="
+run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
+	--side top --quality high --floor --background opaque --rotate "-30,0,30" \
+	-w 1600 -h 1200 -o "$IMG_DIR/satellite-board-top.png"
+
+echo "== Satellite Board render (bottom) =="
+run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
+	--side bottom --quality high --floor --background opaque --rotate "-30,0,-30" \
+	-w 1600 -h 1200 -o "$IMG_DIR/satellite-board-bottom.png"
+
+echo "== Satellite Schematic PDF =="
+run_kicad_cli sch export pdf "$SAT_DIR/SunSproutSatellite.kicad_sch" \
+	-o "$STATIC_DIR/SunSproutSatellite-schematic.pdf"
+
+echo "== Satellite PCB STEP model =="
+run_kicad_cli pcb export step "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
+	--subst-models -f -o "$STATIC_DIR/SunSproutSatellite.step"
+
+echo "== Satellite Pinout diagram draft =="
+run_kicad_cli pcb export svg "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
+	--layers "F.Silkscreen,Edge.Cuts" --mode-single --page-size-mode 2 --fit-page-to-board \
+	--exclude-drawing-sheet \
+	-o "$IMG_DIR/satellite-pinout-top-draft.svg"
+
+echo "== Satellite Interactive HTML BOM =="
+docker run --rm -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/$STATIC_DIR" -e SAT_DIR="$SAT_DIR" "$IMAGE" \
+	sh -c 'xvfb-run -a -s "-screen 0 1024x768x24" generate_interactive_bom --no-browser --dest-dir "$STATIC_DIR/ibom-satellite" --name-format "index" "$SAT_DIR/SunSproutSatellite.kicad_pcb"'
 
 echo "Done. Outputs under $STATIC_DIR/ and $IMG_DIR/."

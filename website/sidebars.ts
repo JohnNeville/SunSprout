@@ -16,7 +16,7 @@ const sidebars: SidebarsConfig = {
   hardwareSidebar: [
     {
       type: 'category',
-      label: 'Hardware',
+      label: 'SunSprout Hub',
       collapsed: false,
       items: [
         'overview',
@@ -28,6 +28,15 @@ const sidebars: SidebarsConfig = {
         'use-cases',
         'design-files',
         'attribution',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'SunSprout Satellite',
+      collapsed: false,
+      items: [
+        'satellite-overview',
+        'satellite-dimensions',
       ],
     },
   ],
