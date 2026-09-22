@@ -34,10 +34,11 @@ ENV KICAD6_3DMODEL_DIR=/usr/share/kicad/3dmodels
 
 RUN --mount=type=secret,id=github_token \
     if [ -s /run/secrets/github_token ]; then \
-      git clone --depth 1 \
+      (git clone --depth 1 \
         "https://oauth2:$(cat /run/secrets/github_token)@github.com/JohnNeville/batterypowerboard-kicad-libraries.git" \
         /opt/kicad-3rd-party \
-      && rm -rf /opt/kicad-3rd-party/.git; \
+        && rm -rf /opt/kicad-3rd-party/.git) \
+      || { echo "Failed to clone batterypowerboard-kicad-libraries (token may lack access) - continuing with bodyless vendor parts"; rm -rf /opt/kicad-3rd-party && mkdir -p /opt/kicad-3rd-party; }; \
     else \
       echo "No github_token secret supplied - skipping batterypowerboard-kicad-libraries (Snapeda/EasyEDA parts will render bodyless)"; \
       mkdir -p /opt/kicad-3rd-party; \
