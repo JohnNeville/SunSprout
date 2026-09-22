@@ -15,7 +15,7 @@ import InteractivePinout from '@site/src/components/InteractivePinout';
 <InteractivePinout board="hub" src="/img/pinout-top.svg" />
 
 
-Auto-generated vector pinout diagram (`tools/generate-docs-assets.sh`) showing all board peripherals, expansion headers (`J7`, `J8`), Stemma QT ports, buttons, and boot strapping pins with color-coded signal tags. An unstyled silkscreen line drawing draft is also preserved at `/img/pinout-top-draft.svg`.
+Auto-generated vector pinout diagram (`tools/generate-docs-assets.sh`) showing all board peripherals, expansion headers (`J7`, `J8`), Stemma QT ports, buttons, and boot strapping pins with color-coded signal tags.
 
 For something more useful when you're actually holding the board: **[open the interactive
 BOM](pathname:///ibom/)** — hover or click any reference designator to highlight

@@ -32,7 +32,7 @@ All positions below are given in millimetres from the **top-left corner of the b
 - **X = 0.0 mm** at the left edge, increasing to the **right** (+X).
 - **Y = 0.0 mm** at the top edge, increasing **downward** (+Y).
 
-This matches the coordinate convention used in KiCad 10 and aligns directly with the SVG pinout draft (`satellite-pinout-top-draft.svg`).
+This matches the coordinate convention used in KiCad 10 and aligns directly with the board layout and interactive pinout diagram.
 
 ---
 

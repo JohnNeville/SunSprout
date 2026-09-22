@@ -71,29 +71,15 @@ run_kicad_cli() {
 
 echo "== Hub Board render (top - orthographic for pinout & docs) =="
 run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
+	--preset follow_pcb_editor \
 	--side top --quality high --background transparent \
 	-w 1200 -h 1800 -o "$IMG_DIR/board-top.png"
 
-echo "== Hub Board render (isometric 3D hero) =="
-run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
-	--side top --quality high --floor --background opaque --rotate "-30,0,30" \
-	-w 1600 -h 1200 -o "$IMG_DIR/board-isometric.png"
-
 echo "== Hub Board render (bottom) =="
 run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
+	--preset follow_pcb_editor \
 	--side bottom --quality high --background transparent \
 	-w 1200 -h 1800 -o "$IMG_DIR/board-bottom.png"
-
-
-echo "== Hub PCB STEP model =="
-run_kicad_cli pcb export step "$HUB_DIR/SunSproutHub.kicad_pcb" \
-	--subst-models -f -o "$STATIC_DIR/SunSproutHub.step"
-
-echo "== Hub Pinout diagram draft (top silkscreen + edge cuts, board-only crop) =="
-run_kicad_cli pcb export svg "$HUB_DIR/SunSproutHub.kicad_pcb" \
-	--layers "F.Silkscreen,Edge.Cuts" --mode-single --page-size-mode 2 --fit-page-to-board \
-	--exclude-drawing-sheet \
-	-o "$IMG_DIR/pinout-top-draft.svg"
 
 echo "== Hub Graphical Pinout diagram (SVG with color-coded callouts) =="
 docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
@@ -115,29 +101,15 @@ docker run --rm -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/$STATIC_DIR"
 
 echo "== Satellite Board render (top - orthographic for pinout & docs) =="
 run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
+	--preset follow_pcb_editor \
 	--side top --quality high --background transparent \
 	-w 1200 -h 1800 -o "$IMG_DIR/satellite-board-top.png"
 
-echo "== Satellite Board render (isometric 3D hero) =="
-run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
-	--side top --quality high --floor --background opaque --rotate "-30,0,30" \
-	-w 1600 -h 1200 -o "$IMG_DIR/satellite-board-isometric.png"
-
 echo "== Satellite Board render (bottom) =="
 run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
+	--preset follow_pcb_editor \
 	--side bottom --quality high --background transparent \
 	-w 1200 -h 1800 -o "$IMG_DIR/satellite-board-bottom.png"
-
-
-echo "== Satellite PCB STEP model =="
-run_kicad_cli pcb export step "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
-	--subst-models -f -o "$STATIC_DIR/SunSproutSatellite.step"
-
-echo "== Satellite Pinout diagram draft =="
-run_kicad_cli pcb export svg "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
-	--layers "F.Silkscreen,Edge.Cuts" --mode-single --page-size-mode 2 --fit-page-to-board \
-	--exclude-drawing-sheet \
-	-o "$IMG_DIR/satellite-pinout-top-draft.svg"
 
 echo "== Satellite Graphical Pinout & Jumper diagrams (Top & Bottom SVGs) =="
 docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
