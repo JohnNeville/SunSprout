@@ -36,6 +36,7 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         'satellite-overview',
+        'satellite-pinout',
         'satellite-dimensions',
       ],
     },

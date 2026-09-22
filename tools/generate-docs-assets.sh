@@ -145,6 +145,15 @@ run_kicad_cli pcb export svg "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
 	--exclude-drawing-sheet \
 	-o "$IMG_DIR/satellite-pinout-top-draft.svg"
 
+echo "== Satellite Graphical Pinout & Jumper diagrams (Top & Bottom SVGs) =="
+docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
+	python3 tools/pinout/generate_satellite_pinout.py \
+		--top-image "$IMG_DIR/satellite-board-top.png" \
+		--bottom-image "$IMG_DIR/satellite-board-bottom.png" \
+		--top-output "$IMG_DIR/satellite-pinout-top.svg" \
+		--bottom-output "$IMG_DIR/satellite-pinout-bottom.svg" \
+		--css "tools/pinout/styles.css"
+
 echo "== Satellite Interactive HTML BOM =="
 docker run --rm -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/$STATIC_DIR" -e SAT_DIR="$SAT_DIR" "$IMAGE" \
 	sh -c 'xvfb-run -a -s "-screen 0 1024x768x24" generate_interactive_bom --no-browser --dest-dir "$STATIC_DIR/ibom-satellite" --name-format "index" "$SAT_DIR/SunSproutSatellite.kicad_pcb"'
