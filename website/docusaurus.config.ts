@@ -4,10 +4,9 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
-// GitHub Pages project sites are served from a subpath. Docusaurus prefixes `favicon`
-// and `navbar.logo.src` with this automatically, but not `headTags`, so those hrefs
-// build on the same constant rather than hardcoding the path a second time.
-const baseUrl = '/SunSprout/';
+// Served from root on Cloudflare Pages (https://sunsprout.pages.dev), with env fallback.
+const baseUrl = process.env.BASE_URL || '/';
+const url = process.env.URL || 'https://sunsprout.pages.dev';
 
 const config: Config = {
   title: 'SunSprout',
@@ -19,11 +18,7 @@ const config: Config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
-  // Repo: https://github.com/JohnNeville/SunSprout (currently private, so
-  // Pages can't actually serve from it yet on a Free personal plan).
-  // GitHub Pages project sites are served from a subpath, so baseUrl must match the
-  // repo name. Asset references use useBaseUrl()/relative paths so they survive it.
-  url: 'https://johnneville.github.io',
+  url,
   baseUrl,
 
   // The .ico carries 16/32/48/64 raster sizes for broad compatibility; the SVG is

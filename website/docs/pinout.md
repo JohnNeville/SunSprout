@@ -21,7 +21,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 Auto-generated vector pinout diagram (`tools/generate-docs-assets.sh`) showing all board peripherals, expansion headers (`J7`, `J8`), Stemma QT ports, buttons, and boot strapping pins with color-coded signal tags. An unstyled silkscreen line drawing draft is also preserved at `/img/pinout-top-draft.svg`.
 
 For something more useful when you're actually holding the board: **[open the interactive
-BOM](pathname:///SunSprout/ibom/)** — hover or click any reference designator to highlight
+BOM](pathname:///ibom/)** — hover or click any reference designator to highlight
 it on the board (and vice versa), search by part/value, and toggle top/bottom layers. Generated
 by [InteractiveHtmlBom](https://github.com/openscopeproject/InteractiveHtmlBom) from the same
 `.kicad_pcb` source as everything else on this page.

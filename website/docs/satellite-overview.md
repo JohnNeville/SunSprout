@@ -3,6 +3,8 @@ sidebar_position: 1
 title: Satellite Overview
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # SunSprout Satellite
 
 :::info[Differential I2C Sensor Leaf Node]
@@ -13,7 +15,7 @@ The **SunSprout Satellite** is the dedicated remote sensor endpoint for the SunS
 
 <div style={{textAlign: 'center', margin: '2rem 0'}}>
   <img
-    src="/SunSprout/img/satellite-board-top.png"
+    src={useBaseUrl('/img/satellite-board-top.png')}
     alt="SunSprout Satellite 3D top render hero image"
     style={{maxWidth: '85%', borderRadius: '8px', boxShadow: '0 4px 20px rgba(0,0,0,0.15)'}}
   />
@@ -27,7 +29,7 @@ At the endpoint, the board translates the differential clock and data signals ba
 
 <div style={{textAlign: 'center', margin: '2rem 0'}}>
   <img
-    src="/SunSprout/img/satellite-board-bottom.png"
+    src={useBaseUrl('/img/satellite-board-bottom.png')}
     alt="SunSprout Satellite 3D bottom render"
     style={{maxWidth: '85%', borderRadius: '8px', boxShadow: '0 4px 20px rgba(0,0,0,0.15)'}}
   />

@@ -43,13 +43,13 @@ in each position is the cheaper answer. Nothing electrical depends on it.
 
 Published with the site:
 
-- **[Hub Schematic (PDF)](pathname:///SunSprout/SunSproutHub-schematic.pdf)** — all sheets, regenerated
+- **[Hub Schematic (PDF)](pathname:///SunSproutHub-schematic.pdf)** — all sheets, regenerated
   directly from the `.kicad_sch` source.
-- **[Hub Interactive BOM](pathname:///SunSprout/ibom/)** — hover any reference designator to
+- **[Hub Interactive BOM](pathname:///ibom/)** — hover any reference designator to
   highlight it on the board.
-- **[Satellite Schematic (PDF)](pathname:///SunSprout/SunSproutSatellite-schematic.pdf)** — multi-sheet
+- **[Satellite Schematic (PDF)](pathname:///SunSproutSatellite-schematic.pdf)** — multi-sheet
   schematic for the Satellite board.
-- **[Satellite Interactive BOM](pathname:///SunSprout/ibom-satellite/)** — interactive pinout and BOM
+- **[Satellite Interactive BOM](pathname:///ibom-satellite/)** — interactive pinout and BOM
   viewer for the Satellite board.
 
 Published per release, on the [Releases
