@@ -50,7 +50,7 @@ case "$(uname -s 2>/dev/null)" in
 		;;
 esac
 
-GITHUB_TOKEN="$(gh auth token 2>/dev/null || true)"
+GITHUB_TOKEN="${GITHUB_TOKEN:-$(gh auth token 2>/dev/null || true)}"
 export GITHUB_TOKEN
 export DOCKER_BUILDKIT=1
 
