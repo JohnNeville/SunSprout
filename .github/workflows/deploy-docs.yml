@@ -63,7 +63,7 @@ jobs:
 
       - name: Generate documentation assets
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           chmod +x tools/generate-docs-assets.sh
           ./tools/generate-docs-assets.sh
