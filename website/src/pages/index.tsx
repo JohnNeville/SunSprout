@@ -22,7 +22,12 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/overview">
-            View the docs
+            Hub Overview
+          </Link>
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/satellite-overview">
+            Satellite Overview
           </Link>
         </div>
       </div>
@@ -35,18 +40,25 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={siteConfig.title}
-      description="Hardware documentation for SunSproutHub: an ESP32-C5 power-management and connectivity board.">
+      description="Hardware documentation for SunSprout Hub and SunSprout Satellite: an ESP32-C5 power-management controller and remote differential sensor node.">
       <HomepageHeader />
       <main>
         <div className="container">
-          <img
-            src={useBaseUrl("/img/board-top.png")}
-            alt="SunSproutHub, top view"
-            className={styles.heroImage}
-          />
+          <div className={styles.heroImageContainer}>
+            <img
+              src={useBaseUrl("/img/hub-and-satellite.png")}
+              alt="SunSprout Hub and SunSprout Satellite"
+              className={styles.heroImage}
+            />
+            <div className={styles.heroLabels}>
+              <span className={styles.heroLabelHub}>SunSprout Hub (56 x 85 mm)</span>
+              <span className={styles.heroLabelSat}>SunSprout Satellite (27 x 51 mm)</span>
+            </div>
+          </div>
         </div>
         <HomepageFeatures />
       </main>
     </Layout>
   );
 }
+

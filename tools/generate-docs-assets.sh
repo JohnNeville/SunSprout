@@ -158,4 +158,12 @@ echo "== Satellite Interactive HTML BOM =="
 docker run --rm -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/$STATIC_DIR" -e SAT_DIR="$SAT_DIR" "$IMAGE" \
 	sh -c 'xvfb-run -a -s "-screen 0 1024x768x24" generate_interactive_bom --no-browser --dest-dir "$STATIC_DIR/ibom-satellite" --name-format "index" "$SAT_DIR/SunSproutSatellite.kicad_pcb"'
 
+echo "== Combined Ecosystem Hero render (Hub + Satellite) =="
+docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
+	python3 tools/generate_combined_hero.py \
+		--hub "$IMG_DIR/board-top.png" \
+		--satellite "$IMG_DIR/satellite-board-top.png" \
+		--output "$IMG_DIR/hub-and-satellite.png"
+
 echo "Done. Outputs under $STATIC_DIR/ and $IMG_DIR/."
+

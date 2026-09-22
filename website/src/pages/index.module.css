@@ -20,13 +20,42 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.heroImageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto 2.5rem;
+  max-width: 780px;
+  width: 100%;
 }
 
 .heroImage {
   display: block;
-  max-width: 640px;
   width: 100%;
   height: auto;
-  margin: 0 auto 2rem;
   border-radius: 8px;
+}
+
+.heroLabels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.heroLabelHub {
+  flex: 62;
+  text-align: center;
+}
+
+.heroLabelSat {
+  flex: 38;
+  text-align: center;
 }
