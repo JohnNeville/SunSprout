@@ -3688,7 +3688,7 @@
 			(uuid "dfa5c9b4-ba27-4d16-a430-616041181282")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Connector_JST.3dshapes/JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical.step"
+		(model "kicad-embed://JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -8961,7 +8961,7 @@
 			(uuid "ca7f094e-34a2-4f66-9652-2022f1fab5ea")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x04_P2.54mm_Vertical.step"
+		(model "kicad-embed://PinHeader_1x04_P2.54mm_Vertical.step"
 			(offset
 				(xyz 0 0 0)
 			)
