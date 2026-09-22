@@ -562,6 +562,10 @@
       {
         "netclass": "Power",
         "pattern": "GND"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "VCC_*"
       }
     ]
   },
@@ -948,7 +952,7 @@
         "uuid": "b8ad246c-0963-44e9-b36f-20d138e559cc"
       }
     ],
-    "used_designators": "#PWR2,#PWR58,J7-8,J203,U4-5",
+    "used_designators": "#PWR2,#PWR58,#FLG2,J7-8,J203,U4-5,TP2-5",
     "variants": []
   },
   "sheets": [

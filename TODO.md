@@ -4,17 +4,18 @@
 
 See the detailed action items in [hardware/satellite/TODO.md](hardware/satellite/TODO.md):
 
-- [ ] **Reference Plane on `In2.Cu`:** Add a copper plane (GND or SAT_3V3) to eliminate impedance discontinuity on `B.Cu` differential and I2C traces.
-- [ ] **ESD Diode (`U4`) Flow-Through Routing:** Eliminate 1.5mm–2.5mm stubs on `DSCL` and `DSDA` differential lines to ensure full ESD clamping before `U1`.
-- [ ] **RJ45 Shield Trace Width:** Widen the 0.2mm `SHIELD` trace between `J1` tabs and `JP13` to ≥ 1.5mm–2.0mm.
-- [ ] **Decoupling Capacitor Ground Inductance:** Move vias adjacent to `C1`–`C6` ground pads and widen connections from 0.2mm to 0.5mm+.
-- [ ] **PCA9615 Ground Pin:** Widen `U1.pin5` ground trace from 0.2mm to 0.4mm–0.5mm.
-- [ ] **Differential Pair Coupling:** Tighten and match spacing between `DSCL_P/N` and `DSDA_P/N` pairs and align transition vias.
-- [ ] **Ground Stitching Vias:** Add ground return vias beside signal vias where `DSCL`, `DSDA`, and I2C lines change layers.
-- [ ] **Analog Crosstalk:** Increase spacing between `MOIST3` and `MOIST4` from 0.2mm to ≥ 0.6mm.
-- [ ] **Acid Traps:** Eliminate 45° acute corners and trace hairpins on `F.Cu` and `In2.Cu`.
-- [ ] **J7 Footprint Metadata:** Update pinout description to match `VCC_2, GND_2, GND, SAT_3V3`.
-- [ ] **DFM Test Points & Fiducials:** Add 1.0mm test pads on `B.Cu` for power, GND, and I2C/differential pairs, plus 3 standard SMT optical fiducials.
+- [x] **Reference Plane on `In2.Cu`:** Added `GND Fill In2` copper pour and `VCC_2` power plane zone on `In2.Cu` to provide continuous reference plane for `B.Cu` differential and I2C traces.
+- [x] **ESD Diode (`U4`) Flow-Through Routing:** Eliminated branch stubs on `DSCL` and `DSDA`; traces now flow directly through SMT pads before reaching `U1`.
+- [x] **RJ45 Shield Trace Width:** Replaced 0.2mm trace with dedicated copper pour `SHIELD GND Area` on `B.Cu`.
+- [x] **Decoupling Capacitor Ground Inductance:** Widened GND traces on all decoupling capacitors `C1`-`C6` (`C1`: 0.40mm, `C2`: 0.60mm, `C3`: 0.60mm, `C4`: 0.50mm, `C5`: 0.50mm, `C6`: 0.50mm).
+- [x] **PCA9615 Ground Pin:** Widen `U1.pin5` ground trace to 0.4mm-0.5mm (completed: 0.40mm trace to GND via at 115.5, 118.5).
+- [x] **Differential Pair Coupling:** Tighten and match spacing between `DSCL_P/N` and `DSDA_P/N` pairs and align transition vias (`DSDA` vias tightened to 1.30mm; `DSCL` aligned horizontally).
+- [x] **Ground Stitching Vias:** Placed adjacent ground return vias across both differential pairs and local I2C signal layer transitions (board via count increased to 58).
+- [x] **Analog Crosstalk:** Increase spacing between `MOIST3` and `MOIST4` from 0.35mm edge-to-edge to >= 0.6mm (completed: 0.700mm edge-to-edge / 0.900mm center-to-center on F.Cu).
+- [x] **Acid Traps:** Eliminated acute corners and hairpins on `F.Cu`, `B.Cu`, and `In2.Cu`; enforced JLCPCB DRC rule `track_angle >= 90deg` (0 violations).
+- [x] **J7 Footprint Metadata:** Updated `Usage` property to `"Auxiliary 1x4 2.54mm header: Pin 1: VCC_2, Pin 2: GND_2, Pin 3: GND, Pin 4: SAT_3V3 (power breakout and bus injection)"`.
+- [x] **DFM Test Points (`B.Cu`):** Added 2-pole 1.0mm test points `TP4` (`DSCL+/-`) and `TP5` (`DSDA+/-`) on `B.Cu`; power, GND, and local I2C probed via accessible solder jumpers.
+- [x] **Optical Fiducial Markers:** Added 4 optical fiducials on `F.Cu` (`Fiducial_0.5mm_Mask1mm`) across board quadrants for automated SMT pick-and-place.
 
 ---
 

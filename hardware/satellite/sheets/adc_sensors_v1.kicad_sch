@@ -46,7 +46,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ads1015.pdf"
+			(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ads1113.pdf"
 				(at -1.27 -22.86 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -57,7 +57,7 @@
 					)
 				)
 			)
-			(property "Description" "Ultra-Small, Low-Power, I2C-Compatible, 3.3-kSPS, 12-Bit ADCs With Internal Reference, Oscillator, and Programmable Comparator, VSSOP-10"
+			(property "Description" "Ultra-Small, Low-Power, I2C-Compatible, 860-SPS, 16-Bit ADCs With Internal Reference, Oscillator, and Programmable Comparator, VSSOP-10"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -68,7 +68,7 @@
 					)
 				)
 			)
-			(property "ki_keywords" "12 bit 4 channel I2C ADC"
+			(property "ki_keywords" "16 bit 4 channel I2C ADC"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2694,7 +2694,7 @@
 		(dnp no)
 		(uuid "9eee3793-3338-4187-bb48-eee9e5297924")
 		(property "Reference" "U2"
-			(at 93.98 67.31 0)
+			(at 91.694 59.436 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2704,7 +2704,7 @@
 			)
 		)
 		(property "Value" "ADS1115IDGS"
-			(at 93.98 69.85 0)
+			(at 91.186 62.23 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2724,7 +2724,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ads1113.pdf"
 			(at 101.6 76.2 0)
 			(hide yes)
 			(show_name no)
@@ -2735,8 +2735,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Ultra-Small, Low-Power, I2C-Compatible, 860-SPS, 16-Bit ADCs With Internal Reference, Oscillator, and Programmable Comparator, VSSOP-10"
 			(at 101.6 76.2 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
