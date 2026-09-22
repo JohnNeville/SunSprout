@@ -7,6 +7,8 @@ Generates publication-grade vector SVG diagrams for SunSprout Satellite:
 2. Bottom View (satellite-pinout-bottom.svg): Configuration jumpers (JP1, JP16, JP11, JP13, JP14, JP15)
    and address selection truth tables.
 
+Includes enlarged typography, interactive data attributes, and category tagging.
+
 Usage:
     python tools/pinout/generate_satellite_pinout.py
 """
@@ -25,13 +27,13 @@ from PIL import Image
 BOARD_MM_W = 27.25
 BOARD_MM_H = 51.10
 
-CANVAS_W = 1420
-CANVAS_H = 970
+CANVAS_W = 1520
+CANVAS_H = 1040
 
-BOARD_PIX_H = 640
-BOARD_PIX_W = int(BOARD_PIX_H * (BOARD_MM_W / BOARD_MM_H))  # ~341px
+BOARD_PIX_H = 650
+BOARD_PIX_W = int(BOARD_PIX_H * (BOARD_MM_W / BOARD_MM_H))  # ~346px
 BOARD_X = (CANVAS_W - BOARD_PIX_W) // 2
-BOARD_Y = 100
+BOARD_Y = 105
 
 
 def mm_to_canvas_top(bx_mm, by_mm):
@@ -85,8 +87,8 @@ def load_and_crop_image(image_path: str):
 
 def render_badge(x, y, text, tag_type, is_right_aligned=False, width=None):
     char_len = len(text)
-    w = width if width else (char_len * 7.5 + 16)
-    h = 24
+    w = width if width else (char_len * 8.6 + 22)
+    h = 28
     rx = x - w if is_right_aligned else x
     rect_svg = f'<rect x="{rx:.1f}" y="{y - h/2:.1f}" width="{w:.1f}" height="{h:.1f}" class="badge-bg"/>'
     text_x = rx + w / 2
@@ -95,7 +97,7 @@ def render_badge(x, y, text, tag_type, is_right_aligned=False, width=None):
 
 
 def render_pin_pill(x, y, pnum, is_right_side=False):
-    w, h = 26, 22
+    w, h = 32, 28
     rx = x if is_right_side else (x - w)
     rect = f'<rect x="{rx:.1f}" y="{y - h/2:.1f}" width="{w:.1f}" height="{h:.1f}" class="pin-num-bg"/>'
     text_x = rx + w / 2
@@ -113,7 +115,6 @@ def generate_satellite_top_svg(board_image_path: str, output_svg_path: str, css_
         with open(css_path, "r", encoding="utf-8") as f:
             css_content = f.read()
 
-    # Add custom styles for analog, onewire, and jumper
     extra_css = """
 .tag-analog .badge-bg { fill: #172554; stroke: #2563eb; }
 .tag-analog .badge-text { fill: #bfdbfe; }
@@ -129,7 +130,7 @@ def generate_satellite_top_svg(board_image_path: str, output_svg_path: str, css_
     image_href = load_and_crop_image(board_image_path)
 
     svg = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CANVAS_W} {CANVAS_H}" width="100%" height="100%" class="diagram">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CANVAS_W} {CANVAS_H}" width="100%" height="100%" class="diagram" id="satellite-top-svg">',
         '  <defs>',
         f'    <style type="text/css"><![CDATA[\n{css_content}\n]]></style>',
         '    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">',
@@ -140,11 +141,11 @@ def generate_satellite_top_svg(board_image_path: str, output_svg_path: str, css_
         f'  <rect x="20" y="20" width="{CANVAS_W - 40}" height="{CANVAS_H - 40}" class="panel"/>',
         '',
         '  <!-- Header Title -->',
-        '  <g transform="translate(50, 65)">',
+        '  <g transform="translate(50, 68)">',
         '    <text class="title">SunSprout Satellite Pinout &amp; Port Diagram</text>',
-        '    <text y="24" class="subtitle">Differential I2C Leaf Node • 4× Soil Moisture Probes • 1-Wire DS18B20 Temperature • RJ45 Bus</text>',
-        '    <rect x="980" y="-18" width="130" height="26" rx="6" fill="#0f2b48" stroke="#0284c7" stroke-width="1"/>',
-        '    <text x="1045" y="-1" class="header-tag" text-anchor="middle">PCB REV 1.0</text>',
+        '    <text y="26" class="subtitle">Differential I2C Leaf Node • 4× Soil Moisture Probes • 1-Wire DS18B20 Temperature • RJ45 Bus</text>',
+        f'    <rect x="{CANVAS_W - 250}" y="-20" width="150" height="30" rx="6" fill="#0f2b48" stroke="#0284c7" stroke-width="1.2"/>',
+        f'    <text x="{CANVAS_W - 175}" y="-1" class="header-tag" text-anchor="middle">PCB REV 1.0</text>',
         '  </g>',
         '',
         '  <!-- Board Image -->',
@@ -163,28 +164,31 @@ def generate_satellite_top_svg(board_image_path: str, output_svg_path: str, css_
         ("J5", 44.50, "Moisture 4", [("MOIST4 (AIN3)", "analog"), ("SAT_3V3", "pwr"), ("GND", "gnd")]),
     ]
 
-    start_y = 150
-    gap_y = 110
-    svg.append(f'  <text x="470" y="{start_y - 30}" class="header-tag" text-anchor="end">SENSOR INPUT PORTS (JST PH 2.0MM)</text>')
+    start_y = 160
+    gap_y = 108
+    end_x = 480
+    svg.append(f'  <text x="{end_x}" y="{start_y - 30}" class="header-tag" text-anchor="end">SENSOR INPUT PORTS (JST PH 2.0MM)</text>')
 
     for i, (pname, by_mm, ptitle, tags) in enumerate(left_ports):
         label_y = start_y + i * gap_y
         pcx, pcy = mm_to_canvas_top(3.65, by_mm)
-        elbow_x = BOARD_X - 40
-        end_x = 470
+        elbow_x = BOARD_X - 45
 
-        svg.append(f'  <path d="M {pcx:.1f} {pcy:.1f} L {elbow_x} {label_y} L {end_x} {label_y}" class="leader-line"/>')
-        svg.append(f'  <circle cx="{pcx:.1f}" cy="{pcy:.1f}" r="3.5" class="pin-dot pin-dot-analog"/>')
+        tags_csv = ",".join(t[1] for t in tags)
+        svg.append(f'  <g class="callout-group" data-pin="{pname}" data-tags="{tags_csv}" data-name="{pname}: {ptitle}">')
+        svg.append(f'    <path d="M {pcx:.1f} {pcy:.1f} L {elbow_x} {label_y} L {end_x} {label_y}" class="leader-line"/>')
+        svg.append(f'    <circle cx="{pcx:.1f}" cy="{pcy:.1f}" r="4.5" class="pin-dot pin-dot-analog"/>')
 
         # Port badge
         b_svg, bw = render_badge(end_x, label_y, f"{pname}: {ptitle}", "i2c-user", is_right_aligned=True)
-        svg.append(f'  {b_svg}')
+        svg.append(f'    {b_svg}')
 
         curr_x = end_x - bw - 8
         for ttext, ttype in tags:
             tag_svg, tw = render_badge(curr_x, label_y, ttext, ttype, is_right_aligned=True)
-            svg.append(f'  {tag_svg}')
+            svg.append(f'    {tag_svg}')
             curr_x -= (tw + 6)
+        svg.append('  </g>')
 
     # --- RIGHT SIDE CALLOUTS (Power, Buffer, Headers, RJ45) ---
     right_items = [
@@ -195,30 +199,33 @@ def generate_satellite_top_svg(board_image_path: str, output_svg_path: str, css_
         ("J1", 45.20, "RJ45 Bus", [("J1", "diff"), ("RJHSE5380 (8P8C)", "diff"), ("Diff I2C + Dual Power", "diff")]),
     ]
 
-    r_start_y = 170
-    r_gap_y = 100
-    svg.append(f'  <text x="{BOARD_X + BOARD_PIX_W + 50}" y="{r_start_y - 30}" class="header-tag" text-anchor="start">COMMUNICATION &amp; POWER INTERFACES</text>')
+    r_start_y = 160
+    r_gap_y = 108
+    start_x = BOARD_X + BOARD_PIX_W + 55
+    svg.append(f'  <text x="{start_x}" y="{r_start_y - 30}" class="header-tag" text-anchor="start">COMMUNICATION &amp; POWER INTERFACES</text>')
 
     for i, (ref, by_mm, title, tags) in enumerate(right_items):
         label_y = r_start_y + i * r_gap_y
         pcx, pcy = mm_to_canvas_top(23.5 if ref == 'J7' else (16.0 if ref == 'J1' else 20.0), by_mm)
         elbow_x = BOARD_X + BOARD_PIX_W + 35
-        start_x = BOARD_X + BOARD_PIX_W + 50
 
-        svg.append(f'  <path d="M {pcx:.1f} {pcy:.1f} L {elbow_x} {label_y} L {start_x} {label_y}" class="leader-line"/>')
-        svg.append(f'  <circle cx="{pcx:.1f}" cy="{pcy:.1f}" r="3.5" class="pin-dot pin-dot-diff"/>')
+        tags_csv = ",".join(t[1] for t in tags)
+        svg.append(f'  <g class="callout-group" data-pin="{ref}" data-tags="{tags_csv}" data-name="{ref}: {title}">')
+        svg.append(f'    <path d="M {pcx:.1f} {pcy:.1f} L {elbow_x} {label_y} L {start_x} {label_y}" class="leader-line"/>')
+        svg.append(f'    <circle cx="{pcx:.1f}" cy="{pcy:.1f}" r="4.5" class="pin-dot pin-dot-diff"/>')
 
         curr_x = start_x
         for ttext, ttype in tags:
             tag_svg, tw = render_badge(curr_x, label_y, ttext, ttype, is_right_aligned=False)
-            svg.append(f'  {tag_svg}')
+            svg.append(f'    {tag_svg}')
             curr_x += (tw + 6)
+        svg.append('  </g>')
 
     # --- FOOTER LEGEND ---
-    legend_y = CANVAS_H - 120
+    legend_y = CANVAS_H - 125
     svg.append('  <!-- Legend Panel -->')
-    svg.append(f'  <rect x="50" y="{legend_y}" width="{CANVAS_W - 100}" height="96" rx="10" fill="#09101d" stroke="#1e293b" stroke-width="1"/>')
-    svg.append(f'  <text x="70" y="{legend_y + 20}" class="legend-title">Signal Classification Legend (Top View)</text>')
+    svg.append(f'  <rect x="50" y="{legend_y}" width="{CANVAS_W - 100}" height="100" rx="10" fill="#09101d" stroke="#1e293b" stroke-width="1.2"/>')
+    svg.append(f'  <text x="70" y="{legend_y + 22}" class="legend-title">Signal Classification Legend (Top View)</text>')
 
     TOP_LEGEND = [
         ("Power Rails (SAT_3V3 / VCC_1 / VCC_2)", "pwr"),
@@ -232,14 +239,14 @@ def generate_satellite_top_svg(board_image_path: str, output_svg_path: str, css_
     ]
 
     leg_x = 70
-    leg_item_y = legend_y + 46
+    leg_item_y = legend_y + 52
     for name, tag_type in TOP_LEGEND:
         b_svg, w = render_badge(leg_x, leg_item_y, name, tag_type, is_right_aligned=False)
         if leg_x + w > CANVAS_W - 70:
             leg_x = 70
-            leg_item_y += 30
+            leg_item_y += 34
             b_svg, w = render_badge(leg_x, leg_item_y, name, tag_type, is_right_aligned=False)
-        svg.append(f'  {b_svg}')
+        svg.append(f'  <g class="legend-badge" data-tag="{tag_type}" style="cursor: pointer;">{b_svg}</g>')
         leg_x += (w + 14)
 
     svg.append('</svg>')
@@ -263,17 +270,17 @@ def generate_satellite_bottom_svg(board_image_path: str, output_svg_path: str, c
     extra_css = """
 .tag-jumper .badge-bg { fill: #4a044e; stroke: #c026d3; }
 .tag-jumper .badge-text { fill: #f5d0fe; }
-.table-card { fill: #0b1320; stroke: #1e293b; stroke-width: 1.5; rx: 8; }
-.table-hdr { fill: #f8fafc; font-size: 13px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
-.table-txt { fill: #94a3b8; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
-.table-hl { fill: #38bdf8; font-size: 11px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
-.table-default { fill: #4ade80; font-size: 10px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.table-card { fill: #0b1320; stroke: #1e293b; stroke-width: 1.5; rx: 8; transition: stroke 0.2s ease; }
+.table-hdr { fill: #f8fafc; font-size: 14.5px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.table-txt { fill: #94a3b8; font-size: 13px; font-family: 'JetBrains Mono', monospace; }
+.table-hl { fill: #38bdf8; font-size: 13.5px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.table-default { fill: #4ade80; font-size: 12px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
 """
     css_content += extra_css
     image_href = load_and_crop_image(board_image_path)
 
     svg = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CANVAS_W} {CANVAS_H}" width="100%" height="100%" class="diagram">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CANVAS_W} {CANVAS_H}" width="100%" height="100%" class="diagram" id="satellite-bottom-svg">',
         '  <defs>',
         f'    <style type="text/css"><![CDATA[\n{css_content}\n]]></style>',
         '    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">',
@@ -284,11 +291,11 @@ def generate_satellite_bottom_svg(board_image_path: str, output_svg_path: str, c
         f'  <rect x="20" y="20" width="{CANVAS_W - 40}" height="{CANVAS_H - 40}" class="panel"/>',
         '',
         '  <!-- Header Title -->',
-        '  <g transform="translate(50, 65)">',
+        '  <g transform="translate(50, 68)">',
         '    <text class="title">SunSprout Satellite Configuration &amp; Jumper Diagram (Bottom)</text>',
-        '    <text y="24" class="subtitle">Hardware Solder Jumpers • ADS1115 / DS2482 Address Selection • Power &amp; Shield Routing</text>',
-        '    <rect x="1060" y="-18" width="130" height="26" rx="6" fill="#0f2b48" stroke="#0284c7" stroke-width="1"/>',
-        '    <text x="1125" y="-1" class="header-tag" text-anchor="middle">BOTTOM VIEW</text>',
+        '    <text y="26" class="subtitle">Hardware Solder Jumpers • ADS1115 / DS2482 Address Selection • Power &amp; Shield Routing</text>',
+        f'    <rect x="{CANVAS_W - 250}" y="-20" width="150" height="30" rx="6" fill="#0f2b48" stroke="#0284c7" stroke-width="1.2"/>',
+        f'    <text x="{CANVAS_W - 175}" y="-1" class="header-tag" text-anchor="middle">BOTTOM VIEW</text>',
         '  </g>',
         '',
         '  <!-- Board Image (Bottom View) -->',
@@ -299,96 +306,102 @@ def generate_satellite_bottom_svg(board_image_path: str, output_svg_path: str, c
     ]
 
     # --- LEFT SIDE: ADS1115 ADDRESS SELECTION & SHIELD JUMPERS ---
-    # JP1 is at KiCad (110.34, 123.20) -> bx_bottom = 27.25 - 10.34 = 16.91 mm, by = 23.20 mm
+    # JP1
     jp1_cx, jp1_cy = mm_to_canvas_bottom(10.34, 23.20)
-    jp1_label_y = 210
-    svg.append(f'  <path d="M {jp1_cx:.1f} {jp1_cy:.1f} L {BOARD_X - 40} {jp1_label_y} L 460 {jp1_label_y}" class="leader-line"/>')
-    svg.append(f'  <circle cx="{jp1_cx:.1f}" cy="{jp1_cy:.1f}" r="4" class="pin-dot pin-dot-jumper"/>')
-
-    # Card for JP1 Address Table
-    card1_w = 380
-    card1_h = 160
-    card1_x = 70
+    jp1_label_y = 230
+    card1_w = 420
+    card1_h = 180
+    card1_x = 65
     card1_y = 150
-    svg.append(f'  <g transform="translate({card1_x}, {card1_y})">')
-    svg.append(f'    <rect width="{card1_w}" height="{card1_h}" class="table-card"/>')
-    svg.append('    <text x="16" y="24" class="table-hdr">JP1: ADS1115 I2C ADDRESS SELECT (4-WAY)</text>')
-    svg.append('    <text x="16" y="44" class="table-txt">Pad 1 (ADDR) connects to selectable rail:</text>')
-    svg.append('    <line x1="16" y1="52" x2="364" y2="52" stroke="#334155" stroke-width="1"/>')
-    svg.append('    <text x="20" y="74" class="table-txt">Pads 1-2 (to GND):</text><text x="180" y="74" class="table-hl">0x48</text><text x="240" y="74" class="table-default">[DEFAULT BRIDGED]</text>')
-    svg.append('    <text x="20" y="96" class="table-txt">Pads 1-3 (to SAT_3V3):</text><text x="180" y="96" class="table-hl">0x49</text>')
-    svg.append('    <text x="20" y="118" class="table-txt">Pads 1-4 (to SDA_LOCAL):</text><text x="180" y="118" class="table-hl">0x4A</text>')
-    svg.append('    <text x="20" y="140" class="table-txt">Pads 1-5 (to SCL_LOCAL):</text><text x="180" y="140" class="table-hl">0x4B</text>')
+
+    svg.append('  <g class="callout-group" data-pin="JP1" data-tags="jumper,analog" data-name="JP1: ADS1115 Address Select">')
+    svg.append(f'    <path d="M {jp1_cx:.1f} {jp1_cy:.1f} L {BOARD_X - 40} {jp1_label_y} L {card1_x + card1_w} {jp1_label_y}" class="leader-line"/>')
+    svg.append(f'    <circle cx="{jp1_cx:.1f}" cy="{jp1_cy:.1f}" r="5" class="pin-dot pin-dot-jumper"/>')
+    svg.append(f'    <g transform="translate({card1_x}, {card1_y})">')
+    svg.append(f'      <rect width="{card1_w}" height="{card1_h}" class="table-card"/>')
+    svg.append('      <text x="18" y="28" class="table-hdr">JP1: ADS1115 I2C ADDRESS SELECT (4-WAY)</text>')
+    svg.append('      <text x="18" y="50" class="table-txt">Pad 1 (ADDR) connects to selectable rail:</text>')
+    svg.append(f'      <line x1="18" y1="60" x2="{card1_w - 18}" y2="60" stroke="#334155" stroke-width="1.2"/>')
+    svg.append('      <text x="24" y="86" class="table-txt">Pads 1-2 (to GND):</text><text x="220" y="86" class="table-hl">0x48</text><text x="290" y="86" class="table-default">[DEFAULT BRIDGED]</text>')
+    svg.append('      <text x="24" y="110" class="table-txt">Pads 1-3 (to SAT_3V3):</text><text x="220" y="110" class="table-hl">0x49</text>')
+    svg.append('      <text x="24" y="134" class="table-txt">Pads 1-4 (to SDA_LOCAL):</text><text x="220" y="134" class="table-hl">0x4A</text>')
+    svg.append('      <text x="24" y="158" class="table-txt">Pads 1-5 (to SCL_LOCAL):</text><text x="220" y="158" class="table-hl">0x4B</text>')
+    svg.append('    </g>')
     svg.append('  </g>')
 
-    # JP13 (Shield Cut): KiCad (108.20, 137.90) -> bx_bottom = 19.05, by = 37.90
+    # JP13 (Shield Cut)
     jp13_cx, jp13_cy = mm_to_canvas_bottom(8.20, 37.90)
-    jp13_label_y = 400
-    svg.append(f'  <path d="M {jp13_cx:.1f} {jp13_cy:.1f} L {BOARD_X - 40} {jp13_label_y} L 460 {jp13_label_y}" class="leader-line"/>')
-    svg.append(f'  <circle cx="{jp13_cx:.1f}" cy="{jp13_cy:.1f}" r="4" class="pin-dot pin-dot-jumper"/>')
+    jp13_label_y = 440
+    card13_w = 420
+    card13_h = 120
+    card13_x = 65
+    card13_y = 380
 
-    card13_w = 380
-    card13_h = 100
-    card13_x = 70
-    card13_y = 350
-    svg.append(f'  <g transform="translate({card13_x}, {card13_y})">')
-    svg.append(f'    <rect width="{card13_w}" height="{card13_h}" class="table-card"/>')
-    svg.append('    <text x="16" y="24" class="table-hdr">JP13: RJ45 CABLE SHIELD GROUND</text>')
-    svg.append('    <text x="16" y="46" class="table-txt">Default: Metal shield bridged to GND.</text>')
-    svg.append('    <text x="16" y="68" class="table-txt">Action: Slice center trace to break ground loop</text>')
-    svg.append('    <text x="16" y="86" class="table-txt">for single-point earth grounding at Hub.</text>')
+    svg.append('  <g class="callout-group" data-pin="JP13" data-tags="jumper,gnd" data-name="JP13: Shield Ground Isolation">')
+    svg.append(f'    <path d="M {jp13_cx:.1f} {jp13_cy:.1f} L {BOARD_X - 40} {jp13_label_y} L {card13_x + card13_w} {jp13_label_y}" class="leader-line"/>')
+    svg.append(f'    <circle cx="{jp13_cx:.1f}" cy="{jp13_cy:.1f}" r="5" class="pin-dot pin-dot-jumper"/>')
+    svg.append(f'    <g transform="translate({card13_x}, {card13_y})">')
+    svg.append(f'      <rect width="{card13_w}" height="{card13_h}" class="table-card"/>')
+    svg.append('      <text x="18" y="28" class="table-hdr">JP13: RJ45 CABLE SHIELD GROUND</text>')
+    svg.append('      <text x="18" y="52" class="table-txt">Default: Metal shield bridged to GND.</text>')
+    svg.append('      <text x="18" y="76" class="table-txt">Action: Slice center trace to break ground loop</text>')
+    svg.append('      <text x="18" y="96" class="table-txt">for single-point earth grounding at Hub.</text>')
+    svg.append('    </g>')
     svg.append('  </g>')
 
     # --- RIGHT SIDE: DS2482 ADDRESS & POWER CONFIGURATION JUMPERS ---
-    # JP16 is at KiCad (113.10, 106.90) -> bx_bottom = 14.15 mm, by = 6.90 mm
+    # JP16
     jp16_cx, jp16_cy = mm_to_canvas_bottom(13.10, 6.90)
-    jp16_label_y = 190
-    svg.append(f'  <path d="M {jp16_cx:.1f} {jp16_cy:.1f} L {BOARD_X + BOARD_PIX_W + 40} {jp16_label_y} L 960 {jp16_label_y}" class="leader-line"/>')
-    svg.append(f'  <circle cx="{jp16_cx:.1f}" cy="{jp16_cy:.1f}" r="4" class="pin-dot pin-dot-jumper"/>')
+    jp16_label_y = 230
+    card16_w = 430
+    card16_h = 180
+    card16_x = BOARD_X + BOARD_PIX_W + 55
+    card16_y = 150
 
-    card16_w = 390
-    card16_h = 160
-    card16_x = 960
-    card16_y = 130
-    svg.append(f'  <g transform="translate({card16_x}, {card16_y})">')
-    svg.append(f'    <rect width="{card16_w}" height="{card16_h}" class="table-card"/>')
-    svg.append('    <text x="16" y="24" class="table-hdr">JP16: DS2482 1-WIRE MASTER ADDRESS</text>')
-    svg.append('    <text x="16" y="44" class="table-txt">Dual jumper selects AD1:AD0 address bits:</text>')
-    svg.append('    <line x1="16" y1="52" x2="374" y2="52" stroke="#334155" stroke-width="1"/>')
-    svg.append('    <text x="20" y="74" class="table-txt">AD1=GND, AD0=GND:</text><text x="190" y="74" class="table-hl">0x18</text><text x="250" y="74" class="table-default">[DEFAULT]</text>')
-    svg.append('    <text x="20" y="96" class="table-txt">AD1=GND, AD0=3V3:</text><text x="190" y="96" class="table-hl">0x19</text>')
-    svg.append('    <text x="20" y="118" class="table-txt">AD1=3V3, AD0=GND:</text><text x="190" y="118" class="table-hl">0x1A</text>')
-    svg.append('    <text x="20" y="140" class="table-txt">AD1=3V3, AD0=3V3:</text><text x="190" y="140" class="table-hl">0x1B</text>')
+    svg.append('  <g class="callout-group" data-pin="JP16" data-tags="jumper,onewire" data-name="JP16: DS2482 Address Select">')
+    svg.append(f'    <path d="M {jp16_cx:.1f} {jp16_cy:.1f} L {BOARD_X + BOARD_PIX_W + 35} {jp16_label_y} L {card16_x} {jp16_label_y}" class="leader-line"/>')
+    svg.append(f'    <circle cx="{jp16_cx:.1f}" cy="{jp16_cy:.1f}" r="5" class="pin-dot pin-dot-jumper"/>')
+    svg.append(f'    <g transform="translate({card16_x}, {card16_y})">')
+    svg.append(f'      <rect width="{card16_w}" height="{card16_h}" class="table-card"/>')
+    svg.append('      <text x="18" y="28" class="table-hdr">JP16: DS2482 1-WIRE MASTER ADDRESS</text>')
+    svg.append('      <text x="18" y="50" class="table-txt">Dual jumper selects AD1:AD0 address bits:</text>')
+    svg.append(f'      <line x1="18" y1="60" x2="{card16_w - 18}" y2="60" stroke="#334155" stroke-width="1.2"/>')
+    svg.append('      <text x="24" y="86" class="table-txt">AD1=GND, AD0=GND:</text><text x="230" y="86" class="table-hl">0x18</text><text x="295" y="86" class="table-default">[DEFAULT]</text>')
+    svg.append('      <text x="24" y="110" class="table-txt">AD1=GND, AD0=3V3:</text><text x="230" y="110" class="table-hl">0x19</text>')
+    svg.append('      <text x="24" y="134" class="table-txt">AD1=3V3, AD0=GND:</text><text x="230" y="134" class="table-hl">0x1A</text>')
+    svg.append('      <text x="24" y="158" class="table-txt">AD1=3V3, AD0=3V3:</text><text x="230" y="158" class="table-hl">0x1B</text>')
+    svg.append('    </g>')
     svg.append('  </g>')
 
     # JP14 & JP15: Power Route & Ground Isolation
-    # JP14 is at KiCad (123.95, 120.09) -> bx_bottom = 3.30 mm, by = 20.09 mm
     jp14_cx, jp14_cy = mm_to_canvas_bottom(23.95, 20.09)
-    jp14_label_y = 350
-    svg.append(f'  <path d="M {jp14_cx:.1f} {jp14_cy:.1f} L {BOARD_X + BOARD_PIX_W + 40} {jp14_label_y} L 960 {jp14_label_y}" class="leader-line"/>')
-    svg.append(f'  <circle cx="{jp14_cx:.1f}" cy="{jp14_cy:.1f}" r="4" class="pin-dot pin-dot-jumper"/>')
+    jp14_label_y = 440
+    card14_w = 430
+    card14_h = 180
+    card14_x = BOARD_X + BOARD_PIX_W + 55
+    card14_y = 380
 
-    card14_w = 390
-    card14_h = 160
-    card14_x = 960
-    card14_y = 320
-    svg.append(f'  <g transform="translate({card14_x}, {card14_y})">')
-    svg.append(f'    <rect width="{card14_w}" height="{card14_h}" class="table-card"/>')
-    svg.append('    <text x="16" y="24" class="table-hdr">JP14 / JP15: POWER &amp; GROUND ROUTING</text>')
-    svg.append('    <text x="16" y="44" class="table-txt">JP14 (Power Rail Source):</text>')
-    svg.append('    <text x="24" y="64" class="table-txt">• Pads 1-2 (VCC_1 -> SAT_3V3):</text><text x="240" y="64" class="table-default">[DEFAULT]</text>')
-    svg.append('    <text x="24" y="84" class="table-txt">• Pads 2-3 (VCC_2 -> SAT_3V3): Secondary tap feed</text>')
-    svg.append('    <line x1="16" y1="96" x2="374" y2="96" stroke="#334155" stroke-width="1"/>')
-    svg.append('    <text x="16" y="116" class="table-txt">JP15 (GND_2 Isolation):</text>')
-    svg.append('    <text x="24" y="136" class="table-txt">• Default: GND_2 bridged to system GND</text>')
-    svg.append('    <text x="24" y="152" class="table-txt">• Slice trace to isolate secondary power ground</text>')
+    svg.append('  <g class="callout-group" data-pin="JP14/JP15" data-tags="jumper,pwr,gnd" data-name="JP14/JP15: Power &amp; Ground Route">')
+    svg.append(f'    <path d="M {jp14_cx:.1f} {jp14_cy:.1f} L {BOARD_X + BOARD_PIX_W + 35} {jp14_label_y} L {card14_x} {jp14_label_y}" class="leader-line"/>')
+    svg.append(f'    <circle cx="{jp14_cx:.1f}" cy="{jp14_cy:.1f}" r="5" class="pin-dot pin-dot-jumper"/>')
+    svg.append(f'    <g transform="translate({card14_x}, {card14_y})">')
+    svg.append(f'      <rect width="{card14_w}" height="{card14_h}" class="table-card"/>')
+    svg.append('      <text x="18" y="28" class="table-hdr">JP14 / JP15: POWER &amp; GROUND ROUTING</text>')
+    svg.append('      <text x="18" y="50" class="table-txt">JP14 (Power Rail Source):</text>')
+    svg.append('      <text x="28" y="74" class="table-txt">• Pads 1-2 (VCC_1 -> SAT_3V3):</text><text x="290" y="74" class="table-default">[DEFAULT]</text>')
+    svg.append('      <text x="28" y="96" class="table-txt">• Pads 2-3 (VCC_2 -> SAT_3V3): Secondary tap feed</text>')
+    svg.append(f'      <line x1="18" y1="110" x2="{card14_w - 18}" y2="110" stroke="#334155" stroke-width="1.2"/>')
+    svg.append('      <text x="18" y="132" class="table-txt">JP15 (GND_2 Isolation):</text>')
+    svg.append('      <text x="28" y="152" class="table-txt">• Default: GND_2 bridged to system GND</text>')
+    svg.append('      <text x="28" y="170" class="table-txt">• Slice trace to isolate secondary power ground</text>')
+    svg.append('    </g>')
     svg.append('  </g>')
 
     # --- FOOTER LEGEND ---
-    legend_y = CANVAS_H - 120
+    legend_y = CANVAS_H - 125
     svg.append('  <!-- Legend Panel -->')
-    svg.append(f'  <rect x="50" y="{legend_y}" width="{CANVAS_W - 100}" height="96" rx="10" fill="#09101d" stroke="#1e293b" stroke-width="1"/>')
-    svg.append(f'  <text x="70" y="{legend_y + 20}" class="legend-title">Jumper Function &amp; Addressing Legend (Bottom View)</text>')
+    svg.append(f'  <rect x="50" y="{legend_y}" width="{CANVAS_W - 100}" height="100" rx="10" fill="#09101d" stroke="#1e293b" stroke-width="1.2"/>')
+    svg.append(f'  <text x="70" y="{legend_y + 22}" class="legend-title">Jumper Function &amp; Addressing Legend (Bottom View)</text>')
 
     BOT_LEGEND = [
         ("I2C Address Selection Jumpers (JP1, JP16)", "jumper"),
@@ -399,14 +412,14 @@ def generate_satellite_bottom_svg(board_image_path: str, output_svg_path: str, c
     ]
 
     leg_x = 70
-    leg_item_y = legend_y + 46
+    leg_item_y = legend_y + 52
     for name, tag_type in BOT_LEGEND:
         b_svg, w = render_badge(leg_x, leg_item_y, name, tag_type, is_right_aligned=False)
         if leg_x + w > CANVAS_W - 70:
             leg_x = 70
-            leg_item_y += 30
+            leg_item_y += 34
             b_svg, w = render_badge(leg_x, leg_item_y, name, tag_type, is_right_aligned=False)
-        svg.append(f'  {b_svg}')
+        svg.append(f'  <g class="legend-badge" data-tag="{tag_type}" style="cursor: pointer;">{b_svg}</g>')
         leg_x += (w + 14)
 
     svg.append('</svg>')

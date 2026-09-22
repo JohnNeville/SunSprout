@@ -10,13 +10,10 @@ board itself wires up — buttons, I2C buses, alerts) and pins left free for you
 
 ## Pinout diagram
 
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import InteractivePinout from '@site/src/components/InteractivePinout';
 
-<img
-  src={useBaseUrl('/img/pinout-top.svg')}
-  alt="SunSproutHub Pinout and Signal Diagram"
-  style={{borderRadius: '8px', maxWidth: '100%', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'}}
-/>
+<InteractivePinout board="hub" src="/img/pinout-top.svg" />
+
 
 Auto-generated vector pinout diagram (`tools/generate-docs-assets.sh`) showing all board peripherals, expansion headers (`J7`, `J8`), Stemma QT ports, buttons, and boot strapping pins with color-coded signal tags. An unstyled silkscreen line drawing draft is also preserved at `/img/pinout-top-draft.svg`.
 

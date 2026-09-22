@@ -15,13 +15,14 @@ The **SunSprout Satellite** acts as a remote sensor endpoint terminating a diffe
 
 The top side exposes the primary **RJ45 differential bus interface (`J1`)**, **five JST PH 2.0mm sensor ports (`J2`–`J6`)**, and the **auxiliary power header (`J7`)**.
 
-<div style={{textAlign: 'center', margin: '1.5rem 0'}}>
-  <img
-    src={useBaseUrl('/img/satellite-pinout-top.svg')}
-    alt="SunSprout Satellite Top Pinout Diagram"
-    style={{borderRadius: '8px', maxWidth: '100%', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)'}}
-  />
-</div>
+import InteractivePinout from '@site/src/components/InteractivePinout';
+
+<InteractivePinout
+  board="satellite"
+  topSrc="/img/satellite-pinout-top.svg"
+  bottomSrc="/img/satellite-pinout-bottom.svg"
+/>
+
 
 ### Connector Pinout Tables
 
@@ -75,13 +76,11 @@ Standard 2.54mm (0.1") pitch 4-pin header for secondary power injection or downs
 
 The bottom side hosts the solder jumpers for configuring I2C addresses, terminating pull-ups, and managing power/ground routing.
 
-<div style={{textAlign: 'center', margin: '1.5rem 0'}}>
-  <img
-    src={useBaseUrl('/img/satellite-pinout-bottom.svg')}
-    alt="SunSprout Satellite Bottom Jumper Configuration Diagram"
-    style={{borderRadius: '8px', maxWidth: '100%', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)'}}
-  />
-</div>
+<InteractivePinout
+  board="satellite"
+  src="/img/satellite-pinout-bottom.svg"
+/>
+
 
 ### Jumper Configuration Matrix
 

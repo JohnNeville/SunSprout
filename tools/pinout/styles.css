@@ -4,6 +4,7 @@
 svg {
   background-color: #0b1320;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  user-select: none;
 }
 
 /* Background panel / card */
@@ -17,20 +18,20 @@ svg {
 /* Title & Header */
 .title {
   fill: #f8fafc;
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
   letter-spacing: -0.5px;
 }
 
 .subtitle {
   fill: #94a3b8;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
 }
 
 .header-tag {
   fill: #38bdf8;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: 0.5px;
@@ -46,49 +47,104 @@ svg {
   stroke: #ffffff;
   stroke-width: 1.5;
   fill: #38bdf8;
+  transition: r 0.2s ease, stroke-width 0.2s ease;
 }
 
 .pin-dot-pwr { fill: #ef4444; }
 .pin-dot-gnd { fill: #64748b; }
 .pin-dot-gpio { fill: #10b981; }
-.pin-dot-i2c { fill: #0284c7; }
+.pin-dot-lp-gpio { fill: #0d9488; }
+.pin-dot-i2c-user { fill: #0284c7; }
+.pin-dot-i2c-int { fill: #6366f1; }
 .pin-dot-uart { fill: #f97316; }
 .pin-dot-strap { fill: #f59e0b; }
+.pin-dot-diff { fill: #a855f7; }
+.pin-dot-btn { fill: #f43f5e; }
+.pin-dot-alert { fill: #8b5cf6; }
+.pin-dot-usb { fill: #10b981; }
 
 /* Leader lines */
 .leader-line {
-  stroke: #475569;
-  stroke-width: 1.5;
+  stroke: #64748b;
+  stroke-width: 1.75;
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
-  opacity: 0.75;
+  opacity: 0.8;
+  transition: stroke 0.2s ease, stroke-width 0.2s ease, opacity 0.2s ease;
+}
+
+/* Callout Group Interactivity */
+.callout-group {
+  cursor: pointer;
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+.callout-group:hover .badge-bg {
+  stroke-width: 2.2;
+}
+
+.callout-group:hover .leader-line {
+  stroke: #38bdf8;
+  stroke-width: 2.5;
+  opacity: 1;
+}
+
+.callout-group:hover .pin-dot {
+  r: 5;
+  stroke-width: 2;
+}
+
+.callout-group.is-dimmed {
+  opacity: 0.15 !important;
+  filter: grayscale(80%);
+}
+
+.callout-group.is-highlighted {
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.75));
+}
+
+.callout-group.is-highlighted .badge-bg {
+  stroke-width: 2.2;
+}
+
+.callout-group.is-highlighted .leader-line {
+  stroke: #38bdf8;
+  stroke-width: 2.5;
+  opacity: 1;
+}
+
+.callout-group.is-highlighted .pin-dot {
+  r: 5;
+  stroke-width: 2;
 }
 
 /* Label Badges */
 .badge-bg {
-  rx: 5;
-  stroke-width: 1;
+  rx: 6;
+  stroke-width: 1.25;
+  transition: stroke-width 0.2s ease, fill 0.2s ease;
 }
 
 .badge-text {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 13.5px;
   font-weight: 600;
   dominant-baseline: central;
 }
 
 .pin-num-bg {
   fill: #1e293b;
-  stroke: #334155;
-  stroke-width: 1;
-  rx: 4;
+  stroke: #475569;
+  stroke-width: 1.25;
+  rx: 5;
 }
 
 .pin-num-text {
-  fill: #94a3b8;
+  fill: #e2e8f0;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 12.5px;
   font-weight: 700;
   text-anchor: middle;
   dominant-baseline: central;
@@ -96,57 +152,61 @@ svg {
 
 /* Category Colors */
 /* Power */
-.tag-pwr .badge-bg { fill: #450a0a; stroke: #dc2626; }
-.tag-pwr .badge-text { fill: #fecaca; }
+.tag-pwr .badge-bg { fill: #450a0a; stroke: #ef4444; }
+.tag-pwr .badge-text { fill: #fee2e2; }
 
 /* Ground */
-.tag-gnd .badge-bg { fill: #1e293b; stroke: #475569; }
-.tag-gnd .badge-text { fill: #cbd5e1; }
+.tag-gnd .badge-bg { fill: #1e293b; stroke: #64748b; }
+.tag-gnd .badge-text { fill: #f1f5f9; }
 
 /* Free GPIO */
-.tag-gpio .badge-bg { fill: #022c22; stroke: #059669; }
-.tag-gpio .badge-text { fill: #a7f3d0; }
+.tag-gpio .badge-bg { fill: #022c22; stroke: #10b981; }
+.tag-gpio .badge-text { fill: #d1fae5; }
 
 /* LP GPIO / Wake */
-.tag-lp-gpio .badge-bg { fill: #042f2e; stroke: #0d9488; }
-.tag-lp-gpio .badge-text { fill: #99f6e4; }
+.tag-lp-gpio .badge-bg { fill: #042f2e; stroke: #14b8a6; }
+.tag-lp-gpio .badge-text { fill: #ccfbf1; }
 
 /* I2C User */
-.tag-i2c-user .badge-bg { fill: #082f49; stroke: #0284c7; }
-.tag-i2c-user .badge-text { fill: #bae6fd; }
+.tag-i2c-user .badge-bg { fill: #082f49; stroke: #0ea5e9; }
+.tag-i2c-user .badge-text { fill: #e0f2fe; }
 
 /* I2C Internal */
-.tag-i2c-int .badge-bg { fill: #1e1b4b; stroke: #4f46e5; }
-.tag-i2c-int .badge-text { fill: #c7d2fe; }
+.tag-i2c-int .badge-bg { fill: #1e1b4b; stroke: #6366f1; }
+.tag-i2c-int .badge-text { fill: #e0e7ff; }
 
 /* UART */
-.tag-uart .badge-bg { fill: #431407; stroke: #ea580c; }
-.tag-uart .badge-text { fill: #fed7aa; }
+.tag-uart .badge-bg { fill: #431407; stroke: #f97316; }
+.tag-uart .badge-text { fill: #ffedd5; }
 
 /* Strapping Pins */
-.tag-strap .badge-bg { fill: #451a03; stroke: #d97706; }
-.tag-strap .badge-text { fill: #fef08a; }
+.tag-strap .badge-bg { fill: #451a03; stroke: #f59e0b; }
+.tag-strap .badge-text { fill: #fef3c7; }
 
 /* Alerts / Interrupts */
-.tag-alert .badge-bg { fill: #2e1065; stroke: #7c3aed; }
-.tag-alert .badge-text { fill: #ddd6fe; }
+.tag-alert .badge-bg { fill: #2e1065; stroke: #8b5cf6; }
+.tag-alert .badge-text { fill: #ede9fe; }
 
 /* Buttons */
-.tag-btn .badge-bg { fill: #4c0519; stroke: #e11d48; }
-.tag-btn .badge-text { fill: #fecdd3; }
+.tag-btn .badge-bg { fill: #4c0519; stroke: #f43f5e; }
+.tag-btn .badge-text { fill: #ffe4e6; }
 
 /* Differential I2C */
-.tag-diff .badge-bg { fill: #3b0764; stroke: #9333ea; }
-.tag-diff .badge-text { fill: #f5d0fe; }
+.tag-diff .badge-bg { fill: #3b0764; stroke: #a855f7; }
+.tag-diff .badge-text { fill: #f3e8ff; }
 
 /* USB */
 .tag-usb .badge-bg { fill: #064e3b; stroke: #10b981; }
-.tag-usb .badge-text { fill: #a7f3d0; }
+.tag-usb .badge-text { fill: #d1fae5; }
+
+/* Jumper */
+.tag-jmp .badge-bg { fill: #3b2505; stroke: #d97706; }
+.tag-jmp .badge-text { fill: #fef3c7; }
 
 /* Legend */
 .legend-title {
   fill: #cbd5e1;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -154,5 +214,5 @@ svg {
 
 .legend-desc {
   fill: #94a3b8;
-  font-size: 11px;
+  font-size: 13px;
 }

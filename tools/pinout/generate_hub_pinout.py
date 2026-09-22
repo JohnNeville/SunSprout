@@ -4,7 +4,7 @@ SunSproutHub Graphical Pinout Diagram Generator
 
 Generates a modern, publication-grade vector SVG pinout diagram (Adafruit / SparkFun style)
 for SunSproutHub. Embeds the high-resolution board render with color-coded callouts,
-pin numbers, functional badges, and strapping caveats.
+pin numbers, functional badges, strapping caveats, and interactive data attributes.
 
 Usage:
     python tools/pinout/generate_hub_pinout.py \
@@ -47,45 +47,6 @@ J8_PINS = [
     {"pin": 9, "board_y": 34.14, "tags": [("GPIO5", "gpio"), ("Free IO", "gpio")]},
 ]
 
-OTHER_CALLOUTS = [
-    {
-        "name": "SW1: Reset Button",
-        "pin_x": 42.40, "pin_y": 4.03,
-        "side": "top-right",
-        "tags": [("SW1", "btn"), ("RESET / EN", "btn"), ("CHIP_PU", "pwr")]
-    },
-    {
-        "name": "SW2: Boot Button",
-        "pin_x": 42.40, "pin_y": 10.65,
-        "side": "top-right",
-        "tags": [("SW2", "btn"), ("GPIO28", "strap"), ("Download Boot Strap", "strap")]
-    },
-    {
-        "name": "J6: STEMMA QT (Internal I2C)",
-        "pin_x": 39.73, "pin_y": 28.25,
-        "side": "right-inner",
-        "tags": [("J6", "i2c-int"), ("LP_I2C (GPIO2/3)", "i2c-int"), ("Charger & Fuel Gauge", "i2c-int")]
-    },
-    {
-        "name": "J203: STEMMA QT (User I2C)",
-        "pin_x": 39.73, "pin_y": 36.53,
-        "side": "right-inner",
-        "tags": [("J203", "i2c-user"), ("HP_I2C (GPIO9/10)", "i2c-user"), ("User Qwiic Bus", "i2c-user")]
-    },
-    {
-        "name": "CN5: USB Type-C",
-        "pin_x": 3.99, "pin_y": 65.50,
-        "side": "bottom-left",
-        "tags": [("CN5", "usb"), ("Native USB-C", "usb"), ("D+/D- + BC1.2", "usb")]
-    },
-    {
-        "name": "J201/J202: Differential I2C",
-        "pin_x": 28.00, "pin_y": 80.00,
-        "side": "bottom",
-        "tags": [("J201 / J202", "diff"), ("PCA9615 QwiicBus", "diff"), ("Dual RJ45 Ports", "diff")]
-    },
-]
-
 LEGEND_ITEMS = [
     ("Power Rails (3V3_SYS / 3V3_USER)", "pwr"),
     ("Ground (GND)", "gnd"),
@@ -95,7 +56,9 @@ LEGEND_ITEMS = [
     ("Internal I2C (LP_I2C Bus)", "i2c-int"),
     ("Debug Console UART (U0TXD/RXD)", "uart"),
     ("Strapping Pins (Sampled at Reset)", "strap"),
-    ("Alerts / Interrupts", "alert"),
+    ("Buttons / Reset", "btn"),
+    ("Differential I2C", "diff"),
+    ("USB-C Native", "usb"),
 ]
 
 
@@ -104,21 +67,21 @@ LEGEND_ITEMS = [
 # ---------------------------------------------------------------------------
 
 def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: str = None):
-    """Renders the standalone vector SVG pinout diagram."""
+    """Renders the standalone vector SVG pinout diagram with rich typography and interactivity."""
     
     # Board physical dimensions
     BOARD_MM_W = 56.0
     BOARD_MM_H = 85.0
     
     # Canvas dimensions
-    CANVAS_W = 1420
-    CANVAS_H = 970
+    CANVAS_W = 1520
+    CANVAS_H = 1040
     
-    # Board placement on canvas (centered horizontally, middle-top)
-    BOARD_PIX_H = 640
-    BOARD_PIX_W = int(BOARD_PIX_H * (BOARD_MM_W / BOARD_MM_H))  # ~421px
+    # Board placement on canvas
+    BOARD_PIX_H = 650
+    BOARD_PIX_W = int(BOARD_PIX_H * (BOARD_MM_W / BOARD_MM_H))  # ~428px
     BOARD_X = (CANVAS_W - BOARD_PIX_W) // 2
-    BOARD_Y = 100
+    BOARD_Y = 105
     
     def mm_to_canvas(bx_mm, by_mm):
         cx = BOARD_X + (bx_mm / BOARD_MM_W) * BOARD_PIX_W
@@ -134,8 +97,6 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     # Image source (embed as base64 data URI if found)
     image_href = ""
     if os.path.exists(board_image_path):
-        encoded = ""
-        mime = "image/png"
         try:
             from PIL import Image
             import io
@@ -156,7 +117,6 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
                             if y > max_y: max_y = y
                 if has_solid and (min_x > 0 or min_y > 0 or max_x < w - 1 or max_y < h - 1):
                     im = im.crop((min_x, min_y, max_x + 1, max_y + 1))
-                    # Clear any low-alpha ambient shadows outside board corners
                     cpix = im.load()
                     for cy in range(im.size[1]):
                         for cx in range(im.size[0]):
@@ -173,11 +133,10 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
                 mime = "image/png" if ext == "png" else "image/jpeg"
                 image_href = f"data:{mime};base64,{encoded}"
     else:
-        # Relative fallback
         image_href = os.path.basename(board_image_path)
 
     svg_lines = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CANVAS_W} {CANVAS_H}" width="100%" height="100%" class="diagram">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CANVAS_W} {CANVAS_H}" width="100%" height="100%" class="diagram" id="hub-pinout-svg">',
         '  <defs>',
         f'    <style type="text/css"><![CDATA[\n{css_content}\n]]></style>',
         '    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">',
@@ -190,11 +149,11 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
         f'  <rect x="20" y="20" width="{CANVAS_W - 40}" height="{CANVAS_H - 40}" class="panel"/>',
         '',
         '  <!-- Header Title -->',
-        '  <g transform="translate(50, 65)">',
+        '  <g transform="translate(50, 68)">',
         '    <text class="title">SunSproutHub Pinout &amp; Signal Diagram</text>',
-        '    <text y="24" class="subtitle">ESP32-C5-WROOM-1U • Dual Independent I2C Buses • BQ25798 Charger • BQ34Z100 Fuel Gauge</text>',
-        '    <rect x="860" y="-18" width="130" height="26" rx="6" fill="#0f2b48" stroke="#0284c7" stroke-width="1"/>',
-        '    <text x="925" y="-1" class="header-tag" text-anchor="middle">PCB REV 1.0</text>',
+        '    <text y="26" class="subtitle">ESP32-C5-WROOM-1U • Dual Independent I2C Buses • BQ25798 Charger • BQ34Z100 Fuel Gauge</text>',
+        f'    <rect x="{CANVAS_W - 250}" y="-20" width="150" height="30" rx="6" fill="#0f2b48" stroke="#0284c7" stroke-width="1.2"/>',
+        f'    <text x="{CANVAS_W - 175}" y="-1" class="header-tag" text-anchor="middle">PCB REV 1.0</text>',
         '  </g>',
         '',
         '  <!-- Board Image Layer -->',
@@ -207,8 +166,8 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     # Helper function to render a badge tag
     def render_badge(x, y, text, tag_type, is_right_aligned=False, width=None):
         char_len = len(text)
-        w = width if width else (char_len * 7.5 + 16)
-        h = 24
+        w = width if width else (char_len * 8.6 + 22)
+        h = 28
         rx = x - w if is_right_aligned else x
         rect_svg = f'<rect x="{rx:.1f}" y="{y - h/2:.1f}" width="{w:.1f}" height="{h:.1f}" class="badge-bg"/>'
         text_x = rx + w / 2
@@ -217,7 +176,7 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
 
     # Helper function to render pin number pill
     def render_pin_pill(x, y, pnum, is_right_side=False):
-        w, h = 26, 22
+        w, h = 32, 28
         rx = x if is_right_side else (x - w)
         rect = f'<rect x="{rx:.1f}" y="{y - h/2:.1f}" width="{w:.1f}" height="{h:.1f}" class="pin-num-bg"/>'
         text_x = rx + w / 2
@@ -229,59 +188,60 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     # -----------------------------------------------------------------------
     svg_lines.append('  <!-- J7 Expansion Header (Left Side) -->')
     j7_start_y = 175
-    j7_spacing = 42
+    j7_spacing = 48
+    end_x = 460
     
-    # Header title label
-    svg_lines.append(f'  <text x="440" y="{j7_start_y - 25}" class="header-tag" text-anchor="end">J7 EXPANSION (2.54MM)</text>')
+    svg_lines.append(f'  <text x="{end_x}" y="{j7_start_y - 25}" class="header-tag" text-anchor="end">J7 EXPANSION (2.54MM)</text>')
 
     for i, p in enumerate(J7_PINS):
         label_y = j7_start_y + i * j7_spacing
         pin_cx, pin_cy = mm_to_canvas(3.10, p["board_y"])
+        elbow_x = BOARD_X - 35
         
-        # Leader line from pin pad to label
-        elbow_x = BOARD_X - 30
-        end_x = 445
-        svg_lines.append(f'  <path d="M {pin_cx:.1f} {pin_cy:.1f} L {elbow_x} {label_y} L {end_x} {label_y}" class="leader-line"/>')
-        svg_lines.append(f'  <circle cx="{pin_cx:.1f}" cy="{pin_cy:.1f}" r="3.5" class="pin-dot pin-dot-{p["tags"][0][1]}"/>')
+        tags_csv = ",".join(t[1] for t in p["tags"])
+        primary_name = p["tags"][0][0]
         
-        # Pin number pill
-        svg_lines.append(f'  {render_pin_pill(end_x, label_y, p["pin"], is_right_side=False)}')
+        svg_lines.append(f'  <g class="callout-group" data-pin="J7.{p["pin"]}" data-tags="{tags_csv}" data-name="{primary_name}">')
+        svg_lines.append(f'    <path d="M {pin_cx:.1f} {pin_cy:.1f} L {elbow_x} {label_y} L {end_x} {label_y}" class="leader-line"/>')
+        svg_lines.append(f'    <circle cx="{pin_cx:.1f}" cy="{pin_cy:.1f}" r="4.5" class="pin-dot pin-dot-{p["tags"][0][1]}"/>')
+        svg_lines.append(f'    {render_pin_pill(end_x, label_y, p["pin"], is_right_side=False)}')
         
-        # Tags flowing to the left
-        curr_x = end_x - 32
+        curr_x = end_x - 38
         for text, tag_type in p["tags"]:
             badge_svg, badge_w = render_badge(curr_x, label_y, text, tag_type, is_right_aligned=True)
-            svg_lines.append(f'  {badge_svg}')
+            svg_lines.append(f'    {badge_svg}')
             curr_x -= (badge_w + 6)
+        svg_lines.append('  </g>')
 
     # -----------------------------------------------------------------------
     # Right Header: J8 (9 pins)
     # -----------------------------------------------------------------------
     svg_lines.append('  <!-- J8 Expansion Header (Right Side) -->')
     j8_start_y = 175
-    j8_spacing = 42
+    j8_spacing = 48
+    start_x = BOARD_X + BOARD_PIX_W + 55
     
-    # Header title label
-    svg_lines.append(f'  <text x="{BOARD_X + BOARD_PIX_W + 35}" y="{j8_start_y - 25}" class="header-tag" text-anchor="start">J8 EXPANSION (2.54MM)</text>')
+    svg_lines.append(f'  <text x="{start_x}" y="{j8_start_y - 25}" class="header-tag" text-anchor="start">J8 EXPANSION (2.54MM)</text>')
 
     for i, p in enumerate(J8_PINS):
         label_y = j8_start_y + i * j8_spacing
         pin_cx, pin_cy = mm_to_canvas(53.00, p["board_y"])
+        elbow_x = BOARD_X + BOARD_PIX_W + 35
         
-        elbow_x = BOARD_X + BOARD_PIX_W + 30
-        start_x = BOARD_X + BOARD_PIX_W + 45
-        svg_lines.append(f'  <path d="M {pin_cx:.1f} {pin_cy:.1f} L {elbow_x} {label_y} L {start_x} {label_y}" class="leader-line"/>')
-        svg_lines.append(f'  <circle cx="{pin_cx:.1f}" cy="{pin_cy:.1f}" r="3.5" class="pin-dot pin-dot-{p["tags"][0][1]}"/>')
+        tags_csv = ",".join(t[1] for t in p["tags"])
+        primary_name = p["tags"][0][0]
         
-        # Pin number pill
-        svg_lines.append(f'  {render_pin_pill(start_x, label_y, p["pin"], is_right_side=True)}')
+        svg_lines.append(f'  <g class="callout-group" data-pin="J8.{p["pin"]}" data-tags="{tags_csv}" data-name="{primary_name}">')
+        svg_lines.append(f'    <path d="M {pin_cx:.1f} {pin_cy:.1f} L {elbow_x} {label_y} L {start_x} {label_y}" class="leader-line"/>')
+        svg_lines.append(f'    <circle cx="{pin_cx:.1f}" cy="{pin_cy:.1f}" r="4.5" class="pin-dot pin-dot-{p["tags"][0][1]}"/>')
+        svg_lines.append(f'    {render_pin_pill(start_x, label_y, p["pin"], is_right_side=True)}')
         
-        # Tags flowing to the right
-        curr_x = start_x + 32
+        curr_x = start_x + 38
         for text, tag_type in p["tags"]:
             badge_svg, badge_w = render_badge(curr_x, label_y, text, tag_type, is_right_aligned=False)
-            svg_lines.append(f'  {badge_svg}')
+            svg_lines.append(f'    {badge_svg}')
             curr_x += (badge_w + 6)
+        svg_lines.append('  </g>')
 
     # -----------------------------------------------------------------------
     # Top Callouts: SW1 & SW2 Buttons
@@ -289,27 +249,31 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     svg_lines.append('  <!-- Tactile Buttons (Top Area) -->')
     # SW1 (Reset)
     sw1_cx, sw1_cy = mm_to_canvas(42.40, 4.03)
-    sw1_label_y = 80
+    sw1_label_y = 82
     sw1_label_x = BOARD_X + BOARD_PIX_W + 120
-    svg_lines.append(f'  <path d="M {sw1_cx:.1f} {sw1_cy:.1f} L {sw1_cx} {sw1_label_y} L {sw1_label_x} {sw1_label_y}" class="leader-line"/>')
-    svg_lines.append(f'  <circle cx="{sw1_cx:.1f}" cy="{sw1_cy:.1f}" r="3.5" class="pin-dot pin-dot-pwr"/>')
+    svg_lines.append('  <g class="callout-group" data-pin="SW1" data-tags="btn,pwr" data-name="SW1: Reset">')
+    svg_lines.append(f'    <path d="M {sw1_cx:.1f} {sw1_cy:.1f} L {sw1_cx} {sw1_label_y} L {sw1_label_x} {sw1_label_y}" class="leader-line"/>')
+    svg_lines.append(f'    <circle cx="{sw1_cx:.1f}" cy="{sw1_cy:.1f}" r="4.5" class="pin-dot pin-dot-pwr"/>')
     curr_x = sw1_label_x + 6
     for text, tag_type in [("SW1", "btn"), ("RESET / EN", "btn"), ("CHIP_PU", "pwr")]:
         badge_svg, badge_w = render_badge(curr_x, sw1_label_y, text, tag_type, is_right_aligned=False)
-        svg_lines.append(f'  {badge_svg}')
+        svg_lines.append(f'    {badge_svg}')
         curr_x += (badge_w + 6)
+    svg_lines.append('  </g>')
 
     # SW2 (Bootloader GPIO28)
     sw2_cx, sw2_cy = mm_to_canvas(42.40, 10.65)
-    sw2_label_y = 115
+    sw2_label_y = 118
     sw2_label_x = BOARD_X + BOARD_PIX_W + 120
-    svg_lines.append(f'  <path d="M {sw2_cx:.1f} {sw2_cy:.1f} L {sw2_cx + 40} {sw2_label_y} L {sw2_label_x} {sw2_label_y}" class="leader-line"/>')
-    svg_lines.append(f'  <circle cx="{sw2_cx:.1f}" cy="{sw2_cy:.1f}" r="3.5" class="pin-dot pin-dot-strap"/>')
+    svg_lines.append('  <g class="callout-group" data-pin="SW2" data-tags="btn,strap" data-name="SW2: Bootloader">')
+    svg_lines.append(f'    <path d="M {sw2_cx:.1f} {sw2_cy:.1f} L {sw2_cx + 40} {sw2_label_y} L {sw2_label_x} {sw2_label_y}" class="leader-line"/>')
+    svg_lines.append(f'    <circle cx="{sw2_cx:.1f}" cy="{sw2_cy:.1f}" r="4.5" class="pin-dot pin-dot-strap"/>')
     curr_x = sw2_label_x + 6
     for text, tag_type in [("SW2", "btn"), ("GPIO28", "strap"), ("Download Boot Strap", "strap")]:
         badge_svg, badge_w = render_badge(curr_x, sw2_label_y, text, tag_type, is_right_aligned=False)
-        svg_lines.append(f'  {badge_svg}')
+        svg_lines.append(f'    {badge_svg}')
         curr_x += (badge_w + 6)
+    svg_lines.append('  </g>')
 
     # -----------------------------------------------------------------------
     # Center / Bottom Peripherals: Stemma QT & USB
@@ -317,72 +281,79 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     svg_lines.append('  <!-- Peripherals & Ports -->')
     # J6 (Stemma QT Int)
     j6_cx, j6_cy = mm_to_canvas(39.73, 28.25)
-    j6_label_y = 590
-    j6_label_x = BOARD_X + BOARD_PIX_W + 65
-    svg_lines.append(f'  <path d="M {j6_cx:.1f} {j6_cy:.1f} L {j6_cx + 25} {j6_label_y} L {j6_label_x} {j6_label_y}" class="leader-line"/>')
-    svg_lines.append(f'  <circle cx="{j6_cx:.1f}" cy="{j6_cy:.1f}" r="3.5" class="pin-dot pin-dot-i2c"/>')
+    j6_label_y = 635
+    j6_label_x = BOARD_X + BOARD_PIX_W + 75
+    svg_lines.append('  <g class="callout-group" data-pin="J6" data-tags="i2c-int" data-name="J6: STEMMA QT (Internal)">')
+    svg_lines.append(f'    <path d="M {j6_cx:.1f} {j6_cy:.1f} L {j6_cx + 25} {j6_label_y} L {j6_label_x} {j6_label_y}" class="leader-line"/>')
+    svg_lines.append(f'    <circle cx="{j6_cx:.1f}" cy="{j6_cy:.1f}" r="4.5" class="pin-dot pin-dot-i2c-int"/>')
     curr_x = j6_label_x + 6
     for text, tag_type in [("J6", "i2c-int"), ("STEMMA QT Internal", "i2c-int"), ("LP_I2C (GPIO2/3)", "i2c-int")]:
         badge_svg, badge_w = render_badge(curr_x, j6_label_y, text, tag_type, is_right_aligned=False)
-        svg_lines.append(f'  {badge_svg}')
+        svg_lines.append(f'    {badge_svg}')
         curr_x += (badge_w + 6)
+    svg_lines.append('  </g>')
 
     # J203 (Stemma QT User)
     j203_cx, j203_cy = mm_to_canvas(39.73, 36.53)
-    j203_label_y = 625
-    j203_label_x = BOARD_X + BOARD_PIX_W + 65
-    svg_lines.append(f'  <path d="M {j203_cx:.1f} {j203_cy:.1f} L {j203_cx + 35} {j203_label_y} L {j203_label_x} {j203_label_y}" class="leader-line"/>')
-    svg_lines.append(f'  <circle cx="{j203_cx:.1f}" cy="{j203_cy:.1f}" r="3.5" class="pin-dot pin-dot-i2c"/>')
+    j203_label_y = 675
+    j203_label_x = BOARD_X + BOARD_PIX_W + 75
+    svg_lines.append('  <g class="callout-group" data-pin="J203" data-tags="i2c-user" data-name="J203: STEMMA QT (User)">')
+    svg_lines.append(f'    <path d="M {j203_cx:.1f} {j203_cy:.1f} L {j203_cx + 35} {j203_label_y} L {j203_label_x} {j203_label_y}" class="leader-line"/>')
+    svg_lines.append(f'    <circle cx="{j203_cx:.1f}" cy="{j203_cy:.1f}" r="4.5" class="pin-dot pin-dot-i2c-user"/>')
     curr_x = j203_label_x + 6
     for text, tag_type in [("J203", "i2c-user"), ("STEMMA QT User", "i2c-user"), ("HP_I2C (GPIO9/10)", "i2c-user")]:
         badge_svg, badge_w = render_badge(curr_x, j203_label_y, text, tag_type, is_right_aligned=False)
-        svg_lines.append(f'  {badge_svg}')
+        svg_lines.append(f'    {badge_svg}')
         curr_x += (badge_w + 6)
+    svg_lines.append('  </g>')
 
     # CN5 (USB-C)
     cn5_cx, cn5_cy = mm_to_canvas(3.99, 65.50)
-    cn5_label_y = 590
-    cn5_label_x = BOARD_X - 50
-    svg_lines.append(f'  <path d="M {cn5_cx:.1f} {cn5_cy:.1f} L {cn5_cx - 20} {cn5_label_y} L {cn5_label_x} {cn5_label_y}" class="leader-line"/>')
-    svg_lines.append(f'  <circle cx="{cn5_cx:.1f}" cy="{cn5_cy:.1f}" r="3.5" class="pin-dot pin-dot-usb"/>')
+    cn5_label_y = 635
+    cn5_label_x = BOARD_X - 55
+    svg_lines.append('  <g class="callout-group" data-pin="CN5" data-tags="usb" data-name="CN5: USB-C">')
+    svg_lines.append(f'    <path d="M {cn5_cx:.1f} {cn5_cy:.1f} L {cn5_cx - 20} {cn5_label_y} L {cn5_label_x} {cn5_label_y}" class="leader-line"/>')
+    svg_lines.append(f'    <circle cx="{cn5_cx:.1f}" cy="{cn5_cy:.1f}" r="4.5" class="pin-dot pin-dot-usb"/>')
     curr_x = cn5_label_x - 6
     for text, tag_type in [("CN5", "usb"), ("USB-C Native (D+/D-)", "usb"), ("BC1.2 Tap", "usb")]:
         badge_svg, badge_w = render_badge(curr_x, cn5_label_y, text, tag_type, is_right_aligned=True)
-        svg_lines.append(f'  {badge_svg}')
+        svg_lines.append(f'    {badge_svg}')
         curr_x -= (badge_w + 6)
+    svg_lines.append('  </g>')
 
     # J201 / J202 (Differential I2C)
     diff_cx, diff_cy = mm_to_canvas(28.00, 80.00)
-    diff_label_y = 625
-    diff_label_x = BOARD_X - 50
-    svg_lines.append(f'  <path d="M {diff_cx:.1f} {diff_cy:.1f} L {diff_cx - 40} {diff_label_y} L {diff_label_x} {diff_label_y}" class="leader-line"/>')
-    svg_lines.append(f'  <circle cx="{diff_cx:.1f}" cy="{diff_cy:.1f}" r="3.5" class="pin-dot pin-dot-diff"/>')
+    diff_label_y = 675
+    diff_label_x = BOARD_X - 55
+    svg_lines.append('  <g class="callout-group" data-pin="J201/J202" data-tags="diff" data-name="J201/J202: Differential I2C">')
+    svg_lines.append(f'    <path d="M {diff_cx:.1f} {diff_cy:.1f} L {diff_cx - 40} {diff_label_y} L {diff_label_x} {diff_label_y}" class="leader-line"/>')
+    svg_lines.append(f'    <circle cx="{diff_cx:.1f}" cy="{diff_cy:.1f}" r="4.5" class="pin-dot pin-dot-diff"/>')
     curr_x = diff_label_x - 6
     for text, tag_type in [("J201 / J202", "diff"), ("Differential I2C (PCA9615)", "diff"), ("Dual 8P8C / RJ45", "diff")]:
         badge_svg, badge_w = render_badge(curr_x, diff_label_y, text, tag_type, is_right_aligned=True)
-        svg_lines.append(f'  {badge_svg}')
+        svg_lines.append(f'    {badge_svg}')
         curr_x -= (badge_w + 6)
+    svg_lines.append('  </g>')
 
     # -----------------------------------------------------------------------
     # Legend Bar (Footer)
     # -----------------------------------------------------------------------
-    legend_y = CANVAS_H - 120
-    legend_h = 96
+    legend_y = CANVAS_H - 125
+    legend_h = 100
     svg_lines.append('  <!-- Legend Panel -->')
-    svg_lines.append(f'  <rect x="50" y="{legend_y}" width="{CANVAS_W - 100}" height="{legend_h}" rx="10" fill="#09101d" stroke="#1e293b" stroke-width="1"/>')
-    svg_lines.append(f'  <text x="70" y="{legend_y + 20}" class="legend-title">Signal Classification Legend</text>')
+    svg_lines.append(f'  <rect x="50" y="{legend_y}" width="{CANVAS_W - 100}" height="{legend_h}" rx="10" fill="#09101d" stroke="#1e293b" stroke-width="1.2"/>')
+    svg_lines.append(f'  <text x="70" y="{legend_y + 22}" class="legend-title">Signal Classification Legend (Click to Filter)</text>')
 
     leg_x = 70
-    leg_item_y = legend_y + 46
-    line_h = 30
+    leg_item_y = legend_y + 52
+    line_h = 34
     for name, tag_type in LEGEND_ITEMS:
-        # Mini pill
         badge_svg, w = render_badge(leg_x, leg_item_y, name, tag_type, is_right_aligned=False)
         if leg_x + w > CANVAS_W - 70:
             leg_x = 70
             leg_item_y += line_h
             badge_svg, w = render_badge(leg_x, leg_item_y, name, tag_type, is_right_aligned=False)
-        svg_lines.append(f'  {badge_svg}')
+        svg_lines.append(f'  <g class="legend-badge" data-tag="{tag_type}" style="cursor: pointer;">{badge_svg}</g>')
         leg_x += (w + 14)
 
     svg_lines.append('</svg>')
