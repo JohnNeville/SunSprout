@@ -112,13 +112,13 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     
     # Canvas dimensions
     CANVAS_W = 1420
-    CANVAS_H = 920
+    CANVAS_H = 970
     
     # Board placement on canvas (centered horizontally, middle-top)
     BOARD_PIX_H = 640
     BOARD_PIX_W = int(BOARD_PIX_H * (BOARD_MM_W / BOARD_MM_H))  # ~421px
     BOARD_X = (CANVAS_W - BOARD_PIX_W) // 2
-    BOARD_Y = 110
+    BOARD_Y = 100
     
     def mm_to_canvas(bx_mm, by_mm):
         cx = BOARD_X + (bx_mm / BOARD_MM_W) * BOARD_PIX_W
@@ -134,11 +134,44 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     # Image source (embed as base64 data URI if found)
     image_href = ""
     if os.path.exists(board_image_path):
-        with open(board_image_path, "rb") as img_file:
-            encoded = base64.b64encode(img_file.read()).decode("ascii")
-            ext = Path(board_image_path).suffix.lower().lstrip(".")
-            mime = "image/png" if ext == "png" else "image/jpeg"
-            image_href = f"data:{mime};base64,{encoded}"
+        encoded = ""
+        mime = "image/png"
+        try:
+            from PIL import Image
+            import io
+            im = Image.open(board_image_path)
+            if im.mode in ('RGBA', 'LA'):
+                pix = im.load()
+                w, h = im.size
+                min_x, max_x = w, 0
+                min_y, max_y = h, 0
+                has_solid = False
+                for y in range(h):
+                    for x in range(w):
+                        if pix[x, y][3] > 128:
+                            has_solid = True
+                            if x < min_x: min_x = x
+                            if x > max_x: max_x = x
+                            if y < min_y: min_y = y
+                            if y > max_y: max_y = y
+                if has_solid and (min_x > 0 or min_y > 0 or max_x < w - 1 or max_y < h - 1):
+                    im = im.crop((min_x, min_y, max_x + 1, max_y + 1))
+                    # Clear any low-alpha ambient shadows outside board corners
+                    cpix = im.load()
+                    for cy in range(im.size[1]):
+                        for cx in range(im.size[0]):
+                            if cpix[cx, cy][3] < 128:
+                                cpix[cx, cy] = (0, 0, 0, 0)
+            buf = io.BytesIO()
+            im.save(buf, format="PNG")
+            encoded = base64.b64encode(buf.getvalue()).decode("ascii")
+            image_href = f"data:image/png;base64,{encoded}"
+        except Exception:
+            with open(board_image_path, "rb") as img_file:
+                encoded = base64.b64encode(img_file.read()).decode("ascii")
+                ext = Path(board_image_path).suffix.lower().lstrip(".")
+                mime = "image/png" if ext == "png" else "image/jpeg"
+                image_href = f"data:{mime};base64,{encoded}"
     else:
         # Relative fallback
         image_href = os.path.basename(board_image_path)
@@ -333,16 +366,22 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     # -----------------------------------------------------------------------
     # Legend Bar (Footer)
     # -----------------------------------------------------------------------
-    legend_y = CANVAS_H - 95
+    legend_y = CANVAS_H - 120
+    legend_h = 96
     svg_lines.append('  <!-- Legend Panel -->')
-    svg_lines.append(f'  <rect x="50" y="{legend_y}" width="{CANVAS_W - 100}" height="70" rx="10" fill="#09101d" stroke="#1e293b" stroke-width="1"/>')
-    svg_lines.append(f'  <text x="70" y="{legend_y + 24}" class="legend-title">Signal Classification Legend</text>')
+    svg_lines.append(f'  <rect x="50" y="{legend_y}" width="{CANVAS_W - 100}" height="{legend_h}" rx="10" fill="#09101d" stroke="#1e293b" stroke-width="1"/>')
+    svg_lines.append(f'  <text x="70" y="{legend_y + 20}" class="legend-title">Signal Classification Legend</text>')
 
     leg_x = 70
-    leg_item_y = legend_y + 48
+    leg_item_y = legend_y + 46
+    line_h = 30
     for name, tag_type in LEGEND_ITEMS:
         # Mini pill
         badge_svg, w = render_badge(leg_x, leg_item_y, name, tag_type, is_right_aligned=False)
+        if leg_x + w > CANVAS_W - 70:
+            leg_x = 70
+            leg_item_y += line_h
+            badge_svg, w = render_badge(leg_x, leg_item_y, name, tag_type, is_right_aligned=False)
         svg_lines.append(f'  {badge_svg}')
         leg_x += (w + 14)
 

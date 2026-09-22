@@ -14431,8 +14431,6 @@
 		(net "DSCL_P")
 		(uuid "d3edb01a-b14a-4477-8180-28318e8c321e")
 	)
-	
-	
 	(segment
 		(start 116.5 132.3)
 		(end 115.7 131.5)
@@ -14441,7 +14439,14 @@
 		(net "DSDA_P")
 		(uuid "12bac5c5-c4ac-405e-86cb-fbb7da5a41cb")
 	)
-	
+	(segment
+		(start 116.915532 123.457629)
+		(end 117.082747 123.290414)
+		(width 0.2)
+		(layer "F.Cu")
+		(net "DSDA_P")
+		(uuid "2a188b94-2403-4f2b-a1be-e9f772e029b2")
+	)
 	(segment
 		(start 117.575 124.1)
 		(end 117.575 125.425)
@@ -14594,7 +14599,6 @@
 		(net "DSDA_P")
 		(uuid "efd190c6-478a-48e0-90d3-2c42cdc37989")
 	)
-	
 	(segment
 		(start 116.85 126.15)
 		(end 116.9 126.1)
@@ -15001,7 +15005,6 @@
 		(net "DSDA_N")
 		(uuid "d0dfd90a-685a-4a31-bed5-48d284cd2cea")
 	)
-	
 	(segment
 		(start 119.075 124.078774)
 		(end 118.846226 123.85)
@@ -15050,7 +15053,6 @@
 		(net "DSDA_N")
 		(uuid "0a678efe-33a7-4c43-8f32-be924e5e7103")
 	)
-	
 	(segment
 		(start 111.37 139.07)
 		(end 111.37 141.304155)
@@ -19149,14 +19151,13 @@
 		(target_skew_max 0.1)
 		(target_skew_min -0.1)
 		(tuning_mode "diff_pair_skew")
-		(members "11f71f4d-d4b6-44e1-9442-25addb6042ec" "1970ef1c-b815-4840-be1c-133e0a2bcccd"
-			"2a188b94-2403-4f2b-a1be-e9f772e029b2" "3458b439-4453-4e35-8d8a-441bdb07d7a8"
-			"3a504cca-ee52-4216-b9fb-e3a0b773cca7" "41b4ea8b-ddb7-4ba1-9c5a-f8346dfdbd83"
-			"465132d7-afeb-4fcf-873e-40a89dec36af" "4b3450d4-9fbb-45eb-8c88-9b1149f8324f"
-			"4cc3da90-a39e-4ce2-93b5-f540b8dee30c" "509f6aa9-aa32-48a3-b6d9-468fa7df8e9a"
-			"67dcf59c-c4ef-4981-a11c-5d6f647ec001" "a85a3294-2c32-4157-a663-8c34100167b3"
-			"bd601f57-d063-4a8d-ad7a-6a82c5af17ce" "c5a0b174-3e25-4f8c-851c-7cef9aea529c"
-			"ea45892f-b73d-4ba2-910f-716ab5408013" "f987eabd-b672-471a-8ee7-06c486ed9b62"
+		(members "1970ef1c-b815-4840-be1c-133e0a2bcccd" "2a188b94-2403-4f2b-a1be-e9f772e029b2"
+			"3458b439-4453-4e35-8d8a-441bdb07d7a8" "3a504cca-ee52-4216-b9fb-e3a0b773cca7"
+			"41b4ea8b-ddb7-4ba1-9c5a-f8346dfdbd83" "465132d7-afeb-4fcf-873e-40a89dec36af"
+			"4b3450d4-9fbb-45eb-8c88-9b1149f8324f" "4cc3da90-a39e-4ce2-93b5-f540b8dee30c"
+			"509f6aa9-aa32-48a3-b6d9-468fa7df8e9a" "67dcf59c-c4ef-4981-a11c-5d6f647ec001"
+			"a85a3294-2c32-4157-a663-8c34100167b3" "bd601f57-d063-4a8d-ad7a-6a82c5af17ce"
+			"c5a0b174-3e25-4f8c-851c-7cef9aea529c" "ea45892f-b73d-4ba2-910f-716ab5408013"
 		)
 	)
 	(generated
@@ -32053,13 +32054,5 @@
 			)
 			(checksum "1830565158AF30F80F6AB9902F0D36DF")
 		)
-	)
-	(segment
-		(start 116.915532 123.457629)
-		(end 117.082747 123.290414)
-		(width 0.2)
-		(layer "F.Cu")
-		(net "DSDA_P")
-		(uuid "2a188b94-2403-4f2b-a1be-e9f772e029b2")
 	)
 )

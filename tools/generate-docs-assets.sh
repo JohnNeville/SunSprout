@@ -69,15 +69,20 @@ run_kicad_cli() {
 	docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" kicad-cli "$@"
 }
 
-echo "== Hub Board render (top) =="
+echo "== Hub Board render (top - orthographic for pinout & docs) =="
+run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
+	--side top --quality high --background transparent \
+	-w 1200 -h 1800 -o "$IMG_DIR/board-top.png"
+
+echo "== Hub Board render (isometric 3D hero) =="
 run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
 	--side top --quality high --floor --background opaque --rotate "-30,0,30" \
-	-w 1600 -h 1200 -o "$IMG_DIR/board-top.png"
+	-w 1600 -h 1200 -o "$IMG_DIR/board-isometric.png"
 
 echo "== Hub Board render (bottom) =="
 run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
-	--side bottom --quality high --floor --background opaque --rotate "-30,0,-30" \
-	-w 1600 -h 1200 -o "$IMG_DIR/board-bottom.png"
+	--side bottom --quality high --background transparent \
+	-w 1200 -h 1800 -o "$IMG_DIR/board-bottom.png"
 
 echo "== Hub Schematic PDF (all sheets) =="
 run_kicad_cli sch export pdf "$HUB_DIR/SunSproutHub.kicad_sch" \
@@ -111,15 +116,20 @@ echo "== Hub Interactive HTML BOM =="
 docker run --rm -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/$STATIC_DIR" -e HUB_DIR="$HUB_DIR" "$IMAGE" \
 	sh -c 'xvfb-run -a -s "-screen 0 1024x768x24" generate_interactive_bom --no-browser --dest-dir "$STATIC_DIR/ibom" --name-format "index" "$HUB_DIR/SunSproutHub.kicad_pcb"'
 
-echo "== Satellite Board render (top) =="
+echo "== Satellite Board render (top - orthographic for pinout & docs) =="
+run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
+	--side top --quality high --background transparent \
+	-w 1200 -h 1800 -o "$IMG_DIR/satellite-board-top.png"
+
+echo "== Satellite Board render (isometric 3D hero) =="
 run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
 	--side top --quality high --floor --background opaque --rotate "-30,0,30" \
-	-w 1600 -h 1200 -o "$IMG_DIR/satellite-board-top.png"
+	-w 1600 -h 1200 -o "$IMG_DIR/satellite-board-isometric.png"
 
 echo "== Satellite Board render (bottom) =="
 run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
-	--side bottom --quality high --floor --background opaque --rotate "-30,0,-30" \
-	-w 1600 -h 1200 -o "$IMG_DIR/satellite-board-bottom.png"
+	--side bottom --quality high --background transparent \
+	-w 1200 -h 1800 -o "$IMG_DIR/satellite-board-bottom.png"
 
 echo "== Satellite Schematic PDF =="
 run_kicad_cli sch export pdf "$SAT_DIR/SunSproutSatellite.kicad_sch" \
