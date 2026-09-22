@@ -63,7 +63,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: 'img/board-top.png',
+    image: 'img/hub-and-satellite.png',
     colorMode: {
       respectPrefersColorScheme: true,
     },

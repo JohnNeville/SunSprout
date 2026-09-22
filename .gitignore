@@ -68,9 +68,11 @@ hardware/hub/spice_models/smoke*
 # KiCad writes .bak alongside library files on save
 *.bak
 
-# The STEP model is ~19MB and regenerates from the board; it is published as a release
-# asset instead of being committed, so its blobs never accumulate in history.
+# The STEP model is ~19MB and schematic PDFs are ~500KB; both are published as release
+# assets instead of being committed, so their blobs never accumulate in history.
 website/static/*.step
+website/static/*.pdf
+
 
 # Editor local-history snapshots
 .history_trim/

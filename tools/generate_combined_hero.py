@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
-Generates the composite hero image showing both SunSprout Hub and SunSprout Satellite
-side-by-side at their true relative physical scales.
+Generates the hero images showing SunSprout Hub and SunSprout Satellite:
+- Individual standalone hero images (hero-hub.png, hero-satellite.png)
+- Composite hero image (hub-and-satellite.png)
+at their true relative physical scales.
 
 Physical Dimensions:
   - SunSprout Hub: 56.00 mm x 85.00 mm
@@ -21,7 +23,7 @@ def crop_to_content(img: Image.Image) -> Image.Image:
     return img
 
 
-def make_shadow(img: Image.Image, offset_y: int = 16, blur: int = 22, opacity: float = 0.5):
+def make_shadow(img: Image.Image, offset_y: int = 16, blur: int = 20, opacity: float = 0.45):
     """Creates a soft Gaussian drop shadow for transparent PNG images."""
     alpha = img.split()[-1]
     sh = Image.new("RGBA", img.size, (0, 0, 0, 0))
@@ -38,11 +40,22 @@ def make_shadow(img: Image.Image, offset_y: int = 16, blur: int = 22, opacity: f
     return blurred, blur * 2, blur * 2 - offset_y
 
 
+def make_single_hero(img: Image.Image, offset_y: int = 16, blur: int = 20, opacity: float = 0.45, pad: int = 40) -> Image.Image:
+    w, h = img.size
+    shadow, sx, sy = make_shadow(img, offset_y=offset_y, blur=blur, opacity=opacity)
+    cw = w + pad * 2
+    ch = h + pad * 2
+    canvas = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
+    canvas.paste(shadow, (pad - sx, pad - sy), shadow)
+    canvas.paste(img, (pad, pad), img)
+    return canvas
+
+
 def main():
-    parser = argparse.ArgumentParser(description="Create combined Hub + Satellite hero image")
+    parser = argparse.ArgumentParser(description="Create Hub and Satellite hero images")
     parser.add_argument("--hub", default="website/static/img/board-top.png", help="Path to Hub top render")
     parser.add_argument("--satellite", default="website/static/img/satellite-board-top.png", help="Path to Satellite top render")
-    parser.add_argument("--output", default="website/static/img/hub-and-satellite.png", help="Output PNG path")
+    parser.add_argument("--output", default="website/static/img/hub-and-satellite.png", help="Output PNG path for combined image")
     args = parser.parse_args()
 
     hub_raw = Image.open(args.hub).convert("RGBA")
@@ -61,6 +74,21 @@ def main():
     sat_w = int(sat_h * (27.25 / 51.10))
     sat_resized = sat_cropped.resize((sat_w, sat_h), Image.Resampling.LANCZOS)
 
+    out_path = Path(args.output)
+    out_dir = out_path.parent
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    # 1. Save individual standalone hero boards
+    hub_hero = make_single_hero(hub_resized, offset_y=16, blur=20, opacity=0.45, pad=40)
+    sat_hero = make_single_hero(sat_resized, offset_y=16, blur=20, opacity=0.45, pad=40)
+    hub_hero_path = out_dir / "hero-hub.png"
+    sat_hero_path = out_dir / "hero-satellite.png"
+    hub_hero.save(hub_hero_path)
+    sat_hero.save(sat_hero_path)
+    print(f"Generated {hub_hero_path} ({hub_hero.size[0]}x{hub_hero.size[1]})")
+    print(f"Generated {sat_hero_path} ({sat_hero.size[0]}x{sat_hero.size[1]})")
+
+    # 2. Save composite combined hero image
     gap = 100
     pad_x = 80
     pad_top = 80
@@ -73,9 +101,7 @@ def main():
 
     hub_x = pad_x
     hub_y = pad_top
-
     sat_x = hub_x + hub_w + gap
-    # Bottom-align Satellite to Hub baseline (RJ45 connectors align at bottom)
     sat_y = pad_top + hub_h - sat_h
 
     hub_shadow, hs_ox, hs_oy = make_shadow(hub_resized, offset_y=18, blur=20, opacity=0.5)
@@ -87,8 +113,6 @@ def main():
     canvas.paste(hub_resized, (hub_x, hub_y), hub_resized)
     canvas.paste(sat_resized, (sat_x, sat_y), sat_resized)
 
-    out_path = Path(args.output)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
     canvas.save(out_path)
     print(f"Generated {out_path} ({canvas.size[0]}x{canvas.size[1]})")
 

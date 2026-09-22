@@ -84,9 +84,6 @@ run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
 	--side bottom --quality high --background transparent \
 	-w 1200 -h 1800 -o "$IMG_DIR/board-bottom.png"
 
-echo "== Hub Schematic PDF (all sheets) =="
-run_kicad_cli sch export pdf "$HUB_DIR/SunSproutHub.kicad_sch" \
-	-o "$STATIC_DIR/SunSproutHub-schematic.pdf"
 
 echo "== Hub PCB STEP model =="
 run_kicad_cli pcb export step "$HUB_DIR/SunSproutHub.kicad_pcb" \
@@ -131,9 +128,6 @@ run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
 	--side bottom --quality high --background transparent \
 	-w 1200 -h 1800 -o "$IMG_DIR/satellite-board-bottom.png"
 
-echo "== Satellite Schematic PDF =="
-run_kicad_cli sch export pdf "$SAT_DIR/SunSproutSatellite.kicad_sch" \
-	-o "$STATIC_DIR/SunSproutSatellite-schematic.pdf"
 
 echo "== Satellite PCB STEP model =="
 run_kicad_cli pcb export step "$SAT_DIR/SunSproutSatellite.kicad_pcb" \

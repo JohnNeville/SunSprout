@@ -41,29 +41,18 @@ in each position is the cheaper answer. Nothing electrical depends on it.
 
 ## Downloads
 
-Published with the site:
+Interactive viewers hosted with the documentation site:
 
-- **[Hub Schematic (PDF)](pathname:///SunSproutHub-schematic.pdf)** — all sheets, regenerated
-  directly from the `.kicad_sch` source.
-- **[Hub Interactive BOM](pathname:///ibom/)** — hover any reference designator to
-  highlight it on the board.
-- **[Satellite Schematic (PDF)](pathname:///SunSproutSatellite-schematic.pdf)** — multi-sheet
-  schematic for the Satellite board.
-- **[Satellite Interactive BOM](pathname:///ibom-satellite/)** — interactive pinout and BOM
-  viewer for the Satellite board.
+- **[Hub Interactive BOM](pathname:///ibom/)** — inspect component placements, values, and LCSC part numbers directly on the Hub board layout.
+- **[Satellite Interactive BOM](pathname:///ibom-satellite/)** — inspect component placements and solder jumper configurations on the Satellite board layout.
 
-Published per release, on the [Releases
-page](https://github.com/JohnNeville/SunSprout/releases):
+Published per release on the [Releases page](https://github.com/JohnNeville/SunSprout/releases):
 
-- **3D model (STEP)** — board mechanical model, including the MCU module. Every part carries a
-  3D model, embedded in the board file itself, so the export is complete.
-- **Gerbers, BOM, and pick-and-place** — the JLCPCB-format fabrication set.
+- **Schematic PDFs** — full multi-sheet vector schematics for both boards (`SunSproutHub-schematic_*.pdf`, `SunSproutSatellite-schematic_*.pdf`), regenerated directly from the KiCad source files.
+- **3D models (STEP)** — board mechanical models (`SunSproutHub_*.step`, `SunSproutSatellite_*.step`), including the MCU module and embedded connector geometry.
+- **Gerbers, BOM, and pick-and-place** — ready-to-order JLCPCB fabrication archives.
 
-The STEP model is about 19 MB and changes with every layout edit, so it ships as a release
-asset rather than living in the repository, where each regeneration would add another copy to
-the history permanently.
+Large build outputs (schematic PDFs, 19 MB STEP mechanical models, and fabrication zips) are attached directly to each release on GitHub rather than committed to the repository history or static web bundle.
 
-Everything above is a build artifact of the KiCad source. Regenerate the site assets with
-`tools/generate-docs-assets.sh`; Docker is the only prerequisite there, and no local KiCad
-install is needed. The fabrication set is built by the Release artifacts workflow, which can
-be run from the Actions tab against any commit without tagging one.
+Everything above is a build artifact of the KiCad source. Regenerate the local documentation assets with `tools/generate-docs-assets.sh`; Docker is the only prerequisite there, and no local KiCad install is needed. The fabrication set, STEP models, and schematic PDFs are built automatically by the Release artifacts workflow.
+
