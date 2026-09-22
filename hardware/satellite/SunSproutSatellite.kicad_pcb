@@ -14431,22 +14431,8 @@
 		(net "DSCL_P")
 		(uuid "d3edb01a-b14a-4477-8180-28318e8c321e")
 	)
-	(segment
-		(start 118.55 130.525)
-		(end 118.55 130.575)
-		(width 0.2)
-		(layer "F.Cu")
-		(net "DSDA_P")
-		(uuid "0882ed02-8e5e-402a-a6e0-4cfe130ca80b")
-	)
-	(segment
-		(start 116.986581 123.386579)
-		(end 116.986582 123.386582)
-		(width 0.2)
-		(layer "F.Cu")
-		(net "DSDA_P")
-		(uuid "11f71f4d-d4b6-44e1-9442-25addb6042ec")
-	)
+	
+	
 	(segment
 		(start 116.5 132.3)
 		(end 115.7 131.5)
@@ -14455,14 +14441,7 @@
 		(net "DSDA_P")
 		(uuid "12bac5c5-c4ac-405e-86cb-fbb7da5a41cb")
 	)
-	(segment
-		(start 116.986582 123.386582)
-		(end 117.082747 123.290414)
-		(width 0.2)
-		(layer "F.Cu")
-		(net "DSDA_P")
-		(uuid "2a188b94-2403-4f2b-a1be-e9f772e029b2")
-	)
+	
 	(segment
 		(start 117.575 124.1)
 		(end 117.575 125.425)
@@ -14615,14 +14594,7 @@
 		(net "DSDA_P")
 		(uuid "efd190c6-478a-48e0-90d3-2c42cdc37989")
 	)
-	(segment
-		(start 116.915532 123.457629)
-		(end 116.986581 123.386579)
-		(width 0.2)
-		(layer "F.Cu")
-		(net "DSDA_P")
-		(uuid "f987eabd-b672-471a-8ee7-06c486ed9b62")
-	)
+	
 	(segment
 		(start 116.85 126.15)
 		(end 116.9 126.1)
@@ -15029,14 +15001,7 @@
 		(net "DSDA_N")
 		(uuid "d0dfd90a-685a-4a31-bed5-48d284cd2cea")
 	)
-	(segment
-		(start 117.25 130.6)
-		(end 117.25 130.65)
-		(width 0.2)
-		(layer "F.Cu")
-		(net "DSDA_N")
-		(uuid "d9b3fc29-8eae-47e2-9212-2f3fa8740cdf")
-	)
+	
 	(segment
 		(start 119.075 124.078774)
 		(end 118.846226 123.85)
@@ -15085,14 +15050,7 @@
 		(net "DSDA_N")
 		(uuid "0a678efe-33a7-4c43-8f32-be924e5e7103")
 	)
-	(segment
-		(start 117.25 130.6)
-		(end 117.3 130.6)
-		(width 0.2)
-		(layer "B.Cu")
-		(net "DSDA_N")
-		(uuid "3cfa4626-1a22-47a2-b213-ca65821a15d6")
-	)
+	
 	(segment
 		(start 111.37 139.07)
 		(end 111.37 141.304155)
@@ -32095,5 +32053,13 @@
 			)
 			(checksum "1830565158AF30F80F6AB9902F0D36DF")
 		)
+	)
+	(segment
+		(start 116.915532 123.457629)
+		(end 117.082747 123.290414)
+		(width 0.2)
+		(layer "F.Cu")
+		(net "DSDA_P")
+		(uuid "2a188b94-2403-4f2b-a1be-e9f772e029b2")
 	)
 )
