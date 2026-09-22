@@ -22,6 +22,8 @@ esphome:
   project:
     name: JohnNeville.SunSproutHub
     version: DIY
+  includes:
+    - driver/gpio.h
   on_boot:
     # Before the deep_sleep component starts its timer, so a held-awake board
     # stays awake through the whole boot.
@@ -43,6 +45,27 @@ esphome:
         - logger.log:
             format: "User 3V3 rail enabled."
             tag: setup
+
+  on_shutdown:
+    - priority: 700
+      then:
+        # Cut power to the user 3V3 rail before entering sleep.
+        - switch.turn_off: user_rail
+        # Float GPIO9 (SDA_USER) and GPIO10 (SCL_USER) to High-Z (no pull-up/pull-down)
+        # to prevent 1.40 mA continuous leakage through 4.7k pull-ups (R201/R202) into
+        # the unpowered 3V3_USER rail (held at 0V by TPS22918 quick output discharge).
+        # Note: BQ25798 /INT and BQ34Z100 /ALERT interrupts are cleared automatically
+        # by their respective driver on_shutdown hooks to eliminate 660 uA leakage on R24/R401.
+        - lambda: |-
+            gpio_set_direction(GPIO_NUM_9, GPIO_MODE_INPUT);
+            gpio_set_pull_mode(GPIO_NUM_9, GPIO_FLOATING);
+            gpio_set_direction(GPIO_NUM_10, GPIO_MODE_INPUT);
+            gpio_set_pull_mode(GPIO_NUM_10, GPIO_FLOATING);
+            gpio_hold_dis(GPIO_NUM_9);
+            gpio_hold_dis(GPIO_NUM_10);
+        - logger.log:
+            format: "User 3V3 rail disabled and user I2C bus pins floated for deep sleep."
+            tag: sleep
 
 logger:
   level: INFO

@@ -235,6 +235,9 @@ bq25798:
   reset_registers:
     name: "Reset Charger Registers"
     disabled_by_default: true
+  clear_interrupts:
+    name: "Clear Charger Interrupts"
+    disabled_by_default: true
 
 # --- Fuel gauge ------------------------------------------------------------
 sensor:
@@ -317,6 +320,9 @@ sensor:
       disabled_by_default: true
     enable_impedance_track:
       name: "Enable Impedance Track"
+      disabled_by_default: true
+    clear_alert:
+      name: "Clear Fuel Gauge Alert"
       disabled_by_default: true
 
 # --- Alert inputs ----------------------------------------------------------

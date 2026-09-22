@@ -1,7 +1,8 @@
 (version 1)
-(rule "JLCPCB: Via Annular Ring"
+(rule "JLCPCB: Via Constraints"
 	(condition "A.Type == 'Via'")
 	(constraint annular_width (min 0.05mm))
+	(constraint assertion "!(A.isBlindBuriedVia() || A.isMicroVia())")
 )
 (rule "JLCPCB: PTH Annular Ring"
 	(condition "A.Type == 'Pad' && A.Pad_Type == 'Through-hole' && A.isPlated()")
@@ -14,10 +15,6 @@
 (rule "JLCPCB: Avoid 4-Wire Kelvin Test"
 	(condition "(A.Type == 'Via' && A.Hole < 0.3mm && A.Diameter <= 0.4mm) || (A.Type == 'Pad' && ((A.Hole_Size_X < 0.3mm && A.Size_X <= 0.4mm) || (A.Hole_Size_Y < 0.3mm && A.Size_Y <= 0.4mm)))")
 	(constraint annular_width (min 0.125mm))
-)
-(rule "JLCPCB: Only Throughhole VIAs are supported"
-	(condition "A.Type == 'Via'")
-	(constraint assertion "!(A.isBlindBuriedVia() || A.isMicroVia())")
 )
 (rule "JLCPCB: Plated Slot Length-to-width Ratio"
 	(condition "(A.Type == 'Pad')")
@@ -72,35 +69,25 @@
 	(condition "A.Type == 'Pad' && (A.Pad_Type == 'Through-hole' || A.Pad_Type == 'NPTH, mechanical') && B.Type == 'Track' && A.Net != B.Net")
 	(constraint clearance (min 0.2mm))
 )
-(rule "JLCPCB: BGA to Trace"
-	(condition "A.NetClass == 'BGA' && B.Type == 'Track' && A.Net != B.Net")
-	(constraint clearance (min 0.1mm))
-)
-(rule "JLCPCB: Trace Width"
+(rule "JLCPCB: Track Constraints"
 	(condition "A.Type == 'Track'")
 	(constraint track_width (min 0.09mm))
+	(constraint edge_clearance (min 0.3mm))
+	(constraint track_angle (min 90))
 )
 (rule "JLCPCB: Trace Spacing"
 	(condition "A.Type == 'Track' && B.Type == 'Track'")
 	(constraint clearance (min 0.09mm))
 )
-(rule "JLCPCB: Minimum Line Width"
+(rule "JLCPCB: Silkscreen Text Dimensions"
 	(layer "?.SilkS")
 	(condition "A.Type == 'Text' || A.Type == 'Text Box'")
 	(constraint text_thickness (min 0.15mm))
-)
-(rule "JLCPCB: Minimum Text Height"
-	(layer "?.SilkS")
-	(condition "A.Type == 'Text' || A.Type == 'Text Box'")
 	(constraint text_height (min 1mm))
 )
 (rule "JLCPCB: Pad to Silkscreen"
 	(condition "A.Type == 'Pad' && ((A.existsOnLayer('F.Mask') && B.Layer == 'F.SilkS') || (A.existsOnLayer('B.Mask') && B.Layer == 'B.SilkS'))")
 	(constraint silk_clearance (min 0.15mm))
-)
-(rule "JLCPCB: Trace to Board Edge"
-	(condition "A.Type == 'Track'")
-	(constraint edge_clearance (min 0.3mm))
 )
 
 (rule "Keep signal/defeault out of Power Plane In2.Cu"

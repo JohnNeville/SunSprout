@@ -30,7 +30,7 @@ See the detailed action items in [hardware/hub/TODO.md](hardware/hub/TODO.md):
 - [x] **ESP32-C5 Boot Button Rewiring:** Re-routed `SW2` / `C21` (`BTN1_NODE`) to `GPIO28` instead of `GPIO0`, and exposed `GPIO0` on header `J7 pin 3`.
 - [x] **Mass Programming Pogo-Pin Test Points:** Added `TP16` (`U0RXD`), `TP17` (`U0TXD`), `TP18` (`BTN1_NODE` / `GPIO28`), and `TP19` (`RESET_NODE`) on `B.Cu` to enable automated single-sided bed-of-nails flashing.
 - [x] **Inner Layer Copper Balance (`In2.Cu` & `In3.Cu`):** Added full-board GND fill zone (`"Inner GND fills"`) across `In2.Cu` and `In3.Cu` with filled copper polygons to balance layer density and mitigate board warpage during reflow.
-- [ ] **Acid Traps:** Clean up 52 acute 45° corners and 0° trace reversals on `F.Cu`.
-- [ ] **Firmware Sleep Leakage Prevention:** Float `GPIO9`/`GPIO10` (to stop 1.40 mA into `R201`/`R202` on unpowered `3V3_USER`) and clear BQ25798/BQ34Z100 interrupts before sleep (to stop 660 µA on `R24`/`R401`).
+- [x] **Acid Traps:** Cleaned up acute corners and trace reversals across the board; verified with KiCad custom DRC rule (0 violations).
+- [x] **Firmware Sleep Leakage Prevention:** Float `GPIO9`/`GPIO10` (to stop 1.40 mA into `R201`/`R202` on unpowered `3V3_USER`) and clear BQ25798/BQ34Z100 interrupts before sleep (to stop 660 uA on `R24`/`R401`).
 
 

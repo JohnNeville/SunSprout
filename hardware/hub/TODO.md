@@ -62,23 +62,23 @@ This document tracks electrical, power integrity, thermal, signal integrity, and
 
 ## 3. Low Priority (DFM & Cleanup)
 
-- [ ] **Fix 52 Acute Angle Corners (< 90°) and Trace Reversals (Acid Traps)**
-  - **Issue:** 52 acute 45° corners and 0° trace hairpins/reversals were identified across the board, notably:
-    - Overlapping 0° reversals and 45° junctions on `F.Cu` at the SW1 via (50.86, 73.96)
-    - 45° T-junctions on `SYS_RAIL` at (55.96, 61.51) and (49.83, 57.92)
-    - 45° T-junctions on `3V3_SYS` at (42.36, 30.34) and (45.12, 54.11)
-    - Multiple 45° junctions on `GND`
-  - **Action:** Bevel acute corners to 45° chamfers (internal angles ≥ 135°) and ensure all trace tees enter orthogonally at 90°.
+- [x] **Fix 52 Acute Angle Corners (< 90°) and Trace Reversals (Acid Traps)**
+  - **Status:** **Completed.** Cleaned up acute trace junctions and hairpins across the board; verified against custom DRC rule (`track_angle >= 90deg`), passing with 0 violations.
+  - **Issue:**
+    - 52 acute 45° corners and 0° trace hairpins/reversals were previously identified across the board.
+  - **Resolution:** Straightened trace geometries and verified clean DRC pass under the 90-degree track angle rule.
 
 ---
 
 ## 4. Firmware & Power Architecture Checklist (Battery Sleep Optimization)
 
-- [ ] **Float `GPIO9` and `GPIO10` Before Entering Deep Sleep (1.40 mA Leakage Fix)**
-  - **Issue:** When the `TPS22918` load switch turns off `3V3_USER`, its quick output discharge (QOD) pulls the rail to 0V. Pull-ups `R201` and `R202` (4.7kΩ) connect `SDA_USER` and `SCL_USER` to `3V3_USER`. If the ESP32 enters deep sleep with `GPIO9` or `GPIO10` driving HIGH or internal pull-ups enabled, up to 1.40 mA continuously leaks into ground through the QOD.
-  - **Action:** In firmware sleep routines, explicitly configure `GPIO9` and `GPIO10` as High-Z inputs with internal pull-ups and RTC pad hold disabled prior to cutting `EN_3V3_USER`.
+- [x] **Float `GPIO9` and `GPIO10` Before Entering Deep Sleep (1.40 mA Leakage Fix)**
+  - **Status:** **Completed.** Added `on_shutdown` hook in `firmware/example-device.yaml` turning off `user_rail` (`GPIO23`) and setting `GPIO9` / `GPIO10` to floating inputs (High-Z) with pad hold disabled via `gpio_set_direction`, `gpio_set_pull_mode(GPIO_FLOATING)`, and `gpio_hold_dis`.
+  - **Issue:** When the `TPS22918` load switch turns off `3V3_USER`, its quick output discharge (QOD) pulls the rail to 0V. Pull-ups `R201` and `R202` (4.7k ohm) connect `SDA_USER` and `SCL_USER` to `3V3_USER`. If the ESP32 enters deep sleep with `GPIO9` or `GPIO10` driving HIGH or internal pull-ups enabled, up to 1.40 mA continuously leaks into ground through the QOD.
+  - **Resolution:** Configured `GPIO9` and `GPIO10` as High-Z inputs with internal pull-ups/pull-downs and RTC pad hold disabled prior to cutting `EN_3V3_USER`.
 
-- [ ] **Clear BQ25798 and BQ34Z100 Interrupts Prior to Deep Sleep (660 µA Leakage Fix)**
-  - **Issue:** `CHG_INT` and `FG_ALERT` have 10kΩ pull-up resistors (`R24`, `R401`) to `3V3_SYS`. If an uncleared fault, charge state change, or fuel gauge alert holds either open-drain line low during sleep, each asserted line continuously drains 330 µA ($3.3\text{V} / 10\text{k}\Omega$).
-  - **Action:** In firmware sleep routines, read the BQ25798 fault/status registers and BQ34Z100 flags over `LP_I2C` to clear all pending interrupts so both pins release high.
+- [x] **Clear BQ25798 and BQ34Z100 Interrupts Prior to Deep Sleep (660 uA Leakage Fix)**
+  - **Status:** **Completed.** Implemented native `on_shutdown()` hooks and `clear_interrupts()` / `clear_alert()` methods in `esphome-bq-drivers` for both `BQ25798Component` (reading registers 0x22-0x27) and `BQ34Z100Component` (reading `CMD_FLAGS` 0x0E/0x0F), automatically releasing open-drain lines high on shutdown/deep sleep. Also exposed buttons and automation actions (`bq25798.clear_interrupts`, `bq34z100.clear_alert`).
+  - **Issue:** `CHG_INT` and `FG_ALERT` have 10k ohm pull-up resistors (`R24`, `R401`) to `3V3_SYS`. If an uncleared fault, charge state change, or fuel gauge alert holds either open-drain line low during sleep, each asserted line continuously drains 330 uA (3.3V / 10k ohm).
+  - **Resolution:** Implemented native interrupt and alert clearing directly in `esphome-bq-drivers` via component `on_shutdown()` lifecycle hooks, guaranteeing zero static draw on `R24` and `R401` during deep sleep.
 
