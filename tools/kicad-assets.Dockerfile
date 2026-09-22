@@ -91,4 +91,4 @@ RUN apt-get update -qq \
     && rm -rf /var/lib/apt/lists/* \
     && pip install --no-cache-dir --break-system-packages InteractiveHtmlBom pinout pillow
 
-USER kicad
+USER root

@@ -66,7 +66,7 @@ fi
 mkdir -p "$REPO_ROOT/$IMG_DIR"
 
 run_kicad_cli() {
-	docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" kicad-cli "$@"
+	docker run --rm --user root -v "$REPO_ROOT:/work" -w /work "$IMAGE" kicad-cli "$@"
 }
 
 echo "== Hub Board render (top - orthographic for pinout & docs) =="
@@ -82,7 +82,7 @@ run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
 	-w 1200 -h 1800 -o "$IMG_DIR/board-bottom.png"
 
 echo "== Hub Graphical Pinout diagram (SVG with color-coded callouts) =="
-docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
+docker run --rm --user root -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
 	python3 tools/pinout/generate_hub_pinout.py \
 		--board-image "$IMG_DIR/board-top.png" \
 		--output "$IMG_DIR/pinout-top.svg" \
@@ -96,7 +96,7 @@ echo "== Hub Interactive HTML BOM =="
 # generate_interactive_bom resolves --dest-dir relative to the BOARD FILE, not the working
 # directory, so a repo-relative path here lands under hardware/hub/. Pass the absolute
 # container path instead.
-docker run --rm -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/$STATIC_DIR" -e HUB_DIR="$HUB_DIR" "$IMAGE" \
+docker run --rm --user root -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/$STATIC_DIR" -e HUB_DIR="$HUB_DIR" "$IMAGE" \
 	sh -c 'xvfb-run -a -s "-screen 0 1024x768x24" generate_interactive_bom --no-browser --dest-dir "$STATIC_DIR/ibom" --name-format "index" "$HUB_DIR/SunSproutHub.kicad_pcb"'
 
 echo "== Satellite Board render (top - orthographic for pinout & docs) =="
@@ -112,7 +112,7 @@ run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
 	-w 960 -h 1800 -o "$IMG_DIR/satellite-board-bottom.png"
 
 echo "== Satellite Graphical Pinout & Jumper diagrams (Top & Bottom SVGs) =="
-docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
+docker run --rm --user root -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
 	python3 tools/pinout/generate_satellite_pinout.py \
 		--top-image "$IMG_DIR/satellite-board-top.png" \
 		--bottom-image "$IMG_DIR/satellite-board-bottom.png" \
@@ -121,8 +121,13 @@ docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
 		--css "tools/pinout/styles.css"
 
 echo "== Satellite Interactive HTML BOM =="
-docker run --rm -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/$STATIC_DIR" -e SAT_DIR="$SAT_DIR" "$IMAGE" \
+docker run --rm --user root -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/$STATIC_DIR" -e SAT_DIR="$SAT_DIR" "$IMAGE" \
 	sh -c 'xvfb-run -a -s "-screen 0 1024x768x24" generate_interactive_bom --no-browser --dest-dir "$STATIC_DIR/ibom-satellite" --name-format "index" "$SAT_DIR/SunSproutSatellite.kicad_pcb"'
 
+# Fix permissions on generated assets so non-root host runners (e.g. GitHub Actions) can read and clean them
+docker run --rm --user root -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
+	chmod -R a+rw "$STATIC_DIR" "$IMG_DIR" 2>/dev/null || true
+
 echo "Done. Outputs under $STATIC_DIR/ and $IMG_DIR/."
+
 
