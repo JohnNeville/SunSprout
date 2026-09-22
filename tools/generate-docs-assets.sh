@@ -103,13 +103,13 @@ echo "== Satellite Board render (top - orthographic for pinout & docs) =="
 run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
 	--preset follow_pcb_editor \
 	--side top --quality high --background transparent \
-	-w 1200 -h 1800 -o "$IMG_DIR/satellite-board-top.png"
+	-w 960 -h 1800 -o "$IMG_DIR/satellite-board-top.png"
 
 echo "== Satellite Board render (bottom) =="
 run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
 	--preset follow_pcb_editor \
 	--side bottom --quality high --background transparent \
-	-w 1200 -h 1800 -o "$IMG_DIR/satellite-board-bottom.png"
+	-w 960 -h 1800 -o "$IMG_DIR/satellite-board-bottom.png"
 
 echo "== Satellite Graphical Pinout & Jumper diagrams (Top & Bottom SVGs) =="
 docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
@@ -123,13 +123,6 @@ docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
 echo "== Satellite Interactive HTML BOM =="
 docker run --rm -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/$STATIC_DIR" -e SAT_DIR="$SAT_DIR" "$IMAGE" \
 	sh -c 'xvfb-run -a -s "-screen 0 1024x768x24" generate_interactive_bom --no-browser --dest-dir "$STATIC_DIR/ibom-satellite" --name-format "index" "$SAT_DIR/SunSproutSatellite.kicad_pcb"'
-
-echo "== Combined Ecosystem Hero render (Hub + Satellite) =="
-docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
-	python3 tools/generate_combined_hero.py \
-		--hub "$IMG_DIR/board-top.png" \
-		--satellite "$IMG_DIR/satellite-board-top.png" \
-		--output "$IMG_DIR/hub-and-satellite.png"
 
 echo "Done. Outputs under $STATIC_DIR/ and $IMG_DIR/."
 

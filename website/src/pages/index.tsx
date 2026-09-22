@@ -50,7 +50,7 @@ export default function Home(): ReactNode {
               className={styles.boardCard}
               aria-label="SunSprout Hub Documentation">
               <img
-                src={useBaseUrl("/img/hero-hub.png")}
+                src={useBaseUrl("/img/board-top.png")}
                 alt="SunSprout Hub"
                 className={styles.boardImageHub}
               />
@@ -67,7 +67,7 @@ export default function Home(): ReactNode {
               className={styles.boardCard}
               aria-label="SunSprout Satellite Documentation">
               <img
-                src={useBaseUrl("/img/hero-satellite.png")}
+                src={useBaseUrl("/img/satellite-board-top.png")}
                 alt="SunSprout Satellite"
                 className={styles.boardImageSatellite}
               />

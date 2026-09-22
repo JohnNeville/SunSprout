@@ -54,23 +54,29 @@
   color: var(--ifm-color-primary);
 }
 
-.boardImageHub {
+.boardImageHub,
+.boardImageSatellite {
   display: block;
-  width: min(390px, 58vw);
   height: auto;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.42));
   transition: filter 0.25s ease;
 }
 
+.boardImageHub {
+  height: min(460px, 58vh);
+  width: auto;
+  max-width: 58vw;
+}
+
 .boardImageSatellite {
-  display: block;
-  width: min(208px, 31vw);
-  height: auto;
-  transition: filter 0.25s ease;
+  height: min(276px, 34.8vh);
+  width: auto;
+  max-width: 32vw;
 }
 
 .boardCard:hover .boardImageHub,
 .boardCard:hover .boardImageSatellite {
-  filter: brightness(1.04);
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.58)) brightness(1.04);
 }
 
 .boardCaption {
