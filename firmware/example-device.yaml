@@ -23,7 +23,7 @@ esphome:
     name: JohnNeville.SunSproutHub
     version: DIY
   includes:
-    - driver/gpio.h
+    - sunsprout_gpio.h
   on_boot:
     # Before the deep_sleep component starts its timer, so a held-awake board
     # stays awake through the whole boot.
