@@ -45,4 +45,4 @@ zero setup.
 
 ## Regenerating the documentation assets
 
-Documentation assets (3D board renders, schematic PDF, STEP model, and pinout draft SVG) are generated via `tools/generate-docs-assets.sh` (or `kicad-cli pcb render` / `kicad-cli sch export`). The generated assets live under `website/static/` and `website/static/img/`.
+Documentation assets (3D board renders, interactive BOM, and interactive pinout SVGs) are generated via `tools/generate-docs-assets.sh`. The generated assets live under `website/static/` and `website/static/img/`. Release assets (schematic PDFs, STEP models, and fabrication zips) are produced by the release workflow.
