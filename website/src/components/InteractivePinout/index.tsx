@@ -142,22 +142,20 @@ export default function InteractivePinout({
     const svgEl = containerRef.current.querySelector('svg');
     if (!svgEl) return;
 
-    const handleMouseOver = (e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
       const target = e.target as Element | null;
       const callout = target?.closest('.callout-group');
       if (callout) {
         const name = callout.getAttribute('data-name');
         const pin = callout.getAttribute('data-pin');
         setHoveredInfo(pin ? `${pin}: ${name}` : name);
+      } else {
+        setHoveredInfo(null);
       }
     };
 
-    const handleMouseOut = (e: MouseEvent) => {
-      const target = e.target as Element | null;
-      const callout = target?.closest('.callout-group');
-      if (callout) {
-        setHoveredInfo(null);
-      }
+    const handleMouseLeave = () => {
+      setHoveredInfo(null);
     };
 
     const handleClick = (e: MouseEvent) => {
@@ -191,13 +189,13 @@ export default function InteractivePinout({
       }
     };
 
-    svgEl.addEventListener('mouseover', handleMouseOver);
-    svgEl.addEventListener('mouseout', handleMouseOut);
+    svgEl.addEventListener('mousemove', handleMouseMove);
+    svgEl.addEventListener('mouseleave', handleMouseLeave);
     svgEl.addEventListener('click', handleClick);
 
     return () => {
-      svgEl.removeEventListener('mouseover', handleMouseOver);
-      svgEl.removeEventListener('mouseout', handleMouseOut);
+      svgEl.removeEventListener('mousemove', handleMouseMove);
+      svgEl.removeEventListener('mouseleave', handleMouseLeave);
       svgEl.removeEventListener('click', handleClick);
     };
   }, [svgContent, filterList]);
@@ -240,10 +238,18 @@ export default function InteractivePinout({
       </div>
 
       <div className={styles.hintBar}>
-        <span>Hover to inspect pin • Click any pin or callout to copy its identifier</span>
+        {hoveredInfo ? (
+          <span className={styles.inspectedPin}>
+            <span className={styles.inspectDot} />
+            Inspecting: <strong>{hoveredInfo}</strong> — <em>click to copy</em>
+          </span>
+        ) : (
+          <span>Hover over any pin to inspect • Click to copy identifier</span>
+        )}
+
         {activeFilter !== 'all' && (
-          <span style={{ color: '#38bdf8', fontWeight: 600 }}>
-            Filtering: {filterList.find((f) => f.id === activeFilter)?.label}
+          <span className={styles.activeFilterTag}>
+            Filter: {filterList.find((f) => f.id === activeFilter)?.label}
           </span>
         )}
       </div>
@@ -256,7 +262,6 @@ export default function InteractivePinout({
         )}
 
         {toastMessage && <div className={styles.toast}>{toastMessage}</div>}
-        {hoveredInfo && <div className={styles.tooltip}>{hoveredInfo}</div>}
       </div>
     </div>
   );
