@@ -10,21 +10,15 @@ board itself wires up — buttons, I2C buses, alerts) and pins left free for you
 
 ## Pinout diagram
 
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import InteractivePinout from '@site/src/components/InteractivePinout';
 
-<img
-  src={useBaseUrl('/img/pinout-top-draft.svg')}
-  alt="Top silkscreen pinout draft"
-  style={{background: '#0d4429', borderRadius: '8px', padding: '1.5rem', maxWidth: '100%'}}
-/>
+<InteractivePinout board="hub" src="/img/pinout-top.svg" />
 
-Draft, auto-generated from the PCB's own top-silkscreen text (`tools/generate-docs-assets.sh`)
-rather than hand-drawn — every header pin's signal name is already printed on the physical
-board, so this is what you'd see looking at the board itself. A polished, styled version may
-replace this later.
+
+Auto-generated vector pinout diagram (`tools/generate-docs-assets.sh`) showing all board peripherals, expansion headers (`J7`, `J8`), Stemma QT ports, buttons, and boot strapping pins with color-coded signal tags. An unstyled silkscreen line drawing draft is also preserved at `/img/pinout-top-draft.svg`.
 
 For something more useful when you're actually holding the board: **[open the interactive
-BOM](pathname:///SunSprout/ibom/)** — hover or click any reference designator to highlight
+BOM](pathname:///ibom/)** — hover or click any reference designator to highlight
 it on the board (and vice versa), search by part/value, and toggle top/bottom layers. Generated
 by [InteractiveHtmlBom](https://github.com/openscopeproject/InteractiveHtmlBom) from the same
 `.kicad_pcb` source as everything else on this page.
@@ -34,7 +28,7 @@ by [InteractiveHtmlBom](https://github.com/openscopeproject/InteractiveHtmlBom) 
 | GPIO | Function | Category | Strapping pin? | Pull resistor | Notes |
 |---|---|---|---|---|---|
 | CHIP_PU/EN | Reboot button (SW1) | Fixed | No (dedicated EN pin) | R1 10kΩ pull-up to 3V3_SYS + C2 1µF | Reset button |
-| GPIO0 | Boot/flash button (SW2) | Fixed | Yes — boot-mode select | Internal pull-up + R2 10kΩ external to 3V3_SYS | Hold during reset to enter download mode |
+| GPIO0 | LP_GPIO0 (Expansion) | Free | No (not a strap on ESP32-C5) | — | Routed to expansion header J7 pin 3. Low-power domain, deep-sleep wake capable |
 | GPIO1 | Unused | Free | No | — | Routed to expansion header J7 |
 | GPIO2 | SDA_INT — **`LP_I2C_SDA`** | Assigned | No | R20 4.7kΩ pull-up to 3V3_SYS | Internal I2C data. Fixed-function LP pin; see below. |
 | GPIO3 | SCL_INT — **`LP_I2C_SCL`** | Assigned | Yes — SDIO sampling/clock-edge select | R21 4.7kΩ pull-up to 3V3_SYS | Internal I2C clock. Fixed-function LP pin; see below. |
@@ -56,7 +50,7 @@ by [InteractiveHtmlBom](https://github.com/openscopeproject/InteractiveHtmlBom) 
 | GPIO25 | Unused | Free | Yes — boot-mode strap, floating default | — | Routed to expansion header J8 |
 | GPIO26 | Unused | Free | Yes — boot-mode strap, floating default | — | Routed to expansion header J8 |
 | GPIO27 | Unused | Free | Yes — boot-mode strap | — | Routed to expansion header J8 |
-| GPIO28 | Unused (biased) | Free | Yes — boot-mode strap, default internal pull-up | R4 10kΩ pull-up to 3V3_SYS | Routed to expansion header J8. R4 reinforces the strap's default state; C3 is an unpopulated 0603 tuning placeholder |
+| GPIO28 | Boot/flash button (SW2) | Fixed/Strap | Yes — ROM download boot strap | Internal pull-up + R4 10kΩ pull-up to 3V3_SYS | Primary ESP32-C5 boot strap. Hold SW2 low during reset (SW1) to enter download mode. Also routed to TP18 |
 
 ## Why the internal bus is on GPIO2/GPIO3
 
@@ -76,20 +70,19 @@ whole chip to read a register.
 
 ## Free IO
 
-GPIO1, GPIO5, GPIO7, GPIO24, GPIO25, GPIO26, GPIO27, and GPIO28 are unused and available for
+GPIO0, GPIO1, GPIO5, GPIO7, GPIO24, GPIO25, GPIO26, and GPIO27 are unused and available for
 your own projects. All of them are routed out to the two expansion headers (`J7` and `J8`),
 which aren't fitted at the factory — solder a 2.54mm header strip to use them.
 
-Note the strapping-pin caveats on GPIO7, GPIO25, GPIO26, GPIO27, and GPIO28 above: the
+Note the strapping-pin caveats on GPIO7, GPIO25, GPIO26, and GPIO27 above: the
 MCU samples these at reset to select a boot mode, so check what each strap does before loading
-one down at boot. Exposing strapping pins on a header follows the precedent of Espressif's own
-DevKitC-1.
+one down at boot. (GPIO28 is dedicated to the SW2 download boot button with an internal and external pull-up).
 
 ## Special-function pins
 
-CHIP_PU/EN, GPIO0, GPIO11–12 and the native USB pins are committed to fixed board functions —
-reset, boot select, debug UART and native USB respectively — and aren't available for
-reassignment.
+CHIP_PU/EN, GPIO28, GPIO11–12 and the native USB pins are committed to fixed board functions —
+reset, boot select (SW2), debug UART and native USB respectively — and aren't available for
+reassignment. (GPIO0 is in the low-power domain `LP_GPIO0` and is broken out on header J7 pin 3).
 
 **GPIO15 is a module-level reservation, not a board one.** This design uses the
 `ESP32-C5-WROOM-1U-N8R8` variant, where the `R8` denotes 8 MB of PSRAM packaged inside the

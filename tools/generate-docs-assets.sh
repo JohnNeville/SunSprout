@@ -69,19 +69,21 @@ run_kicad_cli() {
 	docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" kicad-cli "$@"
 }
 
-echo "== Hub Board render (top) =="
+echo "== Hub Board render (top - orthographic for pinout & docs) =="
+run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
+	--side top --quality high --background transparent \
+	-w 1200 -h 1800 -o "$IMG_DIR/board-top.png"
+
+echo "== Hub Board render (isometric 3D hero) =="
 run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
 	--side top --quality high --floor --background opaque --rotate "-30,0,30" \
-	-w 1600 -h 1200 -o "$IMG_DIR/board-top.png"
+	-w 1600 -h 1200 -o "$IMG_DIR/board-isometric.png"
 
 echo "== Hub Board render (bottom) =="
 run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
-	--side bottom --quality high --floor --background opaque --rotate "-30,0,-30" \
-	-w 1600 -h 1200 -o "$IMG_DIR/board-bottom.png"
+	--side bottom --quality high --background transparent \
+	-w 1200 -h 1800 -o "$IMG_DIR/board-bottom.png"
 
-echo "== Hub Schematic PDF (all sheets) =="
-run_kicad_cli sch export pdf "$HUB_DIR/SunSproutHub.kicad_sch" \
-	-o "$STATIC_DIR/SunSproutHub-schematic.pdf"
 
 echo "== Hub PCB STEP model =="
 run_kicad_cli pcb export step "$HUB_DIR/SunSproutHub.kicad_pcb" \
@@ -92,6 +94,13 @@ run_kicad_cli pcb export svg "$HUB_DIR/SunSproutHub.kicad_pcb" \
 	--layers "F.Silkscreen,Edge.Cuts" --mode-single --page-size-mode 2 --fit-page-to-board \
 	--exclude-drawing-sheet \
 	-o "$IMG_DIR/pinout-top-draft.svg"
+
+echo "== Hub Graphical Pinout diagram (SVG with color-coded callouts) =="
+docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
+	python3 tools/pinout/generate_hub_pinout.py \
+		--board-image "$IMG_DIR/board-top.png" \
+		--output "$IMG_DIR/pinout-top.svg" \
+		--css "tools/pinout/styles.css"
 
 echo "== Hub Interactive HTML BOM =="
 # xvfb-run manages a background Xvfb process via shell job control (backgrounds it, then
@@ -104,19 +113,21 @@ echo "== Hub Interactive HTML BOM =="
 docker run --rm -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/$STATIC_DIR" -e HUB_DIR="$HUB_DIR" "$IMAGE" \
 	sh -c 'xvfb-run -a -s "-screen 0 1024x768x24" generate_interactive_bom --no-browser --dest-dir "$STATIC_DIR/ibom" --name-format "index" "$HUB_DIR/SunSproutHub.kicad_pcb"'
 
-echo "== Satellite Board render (top) =="
+echo "== Satellite Board render (top - orthographic for pinout & docs) =="
+run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
+	--side top --quality high --background transparent \
+	-w 1200 -h 1800 -o "$IMG_DIR/satellite-board-top.png"
+
+echo "== Satellite Board render (isometric 3D hero) =="
 run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
 	--side top --quality high --floor --background opaque --rotate "-30,0,30" \
-	-w 1600 -h 1200 -o "$IMG_DIR/satellite-board-top.png"
+	-w 1600 -h 1200 -o "$IMG_DIR/satellite-board-isometric.png"
 
 echo "== Satellite Board render (bottom) =="
 run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
-	--side bottom --quality high --floor --background opaque --rotate "-30,0,-30" \
-	-w 1600 -h 1200 -o "$IMG_DIR/satellite-board-bottom.png"
+	--side bottom --quality high --background transparent \
+	-w 1200 -h 1800 -o "$IMG_DIR/satellite-board-bottom.png"
 
-echo "== Satellite Schematic PDF =="
-run_kicad_cli sch export pdf "$SAT_DIR/SunSproutSatellite.kicad_sch" \
-	-o "$STATIC_DIR/SunSproutSatellite-schematic.pdf"
 
 echo "== Satellite PCB STEP model =="
 run_kicad_cli pcb export step "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
@@ -128,8 +139,25 @@ run_kicad_cli pcb export svg "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
 	--exclude-drawing-sheet \
 	-o "$IMG_DIR/satellite-pinout-top-draft.svg"
 
+echo "== Satellite Graphical Pinout & Jumper diagrams (Top & Bottom SVGs) =="
+docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
+	python3 tools/pinout/generate_satellite_pinout.py \
+		--top-image "$IMG_DIR/satellite-board-top.png" \
+		--bottom-image "$IMG_DIR/satellite-board-bottom.png" \
+		--top-output "$IMG_DIR/satellite-pinout-top.svg" \
+		--bottom-output "$IMG_DIR/satellite-pinout-bottom.svg" \
+		--css "tools/pinout/styles.css"
+
 echo "== Satellite Interactive HTML BOM =="
 docker run --rm -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/$STATIC_DIR" -e SAT_DIR="$SAT_DIR" "$IMAGE" \
 	sh -c 'xvfb-run -a -s "-screen 0 1024x768x24" generate_interactive_bom --no-browser --dest-dir "$STATIC_DIR/ibom-satellite" --name-format "index" "$SAT_DIR/SunSproutSatellite.kicad_pcb"'
 
+echo "== Combined Ecosystem Hero render (Hub + Satellite) =="
+docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
+	python3 tools/generate_combined_hero.py \
+		--hub "$IMG_DIR/board-top.png" \
+		--satellite "$IMG_DIR/satellite-board-top.png" \
+		--output "$IMG_DIR/hub-and-satellite.png"
+
 echo "Done. Outputs under $STATIC_DIR/ and $IMG_DIR/."
+

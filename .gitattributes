@@ -1,0 +1,5 @@
+# Force unix line endings for scripts to prevent WSL/Linux shebang errors
+*.sh text eol=lf
+*.py text eol=lf
+*.Dockerfile text eol=lf
+Dockerfile* text eol=lf

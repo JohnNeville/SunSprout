@@ -2064,7 +2064,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "8f7749ee-9ece-49a4-a5a6-33bbf36d622f")
 		(property "Reference" "JP16"

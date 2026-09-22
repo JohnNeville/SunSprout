@@ -22,7 +22,12 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/overview">
-            View the docs
+            Hub Overview
+          </Link>
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/satellite-overview">
+            Satellite Overview
           </Link>
         </div>
       </div>
@@ -35,18 +40,50 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={siteConfig.title}
-      description="Hardware documentation for SunSproutHub: an ESP32-C5 power-management and connectivity board.">
+      description="Hardware documentation for SunSprout Hub and SunSprout Satellite: an ESP32-C5 power-management controller and remote differential sensor node.">
       <HomepageHeader />
       <main>
         <div className="container">
-          <img
-            src={useBaseUrl("/img/board-top.png")}
-            alt="SunSproutHub, top view"
-            className={styles.heroImage}
-          />
+          <div className={styles.heroShowcase}>
+            <Link
+              to="/docs/overview"
+              className={styles.boardCard}
+              aria-label="SunSprout Hub Documentation">
+              <img
+                src={useBaseUrl("/img/hero-hub.png")}
+                alt="SunSprout Hub"
+                className={styles.boardImageHub}
+              />
+              <div className={styles.boardCaption}>
+                <span className={styles.boardName}>SunSprout Hub</span>
+                <span className={styles.boardSpecs}>
+                  ESP32-C5 Power Management Controller &bull; 56 &times; 85 mm
+                </span>
+              </div>
+            </Link>
+
+            <Link
+              to="/docs/satellite-overview"
+              className={styles.boardCard}
+              aria-label="SunSprout Satellite Documentation">
+              <img
+                src={useBaseUrl("/img/hero-satellite.png")}
+                alt="SunSprout Satellite"
+                className={styles.boardImageSatellite}
+              />
+              <div className={styles.boardCaption}>
+                <span className={styles.boardName}>SunSprout Satellite</span>
+                <span className={styles.boardSpecs}>
+                  Differential I2C Sensor Leaf Node &bull; 27 &times; 51 mm
+                </span>
+              </div>
+            </Link>
+          </div>
         </div>
+
         <HomepageFeatures />
       </main>
     </Layout>
   );
 }
+
