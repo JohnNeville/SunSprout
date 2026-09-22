@@ -8,10 +8,14 @@ on:
     branches: [main]
     paths:
       - 'website/**'
+      - 'hardware/**'
+      - 'tools/**'
       - '.github/workflows/deploy-docs.yml'
   pull_request:
     paths:
       - 'website/**'
+      - 'hardware/**'
+      - 'tools/**'
       - '.github/workflows/deploy-docs.yml'
   workflow_dispatch:
 
@@ -28,6 +32,41 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # The board silkscreens ${VCSSHORTHASH}, which never survives a headless export.
+      # Substitute the commit into the board files so rendered board assets show the SHA.
+      - name: Stamp the board with the commit it was built from
+        env:
+          COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          python3 - "$COMMIT_SHA" <<'PYEOF'
+          import sys
+
+          short = sys.argv[1][:7]
+          hub_path = "hardware/hub/SunSproutHub.kicad_pcb"
+          sat_path = "hardware/satellite/SunSproutSatellite.kicad_pcb"
+
+          for path in [hub_path, sat_path]:
+              with open(path, encoding="utf-8") as f:
+                  board = f.read()
+
+              found = board.count("${VCSSHORTHASH}")
+              if path == hub_path and not found:
+                  sys.exit("No ${VCSSHORTHASH} left in the hub board - the silkscreen changed, "
+                           "and this step would have silently shipped an unstamped panel.")
+
+              if found:
+                  with open(path, "w", encoding="utf-8", newline="") as f:
+                      f.write(board.replace("${VCSSHORTHASH}", short))
+                  print(f"Stamped {path}: {short} ({found} occurrences)")
+          PYEOF
+
+      - name: Generate documentation assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          chmod +x tools/generate-docs-assets.sh
+          ./tools/generate-docs-assets.sh
 
       - uses: actions/setup-node@v4
         with:
