@@ -96,7 +96,7 @@
 			(layer "B.SilkS"
 				(type "Bottom Silk Screen")
 			)
-			(copper_finish "OSP")
+			(copper_finish "ENIG")
 			(dielectric_constraints no)
 		)
 		(pad_to_mask_clearance 0)
@@ -8157,7 +8157,7 @@
 			)
 		)
 		(zone_connect 1)
-		(attr allow_soldermask_bridges)
+		(attr exclude_from_pos_files exclude_from_bom allow_soldermask_bridges)
 		(net_tie_pad_groups "1, 2, 3")
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_poly
@@ -9675,7 +9675,7 @@
 			)
 		)
 		(zone_connect 1)
-		(attr allow_soldermask_bridges)
+		(attr exclude_from_pos_files exclude_from_bom allow_soldermask_bridges)
 		(net_tie_pad_groups "1, 2")
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_poly
@@ -10025,7 +10025,7 @@
 			)
 		)
 		(zone_connect 1)
-		(attr allow_soldermask_bridges)
+		(attr exclude_from_pos_files exclude_from_bom allow_soldermask_bridges)
 		(net_tie_pad_groups "1,2")
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_poly
@@ -10568,7 +10568,7 @@
 			)
 		)
 		(zone_connect 1)
-		(attr allow_soldermask_bridges)
+		(attr exclude_from_pos_files exclude_from_bom allow_soldermask_bridges)
 		(net_tie_pad_groups "1,2")
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_poly
@@ -11304,7 +11304,7 @@
 			)
 		)
 		(zone_connect 1)
-		(attr exclude_from_bom allow_soldermask_bridges)
+		(attr exclude_from_pos_files exclude_from_bom allow_soldermask_bridges)
 		(net_tie_pad_groups "1, 2A,2B, 3")
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_poly
@@ -12408,9 +12408,9 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text_box "Licensed under CERN-OHL-S v2\ngithub.com/JohnNeville/SunSprout"
-		(start 113.546778 113.1)
-		(end 116.853222 139.1)
+	(gr_text_box "CERN-OHL-S v2\ngithub.com/JohnNeville/SunSprout"
+		(start 113.5 112.2)
+		(end 116.806444 138.2)
 		(margins 0 0 0 0)
 		(angle 270)
 		(layer "B.SilkS")

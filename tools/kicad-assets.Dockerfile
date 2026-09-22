@@ -79,14 +79,15 @@ RUN mkdir -p /opt/kicad-pcm/3dmodels/com_github_CDFER_JLCPCB-Kicad-Library \
     && mv 3dmodels/JLCPCB.3dshapes /opt/kicad-pcm/3dmodels/com_github_CDFER_JLCPCB-Kicad-Library/ \
     && rm -rf /tmp/jlcpcb-kicad-library
 
-# InteractiveHtmlBom: interactive hoverable pinout/BOM viewer, generated headlessly via its
-# CLI entry point (see tools/generate-docs-assets.sh). python3-pip isn't in the base image.
+# InteractiveHtmlBom & pinout: interactive hoverable pinout/BOM viewer and graphical pinout
+# diagram generation, run headlessly via CLI (see tools/generate-docs-assets.sh). python3-pip
+# isn't in the base image.
 # xvfb is needed because KiCad's pcbnew Python bindings initialize wxWidgets even for
 # non-GUI use, which fails outright without a display to attach to - generate_interactive_bom
 # must be run under `xvfb-run`, a bare --no-browser flag isn't enough.
 RUN apt-get update -qq \
     && apt-get install -y -qq --no-install-recommends python3-pip xvfb \
     && rm -rf /var/lib/apt/lists/* \
-    && pip install --no-cache-dir --break-system-packages InteractiveHtmlBom
+    && pip install --no-cache-dir --break-system-packages InteractiveHtmlBom pinout pillow
 
 USER kicad

@@ -89,3 +89,9 @@ website/static/*.step
 /.claude/worktrees
 /hardware/satellite/.circuit-json-poc
 __pycache__
+
+# Hierarchical PCB plugin temporary files
+*.hierpcb.*
+
+# Scratch analysis scripts and downloads
+/scratch/

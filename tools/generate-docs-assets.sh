@@ -93,6 +93,13 @@ run_kicad_cli pcb export svg "$HUB_DIR/SunSproutHub.kicad_pcb" \
 	--exclude-drawing-sheet \
 	-o "$IMG_DIR/pinout-top-draft.svg"
 
+echo "== Hub Graphical Pinout diagram (SVG with color-coded callouts) =="
+docker run --rm -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
+	python3 tools/pinout/generate_hub_pinout.py \
+		--board-image "$IMG_DIR/board-top.png" \
+		--output "$IMG_DIR/pinout-top.svg" \
+		--css "tools/pinout/styles.css"
+
 echo "== Hub Interactive HTML BOM =="
 # xvfb-run manages a background Xvfb process via shell job control (backgrounds it, then
 # `wait`s) - that breaks if xvfb-run itself is the container's PID 1, which is what happens if
