@@ -922,7 +922,7 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "*SolderJumper-3_P1.3mm_DualAddrSelect_RoundedPad1.0x1.5mm"
+			(property "ki_fp_filters" "*SolderJumper-3_P1.3mm_DualAddrSelect_RoundedPad1.0x1.5mm project:SolderJumper-3_P_1WAddr"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1294,6 +1294,7 @@
 	(global_label "SDA_LOCAL"
 		(shape input)
 		(at 106.68 76.2 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1302,7 +1303,7 @@
 		)
 		(uuid "48d25f41-78a7-4bb8-9bf1-6d8984a715b3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 106.68 76.2 0)
+			(at 93.4138 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1310,12 +1311,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
 	(global_label "AD0_SEL"
 		(shape input)
 		(at 50.8 77.47 270)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1324,7 +1327,7 @@
 		)
 		(uuid "54212288-7ded-4dac-b00e-cffc4f4d37af")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 50.8 77.47 0)
+			(at 50.8 88.3775 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1332,12 +1335,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
 	(global_label "ONEWIRE_DQ"
 		(shape input)
 		(at 187.96 78.74 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1346,7 +1351,7 @@
 		)
 		(uuid "5bb8cfcf-7fd2-45bf-9430-9138bacdd39c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 187.96 78.74 0)
+			(at 173.1215 78.74 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1354,12 +1359,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
 	(global_label "AD0_SEL"
 		(shape input)
 		(at 106.68 81.28 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1368,7 +1375,7 @@
 		)
 		(uuid "6b189c27-9d1c-4789-be37-f46468460b0f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 106.68 81.28 0)
+			(at 95.7725 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1376,12 +1383,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
 	(global_label "SAT_3V3"
 		(shape input)
 		(at 187.96 73.66 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1390,7 +1399,7 @@
 		)
 		(uuid "74f5a7d5-f36f-4acf-a192-4453f09a1cff")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 187.96 73.66 0)
+			(at 177.2339 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1398,12 +1407,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
 	(global_label "ONEWIRE_DQ"
 		(shape input)
 		(at 147.32 68.58 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1412,7 +1423,7 @@
 		)
 		(uuid "7ffb1785-8402-4cd1-94f0-174bafe7ed37")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 147.32 68.58 0)
+			(at 162.1585 68.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1420,12 +1431,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 	)
 	(global_label "SAT_3V3"
 		(shape input)
 		(at 66.04 62.23 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1434,7 +1447,7 @@
 		)
 		(uuid "8446c213-4111-4f46-893a-b36702deef40")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 66.04 62.23 0)
+			(at 76.7661 62.23 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1442,12 +1455,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 	)
 	(global_label "SAT_3V3"
 		(shape input)
 		(at 127 106.68 90)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1456,7 +1471,7 @@
 		)
 		(uuid "896f5762-bb7f-4579-9321-f29448295e81")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 127 106.68 0)
+			(at 127 95.9539 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1464,12 +1479,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 	)
 	(global_label "SCL_LOCAL"
 		(shape input)
 		(at 106.68 73.66 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1478,7 +1495,7 @@
 		)
 		(uuid "9b151b98-d7b4-42f2-a4bf-e553620f78a8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 106.68 73.66 0)
+			(at 93.4743 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1486,12 +1503,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
 	(global_label "GND"
 		(shape input)
 		(at 127 134.62 270)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1500,7 +1519,7 @@
 		)
 		(uuid "a3c73cad-0347-4a05-8ae6-1fc9c68ec982")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 127 134.62 0)
+			(at 127 141.4757 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1508,12 +1527,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
 	(global_label "GND"
 		(shape input)
 		(at 147.32 83.82 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1522,7 +1543,7 @@
 		)
 		(uuid "afa11784-7d69-4333-b4ef-87e1fa4ee9a2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 147.32 83.82 0)
+			(at 154.1757 83.82 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1530,12 +1551,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 	)
 	(global_label "GND"
 		(shape input)
 		(at 187.96 76.2 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1544,7 +1567,7 @@
 		)
 		(uuid "bbdd1d51-0dbf-461c-b246-c8607a0780f4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 187.96 76.2 0)
+			(at 181.1043 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1552,12 +1575,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
 	(global_label "ONEWIRE_DQ"
 		(shape input)
 		(at 165.1 134.62 270)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1566,7 +1591,7 @@
 		)
 		(uuid "c5e1d89d-fe41-49ac-9318-0efa0c8820aa")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 165.1 134.62 0)
+			(at 165.1 149.4585 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1574,12 +1599,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
 	(global_label "GND"
 		(shape input)
 		(at 35.56 62.23 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1588,7 +1615,7 @@
 		)
 		(uuid "c6cc8947-57fd-472a-bda4-115a05884185")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 35.56 62.23 0)
+			(at 28.7043 62.23 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1596,12 +1623,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
 	(global_label "AD1_SEL"
 		(shape input)
 		(at 50.8 46.99 90)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1610,7 +1639,7 @@
 		)
 		(uuid "d1c2b079-2f07-4bbc-bab8-969ae8bda5d5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 50.8 46.99 0)
+			(at 50.8 36.0825 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1618,12 +1647,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 	)
 	(global_label "SAT_3V3"
 		(shape input)
 		(at 106.68 68.58 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1632,7 +1663,7 @@
 		)
 		(uuid "d5c79469-0349-4521-a110-ae5c6bad5061")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 106.68 68.58 0)
+			(at 95.9539 68.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1640,12 +1671,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
 	(global_label "AD1_SEL"
 		(shape input)
 		(at 106.68 83.82 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1654,7 +1687,7 @@
 		)
 		(uuid "ddb0253e-f496-496a-9cdc-b828f21119ae")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 106.68 83.82 0)
+			(at 95.7725 83.82 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1662,12 +1695,14 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
 	(global_label "SAT_3V3"
 		(shape input)
 		(at 165.1 106.68 90)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1676,7 +1711,7 @@
 		)
 		(uuid "fbe2af3e-fb0e-4c4d-8026-105b3087de4c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 165.1 106.68 0)
+			(at 165.1 95.9539 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1684,6 +1719,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 	)
@@ -1697,28 +1733,31 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
+		(fields_autoplaced yes)
 		(uuid "03f5dcc7-83fb-4c50-823d-5ff69a7c87ac")
 		(property "Reference" "C5"
-			(at 119.38 111.76 0)
+			(at 130.81 119.3799 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Value" "100nF"
-			(at 119.38 114.3 0)
+			(at 130.81 121.9199 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 127 120.65 0)
 			(hide yes)
 			(show_name no)
@@ -1761,7 +1800,7 @@
 				)
 			)
 		)
-		(property "LCSC Part" "C14663"
+		(property "LCSC Part" "C28233"
 			(at 127 120.65 0)
 			(hide yes)
 			(show_name no)
@@ -1819,25 +1858,28 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp yes)
+		(fields_autoplaced yes)
 		(uuid "10f6685c-80a2-4381-a80b-f78c1486bae5")
 		(property "Reference" "R9"
-			(at 157.48 111.76 0)
+			(at 167.64 119.3799 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Value" "4.7k"
-			(at 157.48 114.3 0)
+			(at 167.64 121.9199 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
@@ -1941,25 +1983,28 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
+		(fields_autoplaced yes)
 		(uuid "3a427fb3-ee98-413c-842c-4aabd5f7cba4")
 		(property "Reference" "J6"
-			(at 195.58 67.31 0)
+			(at 205.74 74.9299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Value" "Conn_01x03"
-			(at 195.58 69.85 0)
+			(at 205.74 77.4699 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical"
@@ -2066,9 +2111,10 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
+		(fields_autoplaced yes)
 		(uuid "8f7749ee-9ece-49a4-a5a6-33bbf36d622f")
 		(property "Reference" "JP16"
-			(at 43.18 54.61 0)
+			(at 57.15 58.3498 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2088,7 +2134,7 @@
 				)
 			)
 		)
-		(property "Footprint" "project:SolderJumper-3_P1.3mm_DualAddrSelect_RoundedPad1.0x1.5mm"
+		(property "Footprint" "project:SolderJumper-3_P_1WAddr"
 			(at 50.8 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -2196,9 +2242,10 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
+		(fields_autoplaced yes)
 		(uuid "a70816db-5993-4a94-a86c-4e752a7cabf5")
 		(property "Reference" "U3"
-			(at 119.38 67.31 0)
+			(at 127 60.96 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2208,7 +2255,7 @@
 			)
 		)
 		(property "Value" "DS2482S-100+"
-			(at 119.38 69.85 0)
+			(at 127 63.5 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects

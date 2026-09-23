@@ -1492,7 +1492,7 @@
 				)
 			)
 		)
-		(property "ki_fp_filters" "*SolderJumper-3_P1.3mm_DualAddrSelect_RoundedPad1.0x1.5mm"
+		(property "ki_fp_filters" "*SolderJumper-3_P1.3mm_DualAddrSelect_RoundedPad1.0x1.5mm project:SolderJumper-3_P_1WAddr"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
