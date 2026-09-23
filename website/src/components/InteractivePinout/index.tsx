@@ -24,7 +24,8 @@ const HUB_FILTERS: FilterOption[] = [
   { id: 'i2c', label: 'I2C Buses', tags: ['i2c-user', 'i2c-int', 'diff'] },
   { id: 'uart', label: 'UART Console', tags: ['uart'] },
   { id: 'strap', label: 'Strapping Pins', tags: ['strap'] },
-  { id: 'btn', label: 'Buttons & USB', tags: ['btn', 'usb'] },
+  { id: 'btn', label: 'Buttons', tags: ['btn'] },
+  { id: 'usb', label: 'USB-C', tags: ['usb'] },
 ];
 
 const SATELLITE_TOP_FILTERS: FilterOption[] = [
