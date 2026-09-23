@@ -572,7 +572,7 @@ def generate_hub_bottom_svg(board_image_path: str, output_svg_path: str, css_pat
         ("JUMP_CHGR", 24.78, 54.28, "USB D+/D- Conditioning", [("JUMP_CHGR", "jumper"), ("USB_DN / USB_DP", "jumper"), ("BC1.2 Conditioning", "jumper")], "jumper", "jumper"),
         ("TP13", 29.50, 58.79, "REGN_RAIL Charger LDO", [("TP13", "pwr"), ("REGN_RAIL", "pwr"), ("Charger 5V Gate LDO", "pwr")], "pwr", "pwr"),
         ("TP5", 12.73, 67.46, "Power GND", [("TP5", "gnd"), ("GND", "gnd"), ("Power Ground", "gnd")], "gnd", "gnd"),
-        ("JP2/JP3", 21.87, 72.22, "Status LED Jumpers", [("JP2/JP3", "jumper"), ("GRN_P / GRN_N", "jumper"), ("LED Current Isolation", "jumper")], "jumper", "jumper"),
+        ("JP2/JP3", 21.87, 72.22, "RJ45 Aux Power Isolation (VCC_2)", [("JP2/JP3", "jumper"), ("VCC_2 / GRN Pair", "jumper"), ("Aux Power Isolation", "jumper")], "jumper,pwr", "jumper"),
     ]
 
     r_start_y = 150

@@ -391,12 +391,12 @@ svg {
     <g class="tag-gnd"><rect x="1088.8" y="712.0" width="47.8" height="28.0" class="badge-bg"/><text x="1112.7" y="726.0" class="badge-text" text-anchor="middle">GND</text></g>
     <g class="tag-gnd"><rect x="1142.6" y="712.0" width="125.2" height="28.0" class="badge-bg"/><text x="1205.2" y="726.0" class="badge-text" text-anchor="middle">Power Ground</text></g>
   </g>
-  <g class="callout-group" data-pin="JP2/JP3" data-tags="jumper" data-name="JP2/JP3: Status LED Jumpers">
+  <g class="callout-group" data-pin="JP2/JP3" data-tags="jumper,pwr" data-name="JP2/JP3: RJ45 Aux Power Isolation (VCC_2)">
     <path d="M 806.9 657.3 L 1009 790 L 1029 790" class="leader-line"/>
     <circle cx="806.9" cy="657.3" r="4.5" class="pin-dot pin-dot-jumper"/>
     <g class="tag-jumper"><rect x="1035.0" y="776.0" width="82.2" height="28.0" class="badge-bg"/><text x="1076.1" y="790.0" class="badge-text" text-anchor="middle">JP2/JP3</text></g>
-    <g class="tag-jumper"><rect x="1123.2" y="776.0" width="133.8" height="28.0" class="badge-bg"/><text x="1190.1" y="790.0" class="badge-text" text-anchor="middle">GRN_P / GRN_N</text></g>
-    <g class="tag-jumper"><rect x="1263.0" y="776.0" width="202.6" height="28.0" class="badge-bg"/><text x="1364.3" y="790.0" class="badge-text" text-anchor="middle">LED Current Isolation</text></g>
+    <g class="tag-jumper"><rect x="1123.2" y="776.0" width="159.6" height="28.0" class="badge-bg"/><text x="1203.0" y="790.0" class="badge-text" text-anchor="middle">VCC_2 / GRN Pair</text></g>
+    <g class="tag-jumper"><rect x="1288.8" y="776.0" width="185.4" height="28.0" class="badge-bg"/><text x="1381.5" y="790.0" class="badge-text" text-anchor="middle">Aux Power Isolation</text></g>
   </g>
   <!-- Legend Panel -->
   <rect x="50" y="915" width="1420" height="100" rx="10" fill="#09101d" stroke="#1e293b" stroke-width="1.2"/>
