@@ -20,7 +20,7 @@ gives one idea. The text uses the active voice and one term for each concept.
 
 | Term | Meaning |
 |---|---|
-| `SAT_3V3` | This board's local 3.3V rail. It comes directly from the hub's `3V3_USER` rail, relayed over the cable's `VCC_1` conductor. There is no local regulator. |
+| `SAT_3V3` | This board's local 3.3V rail. In default direct mode, it is bridged to the cable's `RJ45_VCC_1` rail via solder jumper `JP18`. For long cable runs, it can be powered by an external buck converter connected between headers `J7` and `J9`. |
 | `SDA_LOCAL` / `SCL_LOCAL` | The single-ended I2C bus on this board's own side of the PCA9615. The ADS1115 and the DS2482S-100+ both sit on this bus. |
 | `ADDR_SEL` | The ADS1115's address-select pin, net-named separately from `SDA_LOCAL`/`SCL_LOCAL` because it is solder-jumpered to one of four different straps, not fixed to one net. |
 | `ONEWIRE_DQ` | The single 1-Wire data line between the DS2482S-100+ and the temperature probe connector. |

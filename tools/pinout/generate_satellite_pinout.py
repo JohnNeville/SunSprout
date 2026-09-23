@@ -3,8 +3,8 @@
 SunSprout Satellite Graphical Pinout & Jumper Diagram Generator
 
 Generates publication-grade vector SVG diagrams for SunSprout Satellite:
-1. Top View (satellite-pinout-top.svg): Sensor ports (J2-J6), RJ45 (J1), Aux header (J7), ICs.
-2. Bottom View (satellite-pinout-bottom.svg): Configuration jumpers (JP1, JP16, JP11, JP13, JP14, JP15)
+1. Top View (satellite-pinout-top.svg): Sensor ports (J2-J6), RJ45 (J1), Aux header (J7), Local power (J9), ICs.
+2. Bottom View (satellite-pinout-bottom.svg): Configuration jumpers (JP1, JP16, JP11, JP13, JP17, JP18)
    and address selection truth tables.
 
 Includes enlarged typography, interactive data attributes, and category tagging.
@@ -196,19 +196,20 @@ def generate_satellite_top_svg(board_image_path: str, output_svg_path: str, css_
 
     # --- RIGHT SIDE CALLOUTS (Power, Buffer, Headers, RJ45, TVS, Term, Qwiic, 1-Wire Master) ---
     right_items = [
-        ("U3", 13.10, 7.11, "DS2482 1-Wire Master", [("U3", "onewire"), ("DS2482S-100+", "onewire"), ("1-Wire Master", "onewire")], "onewire,i2c-user,sensor", "onewire"),
-        ("JP11", 20.35, 9.40, "I2C Pull-Ups", [("JP11", "jumper"), ("4.7kΩ SDA/SCL", "jumper"), ("Single-Cut Trace", "strap")], "jumper,strap", "jumper"),
-        ("J8", 10.45, 14.75, "Qwiic I2C Port", [("J8", "i2c-user"), ("Qwiic / STEMMA QT", "i2c-user"), ("Local I2C Bus", "i2c-user")], "i2c-user,diff,sensor", "i2c-user"),
-        ("U1", 16.55, 19.82, "PCA9615 Transceiver", [("U1", "diff"), ("PCA9615DPZ", "diff"), ("Diff I2C Transceiver", "diff")], "diff", "diff"),
-        ("U2", 8.10, 26.50, "ADS1115 16-Bit ADC", [("U2", "analog"), ("ADS1115IDGS", "analog"), ("16-Bit 4-Ch ADC", "analog")], "analog,sensor", "analog"),
+        ("U3", 13.05, 7.06, "DS2482 1-Wire Master", [("U3", "onewire"), ("DS2482S-100+", "onewire"), ("1-Wire Master", "onewire")], "onewire,i2c-user,sensor", "onewire"),
+        ("JP11", 20.30, 8.90, "I2C Pull-Ups", [("JP11", "jumper"), ("4.7kΩ SDA/SCL", "jumper"), ("Single-Cut Trace", "strap")], "jumper,strap", "jumper"),
+        ("J9", 24.20, 14.50, "Satellite Power Input", [("J9", "pwr"), ("SAT_3V3", "pwr"), ("GND", "gnd")], "pwr,gnd", "pwr"),
+        ("J8", 10.40, 14.70, "Qwiic I2C Port", [("J8", "i2c-user"), ("Qwiic / STEMMA QT", "i2c-user"), ("Local I2C Bus", "i2c-user")], "i2c-user,diff,sensor", "i2c-user"),
+        ("U1", 16.20, 16.50, "PCA9615 Transceiver", [("U1", "diff"), ("PCA9615DPZ", "diff"), ("Diff I2C Transceiver", "diff")], "diff", "diff"),
+        ("J7", 24.20, 25.10, "Cable Power Tap", [("J7", "pwr"), ("VCC_1", "pwr"), ("GND_1", "gnd"), ("GND_2", "gnd"), ("VCC_2", "pwr")], "pwr,gnd", "pwr"),
+        ("U2", 8.05, 26.45, "ADS1115 16-Bit ADC", [("U2", "analog"), ("ADS1115IDGS", "analog"), ("16-Bit 4-Ch ADC", "analog")], "analog,sensor", "analog"),
         ("R3-R8", 16.00, 26.50, "Bus Termination Array", [("R3-R8", "diff"), ("100Ω Bus Termination", "diff"), ("390Ω Bias", "diff")], "diff", "diff"),
-        ("U4", 17.98, 32.59, "USBLC6-4SC6 TVS", [("U4", "diff"), ("USBLC6-4SC6", "diff"), ("TVS ESD Protection", "diff")], "diff", "diff"),
-        ("J7", 24.00, 30.94, "Aux Power Header", [("J7", "pwr"), ("VCC_2", "pwr"), ("GND_2", "gnd"), ("GND", "gnd"), ("SAT_3V3", "pwr")], "pwr,gnd", "pwr"),
-        ("J1", 16.00, 45.25, "RJ45 Bus", [("J1", "diff"), ("RJHSE5380 (8P8C)", "diff"), ("Diff I2C + Dual Power", "diff")], "diff,pwr", "diff"),
+        ("U4", 17.92, 32.54, "USBLC6-4SC6 TVS", [("U4", "diff"), ("USBLC6-4SC6", "diff"), ("TVS ESD Protection", "diff")], "diff", "diff"),
+        ("J1", 15.95, 45.20, "RJ45 Bus", [("J1", "diff"), ("RJHSE5380 (8P8C)", "diff"), ("Diff I2C + Dual Power", "diff")], "diff,pwr", "diff"),
     ]
 
-    r_start_y = 150
-    r_gap_y = 75
+    r_start_y = 140
+    r_gap_y = 68
     start_x = BOARD_X + BOARD_PIX_W + 55
     svg.append(f'  <text x="{start_x}" y="{r_start_y - 25}" class="header-tag" text-anchor="start">COMMUNICATION &amp; POWER INTERFACES</text>')
 
@@ -235,8 +236,8 @@ def generate_satellite_top_svg(board_image_path: str, output_svg_path: str, css_
     svg.append(f'  <text x="70" y="{legend_y + 22}" class="legend-title">Signal Classification Legend (Top View)</text>')
 
     TOP_LEGEND = [
-        ("Power Rails (SAT_3V3 / VCC_1 / VCC_2)", "pwr"),
-        ("Ground (GND / GND_2)", "gnd"),
+        ("Power Rails (SAT_3V3 / RJ45_VCC_1 / RJ45_VCC_2)", "pwr"),
+        ("Ground (GND / RJ45_GND_1 / RJ45_GND_2)", "gnd"),
         ("Differential I2C (DSCL / DSDA)", "diff"),
         ("Single-Ended I2C (Qwiic / Local)", "i2c-user"),
         ("Analog Moisture Probes (MOIST1..4)", "analog"),
@@ -312,33 +313,33 @@ def generate_satellite_bottom_svg(board_image_path: str, output_svg_path: str, c
         '',
     ]
 
-    # --- LEFT SIDE: POWER & GROUND ROUTING JUMPERS (JP14 / JP15) & SHIELD (JP13) ---
-    # JP14 & JP15: Power Route & Ground Isolation (Placed on Left where JP_VCC and GND_1+GND_2 physically sit)
-    jp14_cx, jp14_cy = mm_to_canvas_bottom(24.00, 20.14)
-    jp14_label_y = 230
-    card14_w = 420
-    card14_h = 180
-    card14_x = 65
-    card14_y = 150
+    # --- LEFT SIDE: POWER & GROUND ROUTING JUMPERS (JP18 / JP17) & SHIELD (JP13) ---
+    # JP18 & JP17: Power Route & Ground Isolation (Placed on Left where JP17/JP18 physically sit on B.Cu)
+    jp18_cx, jp18_cy = mm_to_canvas_bottom(22.75, 17.30)
+    jp18_label_y = 230
+    card18_w = 420
+    card18_h = 180
+    card18_x = 65
+    card18_y = 150
 
-    svg.append('  <g class="callout-group" data-pin="JP14/JP15" data-tags="jumper,pwr,gnd" data-name="JP14/JP15: Power &amp; Ground Route">')
-    svg.append(f'    <path d="M {jp14_cx:.1f} {jp14_cy:.1f} L {BOARD_X - 40} {jp14_label_y} L {card14_x + card14_w} {jp14_label_y}" class="leader-line"/>')
-    svg.append(f'    <circle cx="{jp14_cx:.1f}" cy="{jp14_cy:.1f}" r="5" class="pin-dot pin-dot-jumper"/>')
-    svg.append(f'    <g transform="translate({card14_x}, {card14_y})">')
-    svg.append(f'      <rect width="{card14_w}" height="{card14_h}" class="table-card"/>')
-    svg.append('      <text x="18" y="28" class="table-hdr">JP14 / JP15: POWER &amp; GROUND ROUTING</text>')
-    svg.append('      <text x="18" y="50" class="table-txt">JP14 (Power Rail Source):</text>')
-    svg.append('      <text x="28" y="74" class="table-txt">• Pads 1-2 (VCC_1 -> SAT_3V3):</text><text x="290" y="74" class="table-default">[DEFAULT]</text>')
-    svg.append('      <text x="28" y="96" class="table-txt">• Pads 2-3 (VCC_2 -> SAT_3V3): Secondary tap feed</text>')
-    svg.append(f'      <line x1="18" y1="110" x2="{card14_w - 18}" y2="110" stroke="#334155" stroke-width="1.2"/>')
-    svg.append('      <text x="18" y="132" class="table-txt">JP15 (GND_2 Isolation):</text>')
-    svg.append('      <text x="28" y="152" class="table-txt">• Default: GND_2 bridged to system GND</text>')
-    svg.append('      <text x="28" y="170" class="table-txt">• Slice trace to isolate secondary power ground</text>')
+    svg.append('  <g class="callout-group" data-pin="JP17/JP18" data-tags="jumper,pwr,gnd" data-name="JP17/JP18: Power &amp; Ground Route">')
+    svg.append(f'    <path d="M {jp18_cx:.1f} {jp18_cy:.1f} L {BOARD_X - 40} {jp18_label_y} L {card18_x + card18_w} {jp18_label_y}" class="leader-line"/>')
+    svg.append(f'    <circle cx="{jp18_cx:.1f}" cy="{jp18_cy:.1f}" r="5" class="pin-dot pin-dot-jumper"/>')
+    svg.append(f'    <g transform="translate({card18_x}, {card18_y})">')
+    svg.append(f'      <rect width="{card18_w}" height="{card18_h}" class="table-card"/>')
+    svg.append('      <text x="18" y="28" class="table-hdr">JP17 / JP18: POWER &amp; GROUND ROUTING</text>')
+    svg.append('      <text x="18" y="50" class="table-txt">JP18 (Power Source Bridge):</text>')
+    svg.append('      <text x="28" y="74" class="table-txt">• Default: RJ45_VCC_1 -> SAT_3V3</text><text x="315" y="74" class="table-default">[DEFAULT]</text>')
+    svg.append('      <text x="28" y="96" class="table-txt">• Cut trace for local buck regulation via J7 -> J9</text>')
+    svg.append(f'      <line x1="18" y1="110" x2="{card18_w - 18}" y2="110" stroke="#334155" stroke-width="1.2"/>')
+    svg.append('      <text x="18" y="132" class="table-txt">JP17 (Ground Isolation Bridge):</text>')
+    svg.append('      <text x="28" y="152" class="table-txt">• Default: RJ45_GND_1 -> local GND</text><text x="315" y="152" class="table-default">[DEFAULT]</text>')
+    svg.append('      <text x="28" y="170" class="table-txt">• Cut trace to isolate cable ground from sensors</text>')
     svg.append('    </g>')
     svg.append('  </g>')
 
     # JP13 (Shield Cut)
-    jp13_cx, jp13_cy = mm_to_canvas_bottom(8.20, 37.90)
+    jp13_cx, jp13_cy = mm_to_canvas_bottom(24.10, 38.30)
     jp13_label_y = 440
     card13_w = 420
     card13_h = 120
@@ -351,7 +352,7 @@ def generate_satellite_bottom_svg(board_image_path: str, output_svg_path: str, c
     svg.append(f'    <g transform="translate({card13_x}, {card13_y})">')
     svg.append(f'      <rect width="{card13_w}" height="{card13_h}" class="table-card"/>')
     svg.append('      <text x="18" y="28" class="table-hdr">JP13: RJ45 CABLE SHIELD GROUND</text>')
-    svg.append('      <text x="18" y="52" class="table-txt">Default: Metal shield bridged to GND.</text>')
+    svg.append('      <text x="18" y="52" class="table-txt">Default: Metal shield bridged to RJ45_GND_1.</text>')
     svg.append('      <text x="18" y="76" class="table-txt">Action: Slice center trace to break ground loop</text>')
     svg.append('      <text x="18" y="96" class="table-txt">for single-point earth grounding at Hub.</text>')
     svg.append('    </g>')
@@ -359,7 +360,7 @@ def generate_satellite_bottom_svg(board_image_path: str, output_svg_path: str, c
 
     # --- RIGHT SIDE: DS2482 (JP16) & ADS1115 (JP1) ADDRESS SELECTION JUMPERS ---
     # JP16 (DS2482 Address Jumper - at Top Center)
-    jp16_cx, jp16_cy = mm_to_canvas_bottom(13.15, 6.95)
+    jp16_cx, jp16_cy = mm_to_canvas_bottom(13.50, 12.40)
     jp16_label_y = 230
     card16_w = 430
     card16_h = 180
@@ -372,17 +373,17 @@ def generate_satellite_bottom_svg(board_image_path: str, output_svg_path: str, c
     svg.append(f'    <g transform="translate({card16_x}, {card16_y})">')
     svg.append(f'      <rect width="{card16_w}" height="{card16_h}" class="table-card"/>')
     svg.append('      <text x="18" y="28" class="table-hdr">JP16: DS2482 1-WIRE MASTER ADDRESS</text>')
-    svg.append('      <text x="18" y="50" class="table-txt">Dual jumper selects AD1:AD0 address bits:</text>')
+    svg.append('      <text x="18" y="50" class="table-txt">Bit-weighted jumpers [AD1 (+2) / AD0 (+1)]:</text>')
     svg.append(f'      <line x1="18" y1="60" x2="{card16_w - 18}" y2="60" stroke="#334155" stroke-width="1.2"/>')
-    svg.append('      <text x="24" y="86" class="table-txt">AD1=GND, AD0=GND:</text><text x="230" y="86" class="table-hl">0x18</text><text x="295" y="86" class="table-default">[DEFAULT]</text>')
-    svg.append('      <text x="24" y="110" class="table-txt">AD1=GND, AD0=3V3:</text><text x="230" y="110" class="table-hl">0x19</text>')
-    svg.append('      <text x="24" y="134" class="table-txt">AD1=3V3, AD0=GND:</text><text x="230" y="134" class="table-hl">0x1A</text>')
-    svg.append('      <text x="24" y="158" class="table-txt">AD1=3V3, AD0=3V3:</text><text x="230" y="158" class="table-hl">0x1B</text>')
+    svg.append('      <text x="24" y="86" class="table-txt">AD1=GND(0), AD0=GND(0):</text><text x="245" y="86" class="table-hl">0x18</text><text x="305" y="86" class="table-default">[DEF (0x18)]</text>')
+    svg.append('      <text x="24" y="110" class="table-txt">AD1=GND(0), AD0=VCC(+1):</text><text x="245" y="110" class="table-hl">0x19</text>')
+    svg.append('      <text x="24" y="134" class="table-txt">AD1=VCC(+2), AD0=GND(0):</text><text x="245" y="134" class="table-hl">0x1A</text>')
+    svg.append('      <text x="24" y="158" class="table-txt">AD1=VCC(+2), AD0=VCC(+1):</text><text x="245" y="158" class="table-hl">0x1B</text>')
     svg.append('    </g>')
     svg.append('  </g>')
 
     # JP1 (ADS1115 Address Jumper - Placed on Right where 0x48-0x4B pads physically sit)
-    jp1_cx, jp1_cy = mm_to_canvas_bottom(10.39, 23.25)
+    jp1_cx, jp1_cy = mm_to_canvas_bottom(12.00, 19.30)
     jp1_label_y = 440
     card1_w = 430
     card1_h = 180
@@ -412,8 +413,8 @@ def generate_satellite_bottom_svg(board_image_path: str, output_svg_path: str, c
 
     BOT_LEGEND = [
         ("I2C Address Selection Jumpers (JP1, JP16)", "addr"),
-        ("Power Source Routing Jumper (JP14)", "pwr"),
-        ("Ground & Shield Isolation Jumpers (JP13, JP15)", "gnd"),
+        ("Power & Ground Routing Jumpers (JP17, JP18)", "pwr"),
+        ("Cable Shield Ground Isolation (JP13)", "gnd"),
         ("Factory Default Configuration [Bridged]", "gpio"),
         ("Custom Address / Isolated [User Configurable]", "strap"),
     ]

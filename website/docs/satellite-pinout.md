@@ -33,13 +33,13 @@ Terminates standard Category-rated twisted-pair patch cable from the Hub. Uses s
 |:---:|---|---|---|
 | **1** | `DSCL_N` | Differential I2C Clock (Negative) | Pair 2 (Orange/White) |
 | **2** | `DSCL_P` | Differential I2C Clock (Positive) | Pair 2 (Orange) |
-| **3** | `VCC_2` | Auxiliary Power Conductor (Pass-through to `J7`) | Pair 3 (Green/White) |
-| **4** | `VCC_1` | Primary System Power (`SAT_3V3` feed via `JP14`) | Pair 1 (Blue) |
-| **5** | `GND` | System Ground Return | Pair 1 (Blue/White) |
-| **6** | `GND_2` | Auxiliary Ground Return (Pass-through to `J7`) | Pair 3 (Green) |
+| **3** | `RJ45_VCC_2` | Auxiliary Power Conductor (Pass-through to `J7` pin 4) | Pair 3 (Green/White) |
+| **4** | `RJ45_VCC_1` | Primary Cable Power (Powers diff transceivers; feeds `SAT_3V3` via `JP18`) | Pair 1 (Blue) |
+| **5** | `RJ45_GND_1` | Primary Ground Return (Pass-through to `J7` pin 2; bridges to system `GND` via `JP17`) | Pair 1 (Blue/White) |
+| **6** | `RJ45_GND_2` | Auxiliary Ground Return (Pass-through to `J7` pin 3) | Pair 3 (Green) |
 | **7** | `DSDA_N` | Differential I2C Data (Negative) | Pair 4 (Brown/White) |
 | **8** | `DSDA_P` | Differential I2C Data (Positive) | Pair 4 (Brown) |
-| **SH** | `SHIELD` | RJ45 Metal Chassis Shield (Tied to `GND` via `JP13`) | Outer Braid / Foil |
+| **SH** | `SHIELD` | RJ45 Metal Chassis Shield (Tied to `RJ45_GND_1` via `JP13`) | Outer Braid / Foil |
 
 #### Soil Moisture Sensor Ports (`J2` – `J5`)
 Vertical 3-pin JST PH (2.0mm pitch) connectors. Designed for capacitive analog moisture probes (e.g., Gravity / SEN0193).
@@ -60,15 +60,30 @@ Vertical 3-pin JST PH connector for waterproof digital temperature probes (DS18B
 | **2** | `GND` | Ground Return | Black / Blue (GND) |
 | **3** | `ONEWIRE_DQ` | 1-Wire Bidirectional Data | Yellow / White (DATA) |
 
-#### Auxiliary Power & Tap Header (`J7`)
-Standard 2.54mm (0.1") pitch 4-pin header for secondary power injection or downstream sensor tapping.
+#### Cable Power Breakout Header (`J7`)
+Standard 2.54mm (0.1") pitch 4-pin header breaking out raw conductors from cable Pairs 1 and 3 for external tapping or powering off-board modules.
+
+| Pin | Net Name | Description | Twisted Pair |
+|:---:|---|---|---|
+| **1** | `RJ45_VCC_1` | Primary cable supply conductor from RJ45 pin 4 | Pair 1 (Blue) |
+| **2** | `RJ45_GND_1` | Primary cable ground conductor from RJ45 pin 5 | Pair 1 (Blue/White) |
+| **3** | `RJ45_GND_2` | Secondary/auxiliary ground conductor from RJ45 pin 6 | Pair 3 (Green) |
+| **4** | `RJ45_VCC_2` | Secondary/auxiliary power conductor from RJ45 pin 3 | Pair 3 (Green/White) |
+
+#### Satellite Local Power Header (`J9`)
+Standard 2.54mm (0.1") pitch 2-pin header for local voltage regulation or direct 3.3V board power injection.
 
 | Pin | Net Name | Description |
 |:---:|---|---|
-| **1** | `VCC_2` | Secondary power conductor from RJ45 pin 3 |
-| **2** | `GND_2` | Secondary ground conductor from RJ45 pin 6 |
-| **3** | `GND` | System digital and analog ground |
-| **4** | `SAT_3V3` | Satellite local 3.3V power rail |
+| **1** | `SAT_3V3` | Satellite local 3.3V power rail (powers ADC, 1-Wire bridge, sensors, and Qwiic) |
+| **2** | `GND` | System digital and analog ground |
+
+> [!TIP]
+> **Long-Distance Cable Regulation:** If the satellite is deployed on a very long cable run (50–100 m) with noticeable 3.3V IR drop:
+> 1. Cut solder jumper `JP18` (isolating `SAT_3V3` from cable `RJ45_VCC_1`).
+> 2. Inject higher voltage (e.g., 12V or 24V) at the Hub onto Pair 3 (`VCC_2` / `GND_2`).
+> 3. Connect a compact 3.3V buck regulator module: Input to `J7` (pins 3 & 4), Output to `J9` (`SAT_3V3` & `GND`).
+> The PCA9615 differential transceiver and termination continue to run reliably off `RJ45_VCC_1`, while local sensors receive clean, local regulation.
 
 ---
 
@@ -97,32 +112,32 @@ A 4-way solder jumper connecting the ADS1115 `ADDR` pin to select one of four un
 > [!TIP]
 > To change the address, slice the thin copper trace bridging pads 1 and 2 with a hobby knife, then apply a small solder blob between pad 1 (common) and your chosen address pad.
 
-#### `JP16`: DS2482-100+ 1-Wire Master Address Selection (Dual Jumper)
-Controls the `AD0` and `AD1` address select pins of the I2C-to-1-Wire bridge.
+#### `JP16`: DS2482-100+ 1-Wire Master Address Selection (Bit-Weighted Dual Jumper)
+Controls the `AD0` (+1 bit weight) and `AD1` (+2 bit weight) address select pins of the I2C-to-1-Wire bridge. Silkscreen markings explicitly show **`DEF (0x18)`**, **`AD0 (+1)`**, and **`AD1 (+2)`**.
 
-| Address Bits | Bridge Selection | 7-bit Address | Notes |
+| Address Bits | Bridge Selection | 7-bit Address | Configuration Method |
 |:---:|---|:---:|---|
-| **`AD1=0, AD0=0`** | Pads 2A to GND (Pad 1) & 2B to GND (Pad 1) | **`0x18`** | **Factory Default** |
-| **`AD1=0, AD0=1`** | Pad 2A to `3V3` (Pad 3) & 2B to GND (Pad 1) | **`0x19`** | Solder bridge to 3.3V |
-| **`AD1=1, AD0=0`** | Pad 2A to GND (Pad 1) & 2B to `3V3` (Pad 3) | **`0x1A`** | Solder bridge to 3.3V |
-| **`AD1=1, AD0=1`** | Pad 2A to `3V3` (Pad 3) & 2B to `3V3` (Pad 3) | **`0x1B`** | Both bridged to 3.3V |
+| **`AD1=0, AD0=0`** | Pads 2A to GND & 2B to GND | **`0x18`** | **Factory Default** (Pre-bridged traces to GND) |
+| **`AD1=0, AD0=1`** | Cut 2A bridge; solder bridge 2A to `VCC` | **`0x19`** | Adds **+1** to base address `0x18` |
+| **`AD1=1, AD0=0`** | Cut 2B bridge; solder bridge 2B to `VCC` | **`0x1A`** | Adds **+2** to base address `0x18` |
+| **`AD1=1, AD0=1`** | Cut both bridges; solder both to `VCC` | **`0x1B`** | Adds **+1 + 2** to base address `0x18` |
 
 #### `JP11`: Local I2C Pull-Up Resistor Disconnect
 - **Purpose**: Disconnects the two onboard 4.7kΩ pull-up resistors on `SDA_LOCAL` and `SCL_LOCAL`.
 - **Design**: Collinear single-cut 3-pad jumper.
 - **Usage**: Both pull-ups are enabled by default. Slice across the center cut line with a single blade stroke to disable both local pull-ups if the bus master already provides adequate pull-up strength.
 
-#### `JP14`: Power Source Routing
-- **Pads 1-2 (Default)**: Satellite local power (`SAT_3V3`) is fed from RJ45 conductor 4 (`VCC_1`).
-- **Pads 2-3**: Reroutes Satellite local power to feed from RJ45 conductor 3 (`VCC_2`). Useful when dedicating an auxiliary external supply to sensors.
+#### `JP18`: Power Source Bridge (`RJ45_VCC_1` $\leftrightarrow$ `SAT_3V3`)
+- **Default (Bridged)**: Satellite local power (`SAT_3V3`) is fed directly from cable Pair 1 (`RJ45_VCC_1`).
+- **Cuttable**: Slicing the copper trace disconnects `SAT_3V3` from the cable supply, allowing local power injection via `J9` from an external buck or LDO regulator.
+
+#### `JP17`: Ground Isolation Bridge (`RJ45_GND_1` $\leftrightarrow$ `GND`)
+- **Default (Bridged)**: Cable primary ground (`RJ45_GND_1`) is bonded directly to local system `GND`.
+- **Cuttable**: Slicing this bridge isolates cable ground return from local sensor/analog ground for galvanically isolated multi-supply operation.
 
 #### `JP13`: Cable Shield Grounding
-- **Default**: The metal shield of the RJ45 jack is tied directly to system `GND`.
-- **Cuttable**: Slicing the copper trace between pads 1 and 2 isolates the cable shield from local satellite ground, enabling single-point earth grounding at the Hub end to prevent ground loops.
-
-#### `JP15`: Auxiliary Ground Return Isolation
-- **Default**: Auxiliary ground `GND_2` (RJ45 pin 6) is bridged to system `GND`.
-- **Cuttable**: Slicing this bridge completely separates `GND_2` from system ground for isolated multi-supply operation.
+- **Default (Bridged)**: The metal shield of the RJ45 jack is tied directly to `RJ45_GND_1`.
+- **Cuttable**: Slicing the copper trace between pads 1 and 2 isolates the cable shield from satellite ground, enabling single-point earth grounding at the Hub end to prevent ground loops.
 
 ---
 

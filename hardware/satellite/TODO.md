@@ -6,10 +6,20 @@ This document tracks electrical, signal integrity, power integrity, and DFM impr
 
 ## 1. High Priority (Reliability, Protection & Signal Integrity)
 
-- [x] **Add Reference Plane to `In2.Cu` (Copper Flood / Zone)**
-  - **Status:** **Completed.** Added solid copper flood zone `GND Fill In2` (`net "GND"`, min thickness 0.50mm) and a `VCC_2` power plane zone on `In2.Cu`, providing an unbroken 0.1mm reference dielectric under `B.Cu` differential pairs and I2C lines.
-  - **Issue:** `In2.Cu` previously had only 63 trace segments and no copper fill, causing impedance jumps and large inductive return loops across the 1.34mm core.
-  - **Resolution:** Filled `In2.Cu` with continuous GND copper pour and VCC_2 plane.
+- [x] **Add Reference Planes to `In2.Cu` and `In1.Cu` (Copper Flood / Zone Splits)**
+  - **Status:** **Completed.** 
+    - **`In2.Cu` (directly adjacent to `B.Cu` differential pairs across 0.10mm prepreg):** Split into 2 zones: `SAT GND` covering the main board, and `RJ45_GND_1` providing an unbroken, solid ground reference plane under 100% of the differential I2C traces on `B.Cu`.
+    - **`In1.Cu` (adjacent to `F.Cu`):** Split into 3 zones: `SAT GND` covering sensor circuitry, `RJ45_GND_1` under differential components, and a large bottom-right copper pour for `RJ45_VCC_2`.
+  - **Issue:** Inner planes previously lacked proper zone definitions and grounding separation between raw cable domain and clean sensor ground.
+  - **Resolution:** Re-architected both inner layers with clean boundary splits and continuous reference under all high-speed and differential signals.
+
+- [x] **Decouple Cable Power Entry & Add External Buck Header (`C1`, `JP18`, `JP17`, `J7`, `J9`)**
+  - **Status:** **Completed.** 
+    - Placed bulk capacitor `C1` (22µF) directly across raw cable entry nets `RJ45_VCC_1` and `RJ45_GND_1`.
+    - Tied `U1` `VDDB`, differential bus termination pull-ups/pull-downs (`R3`-`R8`), and TVS `U4` to `RJ45_VCC_1` and `RJ45_GND_1`.
+    - Added cuttable normally-closed solder jumpers `JP18` (`RJ45_VCC_1` $\leftrightarrow$ `SAT_3V3`) and `JP17` (`RJ45_GND_1` $\leftrightarrow$ `GND`).
+    - Standardized `J7` as 4-pin cable bus power breakout: Pin 1 = `RJ45_VCC_1`, Pin 2 = `RJ45_GND_1`, Pin 3 = `RJ45_GND_2`, Pin 4 = `RJ45_VCC_2`.
+    - Added `J9` 2-pin header for local satellite power: Pin 1 = `SAT_3V3`, Pin 2 = `GND`, enabling plug-and-play external buck converter attachment for long-distance runs (>20m).
 
 - [x] **Route ESD Diode (`U4`) In-Line Without Stubs (Flow-Through Routing)**
   - **Status:** **Completed.** Re-routed differential lines (`DSCL_P/N`, `DSDA_P/N`) so signals enter `U4` pads directly and exit towards termination resistors and `U1`, eliminating the previous 1.4mm-2.5mm dead-end side stubs.
@@ -53,8 +63,10 @@ This document tracks electrical, signal integrity, power integrity, and DFM impr
   - **Status:** **Completed.** Cleaned up acute trace angles, added JLCPCB track angle rule constraint (`track_angle >= 90deg`) in `SunSproutSatellite.kicad_dru`, and verified with KiCad DRC passing with 0 design violations.
   - **Resolution:** Acute junctions on In2.Cu, B.Cu shield, and F.Cu diff traces eliminated.
 
-- [x] **Update J7 Footprint Property Description**
-  - **Status:** **Completed.** Updated footprint `Usage` property in schematic and PCB to: `"Auxiliary 1x4 2.54mm header: Pin 1: VCC_2, Pin 2: GND_2, Pin 3: GND, Pin 4: SAT_3V3 (power breakout and bus injection)"`.
+- [x] **Update J7 & J9 Footprint Property Descriptions**
+  - **Status:** **Completed.** Updated footprint `Usage` property in schematic and PCB:
+    - `J7`: `"Auxiliary 1x4 2.54mm header: Pin 1: RJ45_VCC_1, Pin 2: RJ45_GND_1, Pin 3: RJ45_GND_2, Pin 4: RJ45_VCC_2"`
+    - `J9`: `"Local Satellite Power 1x2 2.54mm header: Pin 1: SAT_3V3, Pin 2: GND"`
   - **Resolution:** Metadata accurately matches physical pinout.
 
 - [x] **Add Dedicated Test Points on `B.Cu` for Production & Bench Probing**

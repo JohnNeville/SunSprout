@@ -74,7 +74,9 @@ All connectors are through-hole components mounted on the **top side** of the PC
 | **`J3`** | Moisture Sensor Channel 2 | JST PH 2.0mm 3-pin vertical | 3.65 | 26.50 | Vertical (left edge) | ~6.0 mm (~7.5 mm mated) |
 | **`J4`** | Moisture Sensor Channel 3 | JST PH 2.0mm 3-pin vertical | 3.60 | 35.50 | Vertical (left edge) | ~6.0 mm (~7.5 mm mated) |
 | **`J5`** | Moisture Sensor Channel 4 | JST PH 2.0mm 3-pin vertical | 3.60 | 44.50 | Vertical (left edge) | ~6.0 mm (~7.5 mm mated) |
-| **`J7`** | Auxiliary Power & Tap | 1×4 Pin Header (2.54mm pitch) | 23.95 | 30.89 | Vertical (right edge) | ~8.5 mm mated |
+| **`J8`** | Qwiic / STEMMA QT Extension | JST SH 1.0mm 4-pin vertical | 10.40 | 14.70 | Vertical (top-mid) | ~3.0 mm (~4.5 mm mated) |
+| **`J9`** | Local Satellite Power (3.3V) | 1×2 Pin Header (2.54mm pitch) | 24.20 | 14.50 | Vertical (right edge) | ~8.5 mm mated |
+| **`J7`** | Cable Bus Power Tap | 1×4 Pin Header (2.54mm pitch) | 24.20 | 25.10 | Vertical (right edge) | ~8.5 mm mated |
 
 ### Connector Spacing Highlights
 - **Sensor Port Strip (`J6`, `J2`–`J5`)**: The five sensor connectors form a neat, uniform line along the left edge. The centers sit roughly 3.65 mm from the board edge, with a consistent **~9.0 mm vertical pitch** between successive connectors:
@@ -93,12 +95,12 @@ The board incorporates six configuration jumpers (five on the bottom side, one o
 
 | Ref | Layer | Center (X, Y) | Silk Label | Default State | Function |
 |---|---|---|---|---|---|
-| **`JP1`** | **Bottom** | (10.34, 23.20) | `ADC 0x48 0x49 0x4A 0x4B` | **Pads 1-2 bridged** (Address `0x48`) | ADS1115 I2C address strap selector. Cut bridge to select alternate address. |
-| **`JP11`** | **Top** | (9.35, 14.05) | `I2C PULL UP` | **Both pull-ups bridged** | Dual-trace single-cut jumper for local 4.7kΩ I2C pull-ups on `SCL_LOCAL`/`SDA_LOCAL`. |
-| **`JP13`** | **Bottom** | (22.15, 37.40) | `SHLD GND` | **Bridged** | Bonds RJ45 metal shield (`J1.SHIELD`) to system `GND`. Cut for single-point grounding. |
-| **`JP14`** | **Bottom** | (23.95, 20.09) | — | **Pads 1-2 bridged** (`VCC_1`) | Power source selector: 1-2 selects `VCC_1` from cable; 2-3 selects `VCC_2`. |
-| **`JP15`** | **Bottom** | (21.05, 27.10) | `GND_1 <-> GND_2` | **Bridged** | Bonds cable conductor 6 (`GND_2`) to local system ground. Cut to isolate secondary ground. |
-| **`JP16`** | **Bottom** | (13.10, 6.90) | `OneWire AD0 AD1 VCC GND` | **Both grounded** (Address `0x18`) | Configures address strap pins on the DS2482-100+ 1-Wire bridge. |
+| **`JP1`** | **Bottom** | (12.00, 19.30) | `ADC 0x48 0x49 0x4A 0x4B` | **Pads 1-2 bridged** (Address `0x48`) | ADS1115 I2C address strap selector. Cut bridge to select alternate address. |
+| **`JP11`** | **Top** | (20.30, 8.90) | `I2C PULL UP` | **Both pull-ups bridged** | Dual-trace single-cut jumper for local 4.7kΩ I2C pull-ups on `SCL_LOCAL`/`SDA_LOCAL`. |
+| **`JP13`** | **Bottom** | (24.10, 38.30) | `SHLD GND` | **Bridged** | Bonds RJ45 metal shield (`J1.SHIELD`) to `RJ45_GND_1`. Cut for single-point grounding. |
+| **`JP16`** | **Bottom** | (13.50, 12.40) | `1W ADDR` / `AD0 (+1)` `AD1 (+2)` `DEF (0x18)` `VCC (1)` | **Both grounded** (Address `0x18`) | Configures address strap pins on DS2482-100+ 1-Wire bridge using bit-weighting. |
+| **`JP17`** | **Bottom** | (21.50, 17.30) | `GND_1 <-> GND` | **Bridged** | Bonds cable ground (`RJ45_GND_1`) to satellite system `GND`. Cut to isolate when powering externally. |
+| **`JP18`** | **Bottom** | (24.00, 17.30) | `VCC_1 <-> 3V3` | **Bridged** | Passes Pair 1 cable power (`RJ45_VCC_1`) directly into local `SAT_3V3`. Cut to insert an external regulator between `J7` and `J9`. |
 
 ---
 

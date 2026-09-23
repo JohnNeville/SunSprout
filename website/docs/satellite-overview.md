@@ -68,17 +68,16 @@ At the endpoint, the board translates the differential clock and data signals ba
 - Hardware I2C-to-1-Wire master bridge eliminates software bit-banging and timing jitter over long probe leads.
 - Dedicated 3-pin vertical JST PH connector (`J6`) connects a waterproof DS18B20 digital temperature probe (`SAT_3V3`, `GND`, `ONEWIRE_DQ`).
 - Onboard 4.7kΩ pull-up to `SAT_3V3` provides reliable bus drive.
-- **Configurable I2C Address (`JP16`)**: Dual solder jumper selects address bits `AD0` and `AD1` (default: `0x18`).
+- **Configurable I2C Address (`JP16`)**: Dual solder jumper with bit-weighting notation (`AD0 (+1)` and `AD1 (+2)`) selects addresses `0x18` (factory default), `0x19`, `0x1A`, or `0x1B`.
 
 ### 4. Power & Auxiliary Flexibility
-- **Zero Local Regulator Overhead**: Designed to operate directly from `SAT_3V3` delivered by the Hub over conductor 4 (`VCC_1`). At typical cable lengths (under 20 m) and satellite currents (~15–25 mA), round-trip IR drop is negligible (~0.1–0.2 V).
-- **Decoupling & Reservoir**: An onboard 22 µF bulk capacitor (`C1`) buffers cable transients, accompanied by dedicated 100 nF high-frequency ceramic decoupling capacitors directly adjacent to every active IC pin.
-- **Auxiliary Power Path (`J7`, `JP14`, `JP15`)**:
-  - `VCC_2` (conductor 3) and `GND_2` (conductor 6) pass directly to header `J7`.
-  - Solder jumper `JP14` allows rerouting the satellite's power feed from `VCC_1` to `VCC_2`.
-  - Cuttable jumper `JP15` permits isolating `GND_2` from system `GND`.
+- **Decoupled Power Architecture**: PCA9615 transceiver power (`VDDB`), differential termination bias networks (`R3`, `R5`, `R6`, `R8`), and the ESD clamp array (`U4`) connect directly to raw cable power (`RJ45_VCC_1` / `RJ45_GND_1`). This isolates cable common-mode transients and transmission-line reference planes from the local analog sensing domain.
+- **Bulk Cable Reservoir (`C1`)**: An onboard 22 µF bulk capacitor (`C1`) sits directly across `RJ45_VCC_1` and `RJ45_GND_1` right at the cable entry, dampening inductive cable ringing and buffering transient load steps. Dedicated 100 nF ceramic decoupling capacitors sit directly adjacent to every active IC pin.
+- **Factory Default Operation (Zero Overhead)**: Pre-bridged cuttable solder jumpers `JP18` (`RJ45_VCC_1` $\leftrightarrow$ `SAT_3V3`) and `JP17` (`RJ45_GND_1` $\leftrightarrow$ `GND`) power the board directly from the Hub's regulated 3.3V rail over Pair 1 out of the box with zero external wiring.
+- **Cable Power Breakout Header (`J7`)**: Exposes raw Pair 1 (`RJ45_VCC_1`, `RJ45_GND_1`) and Pair 3 (`RJ45_VCC_2`, `RJ45_GND_2`) conductors on a 2.54mm pitch header for secondary power injection or tapping.
+- **Satellite Local Power Header (`J9`) & Long-Distance Regulation**: A 2-pin 2.54mm header (`SAT_3V3`, `GND`). On extended cable runs (50–100 m) where cable IR drop is non-negligible, users can slice `JP18` (and optionally `JP17`), send higher voltage (12V/24V) down Pair 3, and connect an off-the-shelf compact buck regulator between `J7` and `J9`.
 - **Single-Cut Pull-Up Jumper (`JP11`)**: A custom 3-pad solder jumper with a single collinear cut channel allows disconnecting both local 4.7kΩ I2C pull-ups simultaneously with a single craft knife slice.
-- **Cable Shield Isolation (`JP13`)**: Cuttable solder jumper on the bottom side connects the RJ45 metal shield to system ground by default, allowing single-point grounding configurations when required.
+- **Cable Shield Isolation (`JP13`)**: Cuttable solder jumper on the bottom side connects the RJ45 metal shield to `RJ45_GND_1` by default, allowing single-point grounding configurations when required.
 
 ---
 
