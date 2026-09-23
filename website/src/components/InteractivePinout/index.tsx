@@ -19,13 +19,13 @@ interface FilterOption {
 
 const HUB_FILTERS: FilterOption[] = [
   { id: 'all', label: 'All Signals', tags: [] },
+  { id: 'pwr-conn', label: 'Power Connectors', tags: ['pwr-conn'] },
   { id: 'pwr', label: 'Power & GND', tags: ['pwr', 'gnd'] },
   { id: 'gpio', label: 'Free GPIOs', tags: ['gpio', 'lp-gpio'] },
   { id: 'i2c', label: 'I2C Buses', tags: ['i2c-user', 'i2c-int', 'diff'] },
   { id: 'uart', label: 'UART Console', tags: ['uart'] },
   { id: 'strap', label: 'Strapping Pins', tags: ['strap'] },
   { id: 'btn', label: 'Buttons', tags: ['btn'] },
-  { id: 'usb', label: 'USB-C', tags: ['usb'] },
 ];
 
 const HUB_BOTTOM_FILTERS: FilterOption[] = [

@@ -50,6 +50,7 @@ J8_PINS = [
 
 LEGEND_ITEMS = [
     ("Power & Solar (3V3 / VIN)", "pwr"),
+    ("Power Connectors (USB/Solar/Bat)", "pwr-conn"),
     ("Ground (GND)", "gnd"),
     ("Free GPIO", "gpio"),
     ("LP Core GPIO / Wake", "lp-gpio"),
@@ -59,7 +60,6 @@ LEGEND_ITEMS = [
     ("Strapping Pins", "strap"),
     ("Buttons / Reset / Wake", "btn"),
     ("Differential I2C", "diff"),
-    ("USB-C Native", "usb"),
 ]
 
 
@@ -281,12 +281,26 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     # Center / Bottom Peripherals: Stemma QT, USB-C, Solar, Buttons, Differential
     # -----------------------------------------------------------------------
     svg_lines.append('  <!-- Peripherals & Ports -->')
+    # J4 (Battery Connector JST PH)
+    j4_cx, j4_cy = mm_to_canvas(48.995, 48.187)
+    j4_label_y = 615
+    j4_label_x = BOARD_X + BOARD_PIX_W + 55
+    svg_lines.append('  <g class="callout-group" data-pin="J4" data-tags="pwr-conn,pwr" data-name="J4: Battery Connector (JST PH)">')
+    svg_lines.append(f'    <path d="M {j4_cx:.1f} {j4_cy:.1f} L 940.0 {j4_cy:.1f} L 940.0 {j4_label_y} L {j4_label_x} {j4_label_y}" class="leader-line"/>')
+    svg_lines.append(f'    <circle cx="{j4_cx:.1f}" cy="{j4_cy:.1f}" r="4.5" class="pin-dot pin-dot-pwr-conn"/>')
+    curr_x = j4_label_x + 6
+    for text, tag_type in [("J4", "pwr-conn"), ("Battery (JST PH)", "pwr-conn"), ("VBAT / GND", "pwr")]:
+        badge_svg, badge_w = render_badge(curr_x, j4_label_y, text, tag_type, is_right_aligned=False)
+        svg_lines.append(f'    {badge_svg}')
+        curr_x += (badge_w + 6)
+    svg_lines.append('  </g>')
+
     # J6 (Stemma QT Int)
     j6_cx, j6_cy = mm_to_canvas(39.81, 28.32)
-    j6_label_y = 615
+    j6_label_y = 665
     j6_label_x = BOARD_X + BOARD_PIX_W + 55
     svg_lines.append('  <g class="callout-group" data-pin="J6" data-tags="i2c-int" data-name="J6: STEMMA QT (Internal)">')
-    svg_lines.append(f'    <path d="M {j6_cx:.1f} {j6_cy:.1f} L 900.0 {j6_cy:.1f} L 900.0 {j6_label_y} L {j6_label_x} {j6_label_y}" class="leader-line"/>')
+    svg_lines.append(f'    <path d="M {j6_cx:.1f} {j6_cy:.1f} L 905.0 {j6_cy:.1f} L 905.0 {j6_label_y} L {j6_label_x} {j6_label_y}" class="leader-line"/>')
     svg_lines.append(f'    <circle cx="{j6_cx:.1f}" cy="{j6_cy:.1f}" r="4.5" class="pin-dot pin-dot-i2c-int"/>')
     curr_x = j6_label_x + 6
     for text, tag_type in [("J6", "i2c-int"), ("STEMMA QT Internal", "i2c-int"), ("LP_I2C (GPIO2/3)", "i2c-int")]:
@@ -297,10 +311,10 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
 
     # J203 (Stemma QT User)
     j203_cx, j203_cy = mm_to_canvas(39.81, 36.61)
-    j203_label_y = 665
+    j203_label_y = 715
     j203_label_x = BOARD_X + BOARD_PIX_W + 55
     svg_lines.append('  <g class="callout-group" data-pin="J203" data-tags="i2c-user" data-name="J203: STEMMA QT (User)">')
-    svg_lines.append(f'    <path d="M {j203_cx:.1f} {j203_cy:.1f} L 865.0 {j203_cy:.1f} L 865.0 {j203_label_y} L {j203_label_x} {j203_label_y}" class="leader-line"/>')
+    svg_lines.append(f'    <path d="M {j203_cx:.1f} {j203_cy:.1f} L 870.0 {j203_cy:.1f} L 870.0 {j203_label_y} L {j203_label_x} {j203_label_y}" class="leader-line"/>')
     svg_lines.append(f'    <circle cx="{j203_cx:.1f}" cy="{j203_cy:.1f}" r="4.5" class="pin-dot pin-dot-i2c-user"/>')
     curr_x = j203_label_x + 6
     for text, tag_type in [("J203", "i2c-user"), ("STEMMA QT User", "i2c-user"), ("HP_I2C (GPIO9/10)", "i2c-user")]:
@@ -311,10 +325,10 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
 
     # SW3 (Wake Button)
     sw3_cx, sw3_cy = mm_to_canvas(35.79, 55.83)
-    sw3_label_y = 715
+    sw3_label_y = 765
     sw3_label_x = BOARD_X + BOARD_PIX_W + 55
     svg_lines.append('  <g class="callout-group" data-pin="SW3" data-tags="btn,pwr" data-name="SW3: Wake Button">')
-    svg_lines.append(f'    <path d="M {sw3_cx:.1f} {sw3_cy:.1f} L 830.0 {sw3_cy:.1f} L 830.0 {sw3_label_y} L {sw3_label_x} {sw3_label_y}" class="leader-line"/>')
+    svg_lines.append(f'    <path d="M {sw3_cx:.1f} {sw3_cy:.1f} L 835.0 {sw3_cy:.1f} L 835.0 {sw3_label_y} L {sw3_label_x} {sw3_label_y}" class="leader-line"/>')
     svg_lines.append(f'    <circle cx="{sw3_cx:.1f}" cy="{sw3_cy:.1f}" r="4.5" class="pin-dot pin-dot-btn"/>')
     curr_x = sw3_label_x + 6
     for text, tag_type in [("SW3", "btn"), ("WAKE", "btn"), ("Ship-Mode Wake (QON)", "pwr")]:
@@ -327,11 +341,11 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     usbc_cx, usbc_cy = mm_to_canvas(2.67, 47.71)
     usbc_label_y = 615
     usbc_label_x = BOARD_X - 55
-    svg_lines.append('  <g class="callout-group" data-pin="USBC1" data-tags="usb" data-name="USBC1: USB-C Native">')
+    svg_lines.append('  <g class="callout-group" data-pin="USBC1" data-tags="pwr-conn,pwr" data-name="USBC1: USB-C Native">')
     svg_lines.append(f'    <path d="M {usbc_cx:.1f} {usbc_cy:.1f} L {usbc_cx - 25} {usbc_label_y} L {usbc_label_x} {usbc_label_y}" class="leader-line"/>')
-    svg_lines.append(f'    <circle cx="{usbc_cx:.1f}" cy="{usbc_cy:.1f}" r="4.5" class="pin-dot pin-dot-usb"/>')
+    svg_lines.append(f'    <circle cx="{usbc_cx:.1f}" cy="{usbc_cy:.1f}" r="4.5" class="pin-dot pin-dot-pwr-conn"/>')
     curr_x = usbc_label_x - 6
-    for text, tag_type in [("USBC1", "usb"), ("USB-C Native", "usb"), ("D+/D- • BC1.2", "usb")]:
+    for text, tag_type in [("USBC1", "pwr-conn"), ("USB-C Native", "pwr-conn"), ("VBUS • D+/D-", "pwr-conn")]:
         badge_svg, badge_w = render_badge(curr_x, usbc_label_y, text, tag_type, is_right_aligned=True)
         svg_lines.append(f'    {badge_svg}')
         curr_x -= (badge_w + 6)
@@ -341,11 +355,11 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     cn5_cx, cn5_cy = mm_to_canvas(4.06, 65.58)
     cn5_label_y = 665
     cn5_label_x = BOARD_X - 55
-    svg_lines.append('  <g class="callout-group" data-pin="CN5" data-tags="pwr" data-name="CN5: Solar Input Terminal">')
+    svg_lines.append('  <g class="callout-group" data-pin="CN5" data-tags="pwr-conn,pwr" data-name="CN5: Solar Input Terminal">')
     svg_lines.append(f'    <path d="M {cn5_cx:.1f} {cn5_cy:.1f} L {cn5_cx - 30} {cn5_label_y} L {cn5_label_x} {cn5_label_y}" class="leader-line"/>')
-    svg_lines.append(f'    <circle cx="{cn5_cx:.1f}" cy="{cn5_cy:.1f}" r="4.5" class="pin-dot pin-dot-pwr"/>')
+    svg_lines.append(f'    <circle cx="{cn5_cx:.1f}" cy="{cn5_cy:.1f}" r="4.5" class="pin-dot pin-dot-pwr-conn"/>')
     curr_x = cn5_label_x - 6
-    for text, tag_type in [("CN5", "pwr"), ("Solar Input", "pwr"), ("VIN_SOLAR / GND", "pwr")]:
+    for text, tag_type in [("CN5", "pwr-conn"), ("Solar Input", "pwr-conn"), ("VIN_SOLAR / GND", "pwr")]:
         badge_svg, badge_w = render_badge(curr_x, cn5_label_y, text, tag_type, is_right_aligned=True)
         svg_lines.append(f'    {badge_svg}')
         curr_x -= (badge_w + 6)
