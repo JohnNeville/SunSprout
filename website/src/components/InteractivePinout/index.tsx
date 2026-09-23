@@ -30,7 +30,7 @@ const HUB_FILTERS: FilterOption[] = [
 
 const SATELLITE_TOP_FILTERS: FilterOption[] = [
   { id: 'all', label: 'All Signals', tags: [] },
-  { id: 'sensor', label: 'Sensor Inputs', tags: ['analog', 'onewire'] },
+  { id: 'sensor', label: 'Sensor Inputs', tags: ['analog', 'onewire', 'sensor'] },
   { id: 'diff', label: 'Differential & Bus', tags: ['diff', 'i2c-user'] },
   { id: 'pwr', label: 'Power & GND', tags: ['pwr', 'gnd'] },
   { id: 'jumper', label: 'Jumpers & Cuts', tags: ['jumper', 'strap'] },
@@ -38,7 +38,7 @@ const SATELLITE_TOP_FILTERS: FilterOption[] = [
 
 const SATELLITE_BOTTOM_FILTERS: FilterOption[] = [
   { id: 'all', label: 'All Jumpers', tags: [] },
-  { id: 'jumper', label: 'Address Jumpers', tags: ['jumper'] },
+  { id: 'addr', label: 'Address Jumpers', tags: ['addr'] },
   { id: 'pwr', label: 'Power Routing', tags: ['pwr'] },
   { id: 'gnd', label: 'Ground & Shield', tags: ['gnd'] },
 ];
