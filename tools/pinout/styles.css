@@ -62,6 +62,7 @@ svg {
 .pin-dot-btn { fill: #f43f5e; }
 .pin-dot-alert { fill: #8b5cf6; }
 .pin-dot-usb { fill: #10b981; }
+.pin-dot-pwr-conn { fill: #06b6d4; }
 
 /* Leader lines */
 .leader-line {
@@ -198,6 +199,10 @@ svg {
 /* USB */
 .tag-usb .badge-bg { fill: #064e3b; stroke: #10b981; }
 .tag-usb .badge-text { fill: #d1fae5; }
+
+/* Power Connectors */
+.tag-pwr-conn .badge-bg { fill: #083344; stroke: #06b6d4; }
+.tag-pwr-conn .badge-text { fill: #cffafe; }
 
 /* Jumper */
 .tag-jmp .badge-bg { fill: #3b2505; stroke: #d97706; }
