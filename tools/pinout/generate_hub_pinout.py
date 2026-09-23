@@ -14,6 +14,7 @@ Usage:
 
 import argparse
 import base64
+import html
 import os
 import sys
 from pathlib import Path
@@ -171,7 +172,8 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
         rx = x - w if is_right_aligned else x
         rect_svg = f'<rect x="{rx:.1f}" y="{y - h/2:.1f}" width="{w:.1f}" height="{h:.1f}" class="badge-bg"/>'
         text_x = rx + w / 2
-        text_svg = f'<text x="{text_x:.1f}" y="{y:.1f}" class="badge-text" text-anchor="middle">{text}</text>'
+        escaped_text = html.escape(text)
+        text_svg = f'<text x="{text_x:.1f}" y="{y:.1f}" class="badge-text" text-anchor="middle">{escaped_text}</text>'
         return f'<g class="tag-{tag_type}">{rect_svg}{text_svg}</g>', w
 
     # Helper function to render pin number pill
@@ -284,7 +286,7 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     j6_label_y = 615
     j6_label_x = BOARD_X + BOARD_PIX_W + 55
     svg_lines.append('  <g class="callout-group" data-pin="J6" data-tags="i2c-int" data-name="J6: STEMMA QT (Internal)">')
-    svg_lines.append(f'    <path d="M {j6_cx:.1f} {j6_cy:.1f} L {j6_cx + 25} {j6_label_y} L {j6_label_x} {j6_label_y}" class="leader-line"/>')
+    svg_lines.append(f'    <path d="M {j6_cx:.1f} {j6_cy:.1f} L 900.0 {j6_cy:.1f} L 900.0 {j6_label_y} L {j6_label_x} {j6_label_y}" class="leader-line"/>')
     svg_lines.append(f'    <circle cx="{j6_cx:.1f}" cy="{j6_cy:.1f}" r="4.5" class="pin-dot pin-dot-i2c-int"/>')
     curr_x = j6_label_x + 6
     for text, tag_type in [("J6", "i2c-int"), ("STEMMA QT Internal", "i2c-int"), ("LP_I2C (GPIO2/3)", "i2c-int")]:
@@ -298,7 +300,7 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     j203_label_y = 665
     j203_label_x = BOARD_X + BOARD_PIX_W + 55
     svg_lines.append('  <g class="callout-group" data-pin="J203" data-tags="i2c-user" data-name="J203: STEMMA QT (User)">')
-    svg_lines.append(f'    <path d="M {j203_cx:.1f} {j203_cy:.1f} L {j203_cx + 35} {j203_label_y} L {j203_label_x} {j203_label_y}" class="leader-line"/>')
+    svg_lines.append(f'    <path d="M {j203_cx:.1f} {j203_cy:.1f} L 865.0 {j203_cy:.1f} L 865.0 {j203_label_y} L {j203_label_x} {j203_label_y}" class="leader-line"/>')
     svg_lines.append(f'    <circle cx="{j203_cx:.1f}" cy="{j203_cy:.1f}" r="4.5" class="pin-dot pin-dot-i2c-user"/>')
     curr_x = j203_label_x + 6
     for text, tag_type in [("J203", "i2c-user"), ("STEMMA QT User", "i2c-user"), ("HP_I2C (GPIO9/10)", "i2c-user")]:
@@ -312,7 +314,7 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     sw3_label_y = 715
     sw3_label_x = BOARD_X + BOARD_PIX_W + 55
     svg_lines.append('  <g class="callout-group" data-pin="SW3" data-tags="btn,pwr" data-name="SW3: Wake Button">')
-    svg_lines.append(f'    <path d="M {sw3_cx:.1f} {sw3_cy:.1f} L {sw3_cx + 45} {sw3_label_y} L {sw3_label_x} {sw3_label_y}" class="leader-line"/>')
+    svg_lines.append(f'    <path d="M {sw3_cx:.1f} {sw3_cy:.1f} L 830.0 {sw3_cy:.1f} L 830.0 {sw3_label_y} L {sw3_label_x} {sw3_label_y}" class="leader-line"/>')
     svg_lines.append(f'    <circle cx="{sw3_cx:.1f}" cy="{sw3_cy:.1f}" r="4.5" class="pin-dot pin-dot-btn"/>')
     curr_x = sw3_label_x + 6
     for text, tag_type in [("SW3", "btn"), ("WAKE", "btn"), ("Ship-Mode Wake (QON)", "pwr")]:
