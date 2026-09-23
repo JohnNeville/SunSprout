@@ -7,19 +7,18 @@ from a [SunSproutHub](../hub/), converts the differential pair back to standard 
 reads four capacitive soil-moisture probes plus one 1-Wire soil-temperature probe. For the
 design reasoning behind each part, see [docs/satellite/modules/](../../docs/satellite/modules/).
 
-**Status: schematic-capture spec only.** The project files here are a scaffold — an empty
-hierarchical schematic and an empty board outline, with the two custom parts the hub already
-had to create copied in. No components are placed yet. See the plan this was built from for
-the exact wiring spec (nets, part values, footprints) to key in by hand in the KiCad GUI.
+**Status: Complete 4-layer PCB layout.** The project schematic and PCB layout are fully completed, featuring a 4-layer stackup (JLC04161H-7628), controlled-impedance differential I2C routing, dedicated inner reference planes (`In1.Cu` and `In2.Cu`), ESD protection, cable power decoupling, and complete DFM rule verification with 0 DRC violations.
 
-## Layout
+## Layout & Architecture
 
 | Path | Contents |
 |---|---|
-| `SunSproutSatellite.kicad_sch` | Root/hierarchical top sheet |
-| `sheets/` | Hierarchical sub-sheets (differential I2C endpoint, sensors) — currently empty |
-| `SunSproutSatellite.kicad_pcb` | Board outline only — no layout yet |
-| `SunSproutSatellite.kicad_dru` | Generic JLCPCB design rules (no board-specific power/zone rules — this board has no high-current path) |
+| `SunSproutSatellite.kicad_sch` | Root hierarchical schematic |
+| `sheets/i2c_endpoint_v1.kicad_sch` | Differential I2C endpoint, PCA9615 buffer, termination array, cable power entry, and headers J1, J7, J8, J9 |
+| `sheets/adc_sensors_v1.kicad_sch` | ADS1115 16-bit 4-channel ADC, JST PH moisture probe headers (J2–J5), and address jumper JP1 |
+| `sheets/onewire_v1.kicad_sch` | DS2482S-100+ I2C to 1-Wire bridge, JST PH probe header (J6), and bit-weighted address jumper JP16 |
+| `SunSproutSatellite.kicad_pcb` | Completed 4-layer PCB layout (27.25 mm × 51.10 mm) with inner ground/power planes |
+| `SunSproutSatellite.kicad_dru` | Custom JLCPCB 4-layer design rules (clearances, trace widths, track angles, and annular rings) |
 | `../libraries/` | Project-specific symbol & footprint library (shared with Hub) |
 
 ## External library dependencies
