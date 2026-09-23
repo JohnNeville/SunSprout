@@ -279,3 +279,34 @@
   font-size: 0.95rem;
 }
 
+/* Callout Group Filtering & Highlighting */
+:global(.callout-group) {
+  cursor: pointer;
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+:global(.callout-group.is-dimmed) {
+  opacity: 0.15 !important;
+  filter: grayscale(80%) !important;
+}
+
+:global(.callout-group.is-highlighted) {
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.75)) !important;
+}
+
+:global(.callout-group.is-highlighted .badge-bg) {
+  stroke-width: 2.2 !important;
+}
+
+:global(.callout-group.is-highlighted .leader-line) {
+  stroke: #38bdf8 !important;
+  stroke-width: 2.5 !important;
+  opacity: 1 !important;
+}
+
+:global(.callout-group.is-highlighted .pin-dot) {
+  r: 5 !important;
+  stroke-width: 2 !important;
+}
+
