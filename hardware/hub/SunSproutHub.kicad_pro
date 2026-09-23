@@ -692,7 +692,169 @@
       "ref_range_delimiter": "",
       "string_delimiter": "\""
     },
-    "bom_presets": [],
+    "bom_presets": [
+      {
+        "exclude_dnp": true,
+        "fields_ordered": [
+          {
+            "group_by": false,
+            "label": "Reference",
+            "name": "Reference",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Qty",
+            "name": "${QUANTITY}",
+            "show": true
+          },
+          {
+            "group_by": true,
+            "label": "Value",
+            "name": "Value",
+            "show": true
+          },
+          {
+            "group_by": true,
+            "label": "DNP",
+            "name": "${DNP}",
+            "show": true
+          },
+          {
+            "group_by": true,
+            "label": "Exclude from BOM",
+            "name": "${EXCLUDE_FROM_BOM}",
+            "show": true
+          },
+          {
+            "group_by": true,
+            "label": "Exclude from Board",
+            "name": "${EXCLUDE_FROM_BOARD}",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Footprint",
+            "name": "Footprint",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Datasheet",
+            "name": "Datasheet",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "MAXIMUM_PACKAGE_HEIGHT",
+            "name": "MAXIMUM_PACKAGE_HEIGHT",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "MPN",
+            "name": "MPN",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Manufacturer",
+            "name": "Manufacturer",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Usage",
+            "name": "Usage",
+            "show": true
+          },
+          {
+            "group_by": true,
+            "label": "LCSC Part",
+            "name": "LCSC Part",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Description",
+            "name": "Description",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "#",
+            "name": "${ITEM_NUMBER}",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Supplier Part Site",
+            "name": "Supplier Part Site",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Note",
+            "name": "Note",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Placement",
+            "name": "Placement",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Firmware Constraint",
+            "name": "Firmware Constraint",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Manufacturer Product Page",
+            "name": "Manufacturer Product Page",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Supplier",
+            "name": "Supplier",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Supplier Website",
+            "name": "Supplier Website",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "Label",
+            "name": "Label",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "FT Position Offset",
+            "name": "FT Position Offset",
+            "show": true
+          },
+          {
+            "group_by": false,
+            "label": "FT Rotation Offset",
+            "name": "FT Rotation Offset",
+            "show": true
+          }
+        ],
+        "filter_string": "",
+        "group_symbols": true,
+        "include_excluded_from_bom": false,
+        "name": "Group by LCSC Part",
+        "sort_asc": true,
+        "sort_field": "Reference"
+      }
+    ],
     "bom_settings": {
       "exclude_dnp": true,
       "fields_ordered": [
@@ -706,7 +868,7 @@
           "group_by": false,
           "label": "Qty",
           "name": "${QUANTITY}",
-          "show": true
+          "show": false
         },
         {
           "group_by": true,
@@ -718,240 +880,126 @@
           "group_by": true,
           "label": "DNP",
           "name": "${DNP}",
-          "show": true
+          "show": false
         },
         {
           "group_by": true,
           "label": "Exclude from BOM",
           "name": "${EXCLUDE_FROM_BOM}",
-          "show": true
+          "show": false
         },
         {
           "group_by": true,
           "label": "Exclude from Board",
           "name": "${EXCLUDE_FROM_BOARD}",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Footprint",
           "name": "Footprint",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Datasheet",
           "name": "Datasheet",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "MANUFACTURER",
-          "name": "MANUFACTURER",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "MAXIMUM_PACKAGE_HEIGHT",
           "name": "MAXIMUM_PACKAGE_HEIGHT",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "MPN",
           "name": "MPN",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Manufacturer",
           "name": "Manufacturer",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "PARTREV",
-          "name": "PARTREV",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "STANDARD",
-          "name": "STANDARD",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "TI Ref",
-          "name": "TI Ref",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Usage",
           "name": "Usage",
-          "show": true
+          "show": false
         },
         {
           "group_by": true,
           "label": "LCSC Part",
           "name": "LCSC Part",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Description",
           "name": "Description",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "#",
           "name": "${ITEM_NUMBER}",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Supplier Part Site",
           "name": "Supplier Part Site",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Note",
           "name": "Note",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Placement",
           "name": "Placement",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Firmware Constraint",
           "name": "Firmware Constraint",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Manufacturer Product Page",
           "name": "Manufacturer Product Page",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Supplier",
           "name": "Supplier",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "DigiKey_Part_Number",
-          "name": "DigiKey_Part_Number",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "SnapEDA_Link",
-          "name": "SnapEDA_Link",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "SNAPEDA_PACKAGE_ID",
-          "name": "SNAPEDA_PACKAGE_ID",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "NOTES",
-          "name": "NOTES",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Supplier Website",
           "name": "Supplier Website",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "MF",
-          "name": "MF",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "UNIT",
-          "name": "UNIT",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "MP",
-          "name": "MP",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "VERIFIER",
-          "name": "VERIFIER",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "CREATOR",
-          "name": "CREATOR",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "Package",
-          "name": "Package",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "Check_prices",
-          "name": "Check_prices",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "Minimum Qty",
-          "name": "Minimum Qty",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Label",
           "name": "Label",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "FT Position Offset",
           "name": "FT Position Offset",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "Attrition Qty",
-          "name": "Attrition Qty",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "Class",
-          "name": "Class",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "Category",
-          "name": "Category",
           "show": true
         },
         {
@@ -962,33 +1010,15 @@
         },
         {
           "group_by": false,
-          "label": "Part",
-          "name": "Part",
-          "show": true
+          "label": "STANDARD",
+          "name": "STANDARD",
+          "show": false
         },
         {
           "group_by": false,
-          "label": "Price",
-          "name": "Price",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "Stock",
-          "name": "Stock",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "Process",
-          "name": "Process",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "LCSC",
-          "name": "LCSC",
-          "show": true
+          "label": "TI Ref",
+          "name": "TI Ref",
+          "show": false
         }
       ],
       "filter_string": "",
@@ -1047,7 +1077,7 @@
         "uuid": "a73062bd-90e7-442f-aac6-ee7677f83b11"
       }
     ],
-    "used_designators": "R9,R11,#FLG2-11,J2,J201-202,J402,#PWR7,#PWR23-26,#PWR40,#PWR57,#PWR123,#PWR130,D201,C319,JP2-3,JUMP_CHGR_GND2,TP16-19",
+    "used_designators": "J2,J201-202,J402,R9,R11,#FLG2-11,D201,#PWR7,#PWR23-26,#PWR40,#PWR57,#PWR123,#PWR130,C319,JP2-3,JUMP_CHGR_GND2,TP16-19",
     "variants": []
   },
   "sheets": [
