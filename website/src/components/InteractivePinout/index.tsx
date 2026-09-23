@@ -67,6 +67,7 @@ export default function InteractivePinout({
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const svgWrapperRef = useRef<HTMLDivElement>(null);
 
   // Fullscreen change listener
   useEffect(() => {
@@ -185,8 +186,8 @@ export default function InteractivePinout({
 
   // Update SVG DOM elements when filter or SVG content changes
   useEffect(() => {
-    if (!containerRef.current) return;
-    const svgEl = containerRef.current.querySelector('svg');
+    if (!svgWrapperRef.current) return;
+    const svgEl = svgWrapperRef.current.querySelector('svg');
     if (!svgEl) return;
 
     const calloutGroups = svgEl.querySelectorAll('.callout-group');
@@ -216,8 +217,8 @@ export default function InteractivePinout({
 
   // Attach event listeners for click-to-copy, hover tooltip, and legend clicking
   useEffect(() => {
-    if (!containerRef.current) return;
-    const svgEl = containerRef.current.querySelector('svg');
+    if (!svgWrapperRef.current) return;
+    const svgEl = svgWrapperRef.current.querySelector('svg');
     if (!svgEl) return;
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -291,7 +292,7 @@ export default function InteractivePinout({
               key={f.id}
               type="button"
               className={clsx(styles.filterChip, activeFilter === f.id && styles.filterChipActive)}
-              onClick={() => setActiveFilter(f.id)}
+              onClick={() => setActiveFilter((prev) => (prev === f.id ? 'all' : f.id))}
             >
               {f.label}
             </button>
@@ -360,7 +361,11 @@ export default function InteractivePinout({
         {isLoading ? (
           <div className={styles.loading}>Loading interactive vector diagram...</div>
         ) : (
-          <div className={styles.svgInner} dangerouslySetInnerHTML={{ __html: svgContent }} />
+          <div
+            ref={svgWrapperRef}
+            className={styles.svgInner}
+            dangerouslySetInnerHTML={{ __html: svgContent }}
+          />
         )}
 
         {toastMessage && <div className={styles.toast}>{toastMessage}</div>}
