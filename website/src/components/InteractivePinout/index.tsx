@@ -28,6 +28,15 @@ const HUB_FILTERS: FilterOption[] = [
   { id: 'usb', label: 'USB-C', tags: ['usb'] },
 ];
 
+const HUB_BOTTOM_FILTERS: FilterOption[] = [
+  { id: 'all', label: 'All Test Points', tags: [] },
+  { id: 'pwr', label: 'Power & GND', tags: ['pwr', 'gnd'] },
+  { id: 'uart', label: 'UART Console', tags: ['uart'] },
+  { id: 'i2c', label: 'Internal I2C', tags: ['i2c-int'] },
+  { id: 'ctrl', label: 'Control & Boot', tags: ['strap', 'btn'] },
+  { id: 'jumper', label: 'Jumpers', tags: ['jumper'] },
+];
+
 const SATELLITE_TOP_FILTERS: FilterOption[] = [
   { id: 'all', label: 'All Signals', tags: [] },
   { id: 'sensor', label: 'Sensor Inputs', tags: ['analog', 'onewire', 'sensor'] },
@@ -131,11 +140,8 @@ export default function InteractivePinout({
 
   // Resolve current SVG URL based on side / props
   const rawUrl = useMemo(() => {
-    if (board === 'satellite') {
-      return activeSide === 'bottom' ? (bottomSrc || src) : (topSrc || src);
-    }
-    return src || topSrc;
-  }, [board, activeSide, src, topSrc, bottomSrc]);
+    return activeSide === 'bottom' ? (bottomSrc || src) : (topSrc || src);
+  }, [activeSide, src, topSrc, bottomSrc]);
 
   const targetUrl = useBaseUrl(rawUrl || '');
 
@@ -144,7 +150,7 @@ export default function InteractivePinout({
     if (board === 'satellite') {
       return activeSide === 'bottom' ? SATELLITE_BOTTOM_FILTERS : SATELLITE_TOP_FILTERS;
     }
-    return HUB_FILTERS;
+    return activeSide === 'bottom' ? HUB_BOTTOM_FILTERS : HUB_FILTERS;
   }, [board, activeSide]);
 
   // Fetch SVG text when URL changes
@@ -293,21 +299,21 @@ export default function InteractivePinout({
         </div>
 
         <div className={styles.toolbarActions}>
-          {board === 'satellite' && bottomSrc && (
+          {bottomSrc && (
             <div className={styles.viewToggle}>
               <button
                 type="button"
                 className={clsx(styles.viewButton, activeSide === 'top' && styles.viewButtonActive)}
                 onClick={() => setActiveSide('top')}
               >
-                Top (Ports)
+                {board === 'satellite' ? 'Top (Ports)' : 'Top (Signals)'}
               </button>
               <button
                 type="button"
                 className={clsx(styles.viewButton, activeSide === 'bottom' && styles.viewButtonActive)}
                 onClick={() => setActiveSide('bottom')}
               >
-                Bottom (Jumpers)
+                {board === 'satellite' ? 'Bottom (Jumpers)' : 'Bottom (Test Points)'}
               </button>
             </div>
           )}

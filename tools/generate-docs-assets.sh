@@ -81,11 +81,13 @@ run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
 	--side bottom --quality high --background transparent \
 	-w 1200 -h 1800 -o "$IMG_DIR/board-bottom.png"
 
-echo "== Hub Graphical Pinout diagram (SVG with color-coded callouts) =="
+echo "== Hub Graphical Pinout diagrams (Top & Bottom SVGs) =="
 docker run --rm --user root -v "$REPO_ROOT:/work" -w /work "$IMAGE" \
 	python3 tools/pinout/generate_hub_pinout.py \
-		--board-image "$IMG_DIR/board-top.png" \
-		--output "$IMG_DIR/pinout-top.svg" \
+		--top-image "$IMG_DIR/board-top.png" \
+		--bottom-image "$IMG_DIR/board-bottom.png" \
+		--top-output "$IMG_DIR/pinout-top.svg" \
+		--bottom-output "$IMG_DIR/pinout-bottom.svg" \
 		--css "tools/pinout/styles.css"
 
 echo "== Hub Interactive HTML BOM =="

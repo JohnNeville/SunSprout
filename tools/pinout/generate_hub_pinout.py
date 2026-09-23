@@ -395,14 +395,241 @@ def generate_pinout_svg(board_image_path: str, output_svg_path: str, css_path: s
     print(f"Generated pinout diagram: {output_svg_path}")
 
 
+def generate_hub_bottom_svg(board_image_path: str, output_svg_path: str, css_path: str = None):
+    # Board physical dimensions
+    BOARD_MM_W = 56.0
+    BOARD_MM_H = 85.0
+    
+    # Canvas dimensions
+    CANVAS_W = 1520
+    CANVAS_H = 1040
+    
+    # Board placement on canvas
+    BOARD_PIX_H = 650
+    BOARD_PIX_W = int(BOARD_PIX_H * (BOARD_MM_W / BOARD_MM_H))  # ~428px
+    BOARD_X = (CANVAS_W - BOARD_PIX_W) // 2
+    BOARD_Y = 105
+    
+    def mm_to_canvas_bottom(bx_mm, by_mm):
+        # Mirrored horizontally for bottom view
+        cx = BOARD_X + ((BOARD_MM_W - bx_mm) / BOARD_MM_W) * BOARD_PIX_W
+        cy = BOARD_Y + (by_mm / BOARD_MM_H) * BOARD_PIX_H
+        return cx, cy
+
+    css_content = ""
+    if css_path and os.path.exists(css_path):
+        with open(css_path, "r", encoding="utf-8") as f:
+            css_content = f.read()
+
+    extra_css = """
+.pin-dot-uart { fill: #f97316; }
+.pin-dot-i2c-int { fill: #a855f7; }
+.pin-dot-pwr { fill: #ef4444; }
+.pin-dot-gnd { fill: #475569; }
+.pin-dot-strap { fill: #eab308; }
+.pin-dot-btn { fill: #f59e0b; }
+.pin-dot-jumper { fill: #c026d3; }
+.tag-jumper .badge-bg { fill: #4a044e; stroke: #c026d3; }
+.tag-jumper .badge-text { fill: #f5d0fe; }
+"""
+    css_content += extra_css
+
+    # Image source (embed as base64 data URI if found)
+    image_href = ""
+    if os.path.exists(board_image_path):
+        try:
+            from PIL import Image
+            import io
+            im = Image.open(board_image_path)
+            if im.mode in ('RGBA', 'LA'):
+                pix = im.load()
+                w, h = im.size
+                min_x, max_x = w, 0
+                min_y, max_y = h, 0
+                has_solid = False
+                for y in range(h):
+                    for x in range(w):
+                        if pix[x, y][3] > 128:
+                            has_solid = True
+                            if x < min_x: min_x = x
+                            if x > max_x: max_x = x
+                            if y < min_y: min_y = y
+                            if y > max_y: max_y = y
+                if has_solid and (min_x > 0 or min_y > 0 or max_x < w - 1 or max_y < h - 1):
+                    im = im.crop((min_x, min_y, max_x + 1, max_y + 1))
+                    cpix = im.load()
+                    for cy_px in range(im.size[1]):
+                        for cx_px in range(im.size[0]):
+                            if cpix[cx_px, cy_px][3] < 128:
+                                cpix[cx_px, cy_px] = (0, 0, 0, 0)
+            buf = io.BytesIO()
+            im.save(buf, format="PNG")
+            encoded = base64.b64encode(buf.getvalue()).decode("ascii")
+            image_href = f"data:image/png;base64,{encoded}"
+        except Exception:
+            with open(board_image_path, "rb") as img_file:
+                encoded = base64.b64encode(img_file.read()).decode("ascii")
+                ext = Path(board_image_path).suffix.lower().lstrip(".")
+                mime = "image/png" if ext == "png" else "image/jpeg"
+                image_href = f"data:{mime};base64,{encoded}"
+    else:
+        image_href = os.path.basename(board_image_path)
+
+    svg_lines = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CANVAS_W} {CANVAS_H}" width="100%" height="100%" class="diagram" id="hub-pinout-bottom-svg">',
+        '  <defs>',
+        f'    <style type="text/css"><![CDATA[\n{css_content}\n]]></style>',
+        '    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">',
+        '      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.6"/>',
+        '    </filter>',
+        '  </defs>',
+        f'  <rect width="{CANVAS_W}" height="{CANVAS_H}" fill="#0b1320"/>',
+        f'  <rect x="20" y="20" width="{CANVAS_W - 40}" height="{CANVAS_H - 40}" class="panel"/>',
+        '',
+        '  <!-- Header Title -->',
+        '  <g transform="translate(50, 68)">',
+        '    <text class="title">SunSproutHub Configuration &amp; Test Point Diagram (Bottom)</text>',
+        '    <text y="26" class="subtitle">Hardware Test Points • Internal LP_I2C • Power Rails • Boot &amp; Serial Console</text>',
+        f'    <rect x="{CANVAS_W - 250}" y="-20" width="150" height="30" rx="6" fill="#0f2b48" stroke="#0284c7" stroke-width="1.2"/>',
+        f'    <text x="{CANVAS_W - 175}" y="-1" class="header-tag" text-anchor="middle">BOTTOM VIEW</text>',
+        '  </g>',
+        '',
+        '  <!-- Board Image -->',
+        '  <g filter="url(#shadow)">',
+        f'    <image href="{image_href}" x="{BOARD_X}" y="{BOARD_Y}" width="{BOARD_PIX_W}" height="{BOARD_PIX_H}" preserveAspectRatio="none"/>',
+        '  </g>',
+        '',
+    ]
+
+    def render_badge(x, y, text, tag_type, is_right_aligned=False, width=None):
+        char_len = len(text)
+        w = width if width else (char_len * 8.6 + 22)
+        h = 28
+        rx = x - w if is_right_aligned else x
+        rect_svg = f'<rect x="{rx:.1f}" y="{y - h/2:.1f}" width="{w:.1f}" height="{h:.1f}" class="badge-bg"/>'
+        text_x = rx + w / 2
+        escaped_text = html.escape(text)
+        text_svg = f'<text x="{text_x:.1f}" y="{y:.1f}" class="badge-text" text-anchor="middle">{escaped_text}</text>'
+        return f'<g class="tag-{tag_type}">{rect_svg}{text_svg}</g>', w
+
+    # --- LEFT SIDE CALLOUTS (Serial, Boot, Power Rails, Thermistors) ---
+    left_items = [
+        ("TP17", 39.08, 7.96, "U0TXD Console TX", [("TP17", "uart"), ("U0TXD", "uart"), ("Console Transmit", "uart")], "uart", "uart"),
+        ("TP16", 38.70, 9.85, "U0RXD Console RX", [("TP16", "uart"), ("U0RXD", "uart"), ("Console Receive", "uart")], "uart", "uart"),
+        ("TP18", 42.38, 15.07, "BOOT Strap", [("TP18", "strap"), ("BOOT / GPIO28", "strap"), ("Download Boot Strap", "strap")], "strap,btn", "strap"),
+        ("TP6", 42.34, 19.54, "Digital GND", [("TP6", "gnd"), ("GND", "gnd"), ("Digital Ground", "gnd")], "gnd", "gnd"),
+        ("TP7", 36.97, 25.52, "3V3_USER Switched", [("TP7", "pwr"), ("3V3_USER", "pwr"), ("Switched 3.3V Rail", "pwr")], "pwr", "pwr"),
+        ("TP15", 40.47, 45.28, "VBAT_PRO Protected", [("TP15", "pwr"), ("VBAT_PRO", "pwr"), ("Protected Battery", "pwr")], "pwr", "pwr"),
+        ("TP11", 45.91, 53.70, "FG_TS Fuel Gauge NTC", [("TP11", "pwr"), ("FG_TS_NODE", "pwr"), ("Fuel Gauge Thermistor", "pwr")], "pwr", "pwr"),
+        ("TP4", 41.45, 60.45, "Charger GND", [("TP4", "gnd"), ("GND", "gnd"), ("Charger Ground", "gnd")], "gnd", "gnd"),
+        ("TP10", 44.31, 63.64, "CHGR_TS Charger NTC", [("TP10", "pwr"), ("TS_NODE", "pwr"), ("Charger Thermistor", "pwr")], "pwr", "pwr"),
+    ]
+
+    l_start_y = 170
+    l_gap_y = 68
+    end_x = BOARD_X - 55
+    elbow_l_x = BOARD_X - 35
+    svg_lines.append(f'  <text x="{end_x}" y="{l_start_y - 25}" class="header-tag" text-anchor="end">SERIAL, BOOT &amp; BATTERY TEST POINTS</text>')
+
+    for i, (ref, bx_mm, by_mm, title, tags, tags_csv, dot_type) in enumerate(left_items):
+        label_y = l_start_y + i * l_gap_y
+        pcx, pcy = mm_to_canvas_bottom(bx_mm, by_mm)
+
+        svg_lines.append(f'  <g class="callout-group" data-pin="{ref}" data-tags="{tags_csv}" data-name="{ref}: {title}">')
+        svg_lines.append(f'    <path d="M {pcx:.1f} {pcy:.1f} L {elbow_l_x} {label_y} L {end_x} {label_y}" class="leader-line"/>')
+        svg_lines.append(f'    <circle cx="{pcx:.1f}" cy="{pcy:.1f}" r="4.5" class="pin-dot pin-dot-{dot_type}"/>')
+
+        curr_x = end_x - 6
+        for text, tag_type in tags:
+            badge_svg, badge_w = render_badge(curr_x, label_y, text, tag_type, is_right_aligned=True)
+            svg_lines.append(f'    {badge_svg}')
+            curr_x -= (badge_w + 6)
+        svg_lines.append('  </g>')
+
+    # --- RIGHT SIDE CALLOUTS (Power Rails, I2C Bus, Jumpers) ---
+    right_items = [
+        ("TP19", 26.07, 4.88, "RESET Button Node", [("TP19", "btn"), ("RESET", "btn"), ("CHIP_PU Hardware Reset", "pwr")], "btn,pwr", "btn"),
+        ("TP3", 34.08, 24.05, "SCL_INT Internal I2C", [("TP3", "i2c-int"), ("SCL_INT", "i2c-int"), ("LP_I2C Clock", "i2c-int")], "i2c-int", "i2c-int"),
+        ("TP2", 31.21, 24.95, "SDA_INT Internal I2C", [("TP2", "i2c-int"), ("SDA_INT", "i2c-int"), ("LP_I2C Data", "i2c-int")], "i2c-int", "i2c-int"),
+        ("TP8", 25.96, 26.14, "3V3_SYS System Rail", [("TP8", "pwr"), ("3V3_SYS", "pwr"), ("Always-On 3.3V Rail", "pwr")], "pwr", "pwr"),
+        ("TP12", 30.97, 42.78, "SYS_RAIL Main Bus", [("TP12", "pwr"), ("SYS_RAIL", "pwr"), ("Main System Power", "pwr")], "pwr", "pwr"),
+        ("TP9", 20.22, 48.40, "VBUS_INT Solar/USB In", [("TP9", "pwr"), ("VBUS_INT", "pwr"), ("Internal 5V-20V Input", "pwr")], "pwr", "pwr"),
+        ("TP14", 34.16, 49.22, "VBAT Direct Battery", [("TP14", "pwr"), ("VBAT", "pwr"), ("Raw Li-Ion Battery", "pwr")], "pwr", "pwr"),
+        ("JUMP_CHGR", 24.78, 54.28, "USB D+/D- Conditioning", [("JUMP_CHGR", "jumper"), ("USB_DN / USB_DP", "jumper"), ("BC1.2 Conditioning", "jumper")], "jumper", "jumper"),
+        ("TP13", 29.50, 58.79, "REGN_RAIL Charger LDO", [("TP13", "pwr"), ("REGN_RAIL", "pwr"), ("Charger 5V Gate LDO", "pwr")], "pwr", "pwr"),
+        ("TP5", 12.73, 67.46, "Power GND", [("TP5", "gnd"), ("GND", "gnd"), ("Power Ground", "gnd")], "gnd", "gnd"),
+        ("JP2/JP3", 21.87, 72.22, "Status LED Jumpers", [("JP2/JP3", "jumper"), ("GRN_P / GRN_N", "jumper"), ("LED Current Isolation", "jumper")], "jumper", "jumper"),
+    ]
+
+    r_start_y = 150
+    r_gap_y = 64
+    start_x = BOARD_X + BOARD_PIX_W + 55
+    elbow_r_x = BOARD_X + BOARD_PIX_W + 35
+    svg_lines.append(f'  <text x="{start_x}" y="{r_start_y - 25}" class="header-tag" text-anchor="start">POWER RAILS, I2C BUS &amp; JUMPERS</text>')
+
+    for i, (ref, bx_mm, by_mm, title, tags, tags_csv, dot_type) in enumerate(right_items):
+        label_y = r_start_y + i * r_gap_y
+        pcx, pcy = mm_to_canvas_bottom(bx_mm, by_mm)
+
+        svg_lines.append(f'  <g class="callout-group" data-pin="{ref}" data-tags="{tags_csv}" data-name="{ref}: {title}">')
+        svg_lines.append(f'    <path d="M {pcx:.1f} {pcy:.1f} L {elbow_r_x} {label_y} L {start_x} {label_y}" class="leader-line"/>')
+        svg_lines.append(f'    <circle cx="{pcx:.1f}" cy="{pcy:.1f}" r="4.5" class="pin-dot pin-dot-{dot_type}"/>')
+
+        curr_x = start_x + 6
+        for text, tag_type in tags:
+            badge_svg, badge_w = render_badge(curr_x, label_y, text, tag_type, is_right_aligned=False)
+            svg_lines.append(f'    {badge_svg}')
+            curr_x += (badge_w + 6)
+        svg_lines.append('  </g>')
+
+    # --- FOOTER LEGEND ---
+    legend_y = CANVAS_H - 125
+    legend_h = 100
+    svg_lines.append('  <!-- Legend Panel -->')
+    svg_lines.append(f'  <rect x="50" y="{legend_y}" width="{CANVAS_W - 100}" height="{legend_h}" rx="10" fill="#09101d" stroke="#1e293b" stroke-width="1.2"/>')
+    svg_lines.append(f'  <text x="70" y="{legend_y + 22}" class="legend-title">Signal Classification Legend (Bottom View)</text>')
+
+    HUB_BOT_LEGEND = [
+        ("Power Rails & Battery (pwr)", "pwr"),
+        ("Ground Test Points (gnd)", "gnd"),
+        ("UART Serial Console (uart)", "uart"),
+        ("Internal LP_I2C Bus (i2c-int)", "i2c-int"),
+        ("Control & Bootstrapping (strap, btn)", "strap"),
+        ("Hardware Jumpers (jumper)", "jumper"),
+    ]
+
+    leg_x = 70
+    leg_item_y = legend_y + 52
+    line_h = 34
+    for name, tag_type in HUB_BOT_LEGEND:
+        badge_svg, w = render_badge(leg_x, leg_item_y, name, tag_type, is_right_aligned=False)
+        if leg_x + w > CANVAS_W - 70:
+            leg_x = 70
+            leg_item_y += line_h
+            badge_svg, w = render_badge(leg_x, leg_item_y, name, tag_type, is_right_aligned=False)
+        svg_lines.append(f'  <g class="legend-badge" data-tag="{tag_type}" style="cursor: pointer;">{badge_svg}</g>')
+        leg_x += (w + 14)
+
+    svg_lines.append('</svg>')
+
+    os.makedirs(os.path.dirname(os.path.abspath(output_svg_path)), exist_ok=True)
+    with open(output_svg_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(svg_lines))
+    print(f"Generated Hub bottom diagram: {output_svg_path}")
+
+
 def main():
-    parser = argparse.ArgumentParser(description="Generate SunSproutHub SVG Pinout Diagram")
-    parser.add_argument("--board-image", default="website/static/img/board-top.png", help="Path to rendered board top image")
-    parser.add_argument("--output", default="website/static/img/pinout-top.svg", help="Output path for SVG diagram")
+    parser = argparse.ArgumentParser(description="Generate SunSproutHub SVG Pinout Diagrams (Top & Bottom)")
+    parser.add_argument("--top-image", "--board-image", dest="top_image", default="website/static/img/board-top.png", help="Path to rendered board top image")
+    parser.add_argument("--bottom-image", default="website/static/img/board-bottom.png", help="Path to rendered board bottom image")
+    parser.add_argument("--top-output", "--output", dest="top_output", default="website/static/img/pinout-top.svg", help="Output path for top SVG diagram")
+    parser.add_argument("--bottom-output", default="website/static/img/pinout-bottom.svg", help="Output path for bottom SVG diagram")
     parser.add_argument("--css", default="tools/pinout/styles.css", help="Path to CSS stylesheet")
     args = parser.parse_args()
 
-    generate_pinout_svg(args.board_image, args.output, args.css)
+    generate_pinout_svg(args.top_image, args.top_output, args.css)
+    if args.bottom_output and os.path.exists(args.bottom_image):
+        generate_hub_bottom_svg(args.bottom_image, args.bottom_output, args.css)
 
 
 if __name__ == "__main__":

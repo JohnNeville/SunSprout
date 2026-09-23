@@ -12,10 +12,14 @@ board itself wires up — buttons, I2C buses, alerts) and pins left free for you
 
 import InteractivePinout from '@site/src/components/InteractivePinout';
 
-<InteractivePinout board="hub" src="/img/pinout-top.svg" />
+<InteractivePinout
+  board="hub"
+  topSrc="/img/pinout-top.svg"
+  bottomSrc="/img/pinout-bottom.svg"
+/>
 
 
-Auto-generated vector pinout diagram (`tools/generate-docs-assets.sh`) showing all board peripherals, expansion headers (`J7`, `J8`), Stemma QT ports, buttons, and boot strapping pins with color-coded signal tags.
+Auto-generated vector pinout diagrams (`tools/generate-docs-assets.sh`) showing all board peripherals, expansion headers (`J7`, `J8`), Stemma QT ports, buttons, strapping pins, and bottom-side hardware test points with color-coded signal tags. Use the **Top (Signals)** and **Bottom (Test Points)** toggle in the diagram toolbar to inspect both layers.
 
 For something more useful when you're actually holding the board: **[open the interactive
 BOM](pathname:///ibom/)** — hover or click any reference designator to highlight
@@ -91,3 +95,32 @@ module*, so the pin never reaches the module's edge as a usable IO no matter wha
 board does. This board leaves it unconnected, and the firmware doesn't enable the PSRAM either
 — so it is neither routed nor in use here. A module variant without in-package PSRAM would free
 the pin, at the cost of the PSRAM.
+
+## Hardware Test Points (Bottom View)
+
+The bottom side of the SunSproutHub PCB breaks out key electrical nodes as circular surface-mount test pads for multimeter and oscilloscope probing during bringup and verification:
+
+| Test Point | Signal / Net | Function & Description | Category |
+|---|---|---|---|
+| **TP17** | `U0TXD` | ESP32-C5 primary UART console transmit | Debug / Serial |
+| **TP16** | `U0RXD` | ESP32-C5 primary UART console receive | Debug / Serial |
+| **TP18** | `BOOT` (`BTN1_NODE`) | Download boot mode strap (GPIO28) | Control / Strap |
+| **TP19** | `RESET` (`RESET_NODE`) | Hardware reset line (`CHIP_PU` / `EN`) | Control / Power |
+| **TP2** | `SDA_INT` | Internal `LP_I2C` bus data line (GPIO2) | Internal I2C |
+| **TP3** | `SCL_INT` | Internal `LP_I2C` bus clock line (GPIO3) | Internal I2C |
+| **TP8** | `3V3_SYS` | Always-on 3.3V system supply from buck converter | Power Rail |
+| **TP7** | `3V3_USER` | Switched 3.3V power rail feeding external sensors and J8 | Power Rail |
+| **TP12** | `SYS_RAIL` | Main system power bus from BQ25798 NVDC charger | Power Rail |
+| **TP14** | `VBAT` | Raw 1S battery cell positive terminal voltage | Battery |
+| **TP15** | `VBAT_PRO` | Protected battery voltage after discharge protection FET | Battery |
+| **TP9** | `VBUS_INTERNAL` | USB-C and Solar input power rail (5V–20V) | Power Rail |
+| **TP13** | `REGN_RAIL` | 5V internal gate drive and bootstrap LDO rail | Power Rail |
+| **TP10** | `TS_NODE` (`CHGR_TS`) | Battery thermistor analog sensing node for BQ25798 charger | Thermistor |
+| **TP11** | `FG_TS_NODE` (`FG_TS`) | Independent battery temperature sensor for BQ34Z100 fuel gauge | Thermistor |
+| **TP4, TP5, TP6** | `GND` | System reference ground test pads | Ground |
+
+### Hardware Solder Jumpers (Bottom)
+
+- **`JUMP_CHGR_GND2` (USB D+/D- Conditioning)**: 3-pad jumper between `CHGR_USB_DN`, `GND`, and `CHGR_USB_DP`. Allows configuring USB data lines for standalone charger BC1.2 port detection.
+- **`JP2` (`GRN_P -> 3v3`)**: Connects the status LED anode circuit to `3V3_USER`.
+- **`JP3` (`GRN_N -> GND`)**: Solder jumper in series with the status LED cathode ground return. Slice to disable front-panel LED power consumption for ultra-low-power deployments.
