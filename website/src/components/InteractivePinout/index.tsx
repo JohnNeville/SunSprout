@@ -61,6 +61,8 @@ export default function InteractivePinout({
   const [activeSide, setActiveSide] = useState<'top' | 'bottom'>('top');
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  const [isTheaterMode, setIsTheaterMode] = useState<boolean>(false);
+  const [theaterStyle, setTheaterStyle] = useState<React.CSSProperties>({});
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [hoveredInfo, setHoveredInfo] = useState<string | null>(null);
   const [svgContent, setSvgContent] = useState<string>('');
@@ -85,21 +87,34 @@ export default function InteractivePinout({
     };
   }, []);
 
-  // Escape key handler for CSS fullscreen fallback
+  // Keyboard shortcuts: Escape (exit FS / wide view), 'T' (toggle theater/wide mode)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isFullscreen) {
-        if (document.fullscreenElement) {
-          document.exitFullscreen().catch(() => {});
-        } else {
-          setIsFullscreen(false);
+      const target = e.target as HTMLElement | null;
+      if (target && ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)) {
+        return;
+      }
+
+      if (e.key === 'Escape') {
+        if (isFullscreen) {
+          if (document.fullscreenElement) {
+            document.exitFullscreen().catch(() => {});
+          } else {
+            setIsFullscreen(false);
+          }
+        } else if (isTheaterMode) {
+          setIsTheaterMode(false);
+        }
+      } else if (e.key === 't' || e.key === 'T') {
+        if (!isFullscreen) {
+          setIsTheaterMode((prev) => !prev);
         }
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isFullscreen]);
+  }, [isFullscreen, isTheaterMode]);
 
   // Lock body scroll when in fullscreen
   useEffect(() => {
@@ -112,6 +127,46 @@ export default function InteractivePinout({
       document.body.style.overflow = '';
     };
   }, [isFullscreen]);
+
+  // Dynamically calculate wide/theater mode breakout to fill content area without overlapping sidebar
+  useEffect(() => {
+    if (!isTheaterMode || !containerRef.current) {
+      setTheaterStyle({});
+      return;
+    }
+
+    const updateTheaterLayout = () => {
+      const el = containerRef.current;
+      if (!el) return;
+
+      const mainEl =
+        (document.querySelector('main') as HTMLElement) ||
+        (document.querySelector('.main-wrapper') as HTMLElement) ||
+        document.body;
+      const mainRect = mainEl.getBoundingClientRect();
+      const parentRect = el.parentElement?.getBoundingClientRect() || el.getBoundingClientRect();
+
+      const padding = 16;
+      const availableLeft = Math.max(padding, mainRect.left + padding);
+      const availableRight = Math.min(window.innerWidth - padding, mainRect.right - padding);
+      const availableWidth = Math.min(1560, Math.max(parentRect.width, availableRight - availableLeft));
+
+      const shiftX = availableLeft - parentRect.left;
+
+      setTheaterStyle({
+        width: `${availableWidth}px`,
+        marginLeft: `${shiftX}px`,
+      });
+    };
+
+    updateTheaterLayout();
+    window.addEventListener('resize', updateTheaterLayout);
+    return () => window.removeEventListener('resize', updateTheaterLayout);
+  }, [isTheaterMode]);
+
+  const toggleTheaterMode = () => {
+    setIsTheaterMode((prev) => !prev);
+  };
 
   const toggleFullscreen = async () => {
     if (!containerRef.current) return;
@@ -281,7 +336,12 @@ export default function InteractivePinout({
 
   return (
     <div
-      className={clsx(styles.container, isFullscreen && styles.containerFullscreen)}
+      className={clsx(
+        styles.container,
+        isTheaterMode && styles.containerTheater,
+        isFullscreen && styles.containerFullscreen
+      )}
+      style={isFullscreen ? undefined : theaterStyle}
       ref={containerRef}
     >
       <div className={styles.toolbar}>
@@ -321,7 +381,39 @@ export default function InteractivePinout({
 
           <button
             type="button"
-            className={clsx(styles.fullscreenButton, isFullscreen && styles.fullscreenButtonActive)}
+            className={clsx(
+              styles.actionButton,
+              isTheaterMode && styles.actionButtonActive
+            )}
+            onClick={toggleTheaterMode}
+            title={isTheaterMode ? 'Default view (T)' : 'Theater mode (T)'}
+            aria-label={isTheaterMode ? 'Exit wide view' : 'Wide view'}
+          >
+            {isTheaterMode ? (
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="3" width="20" height="13" rx="2" />
+                <path d="M6.5 7.5L8.5 9.5L6.5 11.5" />
+                <path d="M17.5 7.5L15.5 9.5L17.5 11.5" />
+                <path d="M2 20.5H22" strokeWidth="2.5" />
+              </svg>
+            ) : (
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="3" width="20" height="13" rx="2" />
+                <path d="M8.5 7.5L6.5 9.5L8.5 11.5" />
+                <path d="M15.5 7.5L17.5 9.5L15.5 11.5" />
+                <path d="M2 20.5H22" strokeWidth="2.5" />
+              </svg>
+            )}
+            <span>{isTheaterMode ? 'Exit Wide' : 'Wide View'}</span>
+          </button>
+
+          <button
+            type="button"
+            className={clsx(
+              styles.actionButton,
+              styles.fullscreenButton,
+              isFullscreen && styles.actionButtonActive
+            )}
             onClick={toggleFullscreen}
             title={isFullscreen ? 'Exit Fullscreen (Esc)' : 'Enter Fullscreen'}
             aria-label={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
