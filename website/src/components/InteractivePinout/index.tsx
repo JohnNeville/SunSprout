@@ -51,12 +51,83 @@ export default function InteractivePinout({
 }: InteractivePinoutProps): React.JSX.Element {
   const [activeSide, setActiveSide] = useState<'top' | 'bottom'>('top');
   const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [hoveredInfo, setHoveredInfo] = useState<string | null>(null);
   const [svgContent, setSvgContent] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Fullscreen change listener
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      const isCurrentFs = document.fullscreenElement === containerRef.current;
+      setIsFullscreen(isCurrentFs);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  // Escape key handler for CSS fullscreen fallback
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(() => {});
+        } else {
+          setIsFullscreen(false);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isFullscreen]);
+
+  // Lock body scroll when in fullscreen
+  useEffect(() => {
+    if (isFullscreen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isFullscreen]);
+
+  const toggleFullscreen = async () => {
+    if (!containerRef.current) return;
+
+    if (!document.fullscreenElement && !isFullscreen) {
+      if (containerRef.current.requestFullscreen) {
+        try {
+          await containerRef.current.requestFullscreen();
+        } catch {
+          setIsFullscreen(true);
+        }
+      } else {
+        setIsFullscreen(true);
+      }
+    } else {
+      if (document.fullscreenElement) {
+        try {
+          await document.exitFullscreen();
+        } catch {
+          setIsFullscreen(false);
+        }
+      } else {
+        setIsFullscreen(false);
+      }
+    }
+  };
 
   // Resolve current SVG URL based on side / props
   const rawUrl = useMemo(() => {
@@ -202,7 +273,10 @@ export default function InteractivePinout({
   }, [svgContent, filterList]);
 
   return (
-    <div className={styles.container}>
+    <div
+      className={clsx(styles.container, isFullscreen && styles.containerFullscreen)}
+      ref={containerRef}
+    >
       <div className={styles.toolbar}>
         <div className={styles.filterGroup}>
           <span className={styles.filterLabel}>Filter:</span>
@@ -218,24 +292,45 @@ export default function InteractivePinout({
           ))}
         </div>
 
-        {board === 'satellite' && bottomSrc && (
-          <div className={styles.viewToggle}>
-            <button
-              type="button"
-              className={clsx(styles.viewButton, activeSide === 'top' && styles.viewButtonActive)}
-              onClick={() => setActiveSide('top')}
-            >
-              Top (Ports)
-            </button>
-            <button
-              type="button"
-              className={clsx(styles.viewButton, activeSide === 'bottom' && styles.viewButtonActive)}
-              onClick={() => setActiveSide('bottom')}
-            >
-              Bottom (Jumpers)
-            </button>
-          </div>
-        )}
+        <div className={styles.toolbarActions}>
+          {board === 'satellite' && bottomSrc && (
+            <div className={styles.viewToggle}>
+              <button
+                type="button"
+                className={clsx(styles.viewButton, activeSide === 'top' && styles.viewButtonActive)}
+                onClick={() => setActiveSide('top')}
+              >
+                Top (Ports)
+              </button>
+              <button
+                type="button"
+                className={clsx(styles.viewButton, activeSide === 'bottom' && styles.viewButtonActive)}
+                onClick={() => setActiveSide('bottom')}
+              >
+                Bottom (Jumpers)
+              </button>
+            </div>
+          )}
+
+          <button
+            type="button"
+            className={clsx(styles.fullscreenButton, isFullscreen && styles.fullscreenButtonActive)}
+            onClick={toggleFullscreen}
+            title={isFullscreen ? 'Exit Fullscreen (Esc)' : 'Enter Fullscreen'}
+            aria-label={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
+          >
+            {isFullscreen ? (
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" />
+              </svg>
+            ) : (
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+              </svg>
+            )}
+            <span>{isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}</span>
+          </button>
+        </div>
       </div>
 
       <div className={styles.hintBar}>
@@ -255,11 +350,11 @@ export default function InteractivePinout({
         )}
       </div>
 
-      <div className={styles.svgWrapper} ref={containerRef}>
+      <div className={styles.svgWrapper}>
         {isLoading ? (
           <div className={styles.loading}>Loading interactive vector diagram...</div>
         ) : (
-          <div dangerouslySetInnerHTML={{ __html: svgContent }} />
+          <div className={styles.svgInner} dangerouslySetInnerHTML={{ __html: svgContent }} />
         )}
 
         {toastMessage && <div className={styles.toast}>{toastMessage}</div>}
