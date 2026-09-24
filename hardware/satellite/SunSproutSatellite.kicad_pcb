@@ -9151,14 +9151,14 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "Resistor_SMD:R_0603_1608Metric"
+	(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 		(layer "F.Cu")
 		(uuid "c65d4e96-bfc1-42c6-8164-1adca367c7c0")
-		(at 107.25 109.0575 90)
-		(descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
-		(tags "resistor")
+		(at 107.2 109.1 90)
+		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
+		(tags "resistor handsolder")
 		(property "Reference" "R9"
-			(at 0 -1.43 90)
+			(at 0 -1.65 90)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "e2370eb1-2c45-49e2-9fff-c9dc5f1859df")
@@ -9170,12 +9170,13 @@
 			)
 		)
 		(property "Value" "4.7k"
-			(at 0 1.43 90)
+			(at 0 1.65 90)
 			(layer "F.Fab")
 			(uuid "079a6a60-c4f2-47cb-b08e-fdd97ddf2de2")
 			(effects
 				(font
-					(size 0.5 0.5)
+					(size 1 1)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -9206,11 +9207,11 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "4bcc57fe-9fa9-4fb5-ae98-c70cc1266688")
+			(uuid "3778bedc-89d0-4834-a88a-1550a3796d5a")
 			(effects
 				(font
-					(size 1 1)
-					(thickness 0.15)
+					(size 0.5 0.5)
+					(thickness 0.05)
 				)
 			)
 		)
@@ -9219,11 +9220,11 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6ed84650-16a7-4361-a2ae-4a266667b9df")
+			(uuid "db6f5c77-5e4f-49b0-b39d-723ea891062b")
 			(effects
 				(font
-					(size 1 1)
-					(thickness 0.15)
+					(size 0.5 0.5)
+					(thickness 0.05)
 				)
 			)
 		)
@@ -9232,11 +9233,11 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "62154b4e-8b80-4aaf-860d-79d7ff34547b")
+			(uuid "784ea4e2-02af-42a8-bff8-bdcb7e8894e8")
 			(effects
 				(font
-					(size 1 1)
-					(thickness 0.15)
+					(size 0.5 0.5)
+					(thickness 0.05)
 				)
 			)
 		)
@@ -9245,11 +9246,11 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "94b75d0f-d267-49b0-aa73-24f412b3b3a5")
+			(uuid "8bc820c0-ecdc-4d0a-9796-6587f9aa14df")
 			(effects
 				(font
-					(size 1 1)
-					(thickness 0.15)
+					(size 0.5 0.5)
+					(thickness 0.05)
 				)
 			)
 		)
@@ -9266,8 +9267,8 @@
 		(attr smd dnp)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -0.237258 -0.5225)
-			(end 0.237258 -0.5225)
+			(start -0.227064 -0.735)
+			(end 0.227064 -0.735)
 			(stroke
 				(width 0.12)
 				(type solid)
@@ -9276,8 +9277,8 @@
 			(uuid "81b37d1b-d4bf-4e83-9c9c-c61fcb9133b3")
 		)
 		(fp_line
-			(start -0.237258 0.5225)
-			(end 0.237258 0.5225)
+			(start -0.227064 0.735)
+			(end 0.227064 0.735)
 			(stroke
 				(width 0.12)
 				(type solid)
@@ -9286,8 +9287,8 @@
 			(uuid "ad814868-173a-4375-aceb-b9200fa2a1df")
 		)
 		(fp_rect
-			(start -1.48 -0.73)
-			(end 1.48 0.73)
+			(start -1.85 -0.95)
+			(end 1.85 0.95)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -9297,8 +9298,8 @@
 			(uuid "9b2f054e-c3e9-44ee-bdce-16da77b6137a")
 		)
 		(fp_rect
-			(start -0.8 -0.4125)
-			(end 0.8 0.4125)
+			(start -1 -0.625)
+			(end 1 0.625)
 			(stroke
 				(width 0.1)
 				(type solid)
@@ -9314,29 +9315,30 @@
 			(effects
 				(font
 					(size 0.5 0.5)
+					(thickness 0.08)
 				)
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.825 0 90)
-			(size 0.8 0.95)
+			(at -1 0 90)
+			(size 1.2 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
+			(roundrect_rratio 0.208333)
 			(net "SAT_3V3")
 			(pintype "passive")
 			(uuid "70cb797d-35e2-44bb-bccb-985b1763519f")
 		)
 		(pad "2" smd roundrect
-			(at 0.825 0 90)
-			(size 0.8 0.95)
+			(at 1 0 90)
+			(size 1.2 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
+			(roundrect_rratio 0.208333)
 			(net "ONEWIRE_DQ")
 			(pintype "passive")
 			(uuid "e15aec2b-67e9-4dbd-92be-f7ad1e1b1839")
 		)
 		(embedded_fonts no)
-		(model "kicad-embed://R_0603_1608Metric.step"
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -17354,12 +17356,12 @@
 		(uuid "faa72225-bfc3-48ab-8029-51a4cd375d08")
 	)
 	(segment
-		(start 108.3825 107.1)
-		(end 110 107.1)
+		(start 107.325 108.1575)
+		(end 108.3825 107.1)
 		(width 0.2)
 		(layer "F.Cu")
 		(net "ONEWIRE_DQ")
-		(uuid "5e12e805-2c01-4ff2-9220-1058c341ee1d")
+		(uuid "0d0b37ab-590f-4a20-a6a1-3502cb0801da")
 	)
 	(segment
 		(start 112.415 109.515)
@@ -17367,23 +17369,7 @@
 		(width 0.2)
 		(layer "F.Cu")
 		(net "ONEWIRE_DQ")
-		(uuid "66257962-e8a3-4986-b03c-f6173342bb1e")
-	)
-	(segment
-		(start 106.25 108.1575)
-		(end 107.325 108.1575)
-		(width 0.2)
-		(layer "F.Cu")
-		(net "ONEWIRE_DQ")
-		(uuid "dddae91a-7c58-46cb-b811-9fadce841c4d")
-	)
-	(segment
-		(start 107.325 108.1575)
-		(end 108.3825 107.1)
-		(width 0.2)
-		(layer "F.Cu")
-		(net "ONEWIRE_DQ")
-		(uuid "f091aa19-3086-44b8-9ec2-5fff760abfd6")
+		(uuid "1f4f5c2e-9ffc-4ffc-9b43-24b0060f9091")
 	)
 	(segment
 		(start 110 107.1)
@@ -17391,7 +17377,23 @@
 		(width 0.2)
 		(layer "F.Cu")
 		(net "ONEWIRE_DQ")
-		(uuid "f3455136-a184-4f63-93f9-e7de0dd63563")
+		(uuid "3c9f97a0-999b-4750-b82a-69afe0a8c511")
+	)
+	(segment
+		(start 108.3825 107.1)
+		(end 110 107.1)
+		(width 0.2)
+		(layer "F.Cu")
+		(net "ONEWIRE_DQ")
+		(uuid "d556abe0-e372-4fa6-88a8-c13d9d1988c5")
+	)
+	(segment
+		(start 106.25 108.1575)
+		(end 107.325 108.1575)
+		(width 0.2)
+		(layer "F.Cu")
+		(net "ONEWIRE_DQ")
+		(uuid "e2fb3172-5ddd-4688-b90a-a5246521896b")
 	)
 	(via
 		(at 106.25 108.1575)
@@ -17403,19 +17405,19 @@
 	)
 	(segment
 		(start 106.25 109.7)
-		(end 106.25 108.1575)
+		(end 103.65 112.3)
 		(width 0.2)
 		(layer "B.Cu")
 		(net "ONEWIRE_DQ")
-		(uuid "61fbdc97-6862-4633-877e-d7bb51375fac")
+		(uuid "9cddcae4-13af-4b5f-89b3-9e752b557aef")
 	)
 	(segment
-		(start 103.65 112.3)
+		(start 106.25 108.1575)
 		(end 106.25 109.7)
 		(width 0.2)
 		(layer "B.Cu")
 		(net "ONEWIRE_DQ")
-		(uuid "7c361d8c-5432-428c-851f-6aafe9d6ec2c")
+		(uuid "bab3580e-4f5f-45d0-bb7b-8467134a8ceb")
 	)
 	(segment
 		(start 119.45 111.6)
