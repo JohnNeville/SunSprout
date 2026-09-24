@@ -77,6 +77,7 @@ At the endpoint, the board translates the differential clock and data signals ba
 - **Cable Power Breakout Header (`J7`)**: Exposes raw Pair 1 (`RJ45_VCC_1`, `RJ45_GND_1`) and Pair 3 (`RJ45_VCC_2`, `RJ45_GND_2`) conductors on a 2.54mm pitch header for secondary power injection or tapping.
 - **Satellite Local Power Header (`J9`) & Long-Distance Regulation**: A 2-pin 2.54mm header (`SAT_3V3`, `GND`). On extended cable runs (50–100 m) where cable IR drop is non-negligible, users can slice `JP18` (and optionally `JP17`), send higher voltage (12V/24V) down Pair 3, and connect an off-the-shelf compact buck regulator between `J7` and `J9`.
 - **Single-Cut Pull-Up Jumper (`JP11`)**: A custom 3-pad solder jumper with a single collinear cut channel allows disconnecting both local 4.7kΩ I2C pull-ups simultaneously with a single craft knife slice.
+- **Power Status LED (`LED1`) & Cuttable Jumper (`JP19`)**: A green 0805 power indicator illuminates whenever `SAT_3V3` is energized. Solder jumper `JP19` allows severing the LED ground connection with a hobby knife for zero quiescent draw in battery-powered applications.
 - **Cable Shield Isolation (`JP13`)**: Cuttable solder jumper on the bottom side connects the RJ45 metal shield to `RJ45_GND_1` by default, allowing single-point grounding configurations when required.
 
 ---

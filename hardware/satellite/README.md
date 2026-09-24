@@ -14,7 +14,7 @@ design reasoning behind each part, see [docs/satellite/modules/](../../docs/sate
 | Path | Contents |
 |---|---|
 | `SunSproutSatellite.kicad_sch` | Root hierarchical schematic |
-| `sheets/i2c_endpoint_v1.kicad_sch` | Differential I2C endpoint, PCA9615 buffer, termination array, cable power entry, and headers J1, J7, J8, J9 |
+| `sheets/i2c_endpoint_v1.kicad_sch` | Differential I2C endpoint, PCA9615 buffer, termination array, cable power entry, power status LED (LED1), cut jumper (JP19), and headers J1, J7, J8, J9 |
 | `sheets/adc_sensors_v1.kicad_sch` | ADS1115 16-bit 4-channel ADC, JST PH moisture probe headers (J2–J5), and address jumper JP1 |
 | `sheets/onewire_v1.kicad_sch` | DS2482S-100+ I2C to 1-Wire bridge, JST PH probe header (J6), and bit-weighted address jumper JP16 |
 | `SunSproutSatellite.kicad_pcb` | Completed 4-layer PCB layout (27.25 mm × 51.10 mm) with inner ground/power planes |

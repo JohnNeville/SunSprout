@@ -760,7 +760,7 @@
         "uuid": "b8ad246c-0963-44e9-b36f-20d138e559cc"
       }
     ],
-    "used_designators": "#PWR2,#PWR58,#FLG2-3,J7-9,J203,U4-5,TP2-5,JP14,JP17-18",
+    "used_designators": "#PWR2,#PWR11,#PWR58,R10,#FLG2-3,J7-9,J203,U4-5,TP2-5,JP14,JP17-19,LED1",
     "variants": []
   },
   "sheets": [

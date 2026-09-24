@@ -196,6 +196,8 @@ def generate_satellite_top_svg(board_image_path: str, output_svg_path: str, css_
 
     # --- RIGHT SIDE CALLOUTS (Power, Buffer, Headers, RJ45, TVS, Term, Qwiic, 1-Wire Master) ---
     right_items = [
+        ("JP19", 13.55, 2.10, "Power LED Cut Jumper", [("JP19", "jumper"), ("NC Trace Jumper", "strap"), ("Cut to Disable LED", "strap")], "jumper,strap", "jumper"),
+        ("LED1", 17.50, 3.30, "Power Status LED", [("LED1", "pwr"), ("SAT_3V3 Active", "pwr"), ("PWR (Green)", "pwr")], "pwr", "pwr"),
         ("U3", 13.05, 7.06, "DS2482 1-Wire Master", [("U3", "onewire"), ("DS2482S-100+", "onewire"), ("1-Wire Master", "onewire")], "onewire,i2c-user,sensor", "onewire"),
         ("JP11", 20.30, 8.90, "I2C Pull-Ups", [("JP11", "jumper"), ("4.7kΩ SDA/SCL", "jumper"), ("Single-Cut Trace", "strap")], "jumper,strap", "jumper"),
         ("J9", 24.20, 14.50, "Satellite Power Input", [("J9", "pwr"), ("SAT_3V3", "pwr"), ("GND", "gnd")], "pwr,gnd", "pwr"),
@@ -208,8 +210,8 @@ def generate_satellite_top_svg(board_image_path: str, output_svg_path: str, css_
         ("J1", 15.95, 45.20, "RJ45 Bus", [("J1", "diff"), ("RJHSE5380 (8P8C)", "diff"), ("Diff I2C + Dual Power", "diff")], "diff,pwr", "diff"),
     ]
 
-    r_start_y = 140
-    r_gap_y = 68
+    r_start_y = 135
+    r_gap_y = 64
     start_x = BOARD_X + BOARD_PIX_W + 55
     svg.append(f'  <text x="{start_x}" y="{r_start_y - 25}" class="header-tag" text-anchor="start">COMMUNICATION &amp; POWER INTERFACES</text>')
 

@@ -78,6 +78,10 @@ Standard 2.54mm (0.1") pitch 2-pin header for local voltage regulation or direct
 | **1** | `SAT_3V3` | Satellite local 3.3V power rail (powers ADC, 1-Wire bridge, sensors, and Qwiic) |
 | **2** | `GND` | System digital and analog ground |
 
+#### Power Status Indicator (`LED1` & `JP19`)
+- **`LED1`**: A dedicated green 0805 SMD LED located on the top side near the mounting hole illuminates whenever the regulated `SAT_3V3` rail is powered (via cable power or local injection). Ballasted with a 120Ω resistor (`R10`).
+- **`JP19`**: A 2-pad normally closed (bridged) solder jumper in series with `LED1`'s cathode return to `GND`. For battery-powered or ultra-low-power field deployments, slice the trace across `JP19` with a hobby knife to eliminate quiescent LED current draw.
+
 > [!TIP]
 > **Long-Distance Cable Regulation:** If the satellite is deployed on a very long cable run (50–100 m) with noticeable 3.3V IR drop:
 > 1. Cut solder jumper `JP18` (isolating `SAT_3V3` from cable `RJ45_VCC_1`).
@@ -124,8 +128,12 @@ Controls the `AD0` (+1 bit weight) and `AD1` (+2 bit weight) address select pins
 
 #### `JP11`: Local I2C Pull-Up Resistor Disconnect
 - **Purpose**: Disconnects the two onboard 4.7kΩ pull-up resistors on `SDA_LOCAL` and `SCL_LOCAL`.
-- **Design**: Collinear single-cut 3-pad jumper.
+- **Design**: Collinear single-cut 3-pad jumper on top side.
 - **Usage**: Both pull-ups are enabled by default. Slice across the center cut line with a single blade stroke to disable both local pull-ups if the bus master already provides adequate pull-up strength.
+
+#### `JP19`: Power Status LED Disconnect (`LED1`)
+- **Default (Bridged)**: The green power status LED (`LED1`) cathode returns to `GND` through pre-bridged trace on `JP19`.
+- **Cuttable**: Slicing the copper trace between pads of `JP19` on the top side disables `LED1` to eliminate quiescent draw (~4–10 mA) for battery or energy-harvesting deployments.
 
 #### `JP18`: Power Source Bridge (`RJ45_VCC_1` $\leftrightarrow$ `SAT_3V3`)
 - **Default (Bridged)**: Satellite local power (`SAT_3V3`) is fed directly from cable Pair 1 (`RJ45_VCC_1`).
