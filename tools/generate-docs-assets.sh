@@ -71,13 +71,13 @@ run_kicad_cli() {
 
 echo "== Hub Board render (top - orthographic for pinout & docs) =="
 run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
-	--preset follow_pcb_editor \
+	--preset "All layers on" \
 	--side top --quality high --background transparent \
 	-w 1200 -h 1800 -o "$IMG_DIR/board-top.png"
 
 echo "== Hub Board render (bottom) =="
 run_kicad_cli pcb render "$HUB_DIR/SunSproutHub.kicad_pcb" \
-	--preset follow_pcb_editor \
+	--preset "All layers on" \
 	--side bottom --quality high --background transparent \
 	-w 1200 -h 1800 -o "$IMG_DIR/board-bottom.png"
 
@@ -103,13 +103,13 @@ docker run --rm --user root -v "$REPO_ROOT:/work" -w /work -e STATIC_DIR="/work/
 
 echo "== Satellite Board render (top - orthographic for pinout & docs) =="
 run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
-	--preset follow_pcb_editor \
+	--preset "All layers on" \
 	--side top --quality high --background transparent \
 	-w 960 -h 1800 -o "$IMG_DIR/satellite-board-top.png"
 
 echo "== Satellite Board render (bottom) =="
 run_kicad_cli pcb render "$SAT_DIR/SunSproutSatellite.kicad_pcb" \
-	--preset follow_pcb_editor \
+	--preset "All layers on" \
 	--side bottom --quality high --background transparent \
 	-w 960 -h 1800 -o "$IMG_DIR/satellite-board-bottom.png"
 
