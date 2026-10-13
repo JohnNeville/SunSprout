@@ -92,13 +92,16 @@ resistors can be fitted without a board change.
 
 ## Charger isolation resistors
 
-| Reference | Value | Function |
+| Reference | Value | Status |
 |---|---|---|
-| `R9` | 10 kΩ | Isolates the charger D+ input from the shared data line. |
-| `R11` | 10 kΩ | Isolates the charger D- input from the shared data line. |
+| `R9` | 10 kΩ if fitted | DNP. Connects the charger D+ input to the shared data line. |
+| `R11` | 10 kΩ if fitted | DNP. Connects the charger D- input to the shared data line. |
 
-The charger and the MCU share the two data lines. Before this change the charger connected
-directly to them. The charger detection input then loaded the live USB signals.
+The charger and the MCU would share the two data lines. The footprints are on the board, but the
+parts are not fitted, so the charger is disconnected from the USB data path by default. This
+keeps the charger's detection input from loading or disturbing USB traffic, including during
+firmware flashing.
 
-The two resistors separate the charger from the signal path. The charger can still detect the
-charger type. It no longer disturbs USB traffic.
+With the pads empty the charger gets no BC1.2 signalling from the host. Fit a resistor on each
+pad to bring it back. See the [charger notes](bq25798-charger.md#usb-data-line-isolation) for the
+effect on the input current limit and for `JUMP_CHGR_GND2`.

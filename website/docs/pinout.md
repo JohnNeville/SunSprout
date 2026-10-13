@@ -38,7 +38,7 @@ by [InteractiveHtmlBom](https://github.com/openscopeproject/InteractiveHtmlBom) 
 | GPIO3 | SCL_INT — **`LP_I2C_SCL`** | Assigned | Yes — SDIO sampling/clock-edge select | R21 4.7kΩ pull-up to 3V3_SYS | Internal I2C clock. Fixed-function LP pin; see below. |
 | GPIO4 | FG_ALERT (fuel gauge) | Assigned | No — deep-sleep wake capable | R401 10kΩ pull-up to 3V3_SYS | Fuel-gauge alert, wake-capable. Kept on its own net, separate from the charger's interrupt |
 | GPIO5 | Unused | Free | No | — | Routed to expansion header J8 |
-| GPIO6 | LED1_CTRL (status LED) | Assigned | No | — (push-pull output) | Drives LED1 through R3 (120Ω) |
+| GPIO6 | LED1_CTRL (status LED) | Assigned | No | — (push-pull output) | Drives LED1 through R3 (330Ω) |
 | GPIO7 | Unused | Free | Yes — paired SDIO edge-select strap | — | Routed to expansion header J7 |
 | GPIO8 | CHG_INT (charger interrupt) | Assigned | No | R24 10kΩ pull-up to 3V3_SYS | Short interrupt pulse; recoverable via I2C polling |
 | GPIO9 | SDA_USER (user I2C data) | Assigned | No | R201 4.7kΩ pull-up to 3V3_USER | Feeds the I2C differential buffer + external STEMMA QT port |
@@ -46,7 +46,7 @@ by [InteractiveHtmlBom](https://github.com/openscopeproject/InteractiveHtmlBom) 
 | GPIO11 | U0TXD | Fixed | No | — | Debug console UART, also routed to J8 |
 | GPIO12 | U0RXD | Fixed | No | — | Debug console UART, also routed to J8 |
 | USB_D− | USB_DN | Fixed | No | R7, 22Ω series | Native USB peripheral. The series resistor Espressif recommends. |
-| USB_D+ | USB_DP | Fixed | No | R8, 22Ω series | Native USB peripheral. Shared with the charger's BC1.2 detection input via R9/R11, which ship as cuttable 0Ω bridges. See [Notes](notes.md#the-charger-taps-the-usb-data-lines-through-cuttable-bridges). |
+| USB_D+ | USB_DP | Fixed | No | R8, 22Ω series | Native USB peripheral. The charger's BC1.2 detection input can be connected via R9/R11, which ship unpopulated. See [Notes](notes.md#the-charger-is-disconnected-from-the-usb-data-lines-by-default). |
 | GPIO15 | Reserved — in-package PSRAM chip-select | Reserved | No | — | Consumed inside the module, not by this board. See below. |
 | GPIO16–22 | Not exposed | Reserved | — | — | Internal to the module, not broken out |
 | GPIO23 | EN_3V3_USER | Assigned | No | R23 100kΩ pull-down to GND | Enables the switched 3V3_USER rail; defaults OFF at power-up |
@@ -121,5 +121,5 @@ The bottom side of the SunSproutHub PCB breaks out key electrical nodes as circu
 
 ### Hardware Solder Jumpers (Bottom)
 
-- **`JUMP_CHGR_GND2` (USB D+/D- Conditioning)**: 3-pad jumper between `CHGR_USB_DN`, `GND`, and `CHGR_USB_DP`. Allows configuring USB data lines for standalone charger BC1.2 port detection.
+- **`JUMP_CHGR_GND2` (USB D+/D- Conditioning)**: 3-pad jumper between `CHGR_USB_DN`, `GND`, and `CHGR_USB_DP`. Optionally grounds the charger's D+/D- pins. Close it only while `R9` and `R11` are unpopulated.
 - **`JP2` (`GRN_P -> 3V3_USER`) & `JP3` (`GRN_N -> GND`) (RJ45 Aux Power Isolation)**: Cuttable solder jumpers bridging the otherwise unused green twisted pair (RJ45 pins 3 & 6: `VCC_2` and `GND_2`/`GRN_N`) to the Hub's `3V3_USER` rail and system `GND`. Shorted as fabricated. Slice both jumpers open to isolate `VCC_2` from the onboard 3.3V supply, allowing custom external voltages (e.g. 5V, 12V) to be injected via header `J2` to power remote differential QwiicBus sensors or power-hungry satellite peripherals without back-powering the Hub.

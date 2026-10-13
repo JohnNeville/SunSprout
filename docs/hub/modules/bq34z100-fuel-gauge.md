@@ -24,46 +24,44 @@ blocker, so the design changed the part.
 The BQ34Z100 supports lithium-ion and LiFePO4 chemistries. It also had much better stock at the
 assembly house than the other candidates.
 
-## Sense resistor — R60
+## Sense resistor and filter
 
-| Item | Value |
-|---|---|
-| Reference | `R60` |
-| Value | 10 mΩ |
-| Package | 1206 |
-| Location | Main sheet, next to the battery connector `J4` |
+| Reference | Value | Function |
+|---|---|---|
+| `R404` | 10 mΩ, 1206 | Current-sense (shunt) resistor, in the battery return path next to `J4` |
+| `R402` | 100 Ω, 0603 | `SRN` series filter resistor, on the `R404` ground-side pad |
+| `R403` | 100 Ω, 0603 | `SRP` series filter resistor, on the `R404` battery-side pad |
+| `C403` | 100 nF, 0402 | Differential filter capacitor across `SRP` and `SRN` |
 
-`R60` is the current-sense resistor. It sits in series between the true negative terminal of the
-battery and system ground. The full charge current and the full discharge current flow through
-it.
+`R404` is the current-sense resistor. It was `R404` in earlier revisions. It sits in series between
+the true negative terminal of the battery and system ground. The full charge current and the full
+discharge current flow through it.
 
-The gauge measures the voltage across `R60` with its `SRP` and `SRN` pins. This is a low-side
+The gauge measures the voltage across `R404` with its `SRP` and `SRN` pins. This is a low-side
 measurement. The earlier gauge used an integrated high-side shunt inside the IC instead. The
-change to an external low-side resistor was part of the part change.
+change to an external low-side resistor was part of the part change. The datasheet recommends a
+5 mΩ to 20 mΩ resistor and allows ±125 mV across the pins, so 10 mΩ gives a ±12.5 A input range.
 
-Two layout rules apply:
+### Sense filter
 
-- Place `R60` close to the battery connector, in the direct battery return path.
-- Route `SRP` and `SRN` as a Kelvin connection to the two pads of the resistor. Keep these
-  tracks separate from the high-current return path.
+Each sense input goes through a 100 Ω resistor, with one 100 nF capacitor across the two inputs.
+This is the differential low-pass filter that the datasheet recommends for the coulomb-counter
+inputs (section 10.2.3 and Figure 10-2). The resistors carry only the nanoamp-level sense current,
+not the battery current. The gauge's effective input resistance is about 2.5 MΩ, so 100 Ω adds
+negligible error. A resistor of 100 kΩ here would add a gain error of several percent.
+
+Layout rules that apply:
+
+- Place `R404` close to the battery connector, in the direct battery return path.
+- Take the `SRP` and `SRN` taps from the two pads of `R404` itself, from the side of each pad away
+  from where the load current leaves. This is the Kelvin connection. Keep the tap copper separate
+  from the high-current return path.
+- Place `R402` and `R403` symmetrically about `R404`, with traces of equal length and width.
+- Place `C403` as close as possible to the `SRP` and `SRN` pins, on the gauge side of the resistors.
 
 A Kelvin connection measures the voltage at the resistor pads themselves. It excludes the
 voltage drop in the tracks that carry the current. Without it the gauge reads a current that is
 too high.
-
-### Why the sense resistor is on the main sheet
-
-The sense resistor belongs to the fuel gauge circuit, but it does not sit on the fuel gauge
-sheet. It sits on the main sheet, because it belongs in the physical battery return path next to
-`J4`. A reader who examines only the fuel gauge sheet does not see it.
-
-### Ground isolation — NT4
-
-`NT4` is a net tie. It joins the `SRN` sense net to the general ground pour at exactly one
-point. That point is at `R60`.
-
-This keeps the Kelvin sense path separate from the ground pour. A direct connection to the pour
-would let return current change the measured voltage.
 
 ## Support components
 
@@ -104,7 +102,7 @@ level gave too little margin for the MCU input. The pull-up now uses the 3.3 V r
 ## Battery connection
 
 The `BAT`, `CE` and `REGIN` pins all connect to the `VBAT_PROTECTED` net. No series shunt sits
-between the battery and these pins. The current measurement happens at `R60` on the low side
+between the battery and these pins. The current measurement happens at `R404` on the low side
 instead.
 
 ### Why the gauge sits on the pack side
@@ -124,7 +122,7 @@ own accumulated count. A supply interruption restarts the gauge. The gauge then 
 and must learn the pack again. On the pack side the gauge keeps counting through every charger
 low-power state, so the state of charge stays correct.
 
-The gauge also keeps measuring the current through `R60` in these states. `R60` sits in the true
+The gauge also keeps measuring the current through `R404` in these states. `R404` sits in the true
 battery return path, so it still carries any residual current.
 
 ### The cost of this choice

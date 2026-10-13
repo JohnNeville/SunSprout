@@ -72,31 +72,31 @@ Double-check your battery pack's JST-PH cable polarity against the board's silks
 before connecting. JST-PH battery cables aren't universally standardized across vendors, and a
 mismatched cable is one of the few ways to damage the board despite the onboard protection.
 
-## The charger taps the USB data lines through cuttable bridges
+## The charger is disconnected from the USB data lines by default
 
-The USB-C D+ and D- lines are shared. Each one meets the ESD diode `D5`, the MCU's native USB
-peripheral, and the charger's BC1.2 detection input. The three branches join at `D5` itself,
-whose footprint carries the junction internally so the clamp sits at a single star point.
+The USB-C D+ and D- lines are shared. Each one meets the ESD diode `D5` and the MCU's native USB
+peripheral. The charger's BC1.2 detection input has pads for a third branch. The branches join at
+`D5` itself, whose footprint carries the junction internally so the clamp sits at a single star
+point.
 
-The charger's branch runs through `R9` (D+) and `R11` (D-). These are **not** fitted resistors.
-They are 0603 pads with a 0.3 mm copper bridge built into the footprint, shorted from the
-factory and excluded from the assembly BOM. The charger therefore sees the data lines directly,
-and BC1.2 detection works as intended on a prototype out of the box.
+The charger's branch runs through `R9` (D+) and `R11` (D-). **These positions are unpopulated.**
+They are empty 0603 pads, excluded from the assembly BOM, so the charger does not connect to the
+USB data lines on a stock board. This keeps its input capacitance and detection signalling off
+the bus, which matters during firmware flashing over the native USB port.
 
-The bridges exist so the link can be broken later without a board revision. If the charger's
-input capacitance turns out to disturb USB enumeration — most likely during firmware flashing —
-cut the bridge through the soldermask window and, if a real value is wanted, hand-solder a 0603
-resistor onto the same pads.
+The charger therefore gets no BC1.2 detection from the host. Its input current limit does not
+depend on that: the hardware clamp on `ILIM_HIZ` still caps the input at roughly 2 A. To bring
+detection back, hand-solder a 10 kΩ 0603 resistor onto each pad.
 
-`JUMP_CHGR_GND2` is a three-way solder jumper that grounds the charger-side pins after a cut:
-bridge the centre pad to one outer pad to ground D+, to the other to ground D-. Grounded is the
-correct resting state for those pins, since a floating detection input can read as anything.
+`JUMP_CHGR_GND2` is a three-way solder jumper that grounds the charger-side pins: bridge the
+centre pad to one outer pad to ground D+, to the other to ground D-. The datasheet does not say
+whether unused D+/D- pins should float or be grounded. They are analog I/O pins, so grounding
+them gives a defined state, but it is optional.
 
-:::warning Cut before you ground
-Bridging `JUMP_CHGR_GND2` while `R9`/`R11` are still intact shorts the live USB data lines to
-ground and kills the port. Cut the bridges first, then ground. Nothing on the board prevents
-this — the jumper is an open footprint and the bridges are declared as net ties, so neither
-DRC nor the ratsnest will flag the mistake.
+:::warning Leave R9 and R11 empty before you ground
+Bridging `JUMP_CHGR_GND2` while a resistor is fitted on `R9` or `R11` shorts that live USB data
+line to ground and kills the port. Close the jumper only while both positions are empty. Nothing
+on the board prevents this, so neither DRC nor the ratsnest will flag the mistake.
 :::
 
 Cutting a bridge also puts the board out of step with the design files, which continue to show

@@ -117,7 +117,7 @@ guidance.
 
 | Source | Connector | Notes |
 |---|---|---|
-| USB-C | `USBC1` | 5V USB-C power/data input. The charger runs BC1.2 and non-standard adapter detection over D+/D- to set its own input current limit. There is no USB-PD controller, so the port is 5V only; HVDCP (9V/12V) is reachable only from a USB-A QuickCharge supply over an A-to-C cable, and only if firmware enables it. |
+| USB-C | `USBC1` | 5V USB-C power/data input. The charger's BC1.2 and non-standard adapter detection over D+/D- is disconnected by default (`R9`/`R11` are unpopulated), so its input current limit comes from the hardware clamp instead; see [Notes](notes.md#the-charger-is-disconnected-from-the-usb-data-lines-by-default). There is no USB-PD controller, so the port is 5V only; HVDCP (9V/12V) is reachable only from a USB-A QuickCharge supply over an A-to-C cable, and only if firmware enables it. |
 | DC / small solar panel | `CN5` (screw terminal) | Wide-range DC input suitable for a small solar panel; can be connected at the same time as USB-C. |
 | Battery | `J4` (JST PH, 2-pin) | Single cell. Double-check pack polarity against the board's silkscreen before connecting — JST-PH battery polarity isn't universally standardized across cable vendors. |
 
