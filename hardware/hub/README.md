@@ -37,7 +37,7 @@ render, or fabricate the board, because the geometry is already in the board fil
 |---|---|---|
 | `Snapeda` | `KICAD_3RD_PARTY` | `J201`, `J202`, `U3`, `U8`, `U4`, `U5`, `U201`, `D5`, `U202`, `Q301`-`Q304` |
 | `PCM_JLCPCB` | PCM package ([CDFER](https://github.com/CDFER/JLCPCB-Kicad-Library), MIT) | The 0402 capacitors |
-| `PCM_SparkFun-Connector` | PCM package | The 13 test points |
+| `PCM_SparkFun-Connector` | PCM package | The test points |
 | `PCM_Capacitor_SMD_AKL` | PCM package | `C17` only, which is DNP and not fitted |
 
 If KiCad reports these as missing, the board is still correct. To silence the warnings,

@@ -52,7 +52,7 @@ Vertical 3-pin JST PH (2.0mm pitch) connectors. Designed for capacitive analog m
 | **`J5`** | `GND` | `SAT_3V3` | `MOIST4` | ADS1115 AIN3 | Moisture Probe Channel 4 |
 
 #### 1-Wire Temperature Sensor Port (`J6`)
-Vertical 3-pin JST PH connector for waterproof digital temperature probes (DS18B20). Driven by the onboard DS2482-100+ hardware I2C-to-1-Wire bridge with an onboard 4.7kΩ pull-up.
+Vertical 3-pin JST PH connector for waterproof digital temperature probes (DS18B20). Driven by the onboard DS2482-100+ hardware I2C-to-1-Wire bridge, whose internal pull-up drives the line. A footprint for an optional external 4.7kΩ pull-up (`R9`) is left unpopulated.
 
 | Pin | Net Name | Function | Wire Color (Typical DS18B20) |
 |:---:|---|---|---|
@@ -79,13 +79,13 @@ Standard 2.54mm (0.1") pitch 2-pin header for local voltage regulation or direct
 | **2** | `GND` | System digital and analog ground |
 
 #### Power Status Indicator (`LED1` & `JP19`)
-- **`LED1`**: A dedicated green 0805 SMD LED located on the top side near the mounting hole illuminates whenever the regulated `SAT_3V3` rail is powered (via cable power or local injection). Ballasted with a 120Ω resistor (`R10`).
-- **`JP19`**: A 2-pad normally closed (bridged) solder jumper in series with `LED1`'s cathode return to `GND`. For battery-powered or ultra-low-power field deployments, slice the trace across `JP19` with a hobby knife to eliminate quiescent LED current draw.
+- **`LED1`**: A dedicated green 0805 SMD LED located on the top side near the mounting hole illuminates whenever the regulated `SAT_3V3` rail is powered (via cable power or local injection).
+- **`JP19`**: A 2-pad normally closed (bridged) solder jumper in series with `LED1`'s cathode return to `GND`. For battery-powered or ultra-low-power field deployments, slice the trace across `JP19` with a hobby knife to remove the LED's current draw.
 
 > [!TIP]
-> **Long-Distance Cable Regulation:** If the satellite is deployed on a very long cable run (50–100 m) with noticeable 3.3V IR drop:
+> **Long-Distance Cable Regulation:** If the satellite is deployed on a long cable run with noticeable 3.3V IR drop:
 > 1. Cut solder jumper `JP18` (isolating `SAT_3V3` from cable `RJ45_VCC_1`).
-> 2. Inject higher voltage (e.g., 12V or 24V) at the Hub onto Pair 3 (`VCC_2` / `GND_2`).
+> 2. Cut the hub's `JP2` and `JP3` jumpers, then inject higher voltage (e.g., 12V or 24V) at the Hub onto Pair 3 (`VCC_2` / `GND_2`).
 > 3. Connect a compact 3.3V buck regulator module: Input to `J7` (pins 3 & 4), Output to `J9` (`SAT_3V3` & `GND`).
 > The PCA9615 differential transceiver and termination continue to run reliably off `RJ45_VCC_1`, while local sensors receive clean, local regulation.
 
@@ -93,7 +93,7 @@ Standard 2.54mm (0.1") pitch 2-pin header for local voltage regulation or direct
 
 ## 2. Bottom View: Hardware Jumpers & Addressing
 
-The bottom side hosts the solder jumpers for configuring I2C addresses, terminating pull-ups, and managing power/ground routing.
+The bottom side hosts most of the solder jumpers, for configuring I2C addresses and managing power and ground routing. `JP11` and `JP19` are on the top side.
 
 <InteractivePinout
   board="satellite"
@@ -110,21 +110,21 @@ A 4-way solder jumper connecting the ADS1115 `ADDR` pin to select one of four un
 |---|:---:|:---:|---|
 | **Pads 1-2** | `ADDR` connected to `GND` | **`0x48`** | **Factory Default** (Pre-bridged with copper trace) |
 | **Pads 1-3** | `ADDR` connected to `SAT_3V3` | **`0x49`** | Cut 1-2 trace; solder bridge 1-3 |
-| **Pads 1-4** | `ADDR` connected to `SDA_LOCAL` | **`0x4A`** | Cut 1-2 trace; solder bridge 1-4 |
-| **Pads 1-5** | `ADDR` connected to `SCL_LOCAL` | **`0x4B`** | Cut 1-2 trace; solder bridge 1-5 |
+| **Pads 1-4** | `ADDR` connected to `SCL_LOCAL` | **`0x4B`** | Cut 1-2 trace; solder bridge 1-4 |
+| **Pads 1-5** | `ADDR` connected to `SDA_LOCAL` | **`0x4A`** | Cut 1-2 trace; solder bridge 1-5 |
 
 > [!TIP]
 > To change the address, slice the thin copper trace bridging pads 1 and 2 with a hobby knife, then apply a small solder blob between pad 1 (common) and your chosen address pad.
 
 #### `JP16`: DS2482-100+ 1-Wire Master Address Selection (Bit-Weighted Dual Jumper)
-Controls the `AD0` (+1 bit weight) and `AD1` (+2 bit weight) address select pins of the I2C-to-1-Wire bridge. Silkscreen markings explicitly show **`DEF (0x18)`**, **`AD0 (+1)`**, and **`AD1 (+2)`**.
+Controls the `AD0` (+1 bit weight) and `AD1` (+2 bit weight) address select pins of the I2C-to-1-Wire bridge. The bit weights and the default address are marked on the board.
 
 | Address Bits | Bridge Selection | 7-bit Address | Configuration Method |
 |:---:|---|:---:|---|
 | **`AD1=0, AD0=0`** | Pads 2A to GND & 2B to GND | **`0x18`** | **Factory Default** (Pre-bridged traces to GND) |
-| **`AD1=0, AD0=1`** | Cut 2A bridge; solder bridge 2A to `VCC` | **`0x19`** | Adds **+1** to base address `0x18` |
-| **`AD1=1, AD0=0`** | Cut 2B bridge; solder bridge 2B to `VCC` | **`0x1A`** | Adds **+2** to base address `0x18` |
-| **`AD1=1, AD0=1`** | Cut both bridges; solder both to `VCC` | **`0x1B`** | Adds **+1 + 2** to base address `0x18` |
+| **`AD1=0, AD0=1`** | Cut 2A bridge; solder bridge 2A to `SAT_3V3` | **`0x19`** | Adds **+1** to base address `0x18` |
+| **`AD1=1, AD0=0`** | Cut 2B bridge; solder bridge 2B to `SAT_3V3` | **`0x1A`** | Adds **+2** to base address `0x18` |
+| **`AD1=1, AD0=1`** | Cut both bridges; solder both to `SAT_3V3` | **`0x1B`** | Adds **+1 + 2** to base address `0x18` |
 
 #### `JP11`: Local I2C Pull-Up Resistor Disconnect
 - **Purpose**: Disconnects the two onboard 4.7kΩ pull-up resistors on `SDA_LOCAL` and `SCL_LOCAL`.
@@ -133,15 +133,15 @@ Controls the `AD0` (+1 bit weight) and `AD1` (+2 bit weight) address select pins
 
 #### `JP19`: Power Status LED Disconnect (`LED1`)
 - **Default (Bridged)**: The green power status LED (`LED1`) cathode returns to `GND` through pre-bridged trace on `JP19`.
-- **Cuttable**: Slicing the copper trace between pads of `JP19` on the top side disables `LED1` to eliminate quiescent draw (~4–10 mA) for battery or energy-harvesting deployments.
+- **Cuttable**: Slicing the copper trace between pads of `JP19` on the top side disables `LED1` to remove its current draw in battery or energy-harvesting deployments.
 
 #### `JP18`: Power Source Bridge (`RJ45_VCC_1` $\leftrightarrow$ `SAT_3V3`)
 - **Default (Bridged)**: Satellite local power (`SAT_3V3`) is fed directly from cable Pair 1 (`RJ45_VCC_1`).
 - **Cuttable**: Slicing the copper trace disconnects `SAT_3V3` from the cable supply, allowing local power injection via `J9` from an external buck or LDO regulator.
 
-#### `JP17`: Ground Isolation Bridge (`RJ45_GND_1` $\leftrightarrow$ `GND`)
+#### `JP17`: Ground Bridge (`RJ45_GND_1` $\leftrightarrow$ `GND`)
 - **Default (Bridged)**: Cable primary ground (`RJ45_GND_1`) is bonded directly to local system `GND`.
-- **Cuttable**: Slicing this bridge isolates cable ground return from local sensor/analog ground for galvanically isolated multi-supply operation.
+- **Cuttable**: Slicing this bridge separates the cable ground return from local sensor and analog ground, for a split-supply setup. This is not galvanic isolation: the PCA9615 is not an isolator, so the two grounds must stay close in potential.
 
 #### `JP13`: Cable Shield Grounding
 - **Default (Bridged)**: The metal shield of the RJ45 jack is tied directly to `RJ45_GND_1`.

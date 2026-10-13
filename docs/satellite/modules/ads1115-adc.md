@@ -11,7 +11,7 @@
 
 Four single-ended 16-bit channels, one per moisture probe. The part reads an analog voltage
 from each probe and reports it over the local I2C bus (`SDA_LOCAL`/`SCL_LOCAL`) shared with
-the PCA9615 and the DS2484.
+the PCA9615 and the DS2482.
 
 ## Power
 

@@ -30,9 +30,10 @@ auto-generated.
 ## Physical
 
 - 6-layer PCB (F.Cu, 4× inner, B.Cu).
-- 10 external connectors: USB-C power input, screw-terminal DC/solar input, JST battery input,
-  two STEMMA QT ports, two 8P8C (RJ45-style) differential-I2C jacks, two field-terminable
-  thermistor connectors, and two GPIO expansion headers you fit yourself. See
+- External connectors: USB-C power input, screw-terminal DC/solar input, JST battery
+  input, two STEMMA QT ports, two 8P8C (RJ45-style) differential-I2C jacks, and two
+  field-terminable thermistor connectors. Some headers are left unfitted for you to add:
+  two GPIO expansion headers and a `VCC_2` injection header. See
   [Connectors](./connectors.md) for the full list.
 - Two LEDs: a charge-status LED driven by the charger, and a firmware-controlled status LED.
 - Three buttons: reset, boot-mode, and a wake button that brings the charger out of ship mode —
@@ -47,7 +48,7 @@ auto-generated.
 | | |
 |---|---|
 | MCU | ESP32-C5-WROOM-1U |
-| Wireless | Dual-band Wi-Fi 6, Bluetooth 5, 802.15.4, CAN FD |
+| Wireless | Dual-band Wi-Fi 6, Bluetooth LE 5, 802.15.4. The SoC also has a CAN FD controller, but no CAN transceiver is fitted. |
 | Antenna | U.FL external connector (module variant) |
 
 ### Power management
@@ -55,7 +56,8 @@ auto-generated.
 - **Li-ion/Li-Po battery charging** with JEITA temperature-qualified fast charge, via an
   onboard charge-temperature thermistor input.
 - **Automatic source arbitration** between USB-C and the DC/solar input — both can be
-  connected simultaneously; the charger ORs them into a single charge-path rail.
+  connected simultaneously; external back-to-back FET pairs, controlled by the charger, select
+  between them and feed a single charge-path rail.
 - **Fuel gauge** for state-of-charge tracking, with its own independent battery-temperature
   thermistor input (kept separate from the charger's, since each IC applies its own excitation
   to whatever's wired to its thermistor pin).
@@ -91,8 +93,9 @@ auto-generated.
 
 - **Internal bus** — always-on, dedicated to the board's own power-management ICs (charger and
   fuel gauge) plus a local STEMMA QT connector for directly-attached sensors.
-- **User bus** — switchable, feeding a PCA9615 differential I2C buffer that drives two 8P8C
-  jacks, plus a second, separate STEMMA QT connector.
+- **User bus** — switchable, a separate I2C port feeding a PCA9615 differential I2C buffer that
+  drives two 8P8C jacks, plus a second, separate STEMMA QT connector. The unfitted `J7` header
+  also carries these two lines.
 
 The differential side is wired to be compatible with the [SparkFun QwiicBus —
 EndPoint](https://www.sparkfun.com/products/16988): same PCA9615 buffer, same 8P8C pinout, so
@@ -118,7 +121,7 @@ guidance.
 
 | Source | Connector | Notes |
 |---|---|---|
-| USB-C | `USBC1` | 5V USB-C power/data input. The charger's BC1.2 and non-standard adapter detection over D+/D- is disconnected by default (`R9`/`R11` are unpopulated), so its input current limit comes from the hardware clamp instead; see [Notes](notes.md#the-charger-is-disconnected-from-the-usb-data-lines-by-default). There is no USB-PD controller, so the port is 5V only; HVDCP (9V/12V) is reachable only from a USB-A QuickCharge supply over an A-to-C cable, and only if firmware enables it. |
+| USB-C | `USBC1` | 5V USB-C power/data input. The charger's BC1.2 and non-standard adapter detection over D+/D- is disconnected by default (`R9`/`R11` are unpopulated), so its input current limit comes from the hardware clamp instead; see [Notes](notes.md#the-charger-is-disconnected-from-the-usb-data-lines-by-default). There is no USB-PD controller and no handshake with the source, so the port is 5V only. |
 | DC / small solar panel | `CN5` (screw terminal) | Wide-range DC input suitable for a small solar panel; can be connected at the same time as USB-C. |
 | Battery | `J4` (JST PH, 2-pin) | Single cell. Double-check pack polarity against the board's silkscreen before connecting — JST-PH battery polarity isn't universally standardized across cable vendors. |
 
@@ -209,11 +212,11 @@ guidance.
   MCU is wedged. A shorter press (~1s) just wakes the charger out of ship mode.
 
   Two caveats worth knowing. The reset cycles the `SYS` rail, so it restarts the MCU, both 3.3V
-  rails and everything downstream of them — but *not* the charger itself (it's the thing
-  performing the reset) and *not* the fuel gauge, which is deliberately wired to the pack side
-  of the ship FET so it keeps coulomb-counting straight through. And since neither I2C device
-  loses power, the reset can't unstick a hung I2C slave; that still needs the usual nine-clock
-  recovery sequence in firmware.
+  rails, the fuel gauge (its supply comes from `3V3_SYS`) and everything else downstream of
+  them — but *not* the charger itself (it's the thing performing the reset). The gauge restarts
+  with the rail, so it can lose its coulomb count, and a hung gauge is cleared by the reset. A
+  hung charger I2C interface is not, and still needs the usual nine-clock recovery sequence in
+  firmware.
 - **Firmware must set the charger's `SFET_PRESENT` bit** (`REG14`, bit 7) during init. It
   defaults to 0, and while it's 0 the charger locks out every ship-FET mode above — the board
   behaves as though no FET were fitted.

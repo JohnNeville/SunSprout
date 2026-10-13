@@ -5,12 +5,14 @@ title: Firmware
 
 # Firmware
 
-:::warning[Never flashed or run]
+:::warning[Tested on the first prototype only]
 
-No physical board exists, so this configuration has never been flashed, powered on, or talked
-to a real charger. It builds — CI validates the ESPHome config on every change — but building
-is not the same as working. Treat everything here as the intended behaviour, not as observed
-behaviour.
+This configuration was run on the first hub prototype (commit
+[`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733)): it flashed over USB,
+joined Wi-Fi and Home Assistant, and the charger and fuel-gauge entities reported values. CI
+validates the ESPHome config on every change, but that is not the same as working. Behaviour on
+the corrected hardware revision has not been observed, and anything not mentioned here has not
+been checked on a real board. Treat it as the intended behaviour, not as observed behaviour.
 
 :::
 
@@ -104,7 +106,7 @@ fit something small.
 
 ## What you get in Home Assistant
 
-Roughly fifty entities. The ones you will actually look at:
+Dozens of entities, many of them hidden by default. The ones you will actually look at:
 
 | Entity | What it tells you |
 |---|---|
@@ -142,18 +144,23 @@ with a cell attached, reflash once, then run **Calibrate Gauge Current Offset** 
 Gauge Board Offset** with the pack at rest.
 
 **The battery thermistor.** `J302` ships with nothing fitted, and an empty thermistor input
-reads as a cell far below the charger's cold cutoff — so **the charger refuses to charge**.
-Fit a Semitec **103AT-11** — a 103AT-type 10 kΩ NTC, the part the charger's datasheet
-recommends, in the variant supplied on 600 mm of insulated lead you can crimp.
+reads as a cell far below the charger's cold cutoff — so, by default, **the charger refuses to
+charge**.
+Fit a 103AT-type 10 kΩ NTC. The charger's datasheet shows a Semitec 103AT-2; this board
+specifies the 103AT-11 because it comes on 600 mm of insulated lead that you can crimp.
 
 There is deliberately no fixed resistor standing in for it. A resistor would hold the input at
 a constant voltage, and **Battery Temperature** would then report a steady 25 °C that no sensor
 measured — a convincing wrong reading is worse than an absent one. To run without a thermistor
-and accept losing temperature qualification, the charger's `TS_IGNORE` bit is the honest route;
-the driver does not expose it yet.
+and accept losing temperature qualification, set `ts_ignore: true` in the `bq25798:` block,
+which sets the charger's `TS_IGNORE` bit. It is the honest route: temperature protection is off.
 
 With nothing fitted, **Battery Temperature** reports an implausibly cold value. That is the
 signature of a missing thermistor, not a real reading.
+
+The fuel gauge has its own thermistor input, `J401`, with the same requirement. With nothing
+fitted, its **Battery Temperature (gauge)** reading is also implausibly cold and the gauge can
+report "Charge inhibited". See [Notes](notes.md#thermistors-are-required-not-optional-for-full-chargerfuel-gauge-behavior).
 
 ## Rebooting
 

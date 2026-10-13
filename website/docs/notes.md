@@ -15,8 +15,11 @@ This board has two independent I2C buses:
   Adding your own devices here means sharing bus time and address space with the board's own
   power-management traffic.
 - **User bus** (`J203` STEMMA QT, plus the two 8P8C jacks via the differential I2C buffer) —
-  switched, and electrically isolated from the internal bus by the buffer IC. This is the
-  right bus for your own sensors and peripherals.
+  a separate I2C port on the ESP32-C5, powered from the switched 3.3V user rail, which firmware
+  controls and which defaults to off. The buffer IC only converts this bus to differential
+  signalling for the jacks; it does not isolate it from anything. The unfitted `J7` header also
+  carries these two lines (pins 6 and 7). This is the right bus for your own sensors and
+  peripherals.
 
 The 8P8C jacks speak differential I2C, not Ethernet. They use the same PCA9615 scheme and
 pinout as the [SparkFun QwiicBus EndPoint](https://www.sparkfun.com/products/16988), so an
@@ -34,15 +37,17 @@ many devices onto the user bus.
 ## VCC_2 is a separate, cuttable power rail on the 8P8C jacks
 
 Each 8P8C jack carries two power nets, not one. `VCC_1` feeds the differential I2C buffer
-itself and is always tied to the board's 3.3V user rail. `VCC_2` — routed on its own wire pair
-— is a second, independent rail that only reaches `VCC_1`/`GND` through two solder-jumper
-bridges (`JP2` and `JP3`), which are shorted as shipped.
+itself and is tied to the switched 3.3V user rail (`3V3_USER`), so it is off whenever firmware
+disables that rail. `VCC_2` — routed on its own wire pair — is a second, independent rail that
+only reaches `VCC_1`/`GND` through two solder-jumper bridges (`JP2` and `JP3`), which are
+shorted as shipped.
 
 This mirrors the SparkFun QwiicBus reference layout, and it exists for one reason: to leave the
 door open for powering hungrier sensors — soil-moisture ADCs, for example — at something other
 than 3.3V, without a board revision. Cut `JP2` and `JP3` and `VCC_2` is fully isolated from this
-board's own supply and ground. An unpopulated 2-pin header sits on that same net pair, ready to
-accept an external 5V or 12V boost converter once the jumpers are cut.
+board's own supply and ground. An unpopulated 2-pin header, `J2` (pin 1 `VCC_2`, pin 2 the
+`VCC_2` return), sits on that same net pair, ready to accept an external 5V or 12V boost
+converter once the jumpers are cut.
 
 Cutting the jumpers only isolates the rail here. The EndPoint at the far end of the cable needs
 its own jumpers set to accept the injected voltage instead of drawing `VCC_2` from its own
@@ -69,8 +74,9 @@ there's no practical way to connect it backwards in the first place.
 ## Battery polarity
 
 Double-check your battery pack's JST-PH cable polarity against the board's silkscreen marking
-before connecting. JST-PH battery cables aren't universally standardized across vendors, and a
-mismatched cable is one of the few ways to damage the board despite the onboard protection.
+before connecting. On `J4`, pin 1 is `BATT+` (`VBAT_RAW`) and pin 2 is `BATT−` (the battery
+return). JST-PH battery cables aren't universally standardized across vendors, and a mismatched
+cable is one of the few ways to damage the board despite the onboard protection.
 
 ## The charger is disconnected from the USB data lines by default
 
@@ -99,12 +105,18 @@ line to ground and kills the port. Close the jumper only while both positions ar
 on the board prevents this, so neither DRC nor the ratsnest will flag the mistake.
 :::
 
-Cutting a bridge also puts the board out of step with the design files, which continue to show
-the nets as connected.
-
 ## Thermistors are required, not optional, for full charger/fuel-gauge behavior
 
-The charger's JEITA temperature-qualified fast charging and the fuel gauge's temperature
-compensation both depend on their respective thermistor inputs (`J302` and `J401`) actually
-having a thermistor attached. Without them, both ICs still function, but you lose
-temperature-qualified charging and accurate temperature-compensated state-of-charge.
+The charger and the fuel gauge each have their own thermistor input (`J302` and `J401`), and
+both need a thermistor attached.
+
+- **Charger (`J302`).** With nothing fitted, the charger's temperature input reads as far too
+  cold and, by default, it **suspends charging**, and the charge LED blinks at 1 Hz. Fit a
+  103AT-type 10 kΩ NTC. Or, to charge without one, set `ts_ignore: true` in the firmware, which
+  gives up temperature protection.
+- **Fuel gauge (`J401`).** With nothing fitted, the gauge's temperature reading is invalid. On
+  the first prototype it read about −38 °F and reported "Charge inhibited". Fit a thermistor,
+  or configure the gauge to use its internal temperature sensor.
+
+Both thermistors should sit against the cell, so temperature-qualified charging and
+temperature-compensated state of charge work as intended.

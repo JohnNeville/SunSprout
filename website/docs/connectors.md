@@ -5,7 +5,8 @@ title: Connectors
 
 # Connectors
 
-Ten external connectors, deliberately spread across distinct connector families by role —
+The external connectors, plus the unfitted headers (`J2`, `J7`, `J8`), are deliberately
+spread across distinct connector families by role —
 so a solar source can't be physically mis-plugged into the battery input, and the two
 temperature-probe inputs use a field-terminable connector rather than requiring a
 pre-terminated probe.
@@ -17,14 +18,14 @@ not intermate.
 | Ref | Type | Purpose | Mating part |
 |---|---|---|---|
 | `USBC1` | USB-C receptacle | USB-C power input | Any standard USB-C cable |
-| `CN5` | 2.54mm screw terminal | DC / small solar panel input | Bare-wire or ferrule termination |
-| `J4` | JST PH, 2-pin | Battery input | Single-cell Li-ion/Li-Po pack with a JST-PH cable — check polarity against the silkscreen before connecting |
-| `J6` | JST SH, 4-pin (STEMMA QT) | Internal I2C bus — for sensors that should share the always-on power-management bus | Any STEMMA QT / Qwiic cable |
-| `J203` | JST SH, 4-pin (STEMMA QT) | User I2C bus — for sensors on the switched, differential-buffer-side bus | Any STEMMA QT / Qwiic cable |
+| `CN5` | 2.54mm screw terminal | DC / small solar panel input. Pin 1 is `+` (marked on the silkscreen), pin 2 is ground | Bare-wire or ferrule termination |
+| `J4` | JST PH, 2-pin | Battery input. Pin 1 is `BATT+`, pin 2 is `BATT−` | Single-cell Li-ion/Li-Po pack with a JST-PH cable — check polarity against the silkscreen before connecting |
+| `J6` | JST SH, 4-pin (STEMMA QT) | Internal I2C bus (3.3 V from the always-on `3V3_SYS` rail) — for sensors that should share the always-on power-management bus | Any STEMMA QT / Qwiic cable |
+| `J203` | JST SH, 4-pin (STEMMA QT) | User I2C bus (3.3 V from the switched `3V3_USER` rail) — for sensors on the switched bus that also feeds the differential buffer | Any STEMMA QT / Qwiic cable |
 | `J201` / `J202` | 8P8C (RJ45-style) | Differential I2C — connects to a [SparkFun QwiicBus EndPoint](https://www.sparkfun.com/products/16988) for remote sensors | Standard Ethernet patch cable |
-| `J2` | 2.54mm header (not fitted) | Optional external supply for the `VCC_2` rail on the 8P8C jacks — see [Notes](./notes.md#vcc_2-is-a-separate-cuttable-power-rail-on-the-8p8c-jacks) | Standard 2.54mm header strip, hand-soldered |
-| `J302` | JST PA, 2-pin (`S02B-PASK-2`) | Charger thermistor input | Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), mounted on the battery pack — see [below](#terminating-your-own-thermistor-probe) |
-| `J401` | JST PA, 2-pin (`S02B-PASK-2`) | Fuel-gauge thermistor input | A **second, separate** Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), also mounted on the pack |
+| `J2` | 2.54mm header (not fitted) | Optional external supply for the `VCC_2` rail on the 8P8C jacks (pin 1 `VCC_2`, pin 2 its return) — see [Notes](./notes.md#vcc_2-is-a-separate-cuttable-power-rail-on-the-8p8c-jacks) | Standard 2.54mm header strip, hand-soldered |
+| `J302` | JST PA, 2-pin (`S02B-PASK-2`) | Charger thermistor input (pin 1 ground, pin 2 the charger's `TS` sense node) | Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), mounted on the battery pack — see [below](#terminating-your-own-thermistor-probe) |
+| `J401` | JST PA, 2-pin (`S02B-PASK-2`) | Fuel-gauge thermistor input (pin 1 the gauge's 2.5 V bias output, pin 2 its `TS` sense node) | A **second, separate** Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), also mounted on the pack |
 | `J7` / `J8` | 2.54mm header (not fitted) | Spare/expansion GPIO breakout, plus the debug UART | Standard 2.54mm header strip, hand-soldered |
 
 ## Why two separate thermistors (J302 and J401)
@@ -33,6 +34,10 @@ The charger and fuel gauge each apply their own excitation/bias to whatever's wi
 thermistor pin. Sharing a single NTC between both active bias circuits would give both ICs a
 bad reading, so each gets its own thermistor — both mounted at the same physical location on
 the battery cell.
+
+The two connectors are not wired the same way. Pin 1 of `J302` is ground, but pin 1 of `J401` is
+the gauge's own 2.5 V bias output, so never short `J401` pin 1 to ground. The thermistor itself
+has no polarity.
 
 ## Terminating your own thermistor probe
 
