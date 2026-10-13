@@ -59,7 +59,11 @@ i2c:
   # Always-on internal bus, on the low-power controller. Charger, fuel gauge
   # and the J6 port share it.
   - id: bus_internal
-    sda: GPIO2      # SDA_INT / LP_I2C_SDA
+    # GPIO2 is the MTMS strapping pin, and the low-power I2C controller works on no other
+    # pair, so the warning cannot be avoided; the board already carries this condition.
+    sda:
+      number: GPIO2   # SDA_INT / LP_I2C_SDA
+      ignore_strapping_warning: true
     scl: GPIO3      # SCL_INT / LP_I2C_SCL
     low_power_mode: true
     scan: true
