@@ -42,9 +42,22 @@ jobs:
           wifi_ssid: "placeholder"
           wifi_password: "placeholder"
           fallback_password: "placeholder"
-          ota_password: "placeholder"
           api_encryption_key: "D11+GFGws4CFOWmGhaEY1buDfY7DTlP/E+Ap7TzmdI8="
           EOF
 
       - name: Validate the example device
         run: esphome config firmware/example-device.yaml
+
+      - name: Validate the factory image
+        run: esphome config firmware/sunsprout-factory.yaml
+
+      - name: Validate a standard lithium-ion build
+        # The substitutions documented in firmware/README.md must keep building.
+        run: |
+          # -s is a top-level option: after the subcommand it is silently ignored.
+          esphome \
+            -s cell_chemistry li_ion \
+            -s battery_capacity 3000 \
+            -s battery_energy_mwh 11100 \
+            -s lifepo4_relax false \
+            config firmware/example-device.yaml

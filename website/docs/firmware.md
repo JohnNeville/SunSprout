@@ -22,11 +22,14 @@ the air after the first flash.
 |---|---|
 | Board configuration | [`firmware/sunsprout-hub.yaml`](https://github.com/JohnNeville/SunSprout/blob/main/firmware/sunsprout-hub.yaml) |
 | Example device | [`firmware/example-device.yaml`](https://github.com/JohnNeville/SunSprout/blob/main/firmware/example-device.yaml) |
+| Factory image (setup mode) | [`firmware/sunsprout-factory.yaml`](https://github.com/JohnNeville/SunSprout/blob/main/firmware/sunsprout-factory.yaml) |
 | Chip drivers | [esphome-bq-drivers](https://github.com/JohnNeville/esphome-bq-drivers) |
 | Why it is configured this way | [docs/hub/firmware.md](https://github.com/JohnNeville/SunSprout/blob/main/docs/hub/firmware.md) |
 
 The board configuration is a *package*: it describes the hardware and nothing else. Your own
-device file adds WiFi, the API, OTA and deep sleep on top of it. The two chip drivers live in
+device file adds a name, WiFi, the API and OTA on top of it, plus optional deep sleep from
+`sunsprout-deep-sleep.yaml`. `sunsprout-factory.yaml` does the same with no credentials, so
+the end user sets the WiFi through Improv, a captive portal or ESPHome adoption. The two chip drivers live in
 a separate repository because they drive stock TI parts and have nothing to do with this
 board.
 
@@ -37,7 +40,7 @@ pip install esphome
 ```
 
 Create a `secrets.yaml` beside your device file containing `wifi_ssid`, `wifi_password`,
-`fallback_password`, `api_encryption_key` and `ota_password`, then:
+`fallback_password` and `api_encryption_key`, then:
 
 ```bash
 esphome run firmware/example-device.yaml
@@ -69,6 +72,24 @@ a dashboard.
 
 Set `battery_capacity` to your actual cell. It sets the charge-termination current to C/10 and
 the fuel gauge's design capacity.
+
+### Using a standard lithium-ion cell
+
+The defaults describe a LiFePO4 cell. For a 3.7 V lithium-ion or LiPo cell, override:
+
+```yaml
+substitutions:
+  cell_chemistry: "li_ion"
+  battery_capacity: "3000"        # your cell, in mAh
+  battery_energy_mwh: "11100"     # capacity x 3.7 V
+  lifepo4_relax: "false"
+  charge_current: "1000"          # at most your cell's rating
+```
+
+The gauge's default profile is lithium-ion, so a standard 4.2 V cell does not need the gauge
+chemistry bench step below. Fit the battery thermistor either way. See the
+[firmware README](https://github.com/JohnNeville/SunSprout/blob/main/firmware/README.md#using-a-standard-lithium-ion-cell)
+for the full table.
 
 ## Battery size
 

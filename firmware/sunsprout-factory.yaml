@@ -1,0 +1,51 @@
+# Factory image: a SunSprout hub that carries no WiFi credentials.
+#
+# Flash this once and the board comes up in setup mode. The end user then gives it
+# a network in any of three ways:
+#
+#   - from a browser over USB, through the Improv prompt on the ESP Web Tools page;
+#   - by joining the "Sunsprout Setup" access point and using the captive portal;
+#   - by adopting it in the ESPHome dashboard, which writes a normal device file that
+#     pulls this one in as a package and adds the secrets (see dashboard_import below).
+#
+# It has no API encryption key and no OTA password, because those belong to whoever
+# owns the board: adopting it generates them. It does not include deep sleep, so an
+# unconfigured board stays awake long enough to be set up.
+
+substitutions:
+  name: sunsprout
+  friendly_name: Sunsprout
+
+  # The LiFePO4 defaults. A standard lithium-ion build changes these; see README.md.
+  battery_capacity: "6000"
+  battery_energy_mwh: "19200"
+
+packages:
+  hub: !include sunsprout-hub.yaml
+  common: !include sunsprout-common.yaml
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: JohnNeville.SunSproutHub
+    version: factory
+
+dashboard_import:
+  package_import_url: github://JohnNeville/SunSprout/firmware/sunsprout-factory.yaml@main
+  import_full_config: false
+
+api:
+
+ota:
+  - platform: esphome
+
+# No ssid: the board starts its own access point until credentials are saved.
+wifi:
+  ap:
+    ssid: "${friendly_name} Setup"
+
+captive_portal:
+
+improv_serial:
