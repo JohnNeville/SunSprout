@@ -1,21 +1,24 @@
 # SunSprout
 
 > [!WARNING]
-> **Work in progress. This board has never been fabricated or tested.**
+> **Early prototype tested; the latest fixes have not been built yet.**
 >
-> Everything here has been verified only in software — ERC and DRC pass, pin assignments and
-> component values are checked against manufacturer datasheets, and the fabrication outputs
-> generate cleanly. No physical board exists. Nothing has been powered on, measured, or
-> proven to work.
+> A first hub prototype, built from commit
+> [`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733), has been assembled and
+> tested on the bench. It powered from USB, flashed over the native USB port, ran ESPHome, joined
+> Wi-Fi and Home Assistant, and reported charger and fuel-gauge readings.
 >
-> It is published at this stage deliberately, to get design feedback before a fabrication run.
-> Manufacturing and bring-up are intended; this page will say so once real measurements exist.
+> Bring-up found problems: the charger loaded the USB data lines, the fuel gauge blocked the
+> internal I2C bus when no battery was fitted, and the gauge's current-sense inputs and the
+> indicator LEDs needed changes. The design files here include the fixes. The corrected revision
+> has not been built yet. Anything not listed above, including charging from the solar input, has
+> not been verified on hardware.
 >
-> **If you are thinking of building one:** treat it as an untested design, not a finished
+> **If you are thinking of building one:** treat it as an early design, not a finished
 > product. Expect to find mistakes. Errors in the charging or protection circuitry could damage
 > a battery. Review it yourself before spending money on a panelised order.
 >
-> Feedback is genuinely welcome — especially on the power path, the charger and fuel-gauge
+> Feedback is genuinely welcome, especially on the power path, the charger and fuel-gauge
 > configuration, and anything in [docs/hub/modules/](docs/hub/modules/) where the reasoning
 > looks wrong.
 
