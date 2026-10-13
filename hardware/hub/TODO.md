@@ -68,6 +68,14 @@ This document tracks electrical, power integrity, thermal, signal integrity, and
     - 52 acute 45° corners and 0° trace hairpins/reversals were previously identified across the board.
   - **Resolution:** Straightened trace geometries and verified clean DRC pass under the 90-degree track angle rule.
 
+- [ ] **Test Charger BC1.2 Detection with 10 kΩ Fitted in `R9` / `R11` While Keeping USB Flashing Working**
+  - **Status:** **Planned.** `R9` and `R11` currently ship unpopulated so the charger is off the USB data lines.
+  - **Issue:** With the pads empty the charger gets no BC1.2 detection from the host. A 0 Ω link on these positions disturbed USB enumeration while flashing over the native USB port (`error -71` / disconnect loop). Removing the links fixed it, so the charger's connection to the data lines was the cause.
+  - **Test:** Hand-solder a 10 kΩ 0603 resistor onto each of `R9` and `R11`, leave `JUMP_CHGR_GND2` open, then check both:
+    - USB enumeration and flashing stay stable (no `error -71` / disconnect loop in `dmesg`).
+    - The charger's BC1.2 detection still completes and sets a sensible input current limit (read `IINDPM` and `DPDM_STAT` over I2C).
+  - **Outcome:** If both work, populate `R9` / `R11` with 10 kΩ by default and update the docs (`docs/hub/modules/bq25798-charger.md`, `docs/hub/modules/usblc6-esd-protection.md`, `website/docs/notes.md`). If not, keep them unpopulated.
+
 ---
 
 ## 4. Firmware & Power Architecture Checklist (Battery Sleep Optimization)

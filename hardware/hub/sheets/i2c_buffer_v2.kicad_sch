@@ -5789,7 +5789,7 @@
 				)
 			)
 		)
-		(property "Description" "GRN_P → 3v3"
+		(property "Description" "GRN_P→3v3"
 			(at 154.94 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -6138,7 +6138,7 @@
 				)
 			)
 		)
-		(property "Description" "GRN_N → GND"
+		(property "Description" "GRN_N→GND"
 			(at 154.94 71.12 0)
 			(hide yes)
 			(show_name no)

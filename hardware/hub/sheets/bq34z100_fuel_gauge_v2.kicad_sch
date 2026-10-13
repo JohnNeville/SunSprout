@@ -417,6 +417,286 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "R_1"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "R_1_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "R_2"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "R_2_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_2_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Snapeda:BQ34Z100PWR-G1"
 			(pin_names
 				(offset 0.254)
@@ -1237,22 +1517,16 @@
 		)
 	)
 	(junction
+		(at 224.79 231.14)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1ba64ba5-9685-459d-aaa0-2da55f548cb9")
+	)
+	(junction
 		(at 299.72 189.23)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "243b7e70-4b10-4371-81a0-16b63702b804")
-	)
-	(junction
-		(at 224.79 236.22)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "359a5797-4435-42af-97e1-f30a4ec76964")
-	)
-	(junction
-		(at 224.79 232.41)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "383ccf80-485a-408c-b5d4-d56e09b5e1e1")
 	)
 	(junction
 		(at 283.21 241.3)
@@ -1261,10 +1535,22 @@
 		(uuid "710eea75-ea91-4ca6-8522-1fe624be24d7")
 	)
 	(junction
+		(at 344.17 224.79)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8fc955df-0595-4d0f-97c8-f5cf1fe4e017")
+	)
+	(junction
 		(at 224.79 226.06)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e3a01abd-b5df-4d63-84cd-c7780de5ab12")
+	)
+	(junction
+		(at 222.25 236.22)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e5b46798-98bf-4412-b1fe-e932dffa8542")
 	)
 	(wire
 		(pts
@@ -1275,16 +1561,6 @@
 			(type default)
 		)
 		(uuid "079b4a3e-e0c9-4f1f-bd34-e85549a8caa8")
-	)
-	(wire
-		(pts
-			(xy 234.95 236.22) (xy 224.79 236.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0fdb0016-05a6-4f41-b40e-1a4c63a174bd")
 	)
 	(wire
 		(pts
@@ -1418,6 +1694,16 @@
 	)
 	(wire
 		(pts
+			(xy 222.25 241.3) (xy 234.95 241.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "57304c26-6cd7-4ed0-987e-623ab79b4e91")
+	)
+	(wire
+		(pts
 			(xy 297.18 246.38) (xy 275.59 246.38)
 		)
 		(stroke
@@ -1425,26 +1711,6 @@
 			(type default)
 		)
 		(uuid "57bfaf06-39bd-4022-978c-3fe4a81bc41d")
-	)
-	(wire
-		(pts
-			(xy 224.79 236.22) (xy 224.79 241.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "78ff36a3-ef3a-4b6a-ac5a-3927f2ec0a23")
-	)
-	(wire
-		(pts
-			(xy 224.79 231.14) (xy 224.79 232.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7f8eee6c-d8f9-48bb-8336-926265372efb")
 	)
 	(wire
 		(pts
@@ -1458,6 +1724,16 @@
 	)
 	(wire
 		(pts
+			(xy 344.17 220.98) (xy 344.17 224.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "84e6a029-3727-444b-a0f4-cc313481d976")
+	)
+	(wire
+		(pts
 			(xy 275.59 220.98) (xy 297.18 220.98)
 		)
 		(stroke
@@ -1465,6 +1741,26 @@
 			(type default)
 		)
 		(uuid "8dc6c440-d8a4-49a0-b029-fe5548265f11")
+	)
+	(wire
+		(pts
+			(xy 332.74 224.79) (xy 344.17 224.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "987f7f72-8ecd-404f-96b6-f75976423b1c")
+	)
+	(wire
+		(pts
+			(xy 332.74 232.41) (xy 344.17 232.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99dd1b58-4900-466e-813b-c2b6a908f77a")
 	)
 	(wire
 		(pts
@@ -1478,23 +1774,13 @@
 	)
 	(wire
 		(pts
-			(xy 234.95 241.3) (xy 224.79 241.3)
+			(xy 219.71 236.22) (xy 234.95 236.22)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "b0a5e10c-b5ab-42e5-ad25-48270b895070")
-	)
-	(wire
-		(pts
-			(xy 224.79 232.41) (xy 224.79 236.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b5b82e8f-9b5d-4eaf-8e9e-4e91fc7e600e")
 	)
 	(wire
 		(pts
@@ -1515,6 +1801,16 @@
 			(type default)
 		)
 		(uuid "ce06d5e6-ca7e-4972-a035-e99b7475f52f")
+	)
+	(wire
+		(pts
+			(xy 222.25 236.22) (xy 222.25 241.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cef65cca-e965-4b54-b0ea-2fb62d840fde")
 	)
 	(wire
 		(pts
@@ -1545,6 +1841,16 @@
 			(type default)
 		)
 		(uuid "d9a1a1e1-43de-48f7-8209-be0149363c80")
+	)
+	(wire
+		(pts
+			(xy 220.98 231.14) (xy 224.79 231.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d9d2dc5a-052f-4257-963f-071f1b542375")
 	)
 	(label "FG_TS_NODE"
 		(at 297.18 220.98 0)
@@ -1596,6 +1902,30 @@
 		)
 		(uuid "e3212f2d-a4e6-47e7-91be-522137b9dd4f")
 	)
+	(global_label "FG_SRP"
+		(shape input)
+		(at 325.12 232.41 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "0a1a20df-ce4b-454b-b354-d480f63f2eca")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 315.0591 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
 	(global_label "3V3_SYS"
 		(shape input)
 		(at 233.68 161.29 90)
@@ -1644,31 +1974,7 @@
 			)
 		)
 	)
-	(global_label "VBAT_PROTECTED"
-		(shape input)
-		(at 182.88 189.23 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "3bc2584f-7904-42f3-822f-d8b56364d2f3")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 182.88 208.2413 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
-	(global_label "BATT_RTN"
+	(global_label "FG_SRP"
 		(shape input)
 		(at 285.75 233.68 0)
 		(fields_autoplaced yes)
@@ -1680,7 +1986,7 @@
 		)
 		(uuid "3c45ee16-ded3-4e4c-b86d-a01787181204")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 297.5647 233.68 0)
+			(at 295.8109 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1694,7 +2000,7 @@
 	)
 	(global_label "VBAT_PROTECTED"
 		(shape input)
-		(at 224.79 236.22 180)
+		(at 220.98 231.14 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1704,7 +2010,7 @@
 		)
 		(uuid "43283010-b86e-4425-97a6-f985b97a56fe")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.7787 236.22 0)
+			(at 201.9687 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1740,6 +2046,30 @@
 			)
 		)
 	)
+	(global_label "BATT_RTN"
+		(shape input)
+		(at 344.17 232.41 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "90b2941b-24c7-4052-a03c-a46e3e29000e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 344.17 244.2247 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
 	(global_label "FG_SRN"
 		(shape input)
 		(at 285.75 226.06 0)
@@ -1764,6 +2094,30 @@
 			)
 		)
 	)
+	(global_label "3V3_SYS"
+		(shape output)
+		(at 219.71 236.22 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "bb66b0db-d3ef-4c04-865d-6201b19be54c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 210.9796 236.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
 	(global_label "FG_ALERT"
 		(shape input)
 		(at 233.68 189.23 270)
@@ -1777,6 +2131,30 @@
 		(uuid "cdd1ac93-863b-4873-a20d-2ab86f5c14d3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 233.68 201.0447 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "3V3_SYS"
+		(shape input)
+		(at 182.88 189.23 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "dce16e92-c50a-4282-aedf-aeee4720a048")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 182.88 200.198 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1809,6 +2187,198 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+	)
+	(global_label "FG_SRN"
+		(shape input)
+		(at 325.12 224.79 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e2c9cc71-1dca-445c-ba72-37db0c33da22")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 314.9986 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(symbol
+		(lib_name "R_1")
+		(lib_id "Device:R")
+		(at 328.93 232.41 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "29119b09-ae4f-4100-a6ac-5c7da9877e7d")
+		(property "Reference" "R403"
+			(at 329.184 237.998 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100R"
+			(at 329.184 235.458 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 328.93 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://jlcpcb.com/partdetail/26546-0603WAF1003T5E/C25803"
+			(at 328.93 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 328.93 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C22775"
+			(at 328.93 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Usage" "SRP-side series resistor (100 ohm) of the differential low-pass filter on the BQ34Z100 coulomb-counter inputs. With R402 and C403 it filters the shunt voltage from R404 (battery-negative pad, BATT_RTN) before U3 SRP (pin 9). Carries only the nA-level sense current, not the battery current."
+			(at 328.93 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Placement" "TI BQ34Z100 SS10.2.2-10.2.3 / Fig 10-2: Kelvin-tap directly at R404 pad 2 and keep R402/R403 placed symmetrically about R404 with equal-length, equal-width traces, matched in value (1 percent) to R402. Keep the tap copper separate from the high-current battery return to J4."
+			(at 328.93 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Product Page" ""
+			(at 328.93 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "JLCPCB"
+			(at 328.93 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part Site" ""
+			(at 328.93 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at 153.67 466.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0603WAF1000T5E"
+			(at 153.67 466.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "de2fe4f4-4e61-4a9b-bab2-1dacb3ae1d8f")
+		)
+		(pin "2"
+			(uuid "4c954921-0bdd-4e31-bccb-f6484e54e109")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/3a0e399f-7a0a-4d50-8ecb-e7abcc14a097"
+					(reference "R403")
+					(unit 1)
+				)
 			)
 		)
 	)
@@ -1986,7 +2556,7 @@
 				)
 			)
 		)
-		(property "Usage" "REGIN internal-LDO input decoupling. Consolidated onto the board's other 100nF/0402 part (C307331, 50V) -- was C14663 (0603, no clear reason found for the different package/part; VBAT never exceeds ~3.65V so no margin lost)."
+		(property "Usage" "REGIN internal-LDO input decoupling."
 			(at 182.88 175.26 0)
 			(hide yes)
 			(show_name no)
@@ -2542,6 +3112,175 @@
 		)
 	)
 	(symbol
+		(lib_name "R_2")
+		(lib_id "Device:R")
+		(at 328.93 224.79 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "729ab2d2-5b2e-4ec4-9051-44fa3398328c")
+		(property "Reference" "R402"
+			(at 328.93 218.44 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100R"
+			(at 328.93 220.98 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 328.93 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://jlcpcb.com/partdetail/26546-0603WAF1003T5E/C25803"
+			(at 328.93 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 328.93 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C22775"
+			(at 328.93 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Usage" "SRN-side series resistor (100 ohm) of the differential low-pass filter on the BQ34Z100 coulomb-counter inputs. With R403 and C403 it filters the shunt voltage from R404 (GND-side pad) before U3 SRN (pin 10). Carries only the nA-level sense current, not the battery current."
+			(at 328.93 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Placement" "TI BQ34Z100 SS10.2.2-10.2.3 / Fig 10-2: Kelvin-tap directly at R404 pad 1 and keep R402/R403 placed symmetrically about R404 with equal-length, equal-width traces, matched in value (1 percent) to R403. Keep the tap copper separate from the high-current GND return."
+			(at 328.93 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Product Page" ""
+			(at 328.93 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "JLCPCB"
+			(at 328.93 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part Site" ""
+			(at 328.93 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at 153.67 458.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0603WAF1000T5E"
+			(at 153.67 458.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "58ab3508-cc40-4927-96e3-b274d278d496")
+		)
+		(pin "2"
+			(uuid "41ec9357-2a0a-4102-bafc-52eeacd62eb9")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/3a0e399f-7a0a-4d50-8ecb-e7abcc14a097"
+					(reference "R402")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 297.18 246.38 90)
 		(unit 1)
@@ -2690,6 +3429,397 @@
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/3a0e399f-7a0a-4d50-8ecb-e7abcc14a097"
 					(reference "#PWR256")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 344.17 220.98 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "965a3f93-a6d9-48ae-b92f-29c6fe6daf87")
+		(property "Reference" "#PWR0253"
+			(at 344.17 220.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 342.9 223.774 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 344.17 220.98 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 344.17 220.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 344.17 220.98 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "33eaeb77-7e62-4852-a1f1-7e7aa1b0d0b7")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/3a0e399f-7a0a-4d50-8ecb-e7abcc14a097"
+					(reference "#PWR0253")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 325.12 228.6 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a76388f2-b676-4897-9ff1-951508d05ce0")
+		(property "Reference" "C403"
+			(at 328.93 227.3299 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 328.93 229.8699 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "PCM_JLCPCB:C_0402"
+			(at 325.12 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/product-detail/C307331.html"
+			(at 325.12 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 325.12 228.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C307331"
+			(at 325.12 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung Electro-Mechanics"
+			(at 325.12 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL05B104KB54PNC"
+			(at 325.12 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Usage" "Differential filter capacitor (100 nF) across U3 SRP and SRN. Completes the low-pass filter with R402 and R403. Only sees the shunt voltage (plus or minus 125 mV max), so the 50 V rating is not a constraint."
+			(at 325.12 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Placement" "TI BQ34Z100 SS10.2.3 / Fig 10-2: place as close as possible to the SRP/SRN pins (U3 pins 9 and 10), on the gauge side of R402/R403, with short symmetrical traces to the two pins."
+			(at 325.12 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Product Page" ""
+			(at 325.12 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "JLCPCB"
+			(at 325.12 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part Site" "https://www.lcsc.com/product-detail/C307331.html"
+			(at 325.12 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8c214047-14c8-41fc-a078-f1fe32d91145")
+		)
+		(pin "2"
+			(uuid "149e117c-deee-4fc6-a6a7-516cb85a2ec2")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/3a0e399f-7a0a-4d50-8ecb-e7abcc14a097"
+					(reference "C403")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 344.17 228.6 0)
+		(mirror y)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "b6ee6d02-cd9b-4a12-9947-c836bbaafd59")
+		(property "Reference" "R404"
+			(at 350.52 228.6 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10mΩ"
+			(at 347.98 228.6 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
+			(at 344.17 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/product-detail/C105362.html"
+			(at 344.17 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 344.17 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C105362"
+			(at 344.17 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Usage" "Low-side battery current-sense (shunt) resistor for the BQ34Z100PWR-G1 SRP/SRN coulomb counter (formerly R60). Sits in series between the true battery negative terminal (J4 pin 2, BATT_RTN) and system GND -- full battery charge/discharge current flows through this discrete part, not through the gauge IC. 10 mOhm gives a plus or minus 12.5 A input range; the datasheet recommends 5 to 20 mOhm."
+			(at 344.17 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Placement" "TI BQ34Z100 SS10.2.1-10.2.3 / Fig 10-2: place close to the battery connector J4, in the direct battery-return path. U3 SRP/SRN must Kelvin-sense at this resistor's own two pads through the 100 ohm filter resistors R403 (BATT_RTN pad) and R402 (GND pad); take the taps from the side of each pad opposite the load-current exit and keep them off the high-current return copper."
+			(at 344.17 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Product Page" ""
+			(at 344.17 228.6 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "JLCPCB"
+			(at 344.17 228.6 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part Site" ""
+			(at 344.17 228.6 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "3b86eddd-015c-4954-910d-9284b941ebfb")
+		)
+		(pin "2"
+			(uuid "23d4a4a7-efdf-4224-b41f-51f014b8c803")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/3a0e399f-7a0a-4d50-8ecb-e7abcc14a097"
+					(reference "R404")
 					(unit 1)
 				)
 			)
@@ -2853,7 +3983,7 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 224.79 232.41 90)
+		(at 224.79 231.14 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -2864,7 +3994,7 @@
 		(fields_autoplaced yes)
 		(uuid "d68f3c56-81c9-420b-b1e6-ff2c23fad636")
 		(property "Reference" "#FLG09"
-			(at 222.885 232.41 0)
+			(at 224.79 233.045 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2875,18 +4005,18 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 220.98 232.4099 90)
+			(at 227.33 232.4099 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 224.79 232.41 0)
+			(at 224.79 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2897,7 +4027,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 224.79 232.41 0)
+			(at 224.79 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2908,7 +4038,7 @@
 			)
 		)
 		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 224.79 232.41 0)
+			(at 224.79 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
