@@ -135,7 +135,7 @@ guidance.
 | Cell configuration | **1S**, set in hardware by the `PROG` resistor at power-on |
 | Chemistry | Li-ion / Li-Po and LiFePO4 (the fuel gauge carries profiles for both) |
 | Input voltage, either source | **3.6 V to 24 V** for a valid input; 30 V absolute maximum |
-| Practical solar ceiling | **24 V**, the charger's own recommended maximum — the input protection no longer sets a lower one. The reverse-polarity FET on that input is self-biased, so the full input voltage appears across its ±20 V gate in normal operation as well as under a reversed source; a Zener gate clamp (`D2`) holds that within rating across the whole range. Size a panel by its cold-weather open-circuit voltage, which rises above the rated Voc. See [input protection](https://github.com/JohnNeville/SunSprout/blob/main/docs/hub/modules/input-protection.md). |
+| Practical solar ceiling | **24 V**, the charger's own recommended maximum — the input protection no longer sets a lower one. The reverse-polarity FET on that input is self-biased, so the full input voltage appears across its ±20 V gate in normal operation; a Zener gate clamp (`D2`) holds that within rating across the whole range. Size a panel by its cold-weather open-circuit voltage, which rises above the rated Voc. See [input protection](https://github.com/JohnNeville/SunSprout/blob/main/docs/hub/modules/input-protection.md). |
 | Input current limit | **~2.0–2.1 A**, set in hardware by a resistor divider. Firmware cannot exceed it. The exact value tracks the charger's REGN rail, which is itself input-dependent — see below. |
 | Charge current | Firmware-set over I2C. Defaults to **1 A**; **do not exceed 2 A** (see below). |
 | Solar tracking | Autonomous open-circuit-voltage MPPT, run by the charger itself |

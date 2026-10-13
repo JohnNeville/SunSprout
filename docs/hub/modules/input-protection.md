@@ -19,27 +19,42 @@ protection: the battery input `J4`, and the solar or DC input `CN5`.
 
 ## Topology
 
-Both FETs use a self-biased P-channel arrangement. The source connects to the input. The drain
-connects to the board. The gate connects to ground through a 100 kΩ resistor.
+Both FETs use a self-biased P-channel arrangement. The **drain** connects to the input. The
+**source** connects to the board. The gate connects to ground through a 100 kΩ resistor.
 
-With correct polarity the gate sits below the source, so the FET turns on. With reversed
-polarity the FET stays off and blocks the current.
+With correct polarity, the FET's body diode conducts first and lifts the source towards the
+input. The gate then sits below the source, so the channel turns on and carries the current.
+With reversed polarity the body diode is reverse-biased, the gate and source both sit near
+ground, and the FET blocks.
 
-This arrangement has one important consequence. The gate is at ground, not at a small offset
-from the source. The gate-to-source voltage therefore equals the full input voltage, and not a
-small logic-level swing.
+The orientation matters because of the body diode. A P-channel FET's body diode runs from drain
+to source, and the gate cannot switch it off. With the drain on the input it points towards the
+board and blocks a reversed input. The other way round, it conducts from the board to the
+reversed input and drags the board down to roughly the reversed voltage, even with the channel
+off.
 
-The stress is symmetric, and that is the part which is easy to get wrong. Both polarities put
-the full input voltage across the gate oxide:
+| Condition | Drain (input) | Source (board) | Gate | Gate-to-source |
+|---|---|---|---|---|
+| Correct polarity, conducting | +Vin | ≈ +Vin | 0 V | **-Vin** — this is what turns the FET on |
+| Reversed polarity, blocking | -Vin | ≈ 0 V | 0 V | ≈ 0 V — the full input sits drain-to-source |
 
-| Condition | Source | Gate | Gate-to-source |
-|---|---|---|---|
-| Correct polarity, conducting | +Vin | 0 V | **-Vin** — this is what turns the FET on |
-| Reversed polarity, blocking | -Vin | 0 V | **+Vin** — this is what keeps it off |
+The gate stress therefore comes from normal operation: a correctly connected 24 V panel puts the
+full input across the gate for as long as it stays plugged in. The gate rating has to cover the
+everyday input range. Under a reverse fault the stress moves to drain-to-source, which the FET's
+drain-to-source rating covers.
 
-A correctly connected 24 V panel therefore stresses the gate just as hard as a reversed one,
-for as long as it stays plugged in. The gate rating has to cover the everyday input range, not
-only the fault.
+### The first prototype had this the other way round
+
+The first prototype (commit `1645733`) had the source on the input and the drain on the board.
+The channel analysis was right, but the body diode then conducted on a reversed input, so a
+reversed `CN5` would have pulled `VDC`, the charger's `VAC2` pin and, through `Q303`/`Q304`,
+`VBUS` down to about the reversed voltage. The charger is rated to −2 V on those pins. The
+current design swaps drain and source on both FETs and moves `D2` to match.
+
+A multimeter in diode mode shows which way a board is built. With the board unpowered, put the
+red probe on the board side of the FET (`VDC` or `TP15`) and the black probe on the connector
+side. A reading of about 0.4–0.7 V means the body diode points towards the connector, which is
+the old orientation. The fixed orientation reads the other way.
 
 ## Why each input has a different part
 
@@ -59,8 +74,8 @@ different part of the path.
 
 | Net | Position |
 |---|---|
-| `VBAT_RAW` | The battery connector `J4`. This is the source of `Q1`. |
-| `VBAT_PROTECTED` | The pack side. This is the drain of `Q1` and the drain of the ship FET `Q3`. |
+| `VBAT_RAW` | The battery connector `J4`. This is the drain of `Q1`. |
+| `VBAT_PROTECTED` | The pack side. This is the source of `Q1` and the drain of the ship FET `Q3`. |
 | `VBAT` | The system side. This is the source of `Q3`. It feeds the charger `BAT` pins. |
 
 The full path is `VBAT_RAW` → `Q1` → `VBAT_PROTECTED` → `Q3` → `VBAT`.
@@ -77,8 +92,8 @@ opens `Q3`. See [Battery charger](bq25798-charger.md) and [Fuel gauge](bq34z100-
 The raw input can reach 18 V to 24 V with no load. This input drove the part selection.
 
 An earlier revision used the same FET on both inputs. That FET had a gate-to-source rating of
-±8 V. With the self-biased topology, a reversed 16 V source puts 16 V across the gate oxide. That
-is genuine overstress, and the protection part itself fails.
+±8 V. With the self-biased topology, a 16 V source puts 16 V across the gate oxide in normal
+operation. That is genuine overstress, and the protection part itself fails.
 
 The current part is a DMP3098L-7. Its gate-to-source rating is ±20 V. Its drain-to-source rating
 is -30 V.
@@ -92,15 +107,18 @@ The ±20 V rating is enough to survive this input, but on its own it capped the 
 
 ## Gate clamp — D2
 
-`D2` is a 12 V Zener across the gate and source of `Q2`. Its cathode connects to the source at
-`CN5` pin 1, its anode to the gate. It holds the gate-to-source voltage inside the FET's rating
-no matter how high the input goes.
+`D2` is a 12 V Zener across the gate and source of `Q2`. Its cathode connects to the source on
+`VDC`, its anode to the gate. It holds the gate-to-source voltage inside the FET's rating no
+matter how high the input goes.
 
 | Condition | Zener | Gate-to-source |
 |---|---|---|
 | Input below about 12 V | Not conducting | -Vin, exactly as before |
 | Input above about 12 V | Reverse breakdown | Clamped near -12 V |
-| Reversed polarity | Forward conducting | Clamped near +0.7 V |
+| Reversed polarity | Not conducting | ≈ 0 V |
+
+`D2` must sit on the source side. With its cathode on the input side instead, a reversed input
+would forward-bias it, pull the gate down to the reversed voltage and turn `Q2` on.
 
 `R19` limits the clamp current. At 24 V in that is (24 - 12) / 100 kΩ = 120 µA, which dissipates
 about 1.4 mW in a part rated for 200 mW.
@@ -135,10 +153,8 @@ The clamp protects the gate. Two other limits are unchanged:
   which is rated -30 V. At 24 V reversed, that is 20% margin.
 - The charger's own absolute maximum is 30 V, with 24 V as its recommended ceiling.
 
-The clamp also adds a current path that did not exist before. Under a reverse fault, current
-flows from ground through `R19`, into the gate, through the forward-biased Zener and back to the
-source — about 230 µA at 24 V. A reversed input is therefore no longer a perfect open circuit.
-Nothing downstream is powered by that current.
+Under a reverse fault the gate and source both sit near ground, so neither `D2` nor `R19` carries
+current. A reversed input draws only the FET's leakage.
 
 ## Why USB-C has no reverse-polarity protection
 
@@ -156,7 +172,11 @@ answer was that no fitness check existed for each input. One part had been used 
 Check the real voltage range of each input against the gate-to-source rating of the FET. A
 protection part that fails under the fault it protects against gives no protection.
 
-A second lesson came later, from asking what the ±20 V rating actually constrained. It is not
-only the fault case. A self-biased FET puts the full input across its gate in normal operation
-too, so the gate rating caps the everyday input range rather than just the survivable fault.
-Once that was clear the fix was one Zener, not a hunt for a scarcer FET.
+A second lesson came later, from asking what the ±20 V rating actually constrained. A
+self-biased FET puts the full input across its gate in normal operation, so the gate rating caps
+the everyday input range rather than just the survivable fault. Once that was clear the fix was
+one Zener, not a hunt for a scarcer FET.
+
+A third lesson came from the first prototype. Checking the channel is not enough: the body diode
+conducts whatever the gate does, so the FET's orientation decides whether a reversed input is
+blocked. Check which way the body diode points, not only the gate voltage.
