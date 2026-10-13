@@ -15,6 +15,20 @@ For the design reasoning behind each IC and its passives, see [docs/hub/modules/
 | `../libraries/` | Project-specific and vendored symbol/footprint libraries (shared with Satellite) |
 | `spice_models/` | ngspice decks used to verify the reverse-polarity FETs |
 
+## Board revisions
+
+The revision is set by the `REV_NUM` text variable in `SunSproutHub.kicad_pro`, which the
+silkscreen prints alongside the commit hash. Change the title block revision in the PCB to match.
+
+| Change | Bump | Example |
+|---|---|---|
+| Fixes and part changes that keep the same ICs and board dimensions | Minor | 1.0 → 1.1 |
+| A change that replaces the main ICs or changes the board dimensions | Major | 1.x → 2.0 |
+
+All Rev 1.x boards share the same outline, mounting holes and connector positions, so the
+documentation refers to them as Rev 1.x. Rev 1.0 is the first prototype, built from commit
+`1645733`.
+
 ## What you can do without any extra setup
 
 KiCad writes the full geometry of every symbol and footprint directly into the
