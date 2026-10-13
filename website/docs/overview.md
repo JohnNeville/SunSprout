@@ -5,15 +5,21 @@ title: Overview
 
 # SunSproutHub
 
-:::warning[Work in progress — never fabricated or tested]
+:::warning[Early prototype tested, latest fixes not yet built]
 
-No physical board exists yet. Everything on this site is verified in software only: ERC and DRC
-pass, values and pin assignments are checked against manufacturer datasheets, and the
-fabrication outputs generate cleanly. Nothing has been powered on or measured.
+A first hub prototype, built from commit
+[`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733), has been assembled and
+tested on the bench. It powered from USB, flashed over the native USB port, ran ESPHome, joined
+Wi-Fi and Home Assistant, and reported charger and fuel-gauge readings.
 
-The design is published at this stage to gather feedback before a fabrication run. Treat it as
-an untested design rather than a finished product, and review it yourself before building one —
-errors in the charging or protection circuitry could damage a battery.
+Bring-up found problems: the charger loaded the USB data lines, the fuel gauge blocked the
+internal I2C bus when no battery was fitted, and the gauge's current-sense inputs and the
+indicator LEDs needed changes. The design files on this site include the fixes. **The corrected
+revision has not been built yet.** Anything not listed above, including charging from the solar
+input, has not been verified on hardware.
+
+Treat this as an early design rather than a finished product, and review it yourself before
+building one: errors in the charging or protection circuitry could damage a battery.
 
 :::
 

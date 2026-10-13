@@ -99,40 +99,44 @@ The alert output connects to the `FG_ALERT` net. The net connects to GPIO4 on th
 rail. That created two problems. It allowed current to flow back into `REG25`, and the 2.5 V
 level gave too little margin for the MCU input. The pull-up now uses the 3.3 V rail.
 
-## Battery connection
+## Power and battery connection
 
-The `BAT`, `CE` and `REGIN` pins all connect to the `VBAT_PROTECTED` net. No series shunt sits
-between the battery and these pins. The current measurement happens at `R404` on the low side
-instead.
+The gauge's supply and its battery measurement are wired to different nets:
 
-### Why the gauge sits on the pack side
+| Pin | Net | Why |
+|---|---|---|
+| `REGIN` (6) | `3V3_SYS` | Powers the gauge. 3.3 V is inside the 2.7 V to 4.5 V `REGIN` range. |
+| `CE` (5) | `3V3_SYS` | Chip enable. It must be high for the gauge to run, so it follows `REGIN`. |
+| `BAT` (4) | `VBAT_PROTECTED` | Measures the battery voltage through the gauge's internal 5:1 divider. |
+
+No series shunt sits between the battery and `BAT`. The current measurement happens at `R404` on
+the low side instead. `C401` (100 nF) decouples `REGIN` and sits next to pin 6, as the datasheet
+requires.
+
+### Why the gauge is supplied from 3V3_SYS
+
+The first prototype (commit `1645733`) supplied `REGIN` and `CE` from `VBAT_PROTECTED`. With no
+battery fitted, the gauge then had no supply and was disabled, and it pulled the internal I2C
+clock line low. That blocked the whole internal bus, including the charger. With `CE` and
+`REGIN` on `3V3_SYS`, the gauge is powered whenever the board is, and the I2C bus works with or
+without a battery.
 
 The battery path has two series FETs. `Q1` is the reverse-polarity FET. `Q3` is the ship FET that
 the charger drives. The path is `VBAT_RAW` → `Q1` → `VBAT_PROTECTED` → `Q3` → `VBAT`.
-
-`VBAT_PROTECTED` is the pack side. It sits after the reverse-polarity FET and before the ship
-FET. `VBAT` is the system side. It sits after the ship FET and feeds the charger `BAT` pins.
-
-The gauge connects to the pack side on purpose. The charger opens `Q3` in ship mode, in shutdown
-mode and during the system power reset. The `VBAT` net loses its supply in all three states, but
-`VBAT_PROTECTED` does not. The gauge therefore keeps its supply.
-
-This matters because the gauge counts coulombs continuously. It holds the state of charge in its
-own accumulated count. A supply interruption restarts the gauge. The gauge then loses the count
-and must learn the pack again. On the pack side the gauge keeps counting through every charger
-low-power state, so the state of charge stays correct.
-
-The gauge also keeps measuring the current through `R404` in these states. `R404` sits in the true
-battery return path, so it still carries any residual current.
+`VBAT_PROTECTED` is the pack side, after the reverse-polarity FET and before the ship FET.
 
 ### The cost of this choice
 
-The gauge draws a small standing current from the pack at all times. Ship mode cannot remove this
-draw. A board in long storage therefore discharges its battery slowly, even in ship mode.
+`3V3_SYS` is derived from the charger's system output, which is powered from VBUS or the battery.
+The charger opens `Q3` in ship mode, in shutdown mode and during the system power reset, and the
+system rail drops in those states. The gauge loses its supply with it. It restarts when power
+returns, and it does not count current while it is off. The state of charge may need to be
+relearned after one of these states.
 
-This is a deliberate trade. The design accepts a small standing draw to keep an accurate state of
-charge. A gauge that must relearn the pack after every storage period gives a worse result for
-this application.
+In return, the gauge draws no standing current in ship mode. An earlier design kept the gauge on
+the pack side so that it counted coulombs through every charger low-power state, at the cost of a
+small standing draw that ship mode could not remove.
 
-The reverse-polarity FET `Q1` still protects the gauge. Disconnect the pack at `J4` for true
-zero-draw storage.
+The gauge keeps counting through deep sleep, because the 3.3 V system rail stays on. Only the
+switched `3V3_USER` rail is cut. `Q1` still protects the battery side. Disconnect the pack at `J4`
+for storage.

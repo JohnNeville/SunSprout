@@ -314,6 +314,8 @@ read as anything. Ground them with `JUMP_CHGR_GND2` if you want a defined state.
 ground. Only close it while `R9` and `R11` are unpopulated. If either one is fitted, closing the
 jumper shorts that USB data line to ground.
 
+The first prototype (commit `1645733`) fitted 0 Ω links in these positions. They caused USB enumeration failures (`error -71` disconnect loops) when flashing over the native USB port, and removing them fixed it. Testing 10 kΩ in these positions is tracked in `hardware/hub/TODO.md`.
+
 To restore charger detection, fit a resistor on each pad. Use 10 kΩ if you want the charger
 isolated from the signal path, and leave `JUMP_CHGR_GND2` open.
 
