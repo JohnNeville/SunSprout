@@ -42,9 +42,9 @@ jobs:
           wifi_ssid: "placeholder"
           wifi_password: "placeholder"
           fallback_password: "placeholder"
-          # Placeholder, not a real key: 32 zero bytes, which ESPHome accepts as a valid
-          # base64 key for `esphome config`. Never use it on a device.
-          api_encryption_key: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+          # Placeholder, not a real key: base64 of the text "placeholder-api-key-do-not-use!!".
+          # ESPHome rejects an all-zeros key, so it has to be non-zero. Never use it on a device.
+          api_encryption_key: "cGxhY2Vob2xkZXItYXBpLWtleS1kby1ub3QtdXNlISE="
           EOF
 
       - name: Validate the example device
