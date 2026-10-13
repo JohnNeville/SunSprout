@@ -180,9 +180,13 @@ bq25798:
     name: "Enable MPPT"
     id: enable_mppt
     restore_mode: RESTORE_DEFAULT_ON
+  # LED2 on the charger's STAT pin shows charge state by itself; the MCU does not
+  # drive it. This switch only enables or disables the STAT output, so turning it
+  # off blanks the LED. It is not the LED and not an input.
   enable_stat_led:
-    name: "Charger Status LED"
+    name: "Enable Charger Status LED"
     restore_mode: RESTORE_DEFAULT_ON
+    entity_category: config
     disabled_by_default: true
   enable_acdrv1:
     name: "Enable USB Input"
