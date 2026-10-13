@@ -178,6 +178,7 @@
         {
           "td_allow_use_two_tracks": true,
           "td_curve_segcount": 0,
+          "td_enabled": false,
           "td_height_ratio": 1.0,
           "td_length_ratio": 0.5,
           "td_maxheight": 2.0,
@@ -189,6 +190,7 @@
         {
           "td_allow_use_two_tracks": true,
           "td_curve_segcount": 0,
+          "td_enabled": false,
           "td_height_ratio": 1.0,
           "td_length_ratio": 0.5,
           "td_maxheight": 2.0,
@@ -200,6 +202,7 @@
         {
           "td_allow_use_two_tracks": true,
           "td_curve_segcount": 0,
+          "td_enabled": false,
           "td_height_ratio": 1.0,
           "td_length_ratio": 0.5,
           "td_maxheight": 2.0,
@@ -490,6 +493,7 @@
       "pin_to_pin": "ignore",
       "power_pin_not_driven": "error",
       "same_local_global_label": "warning",
+      "same_local_global_power": "warning",
       "similar_label_and_power": "warning",
       "similar_labels": "warning",
       "similar_power": "warning",
@@ -587,8 +591,8 @@
     "meta": {
       "version": 5
     },
-    "net_colors": null,
-    "netclass_assignments": null,
+    "net_colors": {},
+    "netclass_assignments": {},
     "netclass_patterns": [
       {
         "netclass": "Power_2A",
@@ -1077,7 +1081,7 @@
         "uuid": "a73062bd-90e7-442f-aac6-ee7677f83b11"
       }
     ],
-    "used_designators": "J2,J201-202,J402,R9,R11,#FLG2-11,D201,#PWR7,#PWR23-26,#PWR40,#PWR57,#PWR123,#PWR130,C319,JP2-3,JUMP_CHGR_GND2,TP16-19",
+    "used_designators": "#FLG2-11,#PWR7,#PWR23-26,#PWR40,#PWR57,#PWR123,#PWR130,#PWR253,C319,C403,D201,J2,J201-202,J402,JP2-3,JUMP_CHGR_GND2,NT4,R9,R11,R22,R60-61,R402-403,TP16-20",
     "variants": []
   },
   "sheets": [

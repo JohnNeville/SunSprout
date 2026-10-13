@@ -2324,148 +2324,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:NetTie_2"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom no)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "NT"
-				(at 0 1.27 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "NetTie_2"
-				(at 0 -1.27 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Net tie, 2 pins"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "net tie short"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "Net*Tie*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "NetTie_2_0_1"
-				(polyline
-					(pts
-						(xy -1.27 0) (xy 1.27 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "NetTie_2_1_1"
-				(pin passive line
-					(at -2.54 0 0)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 0 180)
-					(length 2.54)
-					(name "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:R"
 			(pin_numbers
 				(hide yes)
@@ -11454,6 +11312,12 @@
 		(uuid "0745173b-3844-4e49-a50d-df7fd5d50ee7")
 	)
 	(junction
+		(at 76.2 83.82)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0aef5d84-374f-4576-a662-3360cb430ff5")
+	)
+	(junction
 		(at 364.49 247.65)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11626,12 +11490,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e5e6af73-df46-4021-93ac-e6eedb4fed7b")
-	)
-	(junction
-		(at 143.51 276.86)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "f242ad14-9517-4ce3-af05-ff77e1698f4f")
 	)
 	(junction
 		(at 80.01 83.82)
@@ -11825,26 +11683,6 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 276.86) (xy 163.83 276.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1f3c3dc7-21f8-4476-bff1-ae6600c59ac7")
-	)
-	(wire
-		(pts
-			(xy 143.51 276.86) (xy 147.32 276.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "20aee8f1-72d4-4564-8009-0b2a92697e27")
-	)
-	(wire
-		(pts
 			(xy 537.21 57.15) (xy 510.54 57.15)
 		)
 		(stroke
@@ -11882,16 +11720,6 @@
 			(type default)
 		)
 		(uuid "2613117d-f859-406d-b174-4bb85d0dc1a6")
-	)
-	(wire
-		(pts
-			(xy 143.51 266.7) (xy 143.51 276.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "27e185a4-8c43-4aba-9b7e-240c26f955b7")
 	)
 	(wire
 		(pts
@@ -12415,6 +12243,16 @@
 	)
 	(wire
 		(pts
+			(xy 76.2 83.82) (xy 80.01 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a9ea75a-c3c6-4aa9-8aca-1b770d37089b")
+	)
+	(wire
+		(pts
 			(xy 165.1 247.65) (xy 165.1 254)
 		)
 		(stroke
@@ -12645,16 +12483,6 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 276.86) (xy 158.75 276.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a2120612-ab6b-4031-b94b-89acf61e78c3")
-	)
-	(wire
-		(pts
 			(xy 386.08 240.03) (xy 405.13 240.03)
 		)
 		(stroke
@@ -12795,7 +12623,7 @@
 	)
 	(wire
 		(pts
-			(xy 143.51 284.48) (xy 138.43 284.48)
+			(xy 143.51 266.7) (xy 146.05 266.7)
 		)
 		(stroke
 			(width 0)
@@ -12822,16 +12650,6 @@
 			(type default)
 		)
 		(uuid "bf813724-e0a7-4d59-b585-095652e2fa71")
-	)
-	(wire
-		(pts
-			(xy 143.51 284.48) (xy 143.51 276.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c00e2da1-756f-4fa0-9666-066f8daa74e3")
 	)
 	(wire
 		(pts
@@ -13115,7 +12933,7 @@
 	)
 	(wire
 		(pts
-			(xy 73.66 83.82) (xy 80.01 83.82)
+			(xy 73.66 83.82) (xy 76.2 83.82)
 		)
 		(stroke
 			(width 0)
@@ -13439,16 +13257,16 @@
 	)
 	(global_label "BATT_RTN"
 		(shape output)
-		(at 138.43 284.48 180)
+		(at 146.05 266.7 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "13e4cae0-32e0-4d3d-859c-f3b5d498d596")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 138.43 284.48 0)
+			(at 146.05 266.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13912,30 +13730,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-			)
-		)
-	)
-	(global_label "FG_SRN"
-		(shape input)
-		(at 157.48 276.86 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "45b1c11c-3a00-4d18-b17c-edb8a67762a3")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 157.48 286.9814 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 			)
 		)
 	)
@@ -15689,86 +15483,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:NetTie_2")
-		(at 161.29 276.86 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "0e77b4d1-7b84-4bf8-94e1-bac7fc7022ac")
-		(property "Reference" "NT4"
-			(at 161.29 271.78 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "NetTie_FGSRN_GND"
-			(at 161.29 274.32 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "project:NetTie-2_SMD_Pad0.8mm_ParallelVias0.3mm"
-			(at 161.29 276.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 161.29 276.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Net tie, 2 pins"
-			(at 161.29 276.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "3e6e080a-7960-497d-8f58-49c95eda818a")
-		)
-		(pin "2"
-			(uuid "9d253cb3-04e4-4deb-8436-6b9fa5ea869b")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
-					(reference "NT4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 256.54 143.51 0)
 		(mirror y)
@@ -17069,7 +16783,7 @@
 		(in_bom no)
 		(on_board yes)
 		(in_pos_files no)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "2db8dbfe-ebc2-4b5b-aaf4-5ba8344b709c")
 		(property "Reference" "R9"
@@ -17094,7 +16808,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "project:R_0603_1608Metric_CuttableBridge"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 177.8 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -18820,82 +18534,6 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 167.64 276.86 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "68d8d12a-0fec-4721-be6c-9da8ee18dbac")
-		(property "Reference" "#PWR0253"
-			(at 167.64 276.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 164.846 275.59 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 167.64 276.86 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 167.64 276.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 167.64 276.86 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9844e869-2004-4713-a07a-53ef6f1c87b8")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
-					(reference "#PWR0253")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
 		(at 443.23 193.04 90)
 		(unit 1)
 		(body_style 1)
@@ -20002,6 +19640,84 @@
 		)
 	)
 	(symbol
+		(lib_id "PCM_SparkFun-Connector:TestPoint_1.0mm")
+		(at 76.2 83.82 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7f218dd4-55e2-48a5-8eb7-7e55ddca97d0")
+		(property "Reference" "TP20"
+			(at 76.2 88.9 0)
+			(show_name no)
+			(do_not_autoplace yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "VUSB"
+			(at 76.2 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "PCM_SparkFun-Connector:TestPoint-1.0mm"
+			(at 76.2 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 76.2 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "VUSB"
+			(at 76.2 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "96547275-6dee-4567-8949-be7608338e4a")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
+					(reference "TP20")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "project:Conn_01x04_StemmaQT")
 		(at 401.32 388.62 0)
 		(unit 1)
@@ -20454,152 +20170,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 151.13 276.86 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8a82cd9c-60b5-453a-a200-f40e8e706061")
-		(property "Reference" "R60"
-			(at 151.13 270.51 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10mΩ"
-			(at 151.13 273.05 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
-			(at 151.13 276.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C105362.html"
-			(at 151.13 276.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 151.13 276.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part" "C105362"
-			(at 151.13 276.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Usage" "Low-side battery current-sense (shunt) resistor for BQ34Z100PWR-G1's SRP/SRN coulomb counter. Sits in series between the true battery negative terminal (J4 pin 2) and system GND -- full battery charge/discharge current flows through this discrete part, not through the gauge IC's own pins."
-			(at 151.13 276.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Placement" "TI BQ34Z100 Fig 8-2 reference (R30): place close to the battery connector, in the direct battery-return path. SRP/SRN should Kelvin-sense directly at this resistor's own two pads for accurate coulomb counting -- route SRP/SRN traces separately from the main high-current return path."
-			(at 151.13 276.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer Product Page" ""
-			(at 151.13 276.86 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier" "JLCPCB"
-			(at 151.13 276.86 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier Part Site" ""
-			(at 151.13 276.86 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "669bdce2-152a-4b6d-9bf6-8ae24191462e")
-		)
-		(pin "2"
-			(uuid "bd9f8e27-855d-44bc-845a-e17a6a81dcb0")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
-					(reference "R60")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 76.2 43.18 90)
 		(unit 1)
@@ -20696,7 +20266,7 @@
 				)
 			)
 		)
-		(property "Value" "120Ω"
+		(property "Value" "680Ω"
 			(at 81.28 240.284 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20738,7 +20308,7 @@
 				)
 			)
 		)
-		(property "LCSC Part" "C22787"
+		(property "LCSC Part" "C23228"
 			(at 85.09 240.03 0)
 			(hide yes)
 			(show_name no)
@@ -20793,7 +20363,7 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF1200T5E"
+		(property "MPN" "0603WAF6800T5E"
 			(at 0 0 0)
 			(hide yes)
 			(show_name no)
@@ -22886,7 +22456,7 @@
 		(in_bom no)
 		(on_board yes)
 		(in_pos_files no)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "c97ad567-a34c-46ae-86f2-5d7377033624")
 		(property "Reference" "R11"
@@ -22911,7 +22481,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "project:R_0603_1608Metric_CuttableBridge"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 167.64 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -23527,7 +23097,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "120Ω"
+		(property "Value" "330Ω"
 			(at 359.41 113.0299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -23570,7 +23140,7 @@
 				)
 			)
 		)
-		(property "LCSC Part" "C22787"
+		(property "LCSC Part" "C23138"
 			(at 361.95 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -23625,7 +23195,7 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF1200T5E"
+		(property "MPN" "0603WAF3300T5E"
 			(at 0 0 0)
 			(hide yes)
 			(show_name no)
@@ -24614,24 +24184,19 @@
 	)
 	(group "Battery Input & RPP"
 		(uuid "d1bba9d4-9379-46ee-97f1-8aa40626c50c")
-		(members "0bba2d97-4384-496f-80de-7966691a0947" "0e77b4d1-7b84-4bf8-94e1-bac7fc7022ac"
-			"13e4cae0-32e0-4d3d-859c-f3b5d498d596" "1603e63f-388b-472f-b983-286a57ff9ab5"
-			"1f3c3dc7-21f8-4476-bff1-ae6600c59ac7" "20aee8f1-72d4-4564-8009-0b2a92697e27"
-			"27e185a4-8c43-4aba-9b7e-240c26f955b7" "3365c295-e903-48f3-9282-ee39d4f15769"
-			"442e2920-eddb-4e86-a638-7ce27e91cc83" "45b1c11c-3a00-4d18-b17c-edb8a67762a3"
-			"4c657b4c-fbb1-4232-9481-27c4e046b613" "5ab2d1d5-cc60-4eb1-8e23-d06fbf9bff68"
-			"5ad2a46e-059a-4b3b-b20c-57e7d351a7f4" "5adcb1ac-f219-41f6-b5af-e949c2fe0925"
-			"60ee6188-e880-4407-9535-b668e40b0646" "68d8d12a-0fec-4721-be6c-9da8ee18dbac"
+		(members "0bba2d97-4384-496f-80de-7966691a0947" "13e4cae0-32e0-4d3d-859c-f3b5d498d596"
+			"1603e63f-388b-472f-b983-286a57ff9ab5" "3365c295-e903-48f3-9282-ee39d4f15769"
+			"442e2920-eddb-4e86-a638-7ce27e91cc83" "4c657b4c-fbb1-4232-9481-27c4e046b613"
+			"5ab2d1d5-cc60-4eb1-8e23-d06fbf9bff68" "5ad2a46e-059a-4b3b-b20c-57e7d351a7f4"
+			"5adcb1ac-f219-41f6-b5af-e949c2fe0925" "60ee6188-e880-4407-9535-b668e40b0646"
 			"6a6c854a-6540-47a3-9664-271d6796826c" "6dad012c-8e81-47a1-bbd3-484575491f8a"
 			"757df0c4-b2a4-4e9c-bcdf-46db3bbec0e3" "78529f5f-5666-40bc-b2d7-9c70f8cb1c85"
 			"7c71e2d2-1325-4198-8ec9-59d1e003afba" "7e3acd86-4e45-4e0a-8fee-29b9c482e3f4"
-			"8a82cd9c-60b5-453a-a200-f40e8e706061" "9af9e109-e14d-4605-b076-b20e0dbb104f"
-			"9f3aed3f-4c03-40e2-987a-f2621a7f4426" "a067405b-19a9-485d-852c-11064cec55c3"
-			"a2120612-ab6b-4031-b94b-89acf61e78c3" "b5b0ab76-4ffd-40ea-934c-9c13bf49e146"
+			"9af9e109-e14d-4605-b076-b20e0dbb104f" "9f3aed3f-4c03-40e2-987a-f2621a7f4426"
+			"a067405b-19a9-485d-852c-11064cec55c3" "b5b0ab76-4ffd-40ea-934c-9c13bf49e146"
 			"babea055-1917-47a2-9cdd-bd91abc2d1f8" "bc675ae8-0938-4bd1-ba29-e4982ad79bec"
-			"c00e2da1-756f-4fa0-9666-066f8daa74e3" "c4517528-ced5-4f92-b0d6-3c159331ddb7"
-			"d05429ce-754d-4be7-9fbc-caf14f6612fa" "da70442b-516c-41f5-8f3f-01d4d4aa00e2"
-			"f242ad14-9517-4ce3-af05-ff77e1698f4f" "f41884fd-14bc-4833-8ddc-89c42ca690c2"
+			"c4517528-ced5-4f92-b0d6-3c159331ddb7" "d05429ce-754d-4be7-9fbc-caf14f6612fa"
+			"da70442b-516c-41f5-8f3f-01d4d4aa00e2" "f41884fd-14bc-4833-8ddc-89c42ca690c2"
 			"f5ab48e0-7bd1-469f-97c4-171673a0a143"
 		)
 	)
