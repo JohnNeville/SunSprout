@@ -38,7 +38,7 @@ Schematic" so the footprint geometry gets embedded directly into this project's 
 exactly as the hub does for every part once placed. After that, no external dependency
 remains for either part.
 
-Every other part on this board — the ADS1115 ADC, the DS2484 1-Wire bridge, the ESD
+Every other part on this board — the ADS1115 ADC, the DS2482 1-Wire bridge, the ESD
 protection diode array, and all connectors — resolves from KiCad's own stock libraries with
 zero setup.
 

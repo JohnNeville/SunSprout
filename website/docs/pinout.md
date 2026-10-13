@@ -34,12 +34,12 @@ by [InteractiveHtmlBom](https://github.com/openscopeproject/InteractiveHtmlBom) 
 | CHIP_PU/EN | Reboot button (SW1) | Fixed | No (dedicated EN pin) | R1 10kΩ pull-up to 3V3_SYS + C2 1µF | Reset button |
 | GPIO0 | LP_GPIO0 (Expansion) | Free | No (not a strap on ESP32-C5) | — | Routed to expansion header J7 pin 3. Low-power domain, deep-sleep wake capable |
 | GPIO1 | Unused | Free | No | — | Routed to expansion header J7 |
-| GPIO2 | SDA_INT — **`LP_I2C_SDA`** | Assigned | No | R20 4.7kΩ pull-up to 3V3_SYS | Internal I2C data. Fixed-function LP pin; see below. |
-| GPIO3 | SCL_INT — **`LP_I2C_SCL`** | Assigned | Yes — SDIO sampling/clock-edge select | R21 4.7kΩ pull-up to 3V3_SYS | Internal I2C clock. Fixed-function LP pin; see below. |
+| GPIO2 | SDA_INT — **`LP_I2C_SDA`** | Assigned | Yes — MTMS, floating default (R20 pulls it high at reset) | R20 4.7kΩ pull-up to 3V3_SYS | Internal I2C data. Fixed-function LP pin; see below. |
+| GPIO3 | SCL_INT — **`LP_I2C_SCL`** | Assigned | Yes — MTDI; SDIO edge select with GPIO25, floating default | R21 4.7kΩ pull-up to 3V3_SYS | Internal I2C clock. Fixed-function LP pin; see below. |
 | GPIO4 | FG_ALERT (fuel gauge) | Assigned | No — deep-sleep wake capable | R401 10kΩ pull-up to 3V3_SYS | Fuel-gauge alert, wake-capable. Kept on its own net, separate from the charger's interrupt |
 | GPIO5 | Unused | Free | No | — | Routed to expansion header J8 |
 | GPIO6 | LED1_CTRL (status LED) | Assigned | No | — (push-pull output) | Drives LED1 through R3 (330Ω) |
-| GPIO7 | Unused | Free | Yes — paired SDIO edge-select strap | — | Routed to expansion header J7 |
+| GPIO7 | Unused | Free | Yes — JTAG signal source select, floating default | — | Routed to expansion header J7 |
 | GPIO8 | CHG_INT (charger interrupt) | Assigned | No | R24 10kΩ pull-up to 3V3_SYS | Short interrupt pulse; recoverable via I2C polling |
 | GPIO9 | SDA_USER (user I2C data) | Assigned | No | R201 4.7kΩ pull-up to 3V3_USER | Feeds the I2C differential buffer + external STEMMA QT port |
 | GPIO10 | SCL_USER (user I2C clock) | Assigned | No | R202 4.7kΩ pull-up to 3V3_USER | Paired with GPIO9 |
@@ -51,10 +51,10 @@ by [InteractiveHtmlBom](https://github.com/openscopeproject/InteractiveHtmlBom) 
 | GPIO16–22 | Not exposed | Reserved | — | — | Internal to the module, not broken out |
 | GPIO23 | EN_3V3_USER | Assigned | No | R23 100kΩ pull-down to GND | Enables the switched 3V3_USER rail; defaults OFF at power-up |
 | GPIO24 | Unused | Free | No | — | Routed to expansion header J8; free for reassignment |
-| GPIO25 | Unused | Free | Yes — boot-mode strap, floating default | — | Routed to expansion header J8 |
+| GPIO25 | Unused | Free | Yes — SDIO edge select (with MTDI/GPIO3), floating default | — | Routed to expansion header J8 |
 | GPIO26 | Unused | Free | Yes — boot-mode strap, floating default | — | Routed to expansion header J8 |
-| GPIO27 | Unused | Free | Yes — boot-mode strap | — | Routed to expansion header J8 |
-| GPIO28 | Boot/flash button (SW2) | Fixed/Strap | Yes — ROM download boot strap | Internal pull-up + R4 10kΩ pull-up to 3V3_SYS | Primary ESP32-C5 boot strap. Hold SW2 low during reset (SW1) to enter download mode. Also routed to TP18 |
+| GPIO27 | Unused | Free | Yes — boot-mode and ROM-message-print strap, default pull-up (1) | — | Routed to expansion header J8 |
+| GPIO28 | Boot/flash button (SW2) | Fixed/Strap | Yes — ROM download boot strap | Internal pull-up + R2 10kΩ pull-up to 3V3_SYS | Primary ESP32-C5 boot strap. Hold SW2 low during reset (SW1) to enter download mode; GPIO27 must stay high (its default). Also routed to TP18 |
 
 ## Why the internal bus is on GPIO2/GPIO3
 
@@ -108,15 +108,16 @@ The bottom side of the SunSproutHub PCB breaks out key electrical nodes as circu
 | **TP19** | `RESET` (`RESET_NODE`) | Hardware reset line (`CHIP_PU` / `EN`) | Control / Power |
 | **TP2** | `SDA_INT` | Internal `LP_I2C` bus data line (GPIO2) | Internal I2C |
 | **TP3** | `SCL_INT` | Internal `LP_I2C` bus clock line (GPIO3) | Internal I2C |
-| **TP8** | `3V3_SYS` | Always-on 3.3V system supply from buck converter | Power Rail |
-| **TP7** | `3V3_USER` | Switched 3.3V power rail feeding external sensors and J8 | Power Rail |
+| **TP8** | `3V3_SYS` | Always-on 3.3V system supply from the buck-boost regulator (U4) | Power Rail |
+| **TP7** | `3V3_USER` | Switched 3.3V user rail (via load switch U5) feeding the user I2C devices, J7, J8, J203 and the 8P8C jacks | Power Rail |
 | **TP12** | `SYS_RAIL` | Main system power bus from BQ25798 NVDC charger | Power Rail |
-| **TP14** | `VBAT` | Raw 1S battery cell positive terminal voltage | Battery |
-| **TP15** | `VBAT_PRO` | Protected battery voltage after discharge protection FET | Battery |
-| **TP9** | `VBUS_INTERNAL` | USB-C and Solar input power rail (5V–20V) | Power Rail |
+| **TP14** | `VBAT` | Battery node at the charger BAT pins, on the system side of the ship FET Q3 | Battery |
+| **TP15** | `VBAT_PRO` | Battery voltage after Q1 (reverse-polarity FET) and before Q3 (ship FET); the fuel gauge BAT pin connects here | Battery |
+| **TP9** | `VBUS_INTERNAL` | Charger VBUS input, after the input source-selection FETs (3.6 V–24 V accepted by the charger) | Power Rail |
 | **TP13** | `REGN_RAIL` | 5V internal gate drive and bootstrap LDO rail | Power Rail |
 | **TP10** | `TS_NODE` (`CHGR_TS`) | Battery thermistor analog sensing node for BQ25798 charger | Thermistor |
 | **TP11** | `FG_TS_NODE` (`FG_TS`) | Independent battery temperature sensor for BQ34Z100 fuel gauge | Thermistor |
+| **TP20** | `VUSB` | USB-C VBUS at the connector, before the input FETs | Power Rail |
 | **TP4, TP5, TP6** | `GND` | System reference ground test pads | Ground |
 
 ### Hardware Solder Jumpers (Bottom)

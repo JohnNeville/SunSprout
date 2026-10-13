@@ -8,11 +8,11 @@ title: Use Cases
 :::warning[Not yet validated on this board]
 
 The system described here runs today on an earlier, different board, with an off-the-shelf
-SparkFun QwiicBus EndPoint standing in for the satellite. Neither half of the design
-described on this page has been built yet: the hub has **not** been built, flashed, or
-tested, and the satellite is a custom board (`hardware/satellite/`) that currently exists
-only as a schematic-capture spec — no board has been fabricated, and the ESPHome
-configuration has not been adapted to either board's components.
+SparkFun QwiicBus EndPoint standing in for the satellite. A first hub prototype (commit
+[`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733)) has been built and
+bench-tested, but the corrected hub revision has not been built. The satellite is a custom
+board (`hardware/satellite/`) whose PCB has been fabricated but not yet assembled or tested,
+and the ESPHome configuration has not been run against it.
 
 Treat this as the intended design, not a working recipe.
 
@@ -42,7 +42,7 @@ some distance from the electronics.
 The hub sits in one weatherproof enclosure with the panel and battery. Each satellite is its
 own enclosure out among the plants, holding a `SunSproutSatellite` board
 (`hardware/satellite/`) — a custom differential-I2C endpoint that integrates the PCA9615
-buffer, the ADS1115, and a DS2484 for soil temperature onto one PCB, replacing what was
+buffer, the ADS1115, and a DS2482 for soil temperature onto one PCB, replacing what was
 previously an off-the-shelf [SparkFun QwiicBus
 EndPoint](https://www.sparkfun.com/products/16988) wired to a breadboarded ADS1115. An
 ordinary Ethernet patch cable carries I2C to each one.
@@ -51,8 +51,8 @@ The board's two 8P8C jacks are wired in parallel onto the *same* differential bu
 separate ones — so a satellite can hang off either jack, or chain from another satellite. That
 is why each ADC needs its own address.
 
-The deployed system uses **two satellites covering eight plants** — four probes per satellite,
-one per ADC channel.
+The earlier deployment uses **two satellites covering eight plants** — four probes per
+satellite, one per ADC channel.
 
 ### Why not just run the sensor wires
 
@@ -65,28 +65,29 @@ on this board solves.
 
 | Part | Role |
 |---|---|
-| PCA9615 | Converts the differential pair back to standard I2C, and terminates the line — see `docs/satellite/modules/pca9615-i2c-endpoint.md` |
+| PCA9615 | Converts the differential pair back to standard I2C, and terminates the line (the hub end carries no termination) — see `docs/satellite/modules/pca9615-i2c-endpoint.md` |
 | ADS1115 | 16-bit ADC, four single-ended channels — one per moisture probe |
-| DS2484 | I2C-to-1-Wire bridge, drives one DS18B20 soil-temperature probe |
+| DS2482 | I2C-to-1-Wire bridge, drives one DS18B20 soil-temperature probe |
 | Capacitive soil probes | Up to four, one per ADS1115 channel |
-| DS18B20 probe | One, on the DS2484's 1-Wire bus |
+| DS18B20 probe | One, on the DS2482's 1-Wire bus |
 
 One PCB per enclosure keeps each satellite simple and puts the probes close to what
 digitises them. Scaling means adding satellites, not stuffing more into one.
 
 The ADS1115's address is strap-selected across `0x48`–`0x4B`, so up to four satellites can
-share the bus — sixteen probes in total before addressing runs out. The deployed pair sit at
-`0x48` and `0x49`.
+share the bus — sixteen probes in total before addressing runs out. The earlier deployment's
+pair sit at `0x48` and `0x49`.
 
 Each probe is calibrated with a dry and a wet reference voltage, measured per-probe rather than
-assumed — roughly 2.43 V dry and 1.12 V wet in the deployed setup, with one probe needing its
-own value. Probes vary enough that this is worth doing individually.
+assumed — roughly 2.43 V dry and 1.12 V wet in the earlier deployment, with one probe needing
+its own value. Probes vary enough that this is worth doing individually.
 
 ### Power behaviour
 
 Soil moisture changes slowly, so the node spends most of its life asleep: wake, read, publish,
-sleep. The deployed configuration polls soil every 300 s and runs a 120 s awake window against
-a 10 minute deep sleep cycle.
+sleep. The earlier deployment polls soil every 300 s and runs a 120 s awake window against a
+10 minute deep sleep cycle. The hub's example firmware defaults to a 120 s awake window and a
+15 minute deep sleep.
 
 That pattern suits this board's switched user rail — the differential buffer and everything
 downstream of it can be powered down between readings, leaving only the MCU, charger and fuel
@@ -100,7 +101,7 @@ in the [esphome-garden-sensor](https://github.com/JohnNeville/esphome-garden-sen
 repository. It targets the earlier board, so the satellite half carries over unchanged while
 the hub half does not:
 
-| | Earlier board | SunSproutHub |
+| | Earlier board (per the `esphome-garden-sensor` repository) | SunSproutHub |
 |---|---|---|
 | MCU | ESP32-S3 | ESP32-C5 |
 | Charger | BQ25628E @ `0x6A` | BQ25798 |
@@ -110,21 +111,22 @@ the hub half does not:
 
 The ADS1115 addressing, the soil-probe template, and calibration voltages carry over
 unchanged, because nothing about them depends on which board is at the other end of the
-cable. The `SunSproutSatellite` board itself is new, though — its DS2484/DS18B20
+cable. The `SunSproutSatellite` board itself is new, though — its DS2482/DS18B20
 soil-temperature channel has no equivalent in the earlier configuration.
 
-Three things are genuinely unresolved, and are the reason this page is marked work in progress:
+Two things are genuinely unresolved, and are the reason this page is marked work in progress:
 
-- **ESPHome component support.** The earlier board's charger and fuel gauge had usable ESPHome
-  components. Whether equivalents exist for the BQ25798 and BQ34Z100, or whether they need
-  writing, has not been established.
 - **MPPT handling.** The earlier configuration adjusted a target voltage in software based on
-  the detected supply. This board's charger performs open-circuit-voltage MPPT in hardware, so
-  that logic should be removed rather than ported — but that needs confirming against real
-  behaviour once a board exists.
-- **DS2484/DS18B20 support.** The earlier satellite had no soil-temperature channel, so
+  the detected supply. This board's charger performs open-circuit-voltage MPPT in hardware, and
+  the hub firmware enables it, so that logic should be removed rather than ported — but
+  charging from a solar input has not been tested on a real board.
+- **DS2482/DS18B20 support.** The earlier satellite had no soil-temperature channel, so
   `plant_sensor.yaml` has nothing to adapt here — this is new firmware work, not a port,
-  once a `SunSproutSatellite` board exists to test it against.
+  once an assembled `SunSproutSatellite` board exists to test it against.
+
+The charger and fuel gauge no longer need new components: the hub firmware uses the
+[`esphome-bq-drivers`](https://github.com/JohnNeville/esphome-bq-drivers) components for the
+BQ25798 and BQ34Z100.
 
 ## Other shapes this fits
 

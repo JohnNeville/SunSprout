@@ -23,8 +23,9 @@ Source: [snapeda.com](https://www.snapeda.com/)
 License: **CC BY-SA 4.0 with the Design Exception 1.0**, © SnapMagic and the respective
 original authors
 
-Used for the footprints and 3D models of `U8` (BQ25798), `U3` (BQ34Z100) and `J201`/`J202`
-(the 8P8C jacks), and as the basis for the `USBC1` USB-C footprint.
+Used for the footprints and 3D models of most of the board's ICs, MOSFETs and the 8P8C jacks
+(the parts whose footprint library is `Snapeda` in the PCB), and as the basis for the `USBC1`
+USB-C footprint.
 
 That last one is a modified derivative: SnapMagic's Same Sky pattern, retargeted to the HRO
 `TYPE-C-31-M-12` connector this board actually uses. The twelve signal pads were moved 0.15 mm
@@ -42,7 +43,10 @@ model. This credit is given because CC BY-SA still applies to the content itself
 Source: [github.com/CDFER/JLCPCB-Kicad-Library](https://github.com/CDFER/JLCPCB-Kicad-Library)
 License: **MIT**, Copyright (c) 2023 Chris
 
-Used for the `C_0402` footprint and 3D model, shared by thirteen 0402 capacitors.
+Despite the name, this library is not affiliated with JLCPCB.
+
+Used for the `C_0402` footprint and 3D model, shared by the 0402 capacitors, and for the
+`D_SOD-323` footprint of `D2`.
 
 It's used in preference to KiCad's own `C_0402_1005Metric` because the stock footprint's
 silkscreen doesn't meet JLCPCB's fabrication rules — 0.12 mm lines against a 0.15 mm minimum,

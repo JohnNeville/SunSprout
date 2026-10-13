@@ -19,7 +19,7 @@ title: Design Files & Key Components
 | U4 | TPS631000 | Buck-boost regulator, 3.3V system rail |
 | U5 | TPS22918 | Load switch, switched 3.3V user rail |
 | U201 | PCA9615 | Differential I2C buffer, drives the two 8P8C jacks |
-| D5, U202 | USBLC6-4SC6-ES | USB-C and I2C-buffer ESD protection |
+| D5, D201 | USBLC6-4SC6-ES | USB-C data and I2C-buffer ESD protection |
 | Q1, Q2, D2 | MDD3415, DMP3098L-7, BZT52C12S | Reverse-polarity protection on the battery and DC/solar inputs; D2 clamps Q2's gate |
 
 For why each of these parts was chosen, and why its surrounding passives have the values they
@@ -35,7 +35,7 @@ deliberately fits a higher-specified part where a cheaper one would do, whenever
 already used elsewhere on the board. All the 4.7 µF positions share one 25 V 0805 part, for
 instance, even where 6.3 V would be sufficient.
 
-That yields 61 distinct part numbers across 112 placements. If you intend to build this at
+That keeps the number of distinct part numbers low relative to the number of placements. If you intend to build this at
 volume, revisit those choices: once per-unit cost dominates, fitting the cheapest adequate part
 in each position is the cheaper answer. Nothing electrical depends on it.
 
@@ -43,7 +43,7 @@ in each position is the cheaper answer. Nothing electrical depends on it.
 
 Interactive viewers hosted with the documentation site:
 
-- **[Hub Interactive BOM](pathname:///ibom/)** — inspect component placements, values, and LCSC part numbers directly on the Hub board layout.
+- **[Hub Interactive BOM](pathname:///ibom/)** (built from the files as of its last regeneration, so it can lag the latest design commit) — inspect component placements, values, and LCSC part numbers directly on the Hub board layout.
 - **[Satellite Interactive BOM](pathname:///ibom-satellite/)** — inspect component placements and solder jumper configurations on the Satellite board layout.
 
 Published per release on the [Releases page](https://github.com/JohnNeville/SunSprout/releases):

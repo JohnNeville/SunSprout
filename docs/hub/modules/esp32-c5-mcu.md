@@ -48,22 +48,22 @@ The module runs from the always-on 3V3_SYS rail. It therefore stays on while the
 | `SW1` | — | Reset button. Pulls the `EN` pin low. |
 | `R1` | 10 kΩ | Pull-up on the `EN` pin to the 3.3 V rail. |
 | `C2` | 1 µF | Filter capacitor on the `EN` pin. |
-| `SW2` | — | Boot-mode button. Pulls GPIO0 low. |
-| `R2` | 10 kΩ | Pull-up on GPIO0 to the 3.3 V rail. |
-| `C21` | 1 µF | Filter capacitor on GPIO0. |
+| `SW2` | — | Boot-mode button. Pulls GPIO28 low. |
+| `R2` | 10 kΩ | Pull-up on GPIO28 to the 3.3 V rail. |
+| `C21` | 1 µF | Filter capacitor on GPIO28. |
 
 The `EN` filter uses 10 kΩ with 1 µF. These are the values that the module manufacturer
 specifies in its hardware design guidelines. An earlier revision used 100 nF here. The change to
 1 µF matched the specified time constant.
 
-Hold GPIO0 low during a reset to enter download mode.
+Hold GPIO28 low during a reset to enter download mode.
 
 ## Assigned pins
 
 | GPIO | Net | Function |
 |---|---|---|
 | `EN` | `RESET_NODE` | Reset button `SW1`. |
-| GPIO0 | `BTN1_NODE` | Boot-mode button `SW2`. |
+| GPIO28 | `BTN1_NODE` | Boot-mode button `SW2`. |
 | GPIO2 | `SDA_INT` | Internal I2C data, and the fixed `LP_I2C_SDA` pin. `R20` pulls it up with 4.7 kΩ. |
 | GPIO3 | `SCL_INT` | Internal I2C clock, and the fixed `LP_I2C_SCL` pin. `R21` pulls it up with 4.7 kΩ. |
 | GPIO4 | `FG_ALERT` | Alert output from the fuel gauge. |
@@ -104,7 +104,7 @@ Both headers are DNP. The board ships without them. Solder a header to use these
 Some free pins are strapping pins. The MCU samples them at reset to select a boot mode. Check
 what each strap does before you load it at reset time.
 
-GPIO28 has a 10 kΩ pull-up, `R4`, to the 3.3 V rail. This reinforces the default state of that
+GPIO28 has a 10 kΩ pull-up, `R2`, to the 3.3 V rail. This reinforces the default state of that
 strap.
 
 The expansion headers expose several strapping pins. This follows the precedent of the module

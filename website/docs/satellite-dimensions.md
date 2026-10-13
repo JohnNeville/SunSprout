@@ -5,8 +5,8 @@ title: Satellite Dimensions & Mounting
 
 # Satellite Dimensions & Mounting
 
-Everything on this page is measured from the production layout in
-`hardware/satellite/SunSproutSatellite.kicad_pcb`. If you need exact three-dimensional geometry — component
+Everything on this page is taken from the design values in
+`hardware/satellite/SunSproutSatellite.kicad_pcb`, not measured on a fabricated board. If you need exact three-dimensional geometry — component
 heights, connector bodies, mating clearances — use the STEP model linked from
 [Design Files](./design-files.md) rather than working from the numbers here.
 
@@ -52,21 +52,20 @@ The board provides three non-plated mounting holes sized for standard M2 hardwar
 |---|---|
 | **Drill Diameter** | **Ø2.1 mm** |
 | **Fastener Size** | **M2** (screws or hex standoffs) |
-| **Plating** | **Non-plated** (isolated from all internal copper and planes) |
+| **Plating** | **Non-plated** |
 | **Top Hole Span** | 21.25 mm (center-to-center between MP1 and MP2) |
-| **Keep-out Diameter** | Ø4.5 mm circular annular clearance around each hole |
 
 :::note[Non-Plated Holes]
-Because the mounting holes are non-plated, metal screws or standoffs provide **no electrical ground connection** to the board. If chassis or shield grounding is desired, bond to the shield jumper (`JP13`) or a ground terminal on header `J7`.
+Because the mounting holes are non-plated, metal screws or standoffs provide **no electrical ground connection** to the board. If chassis or shield grounding is desired, bond to the shield jumper (`JP13`) or a ground pin on header `J9`.
 :::
 
 ---
 
 ## Connector Locations & Clearances
 
-All connectors are through-hole components mounted on the **top side** of the PCB:
+All connectors are through-hole components mounted on the **top side** of the PCB. Positions are each footprint's origin, which is pin 1 for the headers and sensor ports. Heights are approximate.
 
-| Ref | Function | Part / Type | Center X (mm) | Center Y (mm) | Orientation | Height Above PCB |
+| Ref | Function | Part / Type | X (mm) | Y (mm) | Orientation | Height Above PCB |
 |---|---|---|---|---|---|---|
 | **`J1`** | Differential I2C / Cable Input | Amphenol RJHSE5380 (8P8C / RJ45) | 15.95 | 45.20 | Facing bottom edge | ~13.5 mm |
 | **`J6`** | 1-Wire Temperature Probe | JST PH 2.0mm 3-pin vertical | 3.65 | 8.30 | Vertical (left edge) | ~6.0 mm (~7.5 mm mated) |
@@ -91,16 +90,17 @@ All connectors are through-hole components mounted on the **top side** of the PC
 
 ## Solder Jumpers & Configuration Points
 
-The board incorporates six configuration jumpers (five on the bottom side, one on the top side):
+The board's configuration jumpers are mostly on the bottom side. The top-side ones are `JP11` and `JP19`. See [Satellite Pins & Jumpers](./satellite-pinout.md) for what each one does.
 
-| Ref | Layer | Center (X, Y) | Silk Label | Default State | Function |
-|---|---|---|---|---|---|
-| **`JP1`** | **Bottom** | (12.00, 19.30) | `ADC 0x48 0x49 0x4A 0x4B` | **Pads 1-2 bridged** (Address `0x48`) | ADS1115 I2C address strap selector. Cut bridge to select alternate address. |
-| **`JP11`** | **Top** | (20.30, 8.90) | `I2C PULL UP` | **Both pull-ups bridged** | Dual-trace single-cut jumper for local 4.7kΩ I2C pull-ups on `SCL_LOCAL`/`SDA_LOCAL`. |
-| **`JP13`** | **Bottom** | (24.10, 38.30) | `SHLD GND` | **Bridged** | Bonds RJ45 metal shield (`J1.SHIELD`) to `RJ45_GND_1`. Cut for single-point grounding. |
-| **`JP16`** | **Bottom** | (13.50, 12.40) | `1W ADDR` / `AD0 (+1)` `AD1 (+2)` `DEF (0x18)` `VCC (1)` | **Both grounded** (Address `0x18`) | Configures address strap pins on DS2482-100+ 1-Wire bridge using bit-weighting. |
-| **`JP17`** | **Bottom** | (21.50, 17.30) | `GND_1 <-> GND` | **Bridged** | Bonds cable ground (`RJ45_GND_1`) to satellite system `GND`. Cut to isolate when powering externally. |
-| **`JP18`** | **Bottom** | (24.00, 17.30) | `VCC_1 <-> 3V3` | **Bridged** | Passes Pair 1 cable power (`RJ45_VCC_1`) directly into local `SAT_3V3`. Cut to insert an external regulator between `J7` and `J9`. |
+| Ref | Layer | Position (X, Y) | Default State | Function |
+|---|---|---|---|---|
+| **`JP1`** | **Bottom** | (12.00, 19.30) | **Pads 1-2 bridged** (Address `0x48`) | ADS1115 I2C address strap selector. Cut bridge to select alternate address. |
+| **`JP11`** | **Top** | (20.30, 8.90) | **Both pull-ups bridged** | Dual-trace single-cut jumper for the local I2C pull-ups on `SCL_LOCAL`/`SDA_LOCAL`. |
+| **`JP13`** | **Bottom** | (24.10, 38.30) | **Bridged** | Bonds RJ45 metal shield (`J1.SHIELD`) to `RJ45_GND_1`. Cut for single-point grounding. |
+| **`JP16`** | **Bottom** | (13.50, 12.40) | **Both grounded** (Address `0x18`) | Configures address strap pins on the DS2482-100+ 1-Wire bridge using bit-weighting. |
+| **`JP17`** | **Bottom** | (21.50, 17.30) | **Bridged** | Bonds cable ground (`RJ45_GND_1`) to satellite system `GND`. Cut to separate the grounds when powering externally. |
+| **`JP18`** | **Bottom** | (24.00, 17.30) | **Bridged** | Passes Pair 1 cable power (`RJ45_VCC_1`) directly into local `SAT_3V3`. Cut to insert an external regulator between `J7` and `J9`. |
+| **`JP19`** | **Top** | (13.60, 2.80) | **Bridged** | Connects the power status LED (`LED1`) to ground. Cut to disable the LED. |
 
 ---
 

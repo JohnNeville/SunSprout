@@ -38,8 +38,8 @@ Notes:
 |---|---|
 | `SAT_3V3` | U2.VDD, C4.pin1, J2.pin2, J3.pin2, J4.pin2, J5.pin2, JP1.pin3 |
 | `GND` | U2.GND, C4.pin2, J2.pin1, J3.pin1, J4.pin1, J5.pin1, JP1.pin2 |
-| `SDA_LOCAL` | U2.SDA, JP1.pin4 *(continues from Sheet 1: U1.SDA)* |
-| `SCL_LOCAL` | U2.SCL, JP1.pin5 *(continues from Sheet 1: U1.SCL)* |
+| `SDA_LOCAL` | U2.SDA, JP1.pin5 *(continues from Sheet 1: U1.SDA)* |
+| `SCL_LOCAL` | U2.SCL, JP1.pin4 *(continues from Sheet 1: U1.SCL)* |
 | `ADDR_SEL` | U2.ADDR, JP1.pin1 |
 | `MOIST1` | U2.AIN0, J2.pin3 |
 | `MOIST2` | U2.AIN1, J3.pin3 |
@@ -52,7 +52,7 @@ Notes:
   the satellite board, tying together U1, U2, U3, and J8.
 - Address-select jumper: `JP1` is a unified 4-way solder jumper (`project:ADCAddrJumper1mmPads`).
   Pin 1 (`ADDR`) is bridged to Pin 2 (`GND`, address `0x48`) by default. Cut trace 1-2 and bridge
-  1-3 for `0x49`, 1-4 for `0x4A`, or 1-5 for `0x4B`. See [ads1115-adc.md](ads1115-adc.md).
+  1-3 for `0x49`, 1-4 for `0x4B`, or 1-5 for `0x4A`. See [ads1115-adc.md](ads1115-adc.md).
 
 ## Sheet 3 — 1-Wire Temperature Interface (`sheets/onewire_v1.kicad_sch`)
 
