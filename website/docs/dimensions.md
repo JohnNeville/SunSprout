@@ -5,8 +5,7 @@ title: Dimensions & Mounting
 
 # Dimensions & Mounting
 
-Everything on this page is measured from the Rev 1.1 layout (the outline and holes are unchanged
-from Rev 1.0) in
+Everything on this page applies to every Rev 1.x board, and is measured from the layout in
 `hardware/hub/SunSproutHub.kicad_pcb`. If you need exact three-dimensional geometry — component
 heights, connector bodies, mating-face positions — use the STEP model linked from
 [Design Files](./design-files.md) rather than working from the numbers here.
