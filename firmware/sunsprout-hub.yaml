@@ -26,6 +26,10 @@ substitutions:
   # Conservative default. The hardware ceiling is 2000 mA -- see below.
   charge_current: "1000"
 
+  # Only meaningful once a 400-series (LiFePO4) chemistry is loaded into the
+  # fuel gauge. Set to "false" for a standard lithium-ion cell.
+  lifepo4_relax: "true"
+
 external_components:
   - source: github://JohnNeville/esphome-bq-drivers
     components: [bq25798, bq34z100]
@@ -259,7 +263,7 @@ sensor:
     external_thermistor: true
     # Only takes effect once a 400-series chemistry is loaded, which has to be
     # done at the bench with bqStudio -- it cannot be set over I2C.
-    lifepo4_relax: true
+    lifepo4_relax: ${lifepo4_relax}
 
     state_of_charge:
       name: "Battery Level"

@@ -5,7 +5,10 @@ ESPHome configuration for the SunSprout hub.
 | File | What it is |
 |---|---|
 | `sunsprout-hub.yaml` | The board package. Hardware only: MCU, both I2C buses, charger, fuel gauge, alert inputs, user rail, status LED. |
-| `example-device.yaml` | A complete device built on that package, with WiFi, the Home Assistant API, OTA and deep sleep. |
+| `sunsprout-common.yaml` | Logging over USB and diagnostics every device wants. No networking, no name. |
+| `sunsprout-deep-sleep.yaml` | Optional deep sleep for battery or solar hubs. Leave it out while setting a board up. |
+| `example-device.yaml` | A complete device: the three packages above plus a name, WiFi, the Home Assistant API and OTA, all from `secrets.yaml`. Copy this to make your own. |
+| `sunsprout-factory.yaml` | A factory image with no credentials. It starts in setup mode so the end user supplies the WiFi. |
 
 The two chip drivers live in a separate repository,
 [esphome-bq-drivers](https://github.com/JohnNeville/esphome-bq-drivers), because they are
@@ -19,7 +22,7 @@ pip install esphome
 ```
 
 Create `secrets.yaml` next to the config with `wifi_ssid`, `wifi_password`,
-`fallback_password`, `api_encryption_key` and `ota_password`, then:
+`fallback_password` and `api_encryption_key`, then:
 
 ```bash
 esphome run firmware/example-device.yaml
@@ -27,6 +30,93 @@ esphome run firmware/example-device.yaml
 
 Hold `SW2` (boot) while pressing `SW1` (reset) to enter download mode for the first flash.
 After that, OTA works.
+
+A device file needs its own `esphome:` block with a `name`, plus whatever networking you want.
+The packages deliberately contain neither, so the same hardware description serves a
+fully configured device and a factory image:
+
+```yaml
+substitutions:
+  name: sunsprout
+  friendly_name: Sunsprout
+
+packages:
+  hub: !include sunsprout-hub.yaml
+  common: !include sunsprout-common.yaml
+  # deep_sleep: !include sunsprout-deep-sleep.yaml   # once the board is set up
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+ota:
+  - platform: esphome
+    encryption:      # reuses the API key; a separate OTA password is deprecated
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  fast_connect: true
+```
+
+Logs come out of the USB-C port, not UART0: `sunsprout-common.yaml` sets
+`logger: hardware_uart: USB_SERIAL_JTAG`. The port resets and re-enumerates on every reboot,
+so use a terminal that reconnects, such as `tio /dev/ttyACM0` or `esphome logs`.
+
+## Factory image and setup mode
+
+`sunsprout-factory.yaml` is for shipping a board whose owner is not you. It has no WiFi
+credentials, no API encryption key and no OTA password, and it leaves deep sleep out so an
+unconfigured board stays awake. On first boot the board starts its own access point
+(`Sunsprout Setup`) and offers three ways to join a network:
+
+- **Improv over USB.** Flash from a browser with ESP Web Tools and it asks for the SSID and
+  password straight away (`improv_serial`).
+- **Captive portal.** Join the access point and the portal opens a WiFi picker.
+- **Adopt in the ESPHome dashboard.** The `dashboard_import` entry makes the board appear as
+  discovered. Adopting it writes a normal device file that pulls the factory file in as a
+  package and adds secrets, so the owner can then add `sunsprout-deep-sleep.yaml`, change the
+  substitutions, or anything else, without editing the factory file.
+
+Build the image with `esphome compile firmware/sunsprout-factory.yaml` and flash the
+`.factory.bin` at offset `0x0`.
+
+## Using a standard lithium-ion cell
+
+The defaults describe a 6000 mAh LiFePO4 cell. For a standard 3.7 V lithium-ion or LiPo
+cell, override these substitutions in your device file:
+
+| Substitution | LiFePO4 default | Standard Li-ion | Why |
+|---|---|---|---|
+| `cell_chemistry` | `lifepo4` | `li_ion` | Charge limit: 3.65 V becomes 4.20 V. |
+| `battery_capacity` | `6000` | your cell, in mAh | Sets C/10 charge termination and the gauge's design capacity. |
+| `battery_energy_mwh` | `19200` | capacity × 3.7 | The gauge's design energy; the default is capacity × 3.2 V. |
+| `lifepo4_relax` | `true` | `false` | Only applies once a LiFePO4 chemistry is in the gauge. |
+| `charge_current` | `1000` | at most your cell's rating | The ceiling stays 2000 mA whatever you set. |
+
+```yaml
+substitutions:
+  cell_chemistry: "li_ion"
+  battery_capacity: "3000"        # mAh
+  battery_energy_mwh: "11100"     # 3000 mAh x 3.7 V
+  lifepo4_relax: "false"
+  charge_current: "1000"
+```
+
+The gauge ships with a lithium-ion chemistry profile, so a standard 4.2 V cell needs none of
+the bqStudio work described under *Fuel gauge setup* below. Set `apply_configuration: true`
+once with the cell attached to write the capacity and energy, then run the two offset
+calibrations. Check the **Gauge Chemistry ID** entity afterwards to confirm the profile.
+
+`li_ion_4_35` and `li_ion_4_40` raise the charge limit for high-voltage cells, but the gauge
+profile does not follow automatically; those cells need a matching chemistry loaded.
+
+The battery thermistor requirement is unchanged: fit a 103AT-type 10 kΩ NTC at `J302`, or the
+charger will not charge.
 
 ## Pin map
 
