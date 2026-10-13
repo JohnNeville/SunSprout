@@ -12,7 +12,8 @@ A first hub was fabricated and tested from commit
 and the fixes are in the current design files on this site, which have not been fabricated yet.
 
 Until a final build is validated, you can choose between the tested prototype with its known
-issues or the current design, which includes the fixes but is untested on hardware. Treat it as
+issues or the current design, which includes the fixes but is untested on hardware. See
+[Testing status](./testing-status.md) for what has been tested. Treat it as
 an early design rather than a finished product, and review it yourself before building one:
 errors in the charging or protection circuitry could damage a battery.
 
@@ -206,10 +207,12 @@ guidance.
   can physically disconnect the pack from the system rail. That gives three states beyond normal
   operation: *ship mode* (FET off, I2C still alive — for shipping and storage), *shutdown* (FET
   off, I2C down, only an adapter brings it back), and a *system power reset* that drops the FET
-  for ~350ms and actively pulls the `SYS` rail down before restoring it.
+  for ~350ms and actively pulls the `SYS` rail down before restoring it. Ship mode and
+  shutdown can only be entered with no adapter present; with USB or solar connected the charger
+  ignores them, and the board stays powered.
 - **Holding `SW3` (WAKE) for about 10 seconds hard power-cycles the board.** This runs entirely
   inside the charger — no working firmware, no I2C — which makes it the recovery path when the
-  MCU is wedged. A shorter press (~1s) just wakes the charger out of ship mode.
+  MCU is wedged. Holding it for about 1 s just wakes the charger out of ship mode; a brief tap does nothing.
 
   Two caveats worth knowing. The reset cycles the `SYS` rail, so it restarts the MCU, both 3.3V
   rails, the fuel gauge (its supply comes from `3V3_SYS`) and everything else downstream of

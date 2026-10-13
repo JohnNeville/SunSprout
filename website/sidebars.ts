@@ -25,6 +25,7 @@ const sidebars: SidebarsConfig = {
         'connectors',
         'firmware',
         'notes',
+        'testing-status',
         'use-cases',
         'design-files',
         'attribution',

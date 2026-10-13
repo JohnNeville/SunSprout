@@ -28,6 +28,55 @@ not intermate.
 | `J401` | JST PA, 2-pin (`S02B-PASK-2`) | Fuel-gauge thermistor input (pin 1 the gauge's 2.5 V bias output, pin 2 its `TS` sense node) | A **second, separate** Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), also mounted on the pack |
 | `J7` / `J8` | 2.54mm header (not fitted) | Spare/expansion GPIO breakout, plus the debug UART | Standard 2.54mm header strip, hand-soldered |
 
+## Pinouts
+
+Pin 1 is the pin marked on the board's silkscreen. Check it against the silkscreen before
+connecting anything.
+
+**`J4` battery (JST PH)** and **`CN5` DC / solar (screw terminal)**
+
+| Pin | `J4` | `CN5` |
+|:---:|---|---|
+| 1 | `BATT+` (`VBAT_RAW`) | `+` DC input |
+| 2 | `BATT−` (battery return) | Ground |
+
+**`J6` internal I2C** and **`J203` user I2C** (JST SH, STEMMA QT / Qwiic order)
+
+| Pin | `J6` | `J203` |
+|:---:|---|---|
+| 1 | Ground | Ground |
+| 2 | 3.3 V (`3V3_SYS`, always on) | 3.3 V (`3V3_USER`, switched) |
+| 3 | `SDA_INT` | `SDA_USER` |
+| 4 | `SCL_INT` | `SCL_USER` |
+
+**`J201` / `J202` differential I2C (8P8C, same pinout on both jacks)**
+
+| Pin | Signal | Pin | Signal |
+|:---:|---|:---:|---|
+| 1 | `DSCL−` | 5 | Ground |
+| 2 | `DSCL+` | 6 | `VCC_2` return (`GRN_N`) |
+| 3 | `VCC_2` (`GRN_P`) | 7 | `DSDA−` |
+| 4 | `VCC_1` (`3V3_USER`) | 8 | `DSDA+` |
+
+**`J2` `VCC_2` injection header (unfitted):** pin 1 `VCC_2`, pin 2 its return.
+
+**`J7` and `J8` expansion headers (unfitted, 9 pins each)**
+
+| Pin | `J7` | `J8` |
+|:---:|---|---|
+| 1 | `3V3_USER` | `3V3_USER` |
+| 2 | Ground | Ground |
+| 3 | GPIO0 | GPIO26 |
+| 4 | GPIO1 | GPIO25 |
+| 5 | GPIO7 | `U0TXD` (GPIO11) |
+| 6 | `SDA_USER` | `U0RXD` (GPIO12) |
+| 7 | `SCL_USER` | GPIO24 |
+| 8 | Ground | GPIO27 |
+| 9 | `3V3_USER` | GPIO5 |
+
+Several of these GPIOs are strapping pins. See [Pins & Signals](./pinout.md) before loading them
+at reset. The thermistor connectors `J302` and `J401` are described below.
+
 ## Why two separate thermistors (J302 and J401)
 
 The charger and fuel gauge each apply their own excitation/bias to whatever's wired to their

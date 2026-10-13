@@ -56,6 +56,18 @@ by [InteractiveHtmlBom](https://github.com/openscopeproject/InteractiveHtmlBom) 
 | GPIO27 | Unused | Free | Yes — boot-mode and ROM-message-print strap, default pull-up (1) | — | Routed to expansion header J8 |
 | GPIO28 | Boot/flash button (SW2) | Fixed/Strap | Yes — ROM download boot strap | Internal pull-up + R2 10kΩ pull-up to 3V3_SYS | Primary ESP32-C5 boot strap. Hold SW2 low during reset (SW1) to enter download mode; GPIO27 must stay high (its default). Also routed to TP18 |
 
+## I2C addresses
+
+| Bus | Device | 7-bit address |
+|---|---|---|
+| Internal (`J6`) | BQ25798 charger | `0x6B` |
+| Internal (`J6`) | BQ34Z100 fuel gauge | `0x55` |
+| User (`J203`, `J7`, 8P8C jacks) | PCA9615 buffer | None (it is transparent to the bus) |
+
+Anything you attach to `J6` shares the internal bus, so avoid `0x6B` and `0x55`. The user bus has
+no devices of its own. A satellite on the 8P8C jacks uses `0x48`–`0x4B` for its ADS1115 and
+`0x18`–`0x1B` for its 1-Wire bridge.
+
 ## Why the internal bus is on GPIO2/GPIO3
 
 The ESP32-C5 has **one** general-purpose I2C controller and **one** low-power controller
