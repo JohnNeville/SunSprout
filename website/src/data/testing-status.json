@@ -1,0 +1,251 @@
+{
+  "updated": "2026-10-13",
+  "prototype_commit": "1645733",
+  "sections": [
+    {
+      "title": "Power and charging",
+      "items": [
+        {
+          "feature": "Power from USB-C",
+          "status": "tested",
+          "notes": ""
+        },
+        {
+          "feature": "DC / solar input",
+          "status": "untested",
+          "notes": ""
+        },
+        {
+          "feature": "Source selection between USB-C and DC",
+          "status": "untested",
+          "notes": ""
+        },
+        {
+          "feature": "Solar MPPT",
+          "status": "untested",
+          "notes": ""
+        },
+        {
+          "feature": "Charging a battery",
+          "status": "tested",
+          "notes": "Reached fast charge from USB at about 470 mA with no thermistor fitted and `ts_ignore: true` set. Without that setting the charger suspends charging by default."
+        },
+        {
+          "feature": "Charger status LED",
+          "status": "tested",
+          "notes": "Blinks while charging is suspended. Too bright, so the series resistor was raised in the current design (untested)."
+        },
+        {
+          "feature": "Charger and input readings in Home Assistant",
+          "status": "tested",
+          "notes": "Input source, input voltage and fault status."
+        },
+        {
+          "feature": "Reverse-polarity protection",
+          "status": "fixed_in_design",
+          "notes": "On the prototype the protection FETs were mounted the wrong way round, so their body diodes would conduct on a reversed input. The current design turns them around. Do not connect a reversed supply to the prototype."
+        },
+        {
+          "feature": "3.3 V system rail",
+          "status": "tested",
+          "notes": ""
+        },
+        {
+          "feature": "Switched user rail",
+          "status": "tested",
+          "notes": "Toggling it from Home Assistant powers the STEMMA QT port's device on and off."
+        },
+        {
+          "feature": "Power Cycle Board (Home Assistant button)",
+          "status": "tested",
+          "notes": ""
+        },
+        {
+          "feature": "Ship mode, and waking with `SW3`",
+          "status": "tested",
+          "notes": "Works on battery power alone. With USB connected it does nothing, as the charger ignores it while an adapter is present. A brief tap of `SW3` does not wake the board; holding it does."
+        },
+        {
+          "feature": "`SW3` held about 10 s to hard power-cycle",
+          "status": "tested",
+          "notes": "The board dropped off the API and reconnected."
+        },
+        {
+          "feature": "Running on battery alone",
+          "status": "untested",
+          "notes": "Board keeps running with USB unplugged; battery current and time to empty look sensible."
+        },
+        {
+          "feature": "End of charge",
+          "status": "tested",
+          "notes": "Charging stopped with \"Charge terminated\" at about 4.19 V, \"Battery Fully Charged\" turned on, and the gauge reported 100%."
+        },
+        {
+          "feature": "Charge current setting",
+          "status": "untested",
+          "notes": "Measured current follows \"Charge Current Limit\". Check board temperature at higher currents."
+        },
+        {
+          "feature": "Input current limit",
+          "status": "untested",
+          "notes": "A low \"Input Current Limit\" caps the input current while charging."
+        },
+        {
+          "feature": "Charger shutdown mode",
+          "status": "untested",
+          "notes": "On battery only, \"Charger Shutdown\" turns the board off and plugging in USB wakes it."
+        },
+        {
+          "feature": "Charger temperature and thermal regulation",
+          "status": "untested",
+          "notes": "\"Charger Temperature\" reads sensibly while charging."
+        },
+        {
+          "feature": "Enable USB / Enable Solar Input switches",
+          "status": "untested",
+          "notes": "Turning one off drops the board to the other source or the battery."
+        },
+        {
+          "feature": "Charger HIZ mode",
+          "status": "untested",
+          "notes": "The input stops supplying the board."
+        },
+        {
+          "feature": "Charger status LED switch",
+          "status": "untested",
+          "notes": "\"Enable Charger Status LED\" off turns the LED dark."
+        },
+        {
+          "feature": "Reset Charger Registers",
+          "status": "untested",
+          "notes": "The firmware restores its settings afterwards, including the charge voltage limit and the ship-FET setting."
+        },
+        {
+          "feature": "Charger interrupt (`CHG_INT`)",
+          "status": "untested",
+          "notes": "\"Charger Interrupt\" fires when USB is plugged or unplugged."
+        }
+      ]
+    },
+    {
+      "title": "Fuel gauge",
+      "items": [
+        {
+          "feature": "Battery voltage and level",
+          "status": "tested",
+          "notes": "With a battery connected, after a driver fix for the state-of-charge reading."
+        },
+        {
+          "feature": "Operation with no battery",
+          "status": "fixed_in_design",
+          "notes": "The gauge blocked the internal I2C bus. It is now powered from the system rail."
+        },
+        {
+          "feature": "Current-sense filter",
+          "status": "untested",
+          "notes": "Added in the current design."
+        },
+        {
+          "feature": "Temperature reading",
+          "status": "issue",
+          "notes": "Reads implausibly cold without a thermistor on its connector."
+        },
+        {
+          "feature": "Learned capacity and calibration",
+          "status": "untested",
+          "notes": "Run the current and board offset calibrations with the pack at rest, and compare the gauge's battery current with the charger's."
+        },
+        {
+          "feature": "Thermistors on `J302` and `J401`",
+          "status": "untested",
+          "notes": "Both temperatures read sensibly, charging works with `ts_ignore` off, and the gauge stops reporting \"Charge inhibited\"."
+        },
+        {
+          "feature": "Fuel-gauge alert (`FG_ALERT`)",
+          "status": "untested",
+          "notes": "An alert such as low charge fires, and can wake the board from deep sleep."
+        }
+      ]
+    },
+    {
+      "title": "Connectivity and programming",
+      "items": [
+        {
+          "feature": "Flashing over the native USB port",
+          "status": "fixed_in_design",
+          "notes": "Failed until the charger's USB data-line links were removed. They are now unpopulated by default."
+        },
+        {
+          "feature": "Boot-mode and reset buttons",
+          "status": "tested",
+          "notes": "Used to enter download mode for the first flash."
+        },
+        {
+          "feature": "Debug UART header",
+          "status": "untested",
+          "notes": ""
+        },
+        {
+          "feature": "ESPHome, Wi-Fi and Home Assistant",
+          "status": "tested",
+          "notes": ""
+        },
+        {
+          "feature": "Over-the-air updates",
+          "status": "tested",
+          "notes": ""
+        },
+        {
+          "feature": "Internal I2C bus (`J6`)",
+          "status": "tested",
+          "notes": "Charger and gauge, and devices on the STEMMA QT port."
+        },
+        {
+          "feature": "User I2C bus (`J203`)",
+          "status": "tested",
+          "notes": "Devices on the STEMMA QT port."
+        },
+        {
+          "feature": "Differential I2C jacks (`J201`, `J202`)",
+          "status": "tested",
+          "notes": "Both jacks work with SparkFun QwiicBus EndPoint modules and the I2C devices attached to them."
+        },
+        {
+          "feature": "SunSprout Satellite board",
+          "status": "untested",
+          "notes": "The PCB is fabricated but not yet assembled. The same pattern has been tested with the off-the-shelf EndPoint it is based on."
+        },
+        {
+          "feature": "Deep sleep and wake",
+          "status": "tested",
+          "notes": "Sleep current has not been measured."
+        },
+        {
+          "feature": "Deep sleep current",
+          "status": "untested",
+          "notes": "Battery current while asleep."
+        },
+        {
+          "feature": "Status LED",
+          "status": "fixed_in_design",
+          "notes": "Too bright, so the series resistor was raised (untested)."
+        },
+        {
+          "feature": "Expansion headers (`J7`, `J8`)",
+          "status": "untested",
+          "notes": "Unfitted by default. Check a GPIO and the 3.3 V pins once fitted."
+        },
+        {
+          "feature": "`VCC_2` injection (`J2`)",
+          "status": "untested",
+          "notes": "Cut `JP2`/`JP3`, inject through `J2`, and confirm it reaches the far end of the cable."
+        },
+        {
+          "feature": "Wi-Fi range on the external antenna",
+          "status": "untested",
+          "notes": "Signal at the real install distance."
+        }
+      ]
+    }
+  ]
+}
