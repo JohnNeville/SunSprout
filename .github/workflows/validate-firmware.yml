@@ -36,15 +36,15 @@ jobs:
 
       - name: Write placeholder secrets
         # The example config reads secrets that obviously are not in the repo.
-        # `esphome config` only needs the keys to resolve, not to be real.
+        # `esphome config` only needs the keys to resolve, not to be real. The API key is
+        # generated fresh on every run, so no key is ever stored in the repository, and it
+        # needs no repository secret (which fork and Dependabot runs would not receive).
         run: |
-          cat > firmware/secrets.yaml <<'EOF'
+          cat > firmware/secrets.yaml <<EOF
           wifi_ssid: "placeholder"
           wifi_password: "placeholder"
           fallback_password: "placeholder"
-          # Placeholder, not a real key: base64 of the text "placeholder-api-key-do-not-use!!".
-          # ESPHome rejects an all-zeros key, so it has to be non-zero. Never use it on a device.
-          api_encryption_key: "cGxhY2Vob2xkZXItYXBpLWtleS1kby1ub3QtdXNlISE="
+          api_encryption_key: "$(openssl rand -base64 32)"
           EOF
 
       - name: Validate the example device
