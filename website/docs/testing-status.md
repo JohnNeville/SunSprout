@@ -29,7 +29,7 @@ Features not listed here have not been tested.
 | Charging a battery | Tested | Reached fast charge from USB at about 470 mA with no thermistor fitted and `ts_ignore: true` set. Without that setting the charger suspends charging by default. |
 | Charger status LED | Tested | Blinks while charging is suspended. Too bright, so the series resistor was raised in the current design (untested). |
 | Charger and input readings in Home Assistant | Tested | Input source, input voltage and fault status. |
-| Reverse-polarity protection | Not yet tested | Still being validated. Do not rely on it. |
+| Reverse-polarity protection | Issue, fixed in design | On the prototype the protection FETs were mounted the wrong way round, so their body diodes would conduct on a reversed input. The current design turns them around. Do not connect a reversed supply to the prototype. |
 | 3.3 V system rail | Tested | |
 | Switched user rail | Tested | Toggling it from Home Assistant powers the STEMMA QT port's device on and off. |
 | Power Cycle Board (Home Assistant button) | Tested | |

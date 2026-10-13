@@ -6355,9 +6355,6 @@
 			(embedded_fonts no)
 		)
 		(symbol "PCM_JLCPCB-Diodes:Zener,BZT52C12S"
-			(pin_numbers
-				(hide yes)
-			)
 			(pin_names
 				(offset 0)
 			)
@@ -11330,22 +11327,10 @@
 		(uuid "19b933d4-a062-4277-8814-666b338e78d6")
 	)
 	(junction
-		(at 55.88 156.21)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2288a6b1-e7ab-4de3-ba76-db7825127612")
-	)
-	(junction
 		(at 435.61 201.93)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2440bf78-0345-4839-84a7-00de48950a9a")
-	)
-	(junction
-		(at 72.39 156.21)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "25cb7e39-5ca4-47c2-bec5-6bfc1b92fbe6")
 	)
 	(junction
 		(at 73.66 83.82)
@@ -11366,12 +11351,6 @@
 		(uuid "442e2920-eddb-4e86-a638-7ce27e91cc83")
 	)
 	(junction
-		(at 55.88 139.7)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "47682e18-9a05-4f19-bc9c-356b2429be8b")
-	)
-	(junction
 		(at 71.12 35.56)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11388,6 +11367,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "621edc1b-b8a6-4747-8391-7e83c2e75180")
+	)
+	(junction
+		(at 55.88 139.7)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "65a0bc57-a3d9-478d-95f2-88c8b2afc304")
 	)
 	(junction
 		(at 435.61 207.01)
@@ -11414,6 +11399,12 @@
 		(uuid "8dc6bc6a-ddf3-4671-be20-c125de1509c4")
 	)
 	(junction
+		(at 35.56 139.7)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9195ac3b-e8c3-4671-a2ca-b60528ecc8f1")
+	)
+	(junction
 		(at 71.12 69.85)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11436,6 +11427,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a20a01ab-440a-48a7-bae8-277286a17c27")
+	)
+	(junction
+		(at 63.5 139.7)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "aa3f5d3a-d143-4d76-81e9-a348c45b7ea3")
 	)
 	(junction
 		(at 302.26 128.27)
@@ -11480,7 +11477,7 @@
 		(uuid "e13b5a56-00fa-4bae-ac1d-a40562f74780")
 	)
 	(junction
-		(at 55.88 133.35)
+		(at 63.5 133.35)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e2249710-4f78-42f7-8229-5fedc57b4bbc")
@@ -11523,6 +11520,16 @@
 	)
 	(wire
 		(pts
+			(xy 158.75 279.4) (xy 158.75 284.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "035651fa-9e8c-42bf-8292-e48ea32306e7")
+	)
+	(wire
+		(pts
 			(xy 76.2 102.87) (xy 76.2 106.68)
 		)
 		(stroke
@@ -11550,6 +11557,16 @@
 			(type default)
 		)
 		(uuid "04f07a17-8f7f-4132-84ca-30374dcc72ba")
+	)
+	(wire
+		(pts
+			(xy 35.56 147.32) (xy 48.26 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "08eaee58-2580-4b1b-a9e3-d4673a8e6f80")
 	)
 	(wire
 		(pts
@@ -11743,16 +11760,6 @@
 	)
 	(wire
 		(pts
-			(xy 72.39 163.83) (xy 72.39 168.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2ae10f45-c017-4636-8542-6ccad9348851")
-	)
-	(wire
-		(pts
 			(xy 422.91 375.92) (xy 422.91 370.84)
 		)
 		(stroke
@@ -11933,13 +11940,13 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 144.78) (xy 55.88 139.7)
+			(xy 158.75 266.7) (xy 158.75 271.78)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3b183dc6-83f0-4837-8645-cc9f90db8770")
+		(uuid "3af9d69a-0d4c-469e-a094-eaba2555ed8d")
 	)
 	(wire
 		(pts
@@ -11953,7 +11960,7 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 133.35) (xy 55.88 129.54)
+			(xy 63.5 133.35) (xy 63.5 129.54)
 		)
 		(stroke
 			(width 0)
@@ -12083,26 +12090,6 @@
 	)
 	(wire
 		(pts
-			(xy 153.67 259.08) (xy 153.67 254)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5ab2d1d5-cc60-4eb1-8e23-d06fbf9bff68")
-	)
-	(wire
-		(pts
-			(xy 161.29 254) (xy 165.1 254)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5adcb1ac-f219-41f6-b5af-e949c2fe0925")
-	)
-	(wire
-		(pts
 			(xy 405.13 252.73) (xy 388.62 252.73)
 		)
 		(stroke
@@ -12123,16 +12110,6 @@
 	)
 	(wire
 		(pts
-			(xy 72.39 149.86) (xy 72.39 156.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "615c20e7-f36a-4347-91e6-97473eb03b77")
-	)
-	(wire
-		(pts
 			(xy 537.21 69.85) (xy 515.62 69.85)
 		)
 		(stroke
@@ -12140,6 +12117,16 @@
 			(type default)
 		)
 		(uuid "6202a522-af76-48de-a584-1110936876e5")
+	)
+	(wire
+		(pts
+			(xy 35.56 129.54) (xy 35.56 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "62ef262b-0c27-4167-a2dd-02c0c60b913f")
 	)
 	(wire
 		(pts
@@ -12163,6 +12150,16 @@
 	)
 	(wire
 		(pts
+			(xy 35.56 139.7) (xy 41.91 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "64ddd1bf-d757-4969-b343-3d26d13169f6")
+	)
+	(wire
+		(pts
 			(xy 175.26 55.88) (xy 175.26 72.39)
 		)
 		(stroke
@@ -12170,6 +12167,26 @@
 			(type default)
 		)
 		(uuid "65da2968-c1de-4f72-9f15-1a607221b3c5")
+	)
+	(wire
+		(pts
+			(xy 35.56 139.7) (xy 35.56 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "68ffe9b8-1238-42f8-9088-eb58cf1febcf")
+	)
+	(wire
+		(pts
+			(xy 163.83 254) (xy 165.1 254)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "693b52d9-85fb-489d-ac9f-0b3919ed4d5f")
 	)
 	(wire
 		(pts
@@ -12203,7 +12220,7 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 139.7) (xy 55.88 133.35)
+			(xy 63.5 133.35) (xy 63.5 139.7)
 		)
 		(stroke
 			(width 0)
@@ -12293,16 +12310,6 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 156.21) (xy 55.88 156.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "81732c0a-b1d3-4421-8717-bef37898aa62")
-	)
-	(wire
-		(pts
 			(xy 435.61 201.93) (xy 444.5 201.93)
 		)
 		(stroke
@@ -12310,6 +12317,16 @@
 			(type default)
 		)
 		(uuid "836cda4f-de40-4595-8bd1-c3bb9d76cd7a")
+	)
+	(wire
+		(pts
+			(xy 69.85 139.7) (xy 63.5 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "84c858c3-b354-40b4-bb16-74543cedff82")
 	)
 	(wire
 		(pts
@@ -12403,6 +12420,16 @@
 	)
 	(wire
 		(pts
+			(xy 49.53 139.7) (xy 55.88 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "98a6523a-98fb-4f87-bcd3-846b757fff9b")
+	)
+	(wire
+		(pts
 			(xy 63.5 35.56) (xy 71.12 35.56)
 		)
 		(stroke
@@ -12420,16 +12447,6 @@
 			(type default)
 		)
 		(uuid "9d4d6477-5097-40da-ae23-4d3bfeee29e6")
-	)
-	(wire
-		(pts
-			(xy 153.67 246.38) (xy 153.67 241.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9f3aed3f-4c03-40e2-987a-f2621a7f4426")
 	)
 	(wire
 		(pts
@@ -12543,6 +12560,16 @@
 	)
 	(wire
 		(pts
+			(xy 63.5 139.7) (xy 55.88 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b0aa958b-d186-4837-9e53-ac1b442534ac")
+	)
+	(wire
+		(pts
 			(xy 63.5 45.72) (xy 68.58 45.72)
 		)
 		(stroke
@@ -12623,7 +12650,7 @@
 	)
 	(wire
 		(pts
-			(xy 143.51 266.7) (xy 146.05 266.7)
+			(xy 135.89 261.62) (xy 138.43 261.62)
 		)
 		(stroke
 			(width 0)
@@ -12650,6 +12677,16 @@
 			(type default)
 		)
 		(uuid "bf813724-e0a7-4d59-b585-095652e2fa71")
+	)
+	(wire
+		(pts
+			(xy 55.88 139.7) (xy 55.88 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c009e7d2-306a-416d-897e-c31730f69bd2")
 	)
 	(wire
 		(pts
@@ -12723,16 +12760,6 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 156.21) (xy 72.39 156.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c54e20c0-17f9-4144-9588-41e6ed783955")
-	)
-	(wire
-		(pts
 			(xy 466.09 217.17) (xy 481.33 217.17)
 		)
 		(stroke
@@ -12740,16 +12767,6 @@
 			(type default)
 		)
 		(uuid "c55e46da-e0d5-4969-aace-60dc2423665f")
-	)
-	(wire
-		(pts
-			(xy 55.88 156.21) (xy 55.88 158.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c966976e-ca97-40ed-8629-620089dd6ba2")
 	)
 	(wire
 		(pts
@@ -12783,7 +12800,7 @@
 	)
 	(wire
 		(pts
-			(xy 143.51 264.16) (xy 161.29 264.16)
+			(xy 135.89 259.08) (xy 153.67 259.08)
 		)
 		(stroke
 			(width 0)
@@ -12813,7 +12830,7 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 154.94) (xy 55.88 156.21)
+			(xy 55.88 152.4) (xy 55.88 158.75)
 		)
 		(stroke
 			(width 0)
@@ -12830,6 +12847,16 @@
 			(type default)
 		)
 		(uuid "d41166d8-0843-4a53-b601-89c545910266")
+	)
+	(wire
+		(pts
+			(xy 35.56 137.16) (xy 35.56 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d7127322-51e1-41fd-aa73-73622aa227a0")
 	)
 	(wire
 		(pts
@@ -12900,6 +12927,16 @@
 			(type default)
 		)
 		(uuid "e1bdc16c-16ac-4581-a38b-7f126b23970c")
+	)
+	(wire
+		(pts
+			(xy 163.83 254) (xy 163.83 259.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e4e85edc-3be2-4664-b5d5-e755ecceef8c")
 	)
 	(wire
 		(pts
@@ -13033,17 +13070,7 @@
 	)
 	(wire
 		(pts
-			(xy 72.39 149.86) (xy 63.5 149.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fb9d99af-4b6e-4728-a78e-99e784f9c9e1")
-	)
-	(wire
-		(pts
-			(xy 46.99 139.7) (xy 48.26 139.7)
+			(xy 78.74 139.7) (xy 77.47 139.7)
 		)
 		(stroke
 			(width 0)
@@ -13082,7 +13109,7 @@
 		(uuid "4eb67f8a-0b8c-475b-a9d1-90df1e077e40")
 	)
 	(label "VBAT_RAW"
-		(at 146.05 264.16 0)
+		(at 138.43 259.08 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -13257,7 +13284,7 @@
 	)
 	(global_label "BATT_RTN"
 		(shape output)
-		(at 146.05 266.7 0)
+		(at 138.43 261.62 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -13266,7 +13293,7 @@
 		)
 		(uuid "13e4cae0-32e0-4d3d-859c-f3b5d498d596")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 146.05 266.7 0)
+			(at 138.43 261.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14263,7 +14290,7 @@
 	)
 	(global_label "VDC"
 		(shape output)
-		(at 55.88 129.54 90)
+		(at 63.5 129.54 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -14273,7 +14300,7 @@
 		)
 		(uuid "9d46ba70-5d9b-44e5-95d1-8ab2afe867d1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 55.88 122.9262 90)
+			(at 63.5 122.9262 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17463,155 +17490,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 153.67 250.19 0)
-		(mirror x)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "4c657b4c-fbb1-4232-9481-27c4e046b613")
-		(property "Reference" "R17"
-			(at 148.59 250.444 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100k"
-			(at 148.59 248.944 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 153.67 250.19 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://jlcpcb.com/partdetail/26546-0603WAF1003T5E/C25803"
-			(at 153.67 250.19 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 153.67 250.19 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part" "C25803"
-			(at 153.67 250.19 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer Product Page" ""
-			(at 153.67 250.19 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier" "JLCPCB"
-			(at 153.67 250.19 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier Part Site" ""
-			(at 153.67 250.19 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "UNI-ROYAL"
-			(at -7.62 -2.54 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0603WAF1003T5E"
-			(at -7.62 -2.54 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "21123d9f-0356-4ce1-9a68-0ff676d69794")
-		)
-		(pin "2"
-			(uuid "792139a7-5524-47ab-9518-feeae52101b1")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
-					(reference "R17")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
-		(at 52.07 139.7 270)
-		(mirror x)
+		(at 73.66 139.7 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -17622,7 +17502,7 @@
 		(fields_autoplaced yes)
 		(uuid "5388c7ab-7733-469c-874d-a79b32ac2a77")
 		(property "Reference" "C28"
-			(at 52.07 132.08 90)
+			(at 73.66 132.08 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17632,7 +17512,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 52.07 134.62 90)
+			(at 73.66 134.62 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17642,7 +17522,7 @@
 			)
 		)
 		(property "Footprint" "PCM_JLCPCB:C_0402"
-			(at 52.07 139.7 0)
+			(at 73.66 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17653,7 +17533,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/product-detail/C307331.html"
-			(at 52.07 139.7 0)
+			(at 73.66 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17664,7 +17544,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 52.07 139.7 0)
+			(at 73.66 139.7 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17674,7 +17554,7 @@
 			)
 		)
 		(property "Usage" "Raw Solar Input Transient Protection"
-			(at 52.07 139.7 0)
+			(at 73.66 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17685,7 +17565,7 @@
 			)
 		)
 		(property "LCSC Part" "C307331"
-			(at 52.07 139.7 0)
+			(at 73.66 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17696,7 +17576,7 @@
 			)
 		)
 		(property "Manufacturer Product Page" ""
-			(at 52.07 139.7 90)
+			(at 73.66 139.7 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17707,7 +17587,7 @@
 			)
 		)
 		(property "Supplier" "JLCPCB"
-			(at 52.07 139.7 90)
+			(at 73.66 139.7 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17718,7 +17598,7 @@
 			)
 		)
 		(property "Supplier Part Site" ""
-			(at 52.07 139.7 90)
+			(at 73.66 139.7 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17745,7 +17625,7 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 55.88 133.35 270)
+		(at 63.5 133.35 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -17756,7 +17636,7 @@
 		(fields_autoplaced yes)
 		(uuid "5710c905-b756-4fa8-b061-0c613b6ce4c0")
 		(property "Reference" "#FLG03"
-			(at 57.785 133.35 0)
+			(at 65.405 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17767,7 +17647,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 59.69 133.3499 90)
+			(at 67.31 133.3499 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17778,7 +17658,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 55.88 133.35 0)
+			(at 63.5 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17789,7 +17669,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 55.88 133.35 0)
+			(at 63.5 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17800,7 +17680,7 @@
 			)
 		)
 		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 55.88 133.35 0)
+			(at 63.5 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17992,7 +17872,7 @@
 	)
 	(symbol
 		(lib_id "Transistor_FET:Q_PMOS_GSD")
-		(at 158.75 259.08 0)
+		(at 158.75 261.62 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -18002,7 +17882,7 @@
 		(dnp no)
 		(uuid "5ad2a46e-059a-4b3b-b20c-57e7d351a7f4")
 		(property "Reference" "Q1"
-			(at 168.402 258.596 0)
+			(at 158.266 251.968 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18012,7 +17892,7 @@
 			)
 		)
 		(property "Value" "MDD3415"
-			(at 168.402 260.096 0)
+			(at 159.766 251.968 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18022,7 +17902,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 158.75 259.08 0)
+			(at 158.75 261.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18033,7 +17913,7 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/partdetail/897433-MDD3415/C840839"
-			(at 158.75 259.08 0)
+			(at 158.75 261.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18044,7 +17924,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 158.75 259.08 0)
+			(at 158.75 261.62 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18054,7 +17934,7 @@
 			)
 		)
 		(property "LCSC Part" "C840839"
-			(at 158.75 259.08 0)
+			(at 158.75 261.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18065,7 +17945,7 @@
 			)
 		)
 		(property "Manufacturer Product Page" ""
-			(at 158.75 259.08 0)
+			(at 158.75 261.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18076,7 +17956,7 @@
 			)
 		)
 		(property "Supplier" "JLCPCB"
-			(at 158.75 259.08 0)
+			(at 158.75 261.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18087,7 +17967,7 @@
 			)
 		)
 		(property "Supplier Part Site" ""
-			(at 158.75 259.08 0)
+			(at 158.75 261.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18098,7 +17978,7 @@
 			)
 		)
 		(property "Manufacturer" "MDD(Microdiode Semiconductor)"
-			(at -7.62 -2.54 0)
+			(at -102.87 427.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18109,7 +17989,7 @@
 			)
 		)
 		(property "MPN" "MDD3415"
-			(at -7.62 -2.54 0)
+			(at -102.87 427.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18120,7 +18000,7 @@
 			)
 		)
 		(property "FT Rotation Offset" "0"
-			(at 158.75 259.08 0)
+			(at 158.75 261.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18227,9 +18107,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 153.67 241.3 0)
-		(mirror x)
+		(lib_id "PCM_JLCPCB-Diodes:Zener,BZT52C12S")
+		(at 45.72 139.7 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -18237,9 +18116,29 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "60ee6188-e880-4407-9535-b668e40b0646")
-		(property "Reference" "#PWR035"
-			(at 153.67 247.65 0)
+		(uuid "5fc15e28-1048-4a79-9237-61b453a48ff2")
+		(property "Reference" "D2"
+			(at 45.72 134.366 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BZT52C12S"
+			(at 45.72 136.906 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 0.8 0.8)
+				)
+			)
+		)
+		(property "Footprint" "PCM_JLCPCB:D_SOD-323"
+			(at 45.72 141.478 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18249,18 +18148,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 157.734 240.044 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 153.67 241.3 0)
+		(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2403280435_hongjiacheng-BZT52C12S_C19077447.pdf"
+			(at 45.72 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18270,8 +18159,8 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
-			(at 153.67 241.3 0)
+		(property "Description" "Independent Type 11.4V~12.7V 200mW 12V SOD-323 Zener Diodes ROHS"
+			(at 45.72 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18281,8 +18170,42 @@
 				)
 			)
 		)
-		(property "Description" ""
-			(at 153.67 241.3 0)
+		(property "Manufacturer" "hongjiacheng"
+			(at 45.72 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C19077447"
+			(at 45.72 139.7 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "BZT52C12S"
+			(at 45.72 139.7 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "JLCPCB"
+			(at 45.72 139.7 90)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18292,12 +18215,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "cbfd8258-974a-49ac-9c91-7938d9eb97ee")
+			(uuid "a8eb04ff-a223-4ce6-9566-0d4185f10d38")
+		)
+		(pin "2"
+			(uuid "62e9cc2c-4630-47a6-8db4-d190b792c6ed")
 		)
 		(instances
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
-					(reference "#PWR035")
+					(reference "D2")
 					(unit 1)
 				)
 			)
@@ -18374,83 +18300,6 @@
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
 					(reference "#PWR046")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 72.39 168.91 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "65deec85-23ab-408d-a531-6d4d7c44a4b3")
-		(property "Reference" "#PWR037"
-			(at 72.39 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 72.39 173.99 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 72.39 168.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 72.39 168.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 72.39 168.91 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0a724942-5445-4221-97c5-6ba8aadc78d5")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
-					(reference "#PWR037")
 					(unit 1)
 				)
 			)
@@ -18690,8 +18539,8 @@
 	)
 	(symbol
 		(lib_id "Transistor_FET:Q_PMOS_GSD")
-		(at 58.42 149.86 0)
-		(mirror y)
+		(at 53.34 147.32 0)
+		(mirror x)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -18702,7 +18551,7 @@
 		(fields_autoplaced yes)
 		(uuid "75d65ecd-a389-4cde-b243-c12fa583edf5")
 		(property "Reference" "Q2"
-			(at 52.07 148.5899 0)
+			(at 59.69 146.0499 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18713,7 +18562,7 @@
 			)
 		)
 		(property "Value" "DMP3098L-7"
-			(at 52.07 151.1299 0)
+			(at 59.69 148.5899 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18724,7 +18573,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 58.42 149.86 0)
+			(at 53.34 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18735,7 +18584,7 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/partdetail/DiodesIncorporated-DMP3098L7/C150492"
-			(at 58.42 149.86 0)
+			(at 53.34 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18746,7 +18595,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 58.42 149.86 0)
+			(at 53.34 147.32 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18756,7 +18605,7 @@
 			)
 		)
 		(property "LCSC Part" "C150492"
-			(at 58.42 149.86 0)
+			(at 53.34 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18767,7 +18616,7 @@
 			)
 		)
 		(property "Manufacturer Product Page" ""
-			(at 58.42 149.86 0)
+			(at 53.34 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18778,7 +18627,7 @@
 			)
 		)
 		(property "Supplier" "JLCPCB"
-			(at 58.42 149.86 0)
+			(at 53.34 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18789,7 +18638,7 @@
 			)
 		)
 		(property "Supplier Part Site" ""
-			(at 58.42 149.86 0)
+			(at 53.34 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18800,7 +18649,7 @@
 			)
 		)
 		(property "Manufacturer" "DIODES"
-			(at 0 0 0)
+			(at 111.76 297.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18811,7 +18660,7 @@
 			)
 		)
 		(property "MPN" "DMP3098L-7"
-			(at 0 0 0)
+			(at 111.76 297.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18822,7 +18671,7 @@
 			)
 		)
 		(property "FT Rotation Offset" "0"
-			(at 58.42 149.86 0)
+			(at 53.34 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19126,7 +18975,8 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 46.99 139.7 270)
+		(at 78.74 139.7 90)
+		(mirror x)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -19137,7 +18987,7 @@
 		(fields_autoplaced yes)
 		(uuid "7948c23e-5a9e-444b-a7c7-85dc27a434fd")
 		(property "Reference" "#PWR065"
-			(at 53.34 139.7 0)
+			(at 72.39 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19148,7 +18998,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 45.72 135.89 90)
+			(at 80.01 135.89 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -19158,7 +19008,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 46.99 139.7 0)
+			(at 78.74 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19169,7 +19019,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 46.99 139.7 0)
+			(at 78.74 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19180,7 +19030,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 46.99 139.7 0)
+			(at 78.74 139.7 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -19196,129 +19046,6 @@
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
 					(reference "#PWR065")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "PCM_JLCPCB-Diodes:Zener,BZT52C12S")
-		(at 64.77 156.21 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "794efa25-ce17-4284-8d52-b4a76bcb6edc")
-		(property "Reference" "D2"
-			(at 64.77 161.544 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "BZT52C12S"
-			(at 64.77 159.004 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 0.8 0.8)
-				)
-			)
-		)
-		(property "Footprint" "PCM_JLCPCB:D_SOD-323"
-			(at 64.77 154.432 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2403280435_hongjiacheng-BZT52C12S_C19077447.pdf"
-			(at 64.77 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Independent Type 11.4V~12.7V 200mW 12V SOD-323 Zener Diodes ROHS"
-			(at 64.77 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "hongjiacheng"
-			(at 64.77 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part" "C19077447"
-			(at 64.77 156.21 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "BZT52C12S"
-			(at 64.77 156.21 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier" "JLCPCB"
-			(at 64.77 156.21 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "215303bf-1b6e-4b2b-b228-66f861b060f8")
-		)
-		(pin "2"
-			(uuid "ca7f0f61-815c-4ba9-b95c-cb7efeecd35d")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
-					(reference "D2")
 					(unit 1)
 				)
 			)
@@ -19880,153 +19607,6 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 72.39 160.02 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "85b540b0-19c8-4806-afb8-0325a5b025ac")
-		(property "Reference" "R19"
-			(at 74.93 158.7499 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100k"
-			(at 74.93 161.2899 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 72.39 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://jlcpcb.com/partdetail/26546-0603WAF1003T5E/C25803"
-			(at 72.39 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 72.39 160.02 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part" "C25803"
-			(at 72.39 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer Product Page" ""
-			(at 72.39 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier" "JLCPCB"
-			(at 72.39 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier Part Site" ""
-			(at 72.39 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "UNI-ROYAL"
-			(at 8.89 5.08 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0603WAF1003T5E"
-			(at 8.89 5.08 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "cd28cb5b-fba7-48be-b0bc-3a9d82e27aaf")
-		)
-		(pin "2"
-			(uuid "40f81d23-13cf-4879-9179-5d184de44d4c")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
-					(reference "R19")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
 		(at 433.07 377.19 0)
 		(unit 1)
 		(body_style 1)
@@ -20240,6 +19820,152 @@
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
 					(reference "#PWR013")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 158.75 275.59 0)
+		(mirror y)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "927e47c2-3ef7-4524-9af1-13a1cae49dab")
+		(property "Reference" "R17"
+			(at 163.83 275.336 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 163.83 276.836 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 158.75 275.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://jlcpcb.com/partdetail/26546-0603WAF1003T5E/C25803"
+			(at 158.75 275.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 158.75 275.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C25803"
+			(at 158.75 275.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Product Page" ""
+			(at 158.75 275.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "JLCPCB"
+			(at 158.75 275.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part Site" ""
+			(at 158.75 275.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at 320.04 528.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0603WAF1003T5E"
+			(at 320.04 528.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2a78848c-4c58-44d5-885a-68d94ae03fe3")
+		)
+		(pin "2"
+			(uuid "4349e21c-4cae-47b0-ba0d-5d1bb57f75cf")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
+					(reference "R17")
 					(unit 1)
 				)
 			)
@@ -20623,6 +20349,153 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 35.56 133.35 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "99fa72c6-7e1c-454f-a38b-652ab4a79e82")
+		(property "Reference" "R19"
+			(at 33.02 134.6201 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100k"
+			(at 33.02 132.0801 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 35.56 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://jlcpcb.com/partdetail/26546-0603WAF1003T5E/C25803"
+			(at 35.56 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 35.56 133.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C25803"
+			(at 35.56 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Product Page" ""
+			(at 35.56 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "JLCPCB"
+			(at 35.56 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part Site" ""
+			(at 35.56 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at 99.06 288.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0603WAF1003T5E"
+			(at 99.06 288.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f5cb602b-0556-4132-bcbd-7d9ec8c7b557")
+		)
+		(pin "2"
+			(uuid "7a1ce353-682b-480d-bba5-937636f6f5d4")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
+					(reference "R19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 515.62 69.85 270)
 		(unit 1)
@@ -20700,7 +20573,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
-		(at 138.43 264.16 0)
+		(at 130.81 259.08 0)
 		(mirror y)
 		(unit 1)
 		(body_style 1)
@@ -20711,7 +20584,7 @@
 		(dnp no)
 		(uuid "9af9e109-e14d-4605-b076-b20e0dbb104f")
 		(property "Reference" "J4"
-			(at 138.43 258.088 0)
+			(at 130.81 253.008 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -20721,7 +20594,7 @@
 			)
 		)
 		(property "Value" "BATTERY"
-			(at 138.43 259.588 0)
+			(at 130.81 254.508 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -20731,7 +20604,7 @@
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_PH_S2B-PH-K_1x02_P2.00mm_Horizontal"
-			(at 138.43 264.16 0)
+			(at 130.81 259.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20742,7 +20615,7 @@
 			)
 		)
 		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/6c6fce4367275d84ec6a99bf09f1250f.pdf?productCode=C265016"
-			(at 138.43 264.16 0)
+			(at 130.81 259.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20753,7 +20626,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 138.43 264.16 0)
+			(at 130.81 259.08 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -20763,7 +20636,7 @@
 			)
 		)
 		(property "LCSC Part" "C265016"
-			(at 138.43 264.16 0)
+			(at 130.81 259.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20774,7 +20647,7 @@
 			)
 		)
 		(property "Manufacturer Product Page" ""
-			(at 138.43 264.16 0)
+			(at 130.81 259.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20785,7 +20658,7 @@
 			)
 		)
 		(property "Supplier" "JLCPCB"
-			(at 138.43 264.16 0)
+			(at 130.81 259.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20796,7 +20669,7 @@
 			)
 		)
 		(property "Supplier Part Site" ""
-			(at 138.43 264.16 0)
+			(at 130.81 259.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20807,7 +20680,7 @@
 			)
 		)
 		(property "Manufacturer" "JST"
-			(at -7.62 -2.54 0)
+			(at -15.24 -7.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20818,7 +20691,7 @@
 			)
 		)
 		(property "MPN" "S2B-PH-K(LF)(SN)"
-			(at -7.62 -2.54 0)
+			(at -15.24 -7.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22447,6 +22320,160 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 35.56 127 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c1bc9773-5614-4d6a-bb2c-573a941e8373")
+		(property "Reference" "#PWR037"
+			(at 35.56 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 35.56 121.92 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 35.56 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 35.56 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 35.56 127 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "15e5ad0b-9d98-4c9b-88fb-edf1cd356732")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
+					(reference "#PWR037")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 158.75 284.48 0)
+		(mirror y)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c807f584-9d39-43cd-b1fc-fd7edb4b256f")
+		(property "Reference" "#PWR035"
+			(at 158.75 278.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.686 285.736 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 158.75 284.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 158.75 284.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 158.75 284.48 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d997ac7d-2c00-4d81-919a-65d1be14c9fa")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11"
+					(reference "#PWR035")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 167.64 54.61 0)
 		(mirror y)
@@ -24048,6 +24075,26 @@
 			)
 		)
 	)
+	(group "Solar Input & RPP"
+		(uuid "2ddc9611-1907-4188-b439-8f0606e5d345")
+		(members "08eaee58-2580-4b1b-a9e3-d4673a8e6f80" "18299074-806e-46b5-b501-b902a57ff6ce"
+			"1e59d926-6e4c-432e-be06-4da771ab3061" "43b4fc51-499c-4542-94cd-6d73fa29d8c2"
+			"5388c7ab-7733-469c-874d-a79b32ac2a77" "5710c905-b756-4fa8-b061-0c613b6ce4c0"
+			"5fc15e28-1048-4a79-9237-61b453a48ff2" "62ef262b-0c27-4167-a2dd-02c0c60b913f"
+			"64ddd1bf-d757-4969-b343-3d26d13169f6" "65a0bc57-a3d9-478d-95f2-88c8b2afc304"
+			"68ffe9b8-1238-42f8-9088-eb58cf1febcf" "6c5cd0f4-34be-4495-be87-67423c5496eb"
+			"703aae2c-19de-46a3-ae06-2ee9197443c8" "75d65ecd-a389-4cde-b243-c12fa583edf5"
+			"7948c23e-5a9e-444b-a7c7-85dc27a434fd" "84c858c3-b354-40b4-bb16-74543cedff82"
+			"9195ac3b-e8c3-4671-a2ca-b60528ecc8f1" "98a6523a-98fb-4f87-bcd3-846b757fff9b"
+			"99fa72c6-7e1c-454f-a38b-652ab4a79e82" "9d46ba70-5d9b-44e5-95d1-8ab2afe867d1"
+			"aa3f5d3a-d143-4d76-81e9-a348c45b7ea3" "b0aa958b-d186-4837-9e53-ac1b442534ac"
+			"c009e7d2-306a-416d-897e-c31730f69bd2" "c1bc9773-5614-4d6a-bb2c-573a941e8373"
+			"c496d680-e7a8-4125-a32b-f28d59ecaefb" "cd52c563-b88e-4765-a6a9-cde696e37321"
+			"d01900e4-d3a1-42a4-8dfa-320cd406e64e" "d39203e7-ba4d-4c39-bc22-7a5feb277cf2"
+			"d7127322-51e1-41fd-aa73-73622aa227a0" "e2249710-4f78-42f7-8229-5fedc57b4bbc"
+			"feed4ba8-3b70-48d0-8c12-a89e6dbff56b"
+		)
+	)
 	(group "buttons"
 		(uuid "385e7ec7-bfc1-4f05-aad2-81146ed4bfea")
 		(members "03d5b8f7-023f-495c-9ee5-57d959899ade" "13a0e370-1fcc-42cc-ac84-0511818cabd2"
@@ -24141,22 +24188,6 @@
 			"eba8582b-2229-462d-9d81-b8ffe9c8fe69" "f02d95bc-a7d2-491c-9054-332d06b99690"
 		)
 	)
-	(group "Solar Input & RPP"
-		(uuid "7972d319-825e-4fe8-8009-8ebee2c7f1fe")
-		(members "18299074-806e-46b5-b501-b902a57ff6ce" "1e59d926-6e4c-432e-be06-4da771ab3061"
-			"2288a6b1-e7ab-4de3-ba76-db7825127612" "25cb7e39-5ca4-47c2-bec5-6bfc1b92fbe6"
-			"2ae10f45-c017-4636-8542-6ccad9348851" "3b183dc6-83f0-4837-8645-cc9f90db8770"
-			"47682e18-9a05-4f19-bc9c-356b2429be8b" "5388c7ab-7733-469c-874d-a79b32ac2a77"
-			"615c20e7-f36a-4347-91e6-97473eb03b77" "65deec85-23ab-408d-a531-6d4d7c44a4b3"
-			"6c5cd0f4-34be-4495-be87-67423c5496eb" "75d65ecd-a389-4cde-b243-c12fa583edf5"
-			"7948c23e-5a9e-444b-a7c7-85dc27a434fd" "794efa25-ce17-4284-8d52-b4a76bcb6edc"
-			"81732c0a-b1d3-4421-8717-bef37898aa62" "85b540b0-19c8-4806-afb8-0325a5b025ac"
-			"9d46ba70-5d9b-44e5-95d1-8ab2afe867d1" "c496d680-e7a8-4125-a32b-f28d59ecaefb"
-			"c54e20c0-17f9-4144-9588-41e6ed783955" "c966976e-ca97-40ed-8629-620089dd6ba2"
-			"d01900e4-d3a1-42a4-8dfa-320cd406e64e" "d39203e7-ba4d-4c39-bc22-7a5feb277cf2"
-			"fb9d99af-4b6e-4728-a78e-99e784f9c9e1" "feed4ba8-3b70-48d0-8c12-a89e6dbff56b"
-		)
-	)
 	(group "Charge LED"
 		(uuid "9280a124-fa2f-4053-a7db-5a2c2b4215e9")
 		(members "16791338-37f0-47b2-b4f0-5a3b51197629" "5ab2a3c4-2983-407e-b23e-433c6aeaa747"
@@ -24184,20 +24215,20 @@
 	)
 	(group "Battery Input & RPP"
 		(uuid "d1bba9d4-9379-46ee-97f1-8aa40626c50c")
-		(members "0bba2d97-4384-496f-80de-7966691a0947" "13e4cae0-32e0-4d3d-859c-f3b5d498d596"
-			"1603e63f-388b-472f-b983-286a57ff9ab5" "3365c295-e903-48f3-9282-ee39d4f15769"
-			"442e2920-eddb-4e86-a638-7ce27e91cc83" "4c657b4c-fbb1-4232-9481-27c4e046b613"
-			"5ab2d1d5-cc60-4eb1-8e23-d06fbf9bff68" "5ad2a46e-059a-4b3b-b20c-57e7d351a7f4"
-			"5adcb1ac-f219-41f6-b5af-e949c2fe0925" "60ee6188-e880-4407-9535-b668e40b0646"
-			"6a6c854a-6540-47a3-9664-271d6796826c" "6dad012c-8e81-47a1-bbd3-484575491f8a"
-			"757df0c4-b2a4-4e9c-bcdf-46db3bbec0e3" "78529f5f-5666-40bc-b2d7-9c70f8cb1c85"
-			"7c71e2d2-1325-4198-8ec9-59d1e003afba" "7e3acd86-4e45-4e0a-8fee-29b9c482e3f4"
-			"9af9e109-e14d-4605-b076-b20e0dbb104f" "9f3aed3f-4c03-40e2-987a-f2621a7f4426"
-			"a067405b-19a9-485d-852c-11064cec55c3" "b5b0ab76-4ffd-40ea-934c-9c13bf49e146"
-			"babea055-1917-47a2-9cdd-bd91abc2d1f8" "bc675ae8-0938-4bd1-ba29-e4982ad79bec"
-			"c4517528-ced5-4f92-b0d6-3c159331ddb7" "d05429ce-754d-4be7-9fbc-caf14f6612fa"
-			"da70442b-516c-41f5-8f3f-01d4d4aa00e2" "f41884fd-14bc-4833-8ddc-89c42ca690c2"
-			"f5ab48e0-7bd1-469f-97c4-171673a0a143"
+		(members "035651fa-9e8c-42bf-8292-e48ea32306e7" "0bba2d97-4384-496f-80de-7966691a0947"
+			"13e4cae0-32e0-4d3d-859c-f3b5d498d596" "1603e63f-388b-472f-b983-286a57ff9ab5"
+			"3365c295-e903-48f3-9282-ee39d4f15769" "3af9d69a-0d4c-469e-a094-eaba2555ed8d"
+			"442e2920-eddb-4e86-a638-7ce27e91cc83" "5ad2a46e-059a-4b3b-b20c-57e7d351a7f4"
+			"693b52d9-85fb-489d-ac9f-0b3919ed4d5f" "6a6c854a-6540-47a3-9664-271d6796826c"
+			"6dad012c-8e81-47a1-bbd3-484575491f8a" "757df0c4-b2a4-4e9c-bcdf-46db3bbec0e3"
+			"78529f5f-5666-40bc-b2d7-9c70f8cb1c85" "7c71e2d2-1325-4198-8ec9-59d1e003afba"
+			"7e3acd86-4e45-4e0a-8fee-29b9c482e3f4" "927e47c2-3ef7-4524-9af1-13a1cae49dab"
+			"9af9e109-e14d-4605-b076-b20e0dbb104f" "a067405b-19a9-485d-852c-11064cec55c3"
+			"b5b0ab76-4ffd-40ea-934c-9c13bf49e146" "babea055-1917-47a2-9cdd-bd91abc2d1f8"
+			"bc675ae8-0938-4bd1-ba29-e4982ad79bec" "c4517528-ced5-4f92-b0d6-3c159331ddb7"
+			"c807f584-9d39-43cd-b1fc-fd7edb4b256f" "d05429ce-754d-4be7-9fbc-caf14f6612fa"
+			"da70442b-516c-41f5-8f3f-01d4d4aa00e2" "e4e85edc-3be2-4664-b5d5-e755ecceef8c"
+			"f41884fd-14bc-4833-8ddc-89c42ca690c2" "f5ab48e0-7bd1-469f-97c4-171673a0a143"
 		)
 	)
 	(sheet
