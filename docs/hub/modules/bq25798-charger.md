@@ -299,9 +299,23 @@ constant of about 20 ms.
 The charger reads the USB D+ and D- lines for BC1.2 charger detection. The MCU also uses these
 lines for its native USB port.
 
-`R9` and `R11` are 10 kΩ. They sit between the shared data lines and the charger pins. They
-isolate the charger's detection input from the live USB signals. Without them the charger loads
-the data lines directly.
+`R9` (D+) and `R11` (D-) are **unpopulated**. They are empty 0603 pads that would connect the
+shared data lines to the charger pins. With nothing fitted, the charger is disconnected from the
+USB bus and cannot load or disturb USB enumeration, which matters when flashing over the native
+USB port.
+
+The charger therefore sees no BC1.2 signalling from the host, and its D+/D- detection cannot
+identify the adapter. The input current limit does not rely on it: the hardware clamp set by
+`R302`/`R303` on `ILIM_HIZ` still caps the input at roughly 2 A. The datasheet does not say whether
+unused D+/D- pins should float or be grounded. They are analog I/O pins, so a floating input can
+read as anything. Ground them with `JUMP_CHGR_GND2` if you want a defined state.
+
+`JUMP_CHGR_GND2` is a 3-pad solder jumper, open by default. It ties both charger data pins to
+ground. Only close it while `R9` and `R11` are unpopulated. If either one is fitted, closing the
+jumper shorts that USB data line to ground.
+
+To restore charger detection, fit a resistor on each pad. Use 10 kΩ if you want the charger
+isolated from the signal path, and leave `JUMP_CHGR_GND2` open.
 
 ## Charge enable
 
@@ -310,7 +324,7 @@ the charge current over I2C. The charge current defaults to 1 A after a reset.
 
 ## Status LED
 
-The `STAT` pin drives `LED2`. `R10` is 120 Ω. It connects the LED anode to the 3V3_SYS rail. The
+The `STAT` pin drives `LED2`. `R10` is 680 Ω, which gives about 1.5 mA. It connects the LED anode to the 3V3_SYS rail. The
 charger sinks the current through the `STAT` pin.
 
 ## Interrupt

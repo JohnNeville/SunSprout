@@ -265,7 +265,8 @@ sensor:
     design_capacity: ${battery_capacity}
     design_energy: ${battery_energy_mwh}
     cell_count: 1
-    # R60, in the battery return path next to J4, Kelvin-sensed through NT4.
+    # R404, in the battery return path next to J4, Kelvin-sensed through the
+    # R402/R403 100 ohm and C403 100 nF input filter.
     sense_resistor: 10.0
     # The thermistor on J401 is biased from REG25 by the gauge itself.
     external_thermistor: true

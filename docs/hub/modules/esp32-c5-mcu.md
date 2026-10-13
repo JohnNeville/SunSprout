@@ -67,7 +67,7 @@ Hold GPIO0 low during a reset to enter download mode.
 | GPIO2 | `SDA_INT` | Internal I2C data, and the fixed `LP_I2C_SDA` pin. `R20` pulls it up with 4.7 kΩ. |
 | GPIO3 | `SCL_INT` | Internal I2C clock, and the fixed `LP_I2C_SCL` pin. `R21` pulls it up with 4.7 kΩ. |
 | GPIO4 | `FG_ALERT` | Alert output from the fuel gauge. |
-| GPIO6 | `LED1_CTRL` | Status LED, through `R3` (120 Ω). |
+| GPIO6 | `LED1_CTRL` | Status LED, through `R3` (330 Ω). |
 | GPIO8 | `CHG_INT` | Interrupt output from the charger. `R24` pulls it up with 10 kΩ. |
 | GPIO9 | `SDA_USER` | User I2C data. `R201` pulls it up with 4.7 kΩ. |
 | GPIO10 | `SCL_USER` | User I2C clock. `R202` pulls it up with 4.7 kΩ. |

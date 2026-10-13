@@ -66,7 +66,7 @@ these choices — a 6.3 V part where 6.3 V suffices works exactly as well.
 |---|---|---|
 | [ESP32-C5 module](esp32-c5-mcu.md) | `U1` | ESP32-C5-WROOM-1U |
 | [Battery charger](bq25798-charger.md) | `U8`, `Q3`, `Q301`–`Q304`, `L1` | BQ25798RQMR |
-| [Fuel gauge](bq34z100-fuel-gauge.md) | `U3`, `R60` | BQ34Z100PWR-G1 |
+| [Fuel gauge](bq34z100-fuel-gauge.md) | `U3`, `R404` | BQ34Z100PWR-G1 |
 | [Buck-boost regulator](tps631000-regulator.md) | `U4`, `L2` | TPS631000DRLR |
 | [User-rail load switch](tps22918-load-switch.md) | `U5` | TPS22918DBVR |
 | [Differential I2C buffer](pca9615-i2c-buffer.md) | `U201` | PCA9615DPZ |

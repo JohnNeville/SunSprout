@@ -225,7 +225,7 @@ access — the datasheet does not publish them.
 Everything else the gauge needs *can* be written from firmware. Set
 `apply_configuration: true` in the `bq34z100` block with a cell attached and reflash; the
 driver writes Design Capacity, Design Energy, cell count, the Pack Configuration bits and
-the `R60` sense-resistor calibration, comparing each value first so it does not wear the
+the `R404` sense-resistor calibration, comparing each value first so it does not wear the
 flash, and reading each one back to confirm. Then, with the pack at rest and no current
 flowing, press **Calibrate Gauge Current Offset** and **Calibrate Gauge Board Offset**.
 
