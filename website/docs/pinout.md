@@ -110,7 +110,7 @@ the pin, at the cost of the PSRAM.
 
 ## Hardware Test Points (Bottom View)
 
-The bottom side of the SunSproutHub PCB breaks out key electrical nodes as circular surface-mount test pads for multimeter and oscilloscope probing during bringup and verification:
+The bottom side of the SunSproutHub PCB breaks out key electrical nodes as circular surface-mount test pads for multimeter and oscilloscope probing during testing and verification:
 
 | Test Point | Signal / Net | Function & Description | Category |
 |---|---|---|---|

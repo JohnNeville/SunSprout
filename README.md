@@ -4,12 +4,12 @@
 > **Prototype hardware: the latest design has not been built yet.**
 >
 > A first hub was fabricated and tested from commit
-> [`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733). Bring-up found issues,
-> and the fixes are in the current design files, which have not been fabricated yet.
+> [`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733). Testing found a few
+> issues. The current design files fix them, but that revision hasn't been built yet.
 >
-> Until a final build is validated, you can choose between the tested prototype with its known
-> issues (`1645733`) or the current design, which includes the fixes but is untested on hardware.
-> The commit history shows what changed in between.
+> Until it has, you can build the tested prototype (`1645733`) with its known issues, or the
+> current design, which has the fixes but is untested on hardware. The commit history shows what
+> changed in between.
 >
 > **If you are thinking of building one:** treat it as an early design, not a finished
 > product. Expect to find mistakes. Errors in the charging or protection circuitry could damage
