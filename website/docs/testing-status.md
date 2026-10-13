@@ -35,6 +35,17 @@ Features not listed here have not been tested.
 | Power Cycle Board (Home Assistant button) | Tested | |
 | Ship mode, and waking with `SW3` | Tested | Works on battery power alone. With USB connected it does nothing, as the charger ignores it while an adapter is present. A brief tap of `SW3` does not wake the board; holding it does. |
 | `SW3` held about 10 s to hard power-cycle | Tested | The board dropped off the API and reconnected. |
+| Running on battery alone | Not yet tested | Board keeps running with USB unplugged; battery current and time to empty look sensible. |
+| End of charge | Not yet tested | Charging stops and "Battery Fully Charged" turns on. |
+| Charge current setting | Not yet tested | Measured current follows "Charge Current Limit". Check board temperature at higher currents. |
+| Input current limit | Not yet tested | A low "Input Current Limit" caps the input current while charging. |
+| Charger shutdown mode | Not yet tested | On battery only, "Charger Shutdown" turns the board off and plugging in USB wakes it. |
+| Charger temperature and thermal regulation | Not yet tested | "Charger Temperature" reads sensibly while charging. |
+| Enable USB / Enable Solar Input switches | Not yet tested | Turning one off drops the board to the other source or the battery. |
+| Charger HIZ mode | Not yet tested | The input stops supplying the board. |
+| Charger status LED switch | Not yet tested | "Enable Charger Status LED" off turns the LED dark. |
+| Reset Charger Registers | Not yet tested | The firmware restores its settings afterwards, including the charge voltage limit and the ship-FET setting. |
+| Charger interrupt (`CHG_INT`) | Not yet tested | "Charger Interrupt" fires when USB is plugged or unplugged. |
 
 ## Fuel gauge
 
@@ -44,7 +55,9 @@ Features not listed here have not been tested.
 | Operation with no battery | Issue, fixed in design | The gauge blocked the internal I2C bus. It is now powered from the system rail. |
 | Current-sense filter | Not yet tested | Added in the current design. |
 | Temperature reading | Issue | Reads implausibly cold without a thermistor on its connector. |
-| Learned capacity and calibration | Not yet tested | |
+| Learned capacity and calibration | Not yet tested | Run the current and board offset calibrations with the pack at rest, and compare the gauge's battery current with the charger's. |
+| Thermistors on `J302` and `J401` | Not yet tested | Both temperatures read sensibly, charging works with `ts_ignore` off, and the gauge stops reporting "Charge inhibited". |
+| Fuel-gauge alert (`FG_ALERT`) | Not yet tested | An alert such as low charge fires, and can wake the board from deep sleep. |
 
 ## Connectivity and programming
 
@@ -60,7 +73,11 @@ Features not listed here have not been tested.
 | Differential I2C jacks (`J201`, `J202`) | Tested | Both jacks work with SparkFun QwiicBus EndPoint modules and the I2C devices attached to them. |
 | SunSprout Satellite board | Not yet tested | The PCB is fabricated but not yet assembled. The same pattern has been tested with the off-the-shelf EndPoint it is based on. |
 | Deep sleep and wake | Tested | Sleep current has not been measured. |
+| Deep sleep current | Not yet tested | Battery current while asleep. |
 | Status LED | Issue, fixed in design | Too bright, so the series resistor was raised (untested). |
+| Expansion headers (`J7`, `J8`) | Not yet tested | Unfitted by default. Check a GPIO and the 3.3 V pins once fitted. |
+| `VCC_2` injection (`J2`) | Not yet tested | Cut `JP2`/`JP3`, inject through `J2`, and confirm it reaches the far end of the cable. |
+| Wi-Fi range on the external antenna | Not yet tested | Signal at the real install distance. |
 
 ## Update this page
 
