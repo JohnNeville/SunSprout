@@ -21,9 +21,9 @@ once done rather than letting it drift out of sync with the actual design.
 - [ ] **Schematic PDF** (`website/docs/design-files.md` → Schematic section) — export and link a
       clean schematic PDF.
 - [ ] **Current consumption numbers** (`website/docs/overview.md` → Power → Current consumption)
-      — currently "not yet characterized." Fill in once bring-up/bench measurements exist,
+      — currently "not yet characterized." Fill in once bench measurements exist,
       ideally broken out by state (deep sleep, Wi-Fi active, charging, etc.) the way PowerFeather-
-      style hardware docs typically do — use real bring-up measurements rather than estimating.
+      style hardware docs typically do — use real bench measurements rather than estimating.
 - [ ] **Real board photos** — the site currently uses `kicad-cli`-rendered CAD images
       (`website/static/img/board-top.png` / `board-bottom.png`). Swap in or supplement with actual
       assembled-board photography once a unit exists.

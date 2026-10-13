@@ -8,14 +8,15 @@ title: Overview
 :::warning[Prototype hardware, latest design not yet built]
 
 A first hub was fabricated and tested from commit
-[`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733). Bring-up found issues,
-and the fixes are in the current design files on this site, which have not been fabricated yet.
+[`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733). Testing found a few
+issues. The current design files fix them, but that revision hasn't been built yet.
 
-Until a final build is validated, you can choose between the tested prototype with its known
-issues or the current design, which includes the fixes but is untested on hardware. See
-[Testing status](./testing-status.md) for what has been tested. Treat it as
-an early design rather than a finished product, and review it yourself before building one:
-errors in the charging or protection circuitry could damage a battery.
+Until it has, you can build the tested prototype (`1645733`) with its known issues, or the
+current design, which has the fixes but is untested on hardware. See
+[Testing status](./testing-status.md) for what has been tested.
+
+Treat this as an early design rather than a finished product, and review it yourself before
+building one: errors in the charging or protection circuitry could damage a battery.
 
 :::
 
@@ -226,4 +227,4 @@ guidance.
 
 ### Current consumption
 
-Not yet characterized — measurements will be added here once bring-up testing is complete.
+Not yet characterized — measurements will be added here once testing is complete.
