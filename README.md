@@ -1,18 +1,15 @@
 # SunSprout
 
 > [!WARNING]
-> **Early prototype tested; the latest fixes have not been built yet.**
+> **Prototype hardware: the latest design has not been built yet.**
 >
-> A first hub prototype, built from commit
-> [`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733), has been assembled and
-> tested on the bench. It powered from USB, flashed over the native USB port, ran ESPHome, joined
-> Wi-Fi and Home Assistant, and reported charger and fuel-gauge readings.
+> A first hub was fabricated and tested from commit
+> [`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733). Bring-up found issues,
+> and the fixes are in the current design files, which have not been fabricated yet.
 >
-> Bring-up found problems: the charger loaded the USB data lines, the fuel gauge blocked the
-> internal I2C bus when no battery was fitted, and the gauge's current-sense inputs and the
-> indicator LEDs needed changes. The design files here include the fixes. The corrected revision
-> has not been built yet. Anything not listed above, including charging from the solar input, has
-> not been verified on hardware.
+> Until a final build is validated, you can choose between the tested prototype with its known
+> issues (`1645733`) or the current design, which includes the fixes but is untested on hardware.
+> The commit history shows what changed in between.
 >
 > **If you are thinking of building one:** treat it as an early design, not a finished
 > product. Expect to find mistakes. Errors in the charging or protection circuitry could damage
