@@ -1,23 +1,26 @@
 # SunSprout
 
-> [!WARNING]
-> **Prototype hardware: the latest design has not been built yet.**
+> [!CAUTION]
+> **Unverified charging hardware.** A first hub was built and tested from commit
+> [`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733), and testing found issues.
+> The current design files fix them, but that revision has **not been built or tested**. You can
+> build the tested prototype with its known issues, or the current design with its untested fixes.
+> The commit history shows what changed.
 >
-> A first hub was fabricated and tested from commit
-> [`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733). Testing found a few
-> issues. The current design files fix them, but that revision hasn't been built yet.
+> Errors in the charging or protection circuitry can damage a lithium cell, and a damaged cell
+> can overheat or catch fire.
 >
-> Until it has, you can build the tested prototype (`1645733`) with its known issues, or the
-> current design, which has the fixes but is untested on hardware. The commit history shows what
-> changed in between.
+> - **Charge voltage:** the charger powers up for a 4.2 V cell. A LiFePO4 cell charges to 3.65 V.
+>   The firmware sets the limit from `cell_chemistry`, so set it before attaching a cell.
+> - **Thermistor:** fit a 10 kΩ NTC on the battery. With none fitted the charger will not charge.
+> - **Charge current:** never above 2000 mA. Nothing in hardware limits it.
+> - **Reverse polarity:** the protection on the battery and solar inputs was redesigned and is
+>   untested on hardware. Check polarity before connecting.
+> - **Before you order:** build one board, power it from a current-limited supply with no battery,
+>   and check the power path before you order a panelised batch.
 >
-> **If you are thinking of building one:** treat it as an early design, not a finished
-> product. Expect to find mistakes. Errors in the charging or protection circuitry could damage
-> a battery. Review it yourself before spending money on a panelised order.
->
-> Feedback is genuinely welcome, especially on the power path, the charger and fuel-gauge
-> configuration, and anything in [docs/hub/modules/](docs/hub/modules/) where the reasoning
-> looks wrong.
+> Feedback is welcome, especially on the power path, the charger and fuel-gauge configuration, and
+> anything in [docs/hub/modules/](docs/hub/modules/) where the reasoning looks wrong.
 
 An open-hardware solar and battery powered sensor system. SunSprout covers both halves of a
 deployment: the **hub**, a custom board that manages power and talks to the network, and the
@@ -37,6 +40,7 @@ ICs, and one for sensors, buffered onto a differential pair so it can drive a lo
 | | |
 |---|---|
 | Documentation site | **[johnneville.github.io/SunSprout](https://johnneville.github.io/SunSprout/)** — pinout, connectors, power behaviour |
+| Build one | [Order from JLCPCB](website/docs/fabrication/ordering-jlcpcb.md) and [Getting started](website/docs/getting-started.md) — fabrication settings, assembly checks, first flash |
 | Design files | [hardware/hub/](hardware/hub/) — KiCad 10 project, hand-routed |
 | Why it is built this way | [docs/hub/modules/](docs/hub/modules/) — per-IC design notes |
 | Firmware | [firmware/](firmware/) — ESPHome configuration; [docs/hub/firmware.md](docs/hub/firmware.md) for the reasoning |

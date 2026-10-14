@@ -5,51 +5,54 @@ title: Connectors
 
 # Connectors
 
-The external connectors, plus the unfitted headers (`J2`, `J7`, `J8`), are deliberately
+The external connectors, plus the unfitted headers, are deliberately
 spread across distinct connector families by role —
 so a solar source can't be physically mis-plugged into the battery input, and the two
 temperature-probe inputs use a field-terminable connector rather than requiring a
 pre-terminated probe.
 
-The thermistor inputs use JST **PA**, not the JST **PH** of the battery input `J4`, precisely
+The thermistor inputs use JST **PA**, not the JST **PH** of the battery input, precisely
 so a cell can never be plugged into a `TS` sense pin. Both are 2.0 mm pitch; the housings do
 not intermate.
 
-| Ref | Type | Purpose | Mating part |
+| Connector | Type | Purpose | Mating part |
 |---|---|---|---|
-| `USBC1` | USB-C receptacle | USB-C power input | Any standard USB-C cable |
-| `CN5` | 2.54mm screw terminal | DC / small solar panel input. Pin 1 is `+` (marked on the silkscreen), pin 2 is ground | Bare-wire or ferrule termination |
-| `J4` | JST PH, 2-pin | Battery input. Pin 1 is `BATT+`, pin 2 is `BATT−` | Single-cell Li-ion/Li-Po pack with a JST-PH cable — check polarity against the silkscreen before connecting |
-| `J6` | JST SH, 4-pin (STEMMA QT) | Internal I2C bus (3.3 V from the always-on `3V3_SYS` rail) — for sensors that should share the always-on power-management bus | Any STEMMA QT / Qwiic cable |
-| `J203` | JST SH, 4-pin (STEMMA QT) | User I2C bus (3.3 V from the switched `3V3_USER` rail) — for sensors on the switched bus that also feeds the differential buffer | Any STEMMA QT / Qwiic cable |
-| `J201` / `J202` | 8P8C (RJ45-style) | Differential I2C — connects to a [SparkFun QwiicBus EndPoint](https://www.sparkfun.com/products/16988) for remote sensors | Standard Ethernet patch cable |
-| `J2` | 2.54mm header (not fitted) | Optional external supply for the `VCC_2` rail on the 8P8C jacks (pin 1 `VCC_2`, pin 2 its return) — see [Notes](./notes.md#vcc_2-is-a-separate-cuttable-power-rail-on-the-8p8c-jacks) | Standard 2.54mm header strip, hand-soldered |
-| `J302` | JST PA, 2-pin (`S02B-PASK-2`) | Charger thermistor input (pin 1 ground, pin 2 the charger's `TS` sense node) | Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), mounted on the battery pack — see [below](#terminating-your-own-thermistor-probe) |
-| `J401` | JST PA, 2-pin (`S02B-PASK-2`) | Fuel-gauge thermistor input (pin 1 the gauge's 2.5 V bias output, pin 2 its `TS` sense node) | A **second, separate** Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), also mounted on the pack |
-| `J7` / `J8` | 2.54mm header (not fitted) | Spare/expansion GPIO breakout, plus the debug UART | Standard 2.54mm header strip, hand-soldered |
+| USB-C port | USB-C receptacle | Power input, firmware flashing and log output | Any standard USB-C cable |
+| Solar input (`SOLAR`) | 2.54mm screw terminal | DC / small solar panel input. Pin 1 is `+` (marked on the silkscreen), pin 2 is ground | Bare-wire or ferrule termination |
+| Battery (`BATT +` / `BATT −`) | JST PH, 2-pin | Single-cell battery input. Pin 1 is `BATT+`, pin 2 is `BATT−` | Single-cell Li-ion/Li-Po/LiFePO4 pack with a JST-PH cable. Check polarity against the silkscreen before connecting |
+| STEMMA QT port (`Qwiic Sys`) | JST SH, 4-pin | Internal I2C bus (3.3 V from the always-on rail), for sensors that should share the always-on power-management bus | Any STEMMA QT / Qwiic cable |
+| STEMMA QT port (`Qwiic User`) | JST SH, 4-pin | User I2C bus (3.3 V from the switched rail), for sensors on the switched bus that also feeds the differential buffer | Any STEMMA QT / Qwiic cable |
+| Two 8P8C jacks (`J201`, `J202`) | 8P8C (RJ45-style) | Differential I2C, to a [SparkFun QwiicBus EndPoint](https://www.sparkfun.com/products/16988) for remote sensors | Standard Ethernet patch cable |
+| `VCC_2` injection header (`VCC_2 INJ`; not fitted) | 2.54mm header | Optional external supply for the `VCC_2` rail on the 8P8C jacks (pin 1 `VCC_2`, pin 2 its return). See [Notes](./notes.md#vcc_2-is-a-separate-cuttable-power-rail-on-the-8p8c-jacks) | Standard 2.54mm header strip, hand-soldered |
+| Charger thermistor (`CHGR_TS`) | JST PA, 2-pin (`S02B-PASK-2`) | Charger thermistor input (pin 1 ground, pin 2 the charger's `TS` sense node) | Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), mounted on the battery pack. See [below](#terminating-your-own-thermistor-probe) |
+| Fuel-gauge thermistor (`FG_TS`) | JST PA, 2-pin (`S02B-PASK-2`) | Fuel-gauge thermistor input (pin 1 the gauge's 2.5 V bias output, pin 2 its `TS` sense node) | A **second, separate** Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), also mounted on the pack |
+| Expansion headers (`J7`, `J8`; not fitted) | 2.54mm header | Spare/expansion GPIO breakout, plus the debug UART | Standard 2.54mm header strip, hand-soldered |
+
+To see where each connector sits on the board, open the [interactive BOM](pathname:///ibom/).
+Names in parentheses are printed on the board.
 
 ## Pinouts
 
 Pin 1 is the pin marked on the board's silkscreen. Check it against the silkscreen before
 connecting anything.
 
-**`J4` battery (JST PH)** and **`CN5` DC / solar (screw terminal)**
+**Battery (JST PH)** and **solar input (screw terminal)**
 
-| Pin | `J4` | `CN5` |
+| Pin | Battery | Solar input |
 |:---:|---|---|
 | 1 | `BATT+` (`VBAT_RAW`) | `+` DC input |
 | 2 | `BATT−` (battery return) | Ground |
 
-**`J6` internal I2C** and **`J203` user I2C** (JST SH, STEMMA QT / Qwiic order)
+**`Qwiic Sys`** (internal bus) and **`Qwiic User`** (user bus) STEMMA QT ports (JST SH, Qwiic order)
 
-| Pin | `J6` | `J203` |
+| Pin | `Qwiic Sys` | `Qwiic User` |
 |:---:|---|---|
 | 1 | Ground | Ground |
 | 2 | 3.3 V (`3V3_SYS`, always on) | 3.3 V (`3V3_USER`, switched) |
 | 3 | `SDA_INT` | `SDA_USER` |
 | 4 | `SCL_INT` | `SCL_USER` |
 
-**`J201` / `J202` differential I2C (8P8C, same pinout on both jacks)**
+**Differential I2C jacks `J201` / `J202` (8P8C, same pinout on both)**
 
 | Pin | Signal | Pin | Signal |
 |:---:|---|:---:|---|
@@ -58,9 +61,9 @@ connecting anything.
 | 3 | `VCC_2` (`GRN_P`) | 7 | `DSDA−` |
 | 4 | `VCC_1` (`3V3_USER`) | 8 | `DSDA+` |
 
-**`J2` `VCC_2` injection header (unfitted):** pin 1 `VCC_2`, pin 2 its return.
+**`VCC_2 INJ` header (unfitted):** pin 1 `VCC_2`, pin 2 its return.
 
-**`J7` and `J8` expansion headers (unfitted, 9 pins each)**
+**Expansion headers `J7` and `J8` (unfitted, 9 pins each)**
 
 | Pin | `J7` | `J8` |
 |:---:|---|---|
@@ -75,22 +78,22 @@ connecting anything.
 | 9 | `3V3_USER` | GPIO5 |
 
 Several of these GPIOs are strapping pins. See [Pins & Signals](./pinout.md) before loading them
-at reset. The thermistor connectors `J302` and `J401` are described below.
+at reset. The thermistor connectors are described below.
 
-## Why two separate thermistors (J302 and J401)
+## Why two separate thermistors
 
 The charger and fuel gauge each apply their own excitation/bias to whatever's wired to their
 thermistor pin. Sharing a single NTC between both active bias circuits would give both ICs a
 bad reading, so each gets its own thermistor — both mounted at the same physical location on
 the battery cell.
 
-The two connectors are not wired the same way. Pin 1 of `J302` is ground, but pin 1 of `J401` is
-the gauge's own 2.5 V bias output, so never short `J401` pin 1 to ground. The thermistor itself
+The two connectors are not wired the same way. Pin 1 of the `CHGR_TS` connector is ground, but pin 1 of the `FG_TS` connector is
+the gauge's own 2.5 V bias output, so never short `FG_TS` pin 1 to ground. The thermistor itself
 has no polarity.
 
 ## Terminating your own thermistor probe
 
-`J302` and `J401` are JST PA 2-pin side-entry headers (`S02B-PASK-2`). To make up a probe cable:
+The `CHGR_TS` and `FG_TS` connectors are JST PA 2-pin side-entry headers (`S02B-PASK-2`). To make up a probe cable:
 
 | Part | Number | Notes |
 |---|---|---|
@@ -109,12 +112,12 @@ form a gas-tight crimp, and with no insulation for the support wings to grip. If
 pigtail instead.
 
 **A 3D-printer hotend thermistor will not work here**, despite the familiar-looking connector.
-Those are 100 kΩ, B ≈ 3950 parts; the `R305`/`R306` divider is sized for 10 kΩ. Borrow the
+Those are 100 kΩ, B ≈ 3950 parts; the charger's thermistor divider is sized for 10 kΩ. Borrow the
 connector ecosystem, not the part.
 
 ## Why two STEMMA QT ports
 
-`J6` and `J203` sit on genuinely independent I2C buses (see [Pins & Signals](./pinout.md)) —
+`Qwiic Sys` and `Qwiic User` sit on genuinely independent I2C buses (see [Pins & Signals](./pinout.md)) —
 one always-on and dedicated to the board's own power-management ICs, the other switched and
 shared with the differential-buffer path. Plugging a sensor into one vs. the other has real
 electrical consequences; see [Notes](./notes.md).
@@ -123,15 +126,15 @@ electrical consequences; see [Notes](./notes.md).
 
 Three buttons, all on the top side:
 
-| Ref | Label | Function |
-|---|---|---|
-| `SW1` | RESET | Pulls the MCU's `EN` pin low. Resets the board. |
-| `SW2` | BOOT | Hold during a reset to enter firmware download mode. |
-| `SW3` | WAKE | Pulls the charger's `QON` pin low — it does not go to the MCU. The hold time picks the action: a short press (~1s) wakes the charger from ship mode, bringing the board back after it has shut down to preserve the battery. **Holding for ~10 seconds triggers a full system power reset** — the charger opens the ship FET, actively pulls the `SYS` rail down, and restores it after ~350ms, restarting the MCU and both 3.3V rails. That path is pure hardware, so it works even with no firmware running. The charger and the fuel gauge stay powered through it. |
+| Silkscreen label | Function |
+|---|---|
+| `RESET` | Pulls the MCU's `EN` pin low. Resets the board. |
+| `BOOT` | Hold during a reset to enter firmware download mode. |
+| `WAKE` | Pulls the charger's `QON` pin low — it does not go to the MCU. The hold time picks the action: a short press (~1s) wakes the charger from ship mode, bringing the board back after it has shut down to preserve the battery. **Holding for ~10 seconds triggers a full system power reset** — the charger opens the ship FET, actively pulls the `SYS` rail down, and restores it after ~350ms, restarting the MCU and both 3.3V rails. That path is pure hardware, so it works even with no firmware running. The charger and the fuel gauge stay powered through it. |
 
 ## Headers you fit yourself
 
-`J7` and `J8` are on the board but **not factory-fitted**. They're excluded from both the bill
+The expansion headers `J7` and `J8` are on the board but **not factory-fitted**. They're excluded from both the bill
 of materials and the pick-and-place file, so the assembler neither sources nor places them —
 the pads are simply left bare for you to solder a standard 2.54mm header strip onto.
 

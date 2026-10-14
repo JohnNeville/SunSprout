@@ -10,29 +10,32 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Power management',
+    title: 'Three power sources, one battery',
     description: (
       <>
-        USB-C, DC/solar, and battery inputs, arbitrated and charged automatically,
-        with true open-circuit-voltage MPPT on the solar input.
+        Runs from USB-C (5 V), a DC or solar panel input (3.6 V to 24 V), or a
+        single lithium cell (Li-ion, LiPo or LiFePO4). The board picks the source and
+        charges the battery automatically; both inputs can be connected at once.
       </>
     ),
   },
   {
-    title: 'Two independent I2C buses',
+    title: 'Solar panel tracking',
     description: (
       <>
-        An always-on internal bus for the board's own power-management ICs, and a
-        switched user bus with a differential buffer for remote sensors.
+        Every couple of minutes the charger measures the panel's open-circuit
+        voltage and sets its minimum input voltage to a fraction of it, so a
+        weak panel in poor light is not dragged down.
       </>
     ),
   },
   {
-    title: 'Datasheet-driven design',
+    title: 'Two separate I2C buses',
     description: (
       <>
-        Every IC's required external components are drawn directly into the
-        schematic and hand-routed — nothing is a black-box breakout module.
+        An always-on bus for the charger and fuel gauge, and a switchable sensor
+        bus. The sensor bus feeds a STEMMA QT port and two RJ45 (8P8C) jacks that
+        carry I2C over an Ethernet cable to remote sensors.
       </>
     ),
   },

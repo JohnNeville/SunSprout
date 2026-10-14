@@ -16,6 +16,15 @@ const sidebars: SidebarsConfig = {
   hardwareSidebar: [
     {
       type: 'category',
+      label: 'Build your own',
+      collapsed: false,
+      items: [
+        'getting-started',
+        'fabrication/ordering-jlcpcb',
+      ],
+    },
+    {
+      type: 'category',
       label: 'SunSprout Hub',
       collapsed: false,
       items: [
