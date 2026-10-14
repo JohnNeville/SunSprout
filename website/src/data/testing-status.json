@@ -138,7 +138,7 @@
         {
           "feature": "Operation with no battery",
           "status": "fixed_in_design",
-          "notes": "The gauge blocked the internal I2C bus. It is now powered from the system rail."
+          "notes": "The gauge blocked the internal I2C bus. The `FG_PWR` jumper now defaults to powering it from the system rail."
         },
         {
           "feature": "Current-sense filter",

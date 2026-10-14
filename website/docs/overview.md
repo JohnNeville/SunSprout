@@ -20,28 +20,22 @@ building one: errors in the charging or protection circuitry could damage a batt
 
 :::
 
-A compact power-management and connectivity board built around the **ESP32-C5**, designed to
-take power from USB-C, a small DC/solar source, or a Li-ion/Li-Po battery — charge the
-battery with true maximum-power-point tracking on the solar input, and regulate a clean 3.3V
-system rail — while exposing two independent I2C buses for onboard and remote sensors.
-
-Every IC's datasheet-required external components are drawn directly into the schematic rather
-than treated as black-box breakout modules, and the board is hand-routed rather than
-auto-generated.
+A compact power-management and connectivity board built around the **ESP32-C5**. It takes power
+from USB-C, a small DC/solar source, or a Li-ion/Li-Po battery, charges the battery with MPPT on
+the solar input, regulates a 3.3V system rail, and exposes two independent I2C buses for onboard
+and remote sensors.
 
 ## Physical
 
-- 6-layer PCB (F.Cu, 4× inner, B.Cu).
-- External connectors: USB-C power input, screw-terminal DC/solar input, JST battery
-  input, two STEMMA QT ports, two 8P8C (RJ45-style) differential-I2C jacks, and two
-  field-terminable thermistor connectors. Some headers are left unfitted for you to add:
-  two GPIO expansion headers and a `VCC_2` injection header. See
-  [Connectors](./connectors.md) for the full list.
-- Two LEDs: a charge-status LED driven by the charger, and a firmware-controlled status LED.
-- Three buttons: reset, boot-mode, and a wake button that brings the charger out of ship mode —
-  or, held for ~10 seconds, hard power-cycles the whole board.
-- U.FL external antenna connector (module-side), for installations where the onboard antenna
-  isn't sufficient.
+- 6-layer PCB.
+- External connectors: USB-C power input, screw-terminal DC/solar input, JST battery input, two
+  STEMMA QT ports, two 8P8C (RJ45-style) differential-I2C jacks, and two thermistor
+  connectors. Headers for GPIO expansion and `VCC_2` injection are left unfitted. See
+  [Connectors](./connectors.md).
+- Two LEDs: charge status (driven by the charger) and a firmware-controlled status LED.
+- Three buttons: reset, boot-mode, and a wake button that brings the charger out of ship mode,
+  or, held for about 10 seconds, hard power-cycles the board.
+- U.FL connector for an external antenna.
 
 ## Capabilities
 
@@ -50,72 +44,43 @@ auto-generated.
 | | |
 |---|---|
 | MCU | ESP32-C5-WROOM-1U |
-| Wireless | Dual-band Wi-Fi 6, Bluetooth LE 5, 802.15.4. The SoC also has a CAN FD controller, but no CAN transceiver is fitted. |
-| Antenna | U.FL external connector (module variant) |
+| Wireless | Dual-band Wi-Fi 6, Bluetooth LE 5, 802.15.4. The SoC has a CAN FD controller, but no CAN transceiver is fitted. |
+| Antenna | U.FL external connector |
 
 ### Power management
 
-- **Li-ion/Li-Po battery charging** with JEITA temperature-qualified fast charge, via an
-  onboard charge-temperature thermistor input.
-- **Automatic source arbitration** between USB-C and the DC/solar input — both can be
-  connected simultaneously; external back-to-back FET pairs, controlled by the charger, select
-  between them and feed a single charge-path rail.
-- **Fuel gauge** for state-of-charge tracking, with its own independent battery-temperature
-  thermistor input (kept separate from the charger's, since each IC applies its own excitation
-  to whatever's wired to its thermistor pin).
-- **True MPPT on the solar input**, performed by the charger itself. It periodically samples
-  the panel's open-circuit voltage and regulates to the corresponding maximum-power point,
-  autonomously — no firmware control loop and no separate monitor IC involved.
-- **Measurement from the charger's integrated 16-bit ADC** — input voltage, input current,
-  battery voltage, battery current and temperature, all readable over I2C. Between that and the
-  fuel gauge, every rail is covered without a dedicated power-monitor part.
-- **Switched 3.3V "user" rail**, independent from the always-on system rail, that firmware can
-  power down to save current when the secondary I2C bus and its downstream devices aren't
-  needed.
+- **Li-ion/Li-Po charging** with JEITA temperature-qualified fast charge, using a thermistor
+  input.
+- **Source selection** between USB-C and the DC/solar input. Both can be connected at once.
+- **Fuel gauge** for state of charge, with its own thermistor input.
+- **MPPT on the solar input**, run by the charger itself with no firmware control loop.
+- **Measurements** from the charger's 16-bit ADC: input voltage and current, battery voltage and
+  current, and temperature, all readable over I2C.
+- **Switched 3.3V user rail** that firmware can power down to save current.
 
-### Other protections
+### Protection
 
-- Reverse-polarity protection on both the battery and DC/solar inputs, sized to each source's
-  expected voltage range. USB-C doesn't need one — it's a keyed, spec-defined connector.
-- **ESD/TVS protection on the ports designed to carry a cable off-board**: the four
-  differential I2C lines on the two 8P8C jacks, and the USB-C data lines. The USB `VBUS` rail
-  gets its own TVS as well.
-
-  The remaining connectors have **no** dedicated ESD parts — both STEMMA QT ports, the two GPIO
-  expansion headers and the debug UART on them, both thermistor inputs, and the USB `CC` lines.
-  Those are intended for sensors sitting close by inside the same enclosure. If you run a cable
-  from one of them out of the enclosure, add protection at that end.
-- Hardware alert/interrupt lines from the charger and the fuel gauge are wired to their own
-  separate GPIOs, so firmware can react to a fault without polling — and without having to
-  interrogate both devices to work out which one raised it.
+- Reverse-polarity protection on the battery and DC/solar inputs. USB-C doesn't need one.
+- ESD/TVS protection on the 8P8C jacks' differential I2C lines and the USB-C data lines, and a
+  TVS on USB `VBUS`.
+- No dedicated ESD protection on the STEMMA QT ports, the expansion headers, the debug UART, the
+  thermistor inputs or the USB `CC` lines. If you run a cable from one of them out of the
+  enclosure, add protection at that end.
+- Separate interrupt lines from the charger and the fuel gauge, each on its own GPIO.
 
 ## Interfaces
 
-### I2C — two independent buses
+### I2C: two independent buses
 
-- **Internal bus** — always-on, dedicated to the board's own power-management ICs (charger and
-  fuel gauge) plus a local STEMMA QT connector for directly-attached sensors.
-- **User bus** — switchable, a separate I2C port feeding a PCA9615 differential I2C buffer that
-  drives two 8P8C jacks, plus a second, separate STEMMA QT connector. The unfitted `J7` header
-  also carries these two lines.
+- **Internal bus:** always on, for the charger and fuel gauge, plus the `J6` STEMMA QT port.
+- **User bus:** switchable. It feeds a PCA9615 differential buffer that drives the two 8P8C
+  jacks, plus the `J203` STEMMA QT port. The unfitted `J7` header also carries it.
 
-The differential side is wired to be compatible with the [SparkFun QwiicBus —
-EndPoint](https://www.sparkfun.com/products/16988): same PCA9615 buffer, same 8P8C pinout, so
-a standard Ethernet patch cable carries I2C from this board to an EndPoint, and Qwiic/STEMMA QT
-devices plug into the EndPoint at the far end. That's how you get sensors metres away from the
-hub instead of centimetres.
-
-This board takes the pass-through role, so it carries **no termination resistors** on the
-differential lines — the EndPoint at the far end provides them. It therefore needs to connect
-to an EndPoint rather than acting as the end of a chain itself.
-
-These buses are deliberately kept apart — see [Notes](./notes.md) for why that matters when
-wiring things up.
-
-### Connectors
-
-See the dedicated [Connectors](./connectors.md) page for the full list with mating-part
-guidance.
+The differential side is compatible with the
+[SparkFun QwiicBus EndPoint](https://www.sparkfun.com/products/16988): same PCA9615 buffer and
+8P8C pinout, so a standard Ethernet patch cable carries I2C to an EndPoint, and Qwiic/STEMMA QT
+devices plug into it. This board has no termination resistors, so the far end must be an
+EndPoint. See [Notes](./notes.md) for how the buses differ.
 
 ## Power
 
@@ -123,108 +88,53 @@ guidance.
 
 | Source | Connector | Notes |
 |---|---|---|
-| USB-C | `USBC1` | 5V USB-C power/data input. The charger's BC1.2 and non-standard adapter detection over D+/D- is disconnected by default (`R9`/`R11` are unpopulated), so its input current limit comes from the hardware clamp instead; see [Notes](notes.md#the-charger-is-disconnected-from-the-usb-data-lines-by-default). There is no USB-PD controller and no handshake with the source, so the port is 5V only. |
-| DC / small solar panel | `CN5` (screw terminal) | Wide-range DC input suitable for a small solar panel; can be connected at the same time as USB-C. |
-| Battery | `J4` (JST PH, 2-pin) | Single cell. Double-check pack polarity against the board's silkscreen before connecting — JST-PH battery polarity isn't universally standardized across cable vendors. |
+| USB-C | `USBC1` | 5V only, no USB-PD. The charger's USB source detection is disconnected by default (`R9`/`R11` unpopulated), so the input limit comes from the hardware clamp; see [Notes](notes.md#the-charger-is-disconnected-from-the-usb-data-lines-by-default). |
+| DC / small solar panel | `CN5` (screw terminal) | Can be connected at the same time as USB-C. |
+| Battery | `J4` (JST PH, 2-pin) | Single cell. Check pack polarity against the silkscreen before connecting. |
 
 ### Charging summary
 
 | | |
 |---|---|
 | Charger | BQ25798, buck-boost, dual-input |
-| Cell configuration | **1S**, set in hardware by the `PROG` resistor at power-on |
-| Chemistry | Li-ion / Li-Po and LiFePO4 (the fuel gauge carries profiles for both) |
-| Input voltage, either source | **3.6 V to 24 V** for a valid input; 30 V absolute maximum |
-| Practical solar ceiling | **24 V**, the charger's own recommended maximum — the input protection no longer sets a lower one. The reverse-polarity FET on that input is self-biased, so the full input voltage appears across its ±20 V gate in normal operation; a Zener gate clamp (`D2`) holds that within rating across the whole range. Size a panel by its cold-weather open-circuit voltage, which rises above the rated Voc. See [input protection](https://github.com/JohnNeville/SunSprout/blob/main/docs/hub/modules/input-protection.md). |
-| Input current limit | **~2.0–2.1 A**, set in hardware by a resistor divider. Firmware cannot exceed it. The exact value tracks the charger's REGN rail, which is itself input-dependent — see below. |
-| Charge current | Firmware-set over I2C. Defaults to **1 A**; **do not exceed 2 A** (see below). |
-| Solar tracking | Autonomous open-circuit-voltage MPPT, run by the charger itself |
-| Source arbitration | Both inputs may be connected at once; the charger's internal mux selects between them |
-| Measurement | Integrated 16-bit ADC: input voltage/current, battery voltage/current, temperature |
-| Temperature qualification | JEITA, via a thermistor on `J302` (not fitted — see [Connectors](./connectors.md)). **With no thermistor fitted the charger reads "too cold" and suspends charging** until firmware sets `TS_IGNORE`; see below. |
+| Cell configuration | **1S**, set in hardware by the `PROG` resistor |
+| Chemistry | Li-ion / Li-Po and LiFePO4 |
+| Input voltage, either source | **3.6 V to 24 V**; 30 V absolute maximum |
+| Solar panel sizing | Up to **24 V**. Use the panel's cold-weather open-circuit voltage, which is above its rated Voc. |
+| Input current limit | **About 2.0–2.1 A** (worst case 2.27 A), set in hardware. Firmware cannot exceed it. |
+| Charge current | Firmware-set over I2C. Defaults to **1 A**. **Do not exceed 2 A.** |
+| Solar tracking | Open-circuit-voltage MPPT, run by the charger |
+| Source selection | Both inputs may be connected at once; the charger selects between them |
+| Temperature qualification | JEITA, via a thermistor on `J302`. **With no thermistor fitted the charger suspends charging** unless `ts_ignore: true` is set. |
 
 ### Output
 
 | Rail | Voltage | Description |
 |---|---|---|
-| System rail (always-on) | 3.3V | Powers the MCU, the internal power-management I2C bus, and its STEMMA QT connector (`J6`). |
-| User rail (switched) | 3.3V | Powers the I2C differential buffer and its STEMMA QT connector (`J203`); firmware-controlled, defaults OFF at power-up. |
+| System rail (always on) | 3.3V | MCU, the internal I2C bus, and `J6`. |
+| User rail (switched) | 3.3V | The differential buffer and `J203`. Firmware-controlled, off at power-up. |
 
-### Charging & PMU behavior
+### Charging & power management
 
-- **Input current limit: roughly 2.0 A to 2.1 A**, hardware-set by the `R302`/`R303` divider on
-  the charger's `ILIM_HIZ` pin. This is an analog ceiling the charger enforces regardless of what
-  firmware writes to the corresponding register. It caps the combined draw from whichever source
-  (USB-C, DC/solar, or both at once) is feeding the charge path — it isn't the battery's charge
-  rate.
-
-  It is not a single fixed number, because the divider is referenced to `REGN`, and `REGN` itself
-  depends on the input voltage. The charger computes the clamp as
-  `V(ILIM_HIZ) = 1 V + 800 mΩ × I`, and the divider ratio is 130 k / (110 k + 130 k) = 0.542:
-
-  | Input | `REGN` (typical) | Resulting limit |
-  |---|---|---|
-  | USB-C at 5 V | 4.8 V | **2.00 A** |
-  | Solar or DC at 15 V | 5.0 V | **2.14 A** |
-  | Across the full `REGN` spec, 4.6 V to 5.2 V | | **1.87 A to 2.27 A** |
-
-  The divider was sized for the 5 V case. On a high-voltage input the ceiling sits about 7% above
-  2 A, and worst-case silicon reaches 2.27 A — budget the copper for the top of that range, not
-  for 2.00 A. The charger latches this clamp from an ADC reading taken at power-on before the
-  converter starts switching, so whichever source is present at power-up sets it for that
-  session.
-- **Charging is enabled in hardware, but not currently sufficient on its own.** The charger's
-  `CE` pin is tied to ground, so nothing has to be written to start a charge. The charger's own
-  protections (OVP, OCP, thermal shutdown, UVLO) apply throughout.
-
-  As built, though, a board with no firmware running **will not charge**, because of the
-  thermistor. `J302` ships unpopulated, and the `TS` divider (`R305` 5.1 kΩ to `REGN`, `R306`
-  30 kΩ to ground) then sits at 85.5% of `REGN`. Every JEITA cold threshold is below that —
-  the 0 °C threshold is 73.3% of `REGN`, and even the −20 °C OTG threshold is 80% — so the
-  charger reads a battery colder than its cold cutoff and suspends charging.
-
-  The network is correct once a thermistor is present: a 103AT-type 10 kΩ NTC at 25 °C puts the
-  divider at 59.5% of `REGN`, mid-window. **Fit one** — a Semitec 103AT-11 is the specified
-  part; see [Connectors](./connectors.md). It is what the charger's datasheet expects, and the
-  only arrangement that gives real JEITA temperature protection.
-
-  To run without one, firmware must set `TS_IGNORE` (register `REG18`, bit 0), which tells the
-  charger to treat the temperature as always acceptable. The bit defaults to 0 and TI lists it
-  as reset by the watchdog and by a register reset; this board's firmware disables the watchdog,
-  so in practice only the register-reset control clears it. That route gives up temperature
-  qualification entirely, and the ESPHome driver does not currently expose the bit.
-
-  There is deliberately no fixed resistor standing in for the thermistor. It would make the
-  charger read a permanent 25 °C and report that as a real measurement, which is a worse
-  failure than having no reading at all.
-- **Battery charge current is firmware-configured** over I2C, and resets to that 1A default on
-  power-up, on a watchdog timeout, and on a register reset. Program a charge current
-  appropriate to your specific pack's capacity before relying on fast charging.
-- **Firmware must not set the charge current above 2000mA.** Unlike the input limit, the charge
-  current has no hardware ceiling, and in buck mode it can exceed the input current — so a
-  higher setting can push the charge-side copper past its rating.
-- **Ship mode and a true hardware power cycle**, via an external ship FET (`Q3`) on the
-  charger's `SDRV` gate-driver pin. The FET sits in series in the battery path, so the charger
-  can physically disconnect the pack from the system rail. That gives three states beyond normal
-  operation: *ship mode* (FET off, I2C still alive — for shipping and storage), *shutdown* (FET
-  off, I2C down, only an adapter brings it back), and a *system power reset* that drops the FET
-  for ~350ms and actively pulls the `SYS` rail down before restoring it. Ship mode and
-  shutdown can only be entered with no adapter present; with USB or solar connected the charger
-  ignores them, and the board stays powered.
-- **Holding `SW3` (WAKE) for about 10 seconds hard power-cycles the board.** This runs entirely
-  inside the charger — no working firmware, no I2C — which makes it the recovery path when the
-  MCU is wedged. Holding it for about 1 s just wakes the charger out of ship mode; a brief tap does nothing.
-
-  Two caveats worth knowing. The reset cycles the `SYS` rail, so it restarts the MCU, both 3.3V
-  rails, the fuel gauge (its supply comes from `3V3_SYS`) and everything else downstream of
-  them — but *not* the charger itself (it's the thing performing the reset). The gauge restarts
-  with the rail, so it can lose its coulomb count, and a hung gauge is cleared by the reset. A
-  hung charger I2C interface is not, and still needs the usual nine-clock recovery sequence in
-  firmware.
-- **Firmware must set the charger's `SFET_PRESENT` bit** (`REG14`, bit 7) during init. It
-  defaults to 0, and while it's 0 the charger locks out every ship-FET mode above — the board
-  behaves as though no FET were fitted.
+- **Input current limit.** About 2.0 A from USB-C and 2.1 A from a higher-voltage input, up to
+  2.27 A worst case. It limits the combined draw of the sources, not the battery charge rate. The
+  charger sets it once at power-up from whichever source is present. Details are in the
+  [charger notes](https://github.com/JohnNeville/SunSprout/blob/main/docs/hub/modules/bq25798-charger.md).
+- **Charging is enabled in hardware** (`CE` is tied to ground), but without a thermistor the
+  charger will not charge. Fit a 103AT-type 10 kΩ NTC on `J302`, or set `ts_ignore: true` in the
+  firmware, which turns temperature protection off.
+- **Charge current** is set over I2C and returns to 1 A on power-up, a watchdog timeout or a
+  register reset. Set it for your pack's capacity, and **never above 2000 mA**: it has no
+  hardware ceiling, and in buck mode it can exceed the input current.
+- **Ship mode and shutdown** open the ship FET `Q3` to disconnect the battery. They can only be
+  entered with no adapter present; with USB or solar connected the charger ignores them.
+- **`SW3` (WAKE).** Holding it about 1 s wakes the charger from ship mode; a brief tap does
+  nothing. Holding it about 10 s hard power-cycles the board, with no firmware or I2C needed.
+  The reset restarts the MCU and both 3.3V rails, and the fuel gauge too unless its `FG_PWR`
+  jumper is set to the battery. It does not restart the charger itself.
+- **Firmware must set `SFET_PRESENT`** (`REG14`, bit 7) at start-up. While it is 0, the charger
+  locks out ship mode and shutdown.
 
 ### Current consumption
 
-Not yet characterized — measurements will be added here once testing is complete.
+Not yet characterized. Measurements will be added here once testing is complete.

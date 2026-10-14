@@ -135,4 +135,5 @@ The bottom side of the SunSproutHub PCB breaks out key electrical nodes as circu
 ### Hardware Solder Jumpers (Bottom)
 
 - **`JUMP_CHGR_GND2` (USB D+/D- Conditioning)**: 3-pad jumper between `CHGR_USB_DN`, `GND`, and `CHGR_USB_DP`. Optionally grounds the charger's D+/D- pins. Close it only while `R9` and `R11` are unpopulated.
+- **`FG_PWR` (fuel gauge supply)**: 3-pad jumper. Pads 1-2 bridged (default) power the gauge from `3V3_SYS`; cut 1-2 and bridge 2-3 to power it from `VBAT_PROTECTED`. See the [fuel gauge notes](https://github.com/JohnNeville/SunSprout/blob/main/docs/hub/modules/bq34z100-fuel-gauge.md#fg_pwr-jumper).
 - **`JP2` (`GRN_P -> 3V3_USER`) & `JP3` (`GRN_N -> GND`) (RJ45 Aux Power Isolation)**: Cuttable solder jumpers bridging the otherwise unused green twisted pair (RJ45 pins 3 & 6: `VCC_2` and `GND_2`/`GRN_N`) to the Hub's `3V3_USER` rail and system `GND`. Shorted as fabricated. Slice both jumpers open to isolate `VCC_2` from the onboard 3.3V supply, allowing custom external voltages (e.g. 5V, 12V) to be injected via header `J2` to power remote differential QwiicBus sensors or power-hungry satellite peripherals without back-powering the Hub.
