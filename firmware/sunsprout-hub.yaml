@@ -254,6 +254,9 @@ bq25798:
 # --- Fuel gauge ------------------------------------------------------------
 sensor:
   - platform: bq34z100
+    # The id lets a device file reach this block with `id: !extend fuel_gauge`, to turn on
+    # apply_configuration or set alert_configuration. See README.md.
+    id: fuel_gauge
     i2c_id: bus_internal
     address: 0x55
     update_interval: 30s

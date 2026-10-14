@@ -222,15 +222,43 @@ So: **bqStudio once, to obtain the values; not once per board.** After that the 
 be replayed over I2C. What bqStudio supplies is the table contents, not exclusive write
 access — the datasheet does not publish them.
 
-Everything else the gauge needs *can* be written from firmware. Set
-`apply_configuration: true` in the `bq34z100` block with a cell attached and reflash; the
-driver writes Design Capacity, Design Energy, cell count, the Pack Configuration bits and
+Everything else the gauge needs *can* be written from firmware. The `bq34z100` block lives
+in the board package, so reach it from your device file with its `fuel_gauge` id and set
+`apply_configuration: true` with a cell attached, then reflash:
+
+```yaml
+sensor:
+  - id: !extend fuel_gauge
+    apply_configuration: true
+```
+
+The driver writes Design Capacity, Design Energy, cell count, the Pack Configuration bits and
 the `R404` sense-resistor calibration, comparing each value first so it does not wear the
 flash, and reading each one back to confirm. Then, with the pack at rest and no current
 flowing, press **Calibrate Gauge Current Offset** and **Calibrate Gauge Board Offset**.
 
 Set `expected_chem_id` to the chemistry you loaded and the driver will log an error at
 boot if the gauge is running something else.
+
+### The alert pin
+
+The gauge's `ALERT` output is wired to `FG_ALERT` on GPIO4, but the gauge ships with its Alert
+Configuration register at 0, so the pin never goes low. Choose which gauge flags drive it with
+`alert_configuration`, in the same `!extend` block (it is only written when
+`apply_configuration: true`):
+
+```yaml
+sensor:
+  - id: !extend fuel_gauge
+    apply_configuration: true
+    alert_configuration: [low_charge, critical_charge]
+```
+
+The flag names are listed in the
+[driver README](https://github.com/JohnNeville/esphome-bq-drivers#alert-pin). The board package
+leaves the **Fuel Gauge Alert** input disabled by default; enable it in Home Assistant to see the
+pin. The driver clears a pending alert whenever it reads the gauge's flags, so the pin can go
+high again at the next poll.
 
 ## Solar tracking
 
