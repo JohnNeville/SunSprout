@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-13",
+  "updated": "2026-10-14",
   "prototype_commit": "1645733",
   "sections": [
     {
@@ -33,7 +33,7 @@
         {
           "feature": "Charger status LED",
           "status": "tested",
-          "notes": "Blinks while charging is suspended. Too bright, so the series resistor was raised in the current design (untested)."
+          "notes": "Works. It blinks while charging is suspended. Too bright, so the series resistor was raised in the current design (untested)."
         },
         {
           "feature": "Charger and input readings in Home Assistant",
@@ -72,8 +72,8 @@
         },
         {
           "feature": "Running on battery alone",
-          "status": "untested",
-          "notes": "Board keeps running with USB unplugged; battery current and time to empty look sensible."
+          "status": "tested",
+          "notes": "Board keeps running with USB unplugged."
         },
         {
           "feature": "End of charge",
@@ -82,13 +82,13 @@
         },
         {
           "feature": "Charge current setting",
-          "status": "untested",
-          "notes": "Measured current follows \"Charge Current Limit\". Check board temperature at higher currents."
+          "status": "tested",
+          "notes": "Set to 180 mA, the battery charged at 178 mA. Raising it to 1050 mA raised the charge current well above that. Board temperature at higher currents has not been checked."
         },
         {
           "feature": "Input current limit",
-          "status": "untested",
-          "notes": "A low \"Input Current Limit\" caps the input current while charging."
+          "status": "tested",
+          "notes": "Setting \"Input Current Limit\" to 210 mA from Home Assistant lowered the battery current while charging."
         },
         {
           "feature": "Charger shutdown mode",

@@ -69,6 +69,15 @@ export default function TestingStatus(): React.ReactElement {
   return (
     <div>
       <p className={styles.meta}>
+        {data.prototype_commit && /^[0-9a-f]{7,40}$/i.test(data.prototype_commit) && (
+          <>
+            Prototype tested:{' '}
+            <a href={`https://github.com/JohnNeville/SunSprout/commit/${data.prototype_commit}`}>
+              <code>{data.prototype_commit}</code>
+            </a>
+            .{' '}
+          </>
+        )}
         Last updated {data.updated}
         {source === 'bundled' ? ' (copy bundled with the site)' : ''}.
       </p>
