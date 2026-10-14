@@ -385,7 +385,7 @@
 		)
 	)
 	(embedded_fonts no)
-	(model "${KICAD_3RD_PARTY}/Snapeda.3dshapes/S02B-PASK-2.STEP"
+	(model "${KIPRJMOD}/../libraries/3dmodels/S02B-PASK-2_White.STEP"
 		(offset
 			(xyz 3 -3.25 0)
 		)
