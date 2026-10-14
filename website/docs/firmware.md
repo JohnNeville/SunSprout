@@ -48,8 +48,9 @@ Create a `secrets.yaml` beside your device file containing `wifi_ssid`, `wifi_pa
 esphome run firmware/example-device.yaml
 ```
 
-For the **first** flash the board has to be in download mode: hold `SW2` (BOOT) while pressing
-`SW1` (RESET). After that, OTA handles it.
+If the first upload does not start, put the board in download mode: hold the BOOT button, press
+and release RESET, then release BOOT. After that, OTA handles it. The full bring-up sequence is in
+[Getting started](./getting-started.md).
 
 ## Set the cell chemistry before you attach a cell
 

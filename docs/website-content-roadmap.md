@@ -30,10 +30,10 @@ once done rather than letting it drift out of sync with the actual design.
 
 ## Later: new content, not just filling gaps
 
-- [ ] **Getting Started guide** — first power-up steps, flashing firmware over native USB, LED
-      status meanings, connecting a battery pack for the first time. This is genuinely new
-      content (a "Guides" category alongside the existing "Hardware" one), not adapted from
-      anything currently in `docs/`.
+- [x] **Getting Started guide** — done: `website/docs/getting-started.md` (flash over native USB,
+      download mode, internal-bus check, first battery connection) and
+      `website/docs/fabrication/ordering-jlcpcb.md`. Still to add: LED status meanings, and
+      confirmed JLCPCB option names once an order has actually been placed.
 - [x] **Physical dimensions & mounting page** — done: `website/docs/dimensions.md` carries the
       outline, the M2.5 mounting pattern, and courtyard extents for every connector and control,
       all extracted from the PCB file.

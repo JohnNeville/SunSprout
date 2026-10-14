@@ -5,18 +5,26 @@ title: Overview
 
 # SunSproutHub
 
-:::warning[Prototype hardware, latest design not yet built]
+:::danger[Unverified charging hardware]
 
 A first hub was fabricated and tested from commit
-[`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733). Testing found a few
-issues. The current design files fix them, but that revision hasn't been built yet.
+[`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733), and testing found issues.
+The current design files fix them, but that revision has **not been built or tested**. You can
+build the tested prototype with its known issues, or the current design with its untested
+fixes. See [Testing status](./testing-status.md).
 
-Until it has, you can build the tested prototype (`1645733`) with its known issues, or the
-current design, which has the fixes but is untested on hardware. See
-[Testing status](./testing-status.md) for what has been tested.
+Errors in the charging or protection circuitry can damage a lithium cell, and a damaged cell
+can overheat or catch fire.
 
-Treat this as an early design rather than a finished product, and review it yourself before
-building one: errors in the charging or protection circuitry could damage a battery.
+- **Charge voltage:** the charger powers up for a 4.2 V cell. A LiFePO4 cell charges to 3.65 V.
+  The firmware sets the limit from `cell_chemistry`; set it before attaching a cell.
+- **Thermistor:** fit a 10 kΩ NTC on the battery, or the charger will not charge.
+- **Charge current:** never above 2000 mA. Nothing in hardware limits it.
+- **Reverse polarity:** the protection on the battery and solar inputs was redesigned and is
+  untested on hardware. Check polarity before connecting.
+
+Build one board and bring it up on USB power with no battery before ordering a batch. See
+[Getting started](./getting-started.md).
 
 :::
 
@@ -31,7 +39,7 @@ and remote sensors.
 - External connectors: USB-C power input, screw-terminal DC/solar input, JST battery input, two
   STEMMA QT ports, two 8P8C (RJ45-style) differential-I2C jacks, and two thermistor
   connectors. Headers for GPIO expansion and `VCC_2` injection are left unfitted. See
-  [Connectors](./connectors.md).
+  [Connectors](./connectors.md); to find a part on the board, use the [interactive BOM](pathname:///ibom/).
 - Two LEDs: charge status (driven by the charger) and a firmware-controlled status LED.
 - Three buttons: reset, boot-mode, and a wake button that brings the charger out of ship mode,
   or, held for about 10 seconds, hard power-cycles the board.
@@ -72,9 +80,9 @@ and remote sensors.
 
 ### I2C: two independent buses
 
-- **Internal bus:** always on, for the charger and fuel gauge, plus the `J6` STEMMA QT port.
+- **Internal bus:** always on, for the charger and fuel gauge, plus the `Qwiic Sys` STEMMA QT port.
 - **User bus:** switchable. It feeds a PCA9615 differential buffer that drives the two 8P8C
-  jacks, plus the `J203` STEMMA QT port. The unfitted `J7` header also carries it.
+  jacks, plus the `Qwiic User` STEMMA QT port. The unfitted expansion header also carries it.
 
 The differential side is compatible with the
 [SparkFun QwiicBus EndPoint](https://www.sparkfun.com/products/16988): same PCA9615 buffer and
@@ -88,9 +96,9 @@ EndPoint. See [Notes](./notes.md) for how the buses differ.
 
 | Source | Connector | Notes |
 |---|---|---|
-| USB-C | `USBC1` | 5V only, no USB-PD. The charger's USB source detection is disconnected by default (`R9`/`R11` unpopulated), so the input limit comes from the hardware clamp; see [Notes](notes.md#the-charger-is-disconnected-from-the-usb-data-lines-by-default). |
-| DC / small solar panel | `CN5` (screw terminal) | Can be connected at the same time as USB-C. |
-| Battery | `J4` (JST PH, 2-pin) | Single cell. Check pack polarity against the silkscreen before connecting. |
+| USB-C | USB-C receptacle | 5V only, no USB-PD. The charger's USB source detection is disconnected by default (its two connecting resistors are left unpopulated), so the input limit comes from the hardware clamp; see [Notes](notes.md#the-charger-is-disconnected-from-the-usb-data-lines-by-default). |
+| DC / small solar panel | Screw terminal marked `SOLAR` | Can be connected at the same time as USB-C. |
+| Battery | JST PH 2-pin connector marked `BATT +` / `BATT −` | Single cell. Check pack polarity against the silkscreen before connecting. |
 
 ### Charging summary
 
@@ -105,14 +113,14 @@ EndPoint. See [Notes](./notes.md) for how the buses differ.
 | Charge current | Firmware-set over I2C. Defaults to **1 A**. **Do not exceed 2 A.** |
 | Solar tracking | Open-circuit-voltage MPPT, run by the charger |
 | Source selection | Both inputs may be connected at once; the charger selects between them |
-| Temperature qualification | JEITA, via a thermistor on `J302`. **With no thermistor fitted the charger suspends charging** unless `ts_ignore: true` is set. |
+| Temperature qualification | JEITA, via a thermistor on the `CHGR_TS` connector. **With no thermistor fitted the charger suspends charging** unless `ts_ignore: true` is set. |
 
 ### Output
 
 | Rail | Voltage | Description |
 |---|---|---|
-| System rail (always on) | 3.3V | MCU, the internal I2C bus, and `J6`. |
-| User rail (switched) | 3.3V | The differential buffer and `J203`. Firmware-controlled, off at power-up. |
+| System rail (always on) | 3.3V | MCU, the internal I2C bus, and `Qwiic Sys`. |
+| User rail (switched) | 3.3V | The differential buffer and `Qwiic User`. Firmware-controlled, off at power-up. |
 
 ### Charging & power management
 
@@ -121,14 +129,14 @@ EndPoint. See [Notes](./notes.md) for how the buses differ.
   charger sets it once at power-up from whichever source is present. Details are in the
   [charger notes](https://github.com/JohnNeville/SunSprout/blob/main/docs/hub/modules/bq25798-charger.md).
 - **Charging is enabled in hardware** (`CE` is tied to ground), but without a thermistor the
-  charger will not charge. Fit a 103AT-type 10 kΩ NTC on `J302`, or set `ts_ignore: true` in the
+  charger will not charge. Fit a 103AT-type 10 kΩ NTC on the `CHGR_TS` connector, or set `ts_ignore: true` in the
   firmware, which turns temperature protection off.
 - **Charge current** is set over I2C and returns to 1 A on power-up, a watchdog timeout or a
   register reset. Set it for your pack's capacity, and **never above 2000 mA**: it has no
   hardware ceiling, and in buck mode it can exceed the input current.
-- **Ship mode and shutdown** open the ship FET `Q3` to disconnect the battery. They can only be
+- **Ship mode and shutdown** open the battery ship FET to disconnect the battery. They can only be
   entered with no adapter present; with USB or solar connected the charger ignores them.
-- **`SW3` (WAKE).** Holding it about 1 s wakes the charger from ship mode; a brief tap does
+- **The `WAKE` button.** Holding it about 1 s wakes the charger from ship mode; a brief tap does
   nothing. Holding it about 10 s hard power-cycles the board, with no firmware or I2C needed.
   The reset restarts the MCU and both 3.3V rails, and the fuel gauge too unless its `FG_PWR`
   jumper is set to the battery. It does not restart the charger itself.

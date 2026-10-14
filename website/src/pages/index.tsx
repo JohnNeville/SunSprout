@@ -6,6 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
+import Admonition from '@theme/Admonition';
 
 import styles from './index.module.css';
 
@@ -29,6 +30,11 @@ function HomepageHeader() {
             to="/docs/satellite-overview">
             Satellite Overview
           </Link>
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/fabrication/ordering-jlcpcb">
+            Build your own
+          </Link>
         </div>
       </div>
     </header>
@@ -43,7 +49,17 @@ export default function Home(): ReactNode {
       description="Hardware documentation for SunSprout Hub and SunSprout Satellite: an ESP32-C5 power-management controller and remote differential sensor node.">
       <HomepageHeader />
       <main>
-        <div className="container">
+        <div className="container margin-top--lg">
+          <Admonition type="danger" title="Unverified charging hardware">
+            <p>
+              The current board files fix problems found on the first prototype, but
+              that revision has not been built or tested. Errors in the charging or
+              protection circuitry can damage a lithium cell, and a damaged cell can
+              overheat or catch fire. Order a small run, power it up without a battery
+              first, and read{' '}
+              <Link to="/docs/testing-status">what has been tested</Link>.
+            </p>
+          </Admonition>
           <div className={styles.heroShowcase}>
             <Link
               to="/docs/overview"
