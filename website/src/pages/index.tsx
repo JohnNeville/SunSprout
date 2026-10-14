@@ -50,14 +50,14 @@ export default function Home(): ReactNode {
       <HomepageHeader />
       <main>
         <div className="container margin-top--lg">
-          <Admonition type="danger" title="Unverified charging hardware">
+          <Admonition type="warning" title="Prototype hardware: charging works, validation incomplete">
             <p>
-              The current board files fix problems found on the first prototype, but
-              that revision has not been built or tested. Errors in the charging or
-              protection circuitry can damage a lithium cell, and a damaged cell can
-              overheat or catch fire. Order a small run, power it up without a battery
-              first, and read{' '}
-              <Link to="/docs/testing-status">what has been tested</Link>.
+              A first hub was built and tested: charging and running from the battery
+              worked, and testing found issues. The current design fixes them but has not
+              been built yet, and not every feature has been bench-tested. Check{' '}
+              <Link to="/docs/testing-status">what has been tested</Link>, set the cell
+              chemistry before attaching a battery, and bring up one board before ordering
+              a batch.
             </p>
           </Admonition>
           <div className={styles.heroShowcase}>

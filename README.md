@@ -1,23 +1,25 @@
 # SunSprout
 
-> [!CAUTION]
-> **Unverified charging hardware.** A first hub was built and tested from commit
-> [`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733), and testing found issues.
-> The current design files fix them, but that revision has **not been built or tested**. You can
-> build the tested prototype with its known issues, or the current design with its untested fixes.
-> The commit history shows what changed.
+> [!WARNING]
+> **Prototype hardware: charging works, validation is incomplete.** A first hub was built and
+> tested from commit [`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733).
+> Charging, charge termination and running from the battery alone worked on it, and testing also
+> found issues. The current design files fix them, but that revision has **not been built yet**,
+> and not every feature has been bench-tested. [Testing status](https://johnneville.github.io/SunSprout/docs/testing-status)
+> lists each feature. You can build the tested prototype with its known issues, or the current
+> design with its untested fixes. The commit history shows what changed.
 >
-> Errors in the charging or protection circuitry can damage a lithium cell, and a damaged cell
-> can overheat or catch fire.
+> **Before you connect a battery:**
+> - **Set the cell chemistry.** The charger comes up for a 4.2 V cell by default. The firmware
+>   sets the charge limit from `cell_chemistry` (LiFePO4 charges to 3.65 V), so set it to match
+>   your cell.
+> - **Fit a 10 kΩ NTC thermistor** on the battery, or the charger will not charge.
+> - **Keep the charge current at or below 2000 mA.** Nothing in hardware limits it.
+> - **Check polarity.** The reverse-polarity protection was changed after the prototype and the
+>   new design is untested on hardware.
 >
-> - **Charge voltage:** the charger powers up for a 4.2 V cell. A LiFePO4 cell charges to 3.65 V.
->   The firmware sets the limit from `cell_chemistry`, so set it before attaching a cell.
-> - **Thermistor:** fit a 10 kΩ NTC on the battery. With none fitted the charger will not charge.
-> - **Charge current:** never above 2000 mA. Nothing in hardware limits it.
-> - **Reverse polarity:** the protection on the battery and solar inputs was redesigned and is
->   untested on hardware. Check polarity before connecting.
-> - **Before you order:** build one board, power it from a current-limited supply with no battery,
->   and check the power path before you order a panelised batch.
+> A wrongly configured charger can damage a lithium cell. Build one board and bring it up on USB
+> power with no battery before ordering a batch.
 >
 > Feedback is welcome, especially on the power path, the charger and fuel-gauge configuration, and
 > anything in [docs/hub/modules/](docs/hub/modules/) where the reasoning looks wrong.
