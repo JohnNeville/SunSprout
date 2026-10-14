@@ -1,0 +1,40 @@
+* Proposed Q2 fix: drain at CN5, source at VDC, D2 (12 V Zener) moved to gate-to-VDC.
+* Checks forward operation (24 V, 2 A load) and a reversed 24 V input, including Q303/Q304.
+* Models: DMP3098L.spice.txt (Diodes) and AO3400.mod. Subckt order: drain gate source.
+.include DMP3098L.spice.txt
+.include AO3400.mod
+.model DZ12 D (IS=1e-14 BV=12 IBV=5m RS=5)
+
+.subckt q2fix in vdc
+X1 in g vdc DMP3098L
+R19 g 0 100k
+D2 g vdc DZ12
+.ends
+
+* ---- Forward: +24 V on CN5, 2 A load on VDC ----
+VF inF 0 DC 24
+XF inF vdcF q2fix
+RLF vdcF 0 12
+
+* ---- Reverse: -24 V on CN5, with Q303/Q304 behind VDC ----
+VR inR 0 DC -24
+XR inR vdcR q2fix
+C28 vdcR 0 100n
+X303 vdcR acdrv mid AO3400
+X304 vbus acdrv mid AO3400
+RACDRV acdrv 0 1Meg
+CVBUS vbus 0 20u
+RVBUS vbus 0 100k
+
+.control
+tran 10u 20m
+meas tran fwd_vdc find v(vdcF) at=20m
+meas tran fwd_gate find v(xf.g) at=20m
+meas tran rev_vdc find v(vdcR) at=20m
+meas tran rev_mid find v(mid) at=20m
+meas tran rev_vbus find v(vbus) at=20m
+meas tran rev_iin find i(VR) at=20m
+quit
+.endc
+
+.end
