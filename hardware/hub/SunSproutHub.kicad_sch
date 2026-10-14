@@ -16824,7 +16824,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0R (bridged)"
+		(property "Value" "0R"
 			(at 180.34 69.8499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16835,7 +16835,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 177.8 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -22497,7 +22497,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0R (bridged)"
+		(property "Value" "0R"
 			(at 165.1 55.8799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -22508,7 +22508,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 167.64 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -22606,7 +22606,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "UNI-ROYAL"
+		(property "Manufacturer" ""
 			(at 401.32 -120.65 0)
 			(hide yes)
 			(show_name no)
