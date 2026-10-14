@@ -101,42 +101,33 @@ level gave too little margin for the MCU input. The pull-up now uses the 3.3 V r
 
 ## Power and battery connection
 
-The gauge's supply and its battery measurement are wired to different nets:
-
-| Pin | Net | Why |
+| Pin | Net | Notes |
 |---|---|---|
-| `REGIN` (6) | `3V3_SYS` | Powers the gauge. 3.3 V is inside the 2.7 V to 4.5 V `REGIN` range. |
-| `CE` (5) | `3V3_SYS` | Chip enable. It must be high for the gauge to run, so it follows `REGIN`. |
+| `REGIN` (6) | `FG_REGIN` | Powers the gauge (2.7 V to 4.5 V). Selected by the `FG_PWR` jumper. |
+| `CE` (5) | `FG_REGIN` | Chip enable. It must be high, so it follows `REGIN`. |
 | `BAT` (4) | `VBAT_PROTECTED` | Measures the battery voltage through the gauge's internal 5:1 divider. |
 
-No series shunt sits between the battery and `BAT`. The current measurement happens at `R404` on
-the low side instead. `C401` (100 nF) decouples `REGIN` and sits next to pin 6, as the datasheet
-requires.
+`C401` (100 nF) decouples `REGIN` next to pin 6. The current measurement happens at `R404` on the
+low side.
 
-### Why the gauge is supplied from 3V3_SYS
+### FG_PWR jumper
 
-The first prototype (commit `1645733`) supplied `REGIN` and `CE` from `VBAT_PROTECTED`. With no
-battery fitted, the gauge then had no supply and was disabled, and it pulled the internal I2C
-clock line low. That blocked the whole internal bus, including the charger. With `CE` and
-`REGIN` on `3V3_SYS`, the gauge is powered whenever the board is, and the I2C bus works with or
-without a battery.
+`FG_PWR` is a three-pad solder jumper on the bottom of the board. The centre pad is `FG_REGIN`.
 
-The battery path has two series FETs. `Q1` is the reverse-polarity FET. `Q3` is the ship FET that
-the charger drives. The path is `VBAT_RAW` → `Q1` → `VBAT_PROTECTED` → `Q3` → `VBAT`.
-`VBAT_PROTECTED` is the pack side, after the reverse-polarity FET and before the ship FET.
+| Setting | Source | Use |
+|---|---|---|
+| Pads 1-2 bridged (default) | `3V3_SYS` | Gauge works with or without a battery. |
+| Cut 1-2, bridge 2-3 | `VBAT_PROTECTED` | Gauge keeps counting through ship mode and power resets. |
 
-### The cost of this choice
+**`3V3_SYS` (default).** The gauge is powered whenever the board is. The charger removes `3V3_SYS`
+in ship mode, shutdown and the system power reset, so the gauge restarts afterwards, does not
+count current while off, and may need to relearn the pack. It draws nothing in ship mode.
 
-`3V3_SYS` is derived from the charger's system output, which is powered from VBUS or the battery.
-The charger opens `Q3` in ship mode, in shutdown mode and during the system power reset, and the
-system rail drops in those states. The gauge loses its supply with it. It restarts when power
-returns, and it does not count current while it is off. The state of charge may need to be
-relearned after one of these states.
+**`VBAT_PROTECTED`.** The gauge counts through every charger low-power state, but draws a small
+standing current from the battery, which ship mode cannot remove. **Always fit a battery in this
+setting.** Without one the gauge has no supply, is disabled, and holds the internal I2C clock
+low, which blocks the charger as well. The first prototype (commit `1645733`) was wired this
+way.
 
-In return, the gauge draws no standing current in ship mode. An earlier design kept the gauge on
-the pack side so that it counted coulombs through every charger low-power state, at the cost of a
-small standing draw that ship mode could not remove.
-
-The gauge keeps counting through deep sleep, because the 3.3 V system rail stays on. Only the
-switched `3V3_USER` rail is cut. `Q1` still protects the battery side. Disconnect the pack at `J4`
-for storage.
+The gauge keeps counting through deep sleep in either setting, because the 3.3 V system rail
+stays on. Disconnect the pack at `J4` for storage.
