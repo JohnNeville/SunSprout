@@ -417,6 +417,284 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "PCM_SparkFun-Jumper:SolderJumper_3_Bridged12"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "JP"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 3.81 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "PCM_SparkFun-Jumper:Jumper_3_NC-1_Trace"
+				(at 0 -5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 -7.62 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "3-pole Solder Jumper, pins 1+2 closed/bridged"
+				(at 0 -10.16 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "SparkFun Solder Jumper SPDT"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SolderJumper*Bridged12*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "SolderJumper_3_Bridged12_0_1"
+				(polyline
+					(pts
+						(xy -2.54 0) (xy -2.032 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.016 1.016) (xy -1.016 -1.016)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.016 0.508)
+					(end -0.508 -0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(arc
+					(start -1.016 -1.016)
+					(mid -2.0276 0)
+					(end -1.016 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -1.016 -1.016)
+					(mid -2.0276 0)
+					(end -1.016 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(rectangle
+					(start -0.508 1.016)
+					(end 0.508 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -1.27) (xy 0 -1.016)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 1.016 1.016)
+					(mid 2.0276 0)
+					(end 1.016 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 1.016 1.016)
+					(mid 2.0276 0)
+					(end 1.016 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.016 1.016) (xy 1.016 -1.016)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 0) (xy 2.032 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "SolderJumper_3_Bridged12_1_1"
+				(pin passive line
+					(at -2.54 0 0)
+					(length 1.27)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 1.27)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 0 180)
+					(length 1.27)
+					(name "C"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "R_1"
 			(pin_numbers
 				(hide yes)
@@ -1517,6 +1795,12 @@
 		)
 	)
 	(junction
+		(at 222.25 237.49)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "19c0daae-f166-41af-92ab-0c53e2d35ab2")
+	)
+	(junction
 		(at 224.79 231.14)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1527,6 +1811,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "243b7e70-4b10-4371-81a0-16b63702b804")
+	)
+	(junction
+		(at 219.71 237.49)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "249fe763-2235-41b3-aa27-c6586ae9d6df")
 	)
 	(junction
 		(at 283.21 241.3)
@@ -1541,16 +1831,16 @@
 		(uuid "8fc955df-0595-4d0f-97c8-f5cf1fe4e017")
 	)
 	(junction
+		(at 204.47 237.49)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b2b63635-8e5d-4613-a63a-69c600191364")
+	)
+	(junction
 		(at 224.79 226.06)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e3a01abd-b5df-4d63-84cd-c7780de5ab12")
-	)
-	(junction
-		(at 222.25 236.22)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e5b46798-98bf-4412-b1fe-e932dffa8542")
 	)
 	(wire
 		(pts
@@ -1564,13 +1854,13 @@
 	)
 	(wire
 		(pts
-			(xy 182.88 179.07) (xy 182.88 189.23)
+			(xy 222.25 237.49) (xy 222.25 241.3)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "13ff23be-feb6-4912-9270-dcd85e2cf3b4")
+		(uuid "0ee1169f-c50f-4596-bc0c-6b75c752bc7e")
 	)
 	(wire
 		(pts
@@ -1594,7 +1884,7 @@
 	)
 	(wire
 		(pts
-			(xy 182.88 171.45) (xy 182.88 161.29)
+			(xy 219.71 245.11) (xy 219.71 255.27)
 		)
 		(stroke
 			(width 0)
@@ -1714,6 +2004,16 @@
 	)
 	(wire
 		(pts
+			(xy 222.25 236.22) (xy 234.95 236.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "767b8d74-b217-4080-9c90-d8cc48c2a29f")
+	)
+	(wire
+		(pts
 			(xy 234.95 231.14) (xy 224.79 231.14)
 		)
 		(stroke
@@ -1741,6 +2041,16 @@
 			(type default)
 		)
 		(uuid "8dc6c440-d8a4-49a0-b029-fe5548265f11")
+	)
+	(wire
+		(pts
+			(xy 198.12 237.49) (xy 219.71 237.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9812bb49-3070-47f2-8b0c-ecd38f3f9450")
 	)
 	(wire
 		(pts
@@ -1774,13 +2084,13 @@
 	)
 	(wire
 		(pts
-			(xy 219.71 236.22) (xy 234.95 236.22)
+			(xy 219.71 237.49) (xy 222.25 237.49)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b0a5e10c-b5ab-42e5-ad25-48270b895070")
+		(uuid "aff76d19-b2ad-481e-9097-20cabaa13649")
 	)
 	(wire
 		(pts
@@ -1804,7 +2114,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 236.22) (xy 222.25 241.3)
+			(xy 222.25 236.22) (xy 222.25 237.49)
 		)
 		(stroke
 			(width 0)
@@ -1851,6 +2161,16 @@
 			(type default)
 		)
 		(uuid "d9d2dc5a-052f-4257-963f-071f1b542375")
+	)
+	(label "FG_REGIN"
+		(at 208.28 237.49 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "60d59610-e9c9-4191-8646-f5b7971fa003")
 	)
 	(label "FG_TS_NODE"
 		(at 297.18 220.98 0)
@@ -1998,30 +2318,6 @@
 			)
 		)
 	)
-	(global_label "VBAT_PROTECTED"
-		(shape input)
-		(at 220.98 231.14 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "43283010-b86e-4425-97a6-f985b97a56fe")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 201.9687 231.14 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
 	(global_label "SDA_INT"
 		(shape input)
 		(at 285.75 213.36 0)
@@ -2094,19 +2390,19 @@
 			)
 		)
 	)
-	(global_label "3V3_SYS"
-		(shape output)
-		(at 219.71 236.22 180)
+	(global_label "VBAT_PROTECTED"
+		(shape input)
+		(at 195.58 234.95 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
-		(uuid "bb66b0db-d3ef-4c04-865d-6201b19be54c")
+		(uuid "9f0e958f-4c2f-4f61-a6d7-1006ab26e93e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 210.9796 236.22 0)
+			(at 195.58 215.9387 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2114,7 +2410,7 @@
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 	)
@@ -2144,7 +2440,7 @@
 	)
 	(global_label "3V3_SYS"
 		(shape input)
-		(at 182.88 189.23 270)
+		(at 195.58 240.03 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2152,9 +2448,9 @@
 			)
 			(justify right)
 		)
-		(uuid "dce16e92-c50a-4282-aedf-aeee4720a048")
+		(uuid "d96c6eb0-8414-4c38-ad8f-532ea724a9ef")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 182.88 200.198 90)
+			(at 195.58 250.998 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2211,6 +2507,108 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+	)
+	(global_label "VBAT_PROTECTED"
+		(shape input)
+		(at 220.98 231.14 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "fa133fb9-ace4-4015-8062-d38dbe58c30b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 201.9687 231.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 204.47 237.49 0)
+		(mirror x)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "035c0723-02a0-4837-b42b-b8741e325c82")
+		(property "Reference" "#FLG012"
+			(at 204.47 239.395 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 204.47 242.57 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 204.47 237.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 204.47 237.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 204.47 237.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f76cb41e-4b2f-41cf-8f6c-97399ebe0dce")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/3a0e399f-7a0a-4d50-8ecb-e7abcc14a097"
+					(reference "#FLG012")
+					(unit 1)
+				)
 			)
 		)
 	)
@@ -2459,7 +2857,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 182.88 175.26 0)
+		(at 219.71 241.3 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -2470,7 +2868,7 @@
 		(fields_autoplaced yes)
 		(uuid "4a7763d5-e4f4-4875-b871-eca4389ee417")
 		(property "Reference" "C401"
-			(at 186.69 173.9899 0)
+			(at 215.9 242.5701 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2481,7 +2879,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 186.69 176.5299 0)
+			(at 215.9 240.0301 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2492,7 +2890,7 @@
 			)
 		)
 		(property "Footprint" "PCM_JLCPCB:C_0402"
-			(at 182.88 175.26 0)
+			(at 219.71 241.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2503,7 +2901,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/product-detail/C307331.html"
-			(at 182.88 175.26 0)
+			(at 219.71 241.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2514,7 +2912,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 182.88 175.26 0)
+			(at 219.71 241.3 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2524,7 +2922,7 @@
 			)
 		)
 		(property "LCSC Part" "C307331"
-			(at 182.88 175.26 0)
+			(at 219.71 241.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2535,7 +2933,7 @@
 			)
 		)
 		(property "Manufacturer" "Samsung Electro-Mechanics"
-			(at 182.88 175.26 0)
+			(at 219.71 241.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2546,7 +2944,7 @@
 			)
 		)
 		(property "MPN" "CL05B104KB54PNC"
-			(at 182.88 175.26 0)
+			(at 219.71 241.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2557,7 +2955,7 @@
 			)
 		)
 		(property "Usage" "REGIN internal-LDO input decoupling."
-			(at 182.88 175.26 0)
+			(at 219.71 241.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2568,7 +2966,7 @@
 			)
 		)
 		(property "Placement" "TI BQ34Z100 SS5 pin description: decouple REGIN with a 0.1uF ceramic cap to Vss, placed close to the REGIN pin."
-			(at 182.88 175.26 0)
+			(at 219.71 241.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2579,7 +2977,7 @@
 			)
 		)
 		(property "Manufacturer Product Page" ""
-			(at 182.88 175.26 0)
+			(at 219.71 241.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2590,7 +2988,7 @@
 			)
 		)
 		(property "Supplier" "JLCPCB"
-			(at 182.88 175.26 0)
+			(at 219.71 241.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2601,7 +2999,7 @@
 			)
 		)
 		(property "Supplier Part Site" "https://www.lcsc.com/product-detail/C307331.html"
-			(at 182.88 175.26 0)
+			(at 219.71 241.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3036,7 +3434,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 182.88 161.29 180)
+		(at 219.71 255.27 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3047,7 +3445,7 @@
 		(fields_autoplaced yes)
 		(uuid "5f4d3280-936c-485f-af2a-8fac6744137c")
 		(property "Reference" "#PWR255"
-			(at 182.88 161.29 0)
+			(at 219.71 255.27 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3058,7 +3456,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 185.42 160.0199 0)
+			(at 217.17 256.5401 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3069,7 +3467,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 182.88 161.29 0)
+			(at 219.71 255.27 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3079,7 +3477,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 182.88 161.29 0)
+			(at 219.71 255.27 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3090,7 +3488,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 182.88 161.29 0)
+			(at 219.71 255.27 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3106,6 +3504,111 @@
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/3a0e399f-7a0a-4d50-8ecb-e7abcc14a097"
 					(reference "#PWR255")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "PCM_SparkFun-Jumper:SolderJumper_3_Bridged12")
+		(at 195.58 237.49 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "69272d1b-e0f3-4314-a3bf-5fad1ae1cfbf")
+		(property "Reference" "JUMP_FG_PWR2"
+			(at 189.23 237.49 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "FG_PWR"
+			(at 191.77 237.49 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels"
+			(at 195.58 237.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 210.82 237.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Allow selection of power source and enable pin for Fuel Gauge"
+			(at 208.28 237.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property private "KLC_S5.1" "This is a generic symbol, it has fp-filter, but no default footprint"
+			(at 213.36 237.49 0)
+			(hide yes)
+			(show_name yes)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property private "KLC_S3.3" "Graphical-Symbol: thickness is 6mm, fill is background"
+			(at 215.9 237.49 0)
+			(hide yes)
+			(show_name yes)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "72e0d9a2-36d5-4387-9706-c3882c8fbaf0")
+		)
+		(pin "1"
+			(uuid "b5127184-f11f-4231-8f8d-6daa7d204152")
+		)
+		(pin "3"
+			(uuid "e0c20896-6fc3-4fbc-9696-ca91d88db742")
+		)
+		(instances
+			(project "SunSproutHub"
+				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/3a0e399f-7a0a-4d50-8ecb-e7abcc14a097"
+					(reference "JUMP_FG_PWR2")
 					(unit 1)
 				)
 			)

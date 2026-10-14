@@ -1,0 +1,50 @@
+* Q2 (DMP3098L-7) reverse-polarity check with the real Diodes Inc vendor model.
+* DMP3098L subckt pins: drain gate source.
+* Compares the as-built orientation (source at CN5, drain at VDC) with the flipped orientation
+* (drain at CN5, source at VDC) under a reversed 24 V input. The charger's VAC2 pin is on VDC.
+.include DMP3098L.spice.txt
+.model DZ12 D (IS=1e-14 BV=12 IBV=5m RS=5)
+.model DPIN D (IS=1e-14 RS=5)
+
+.param VIN=-24
+
+.subckt asbuilt in vdc
+X1 vdc g in DMP3098L
+R19 g 0 100k
+D2 g in DZ12
+.ends
+
+.subckt flipped in vdc
+X1 in g vdc DMP3098L
+R19 g 0 100k
+D2 g vdc DZ12
+.ends
+
+* ---- Case A: as built, no diode on the VAC2 pin ----
+V1 inA 0 DC {VIN}
+XA inA vdcA asbuilt
+CA vdcA 0 100n
+
+* ---- Case B: as built, VAC2 pin has an ESD diode GND -> pin (5 ohm series) ----
+V2 inB 0 DC {VIN}
+XB inB vdcB asbuilt
+CB vdcB 0 100n
+DB 0 vdcB DPIN
+
+* ---- Case C: flipped, same VAC2 pin diode ----
+V3 inC 0 DC {VIN}
+XC inC vdcC flipped
+CC vdcC 0 100n
+DC 0 vdcC DPIN
+
+.control
+tran 10u 5m
+meas tran vdc_A find v(vdcA) at=5m
+meas tran vdc_B find v(vdcB) at=5m
+meas tran iin_B find i(V2) at=5m
+meas tran vdc_C find v(vdcC) at=5m
+meas tran iin_C find i(V3) at=5m
+quit
+.endc
+
+.end
