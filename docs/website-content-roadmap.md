@@ -48,5 +48,6 @@ once done rather than letting it drift out of sync with the actual design.
 - Whether the site's own original prose needs an explicit license statement (separate from the
   Espressif CC BY-SA credit already on the Attribution page, which only covers that one vendored
   library, not writing original to this site).
-- Whether to add site search (e.g. Algolia DocSearch) — only really useful once the site is
-  public and indexed.
+- ~~Whether to add site search~~ — done with the offline `@easyops-cn/docusaurus-search-local`
+  plugin (no account or external service). Switch to Algolia DocSearch only if the offline index
+  gets too large to ship.

@@ -54,6 +54,21 @@ const config: Config = {
     locales: ['en'],
   },
 
+  // Offline search index built at deploy time: no account or external service, and it works on
+  // Cloudflare Pages. The docs are the site root's only content, so serve them from /docs.
+  themes: [
+    [
+      '@easyops-cn/docusaurus-search-local',
+      {
+        hashed: true,
+        indexBlog: false,
+        docsRouteBasePath: '/docs',
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',
