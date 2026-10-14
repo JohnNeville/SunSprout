@@ -13,7 +13,8 @@
 > - **Set the cell chemistry in the firmware first.** The charger comes up for a 4.2 V cell by
 >   default. The firmware sets the charge limit from `cell_chemistry` (LiFePO4 charges to 3.65 V),
 >   so set it to match your cell.
-> - **Fit a 10 kΩ NTC thermistor** on the battery, or the charger will not charge.
+> - **Fit a 10 kΩ NTC thermistor** on the battery, or set `ts_ignore: true` in the firmware.
+>   With neither, the charger suspends charging. `ts_ignore` turns temperature protection off.
 > - **Set the charge current in the firmware to suit your pack, and never above 2000 mA.** The
 >   hardware input-current limit only restricts it loosely, so the firmware ceiling is what holds it.
 > - **Check polarity.** The reverse-polarity protection was changed after the prototype and the

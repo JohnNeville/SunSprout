@@ -17,8 +17,9 @@ configured charger can damage a lithium cell, so:
   default. The firmware sets the charge limit from `cell_chemistry`, which is `lifepo4`
   (3.65 V) in the shipped configuration. For any other cell, change it (see
   [Firmware](./firmware.md)).
-- **Fit a 10 kΩ NTC thermistor** on the `CHGR_TS` connector, mounted on the cell. With none
-  fitted the charger will not charge.
+- **Fit a 10 kΩ NTC thermistor** on the `CHGR_TS` connector, mounted on the cell, or set
+  `ts_ignore: true` in the firmware. With neither, the charger suspends charging. `ts_ignore`
+  turns temperature protection off, so use it only if you accept that.
 - **Set the charge current in the firmware to suit your pack, and never above 2000 mA.** It
   defaults to 1 A (`charge_current`). The hardware input-current limit only restricts it
   loosely: in buck mode the charge current can exceed the input current, so the firmware
