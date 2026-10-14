@@ -9,19 +9,16 @@ How to go from the GitHub repository to an assembled hub board, and what to chec
 pay. The design is drawn for JLCPCB's assembly service: the bill of materials uses LCSC part
 numbers and the placement file uses JLCPCB's own column format.
 
-:::danger[Unverified charging hardware]
+:::warning[The current design has not been built yet]
 
 The current board files fix problems found on the first prototype (commit
 [`1645733`](https://github.com/JohnNeville/SunSprout/commit/1645733)), but that revision has
-**not been built or tested**. Errors in the charging or protection circuitry can damage a
-lithium cell, and a damaged cell can overheat or catch fire.
+not been built, and not every feature has been bench-tested. See
+[Testing status](../testing-status.md).
 
-- **Order a small run first.** Do not order a panelised batch until you have built one and
-  checked the power path on the bench.
-- **Power up with no battery attached**, from a current-limited supply, before you connect a cell.
-- See [Testing status](../testing-status.md) for what has been tested on real hardware.
-
-:::
+- **Order a small run first.** Build one and check the power path on the bench before ordering
+  a panelised batch.
+- **Power up with no battery attached** before you connect a cell.
 
 ## 1. Get the fabrication files
 

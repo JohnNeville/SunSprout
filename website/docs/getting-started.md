@@ -8,23 +8,22 @@ title: Getting started
 Power up a hub, flash it with ESPHome, and check that it can talk to its own chips. You need
 the board, a USB-C cable, and a computer with Python.
 
-:::danger[Unverified charging hardware]
+:::warning[Before you connect a battery]
 
-The current design has not been built. Before you connect a battery:
+Charging has worked on the prototype, but the current design has not been built yet. A wrongly
+configured charger can damage a lithium cell, so:
 
-- **Set the cell chemistry in the firmware first.** The charger powers up for a 4.2 V cell. A
-  LiFePO4 cell charges to 3.65 V, so a LiFePO4 pack left on the power-up default is charged
-  0.55 V over its limit. The shipped configuration declares `lifepo4`; for any other cell,
-  change `cell_chemistry` (see [Firmware](./firmware.md)).
+- **Set the cell chemistry in the firmware first.** The charger comes up for a 4.2 V cell by
+  default. The firmware sets the charge limit from `cell_chemistry`, which is `lifepo4`
+  (3.65 V) in the shipped configuration. For any other cell, change it (see
+  [Firmware](./firmware.md)).
 - **Fit a 10 kΩ NTC thermistor** on the `CHGR_TS` connector, mounted on the cell. With none
   fitted the charger will not charge.
-- **Never set the charge current above 2000 mA.** Nothing in hardware limits it.
+- **Keep the charge current at or below 2000 mA.** Nothing in hardware limits it.
 - **Check the battery polarity** against the `BATT +` and `BATT −` markings. The reverse-polarity
-  protection was redesigned and has not been tested on hardware.
+  protection was changed after the prototype and the new design is untested on hardware.
 
 Do steps 1 to 4 with **no battery connected**.
-
-:::
 
 ## 1. Download the configuration
 
