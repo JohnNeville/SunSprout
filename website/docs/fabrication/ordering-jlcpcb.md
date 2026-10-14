@@ -20,6 +20,8 @@ not been built, and not every feature has been bench-tested. See
   a panelised batch.
 - **Power up with no battery attached** before you connect a cell.
 
+:::
+
 ## 1. Get the fabrication files
 
 The gerbers, bill of materials and placement file are **not** committed to the repository. They

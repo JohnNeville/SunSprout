@@ -19,11 +19,16 @@ configured charger can damage a lithium cell, so:
   [Firmware](./firmware.md)).
 - **Fit a 10 kΩ NTC thermistor** on the `CHGR_TS` connector, mounted on the cell. With none
   fitted the charger will not charge.
-- **Keep the charge current at or below 2000 mA.** Nothing in hardware limits it.
+- **Set the charge current in the firmware to suit your pack, and never above 2000 mA.** It
+  defaults to 1 A (`charge_current`). The hardware input-current limit only restricts it
+  loosely: in buck mode the charge current can exceed the input current, so the firmware
+  ceiling is what holds it.
 - **Check the battery polarity** against the `BATT +` and `BATT −` markings. The reverse-polarity
   protection was changed after the prototype and the new design is untested on hardware.
 
 Do steps 1 to 4 with **no battery connected**.
+
+:::
 
 ## 1. Download the configuration
 

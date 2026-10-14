@@ -16,16 +16,19 @@ build the tested prototype with its known issues, or the current design with its
 
 **Before you connect a battery:**
 
-- **Set the cell chemistry.** The charger comes up for a 4.2 V cell by default. The firmware
-  sets the charge limit from `cell_chemistry` (LiFePO4 charges to 3.65 V), so set it to match
-  your cell.
+- **Set the cell chemistry in the firmware first.** The charger comes up for a 4.2 V cell by
+  default. The firmware sets the charge limit from `cell_chemistry` (LiFePO4 charges to
+  3.65 V), so set it to match your cell.
 - **Fit a 10 kΩ NTC thermistor** on the battery, or the charger will not charge.
-- **Keep the charge current at or below 2000 mA.** Nothing in hardware limits it.
+- **Set the charge current in the firmware to suit your pack, and never above 2000 mA.** The
+  hardware input-current limit only restricts it loosely, so the firmware ceiling is what holds it.
 - **Check polarity.** The reverse-polarity protection was changed after the prototype and the
   new design is untested on hardware.
 
 A wrongly configured charger can damage a lithium cell. Build one board and bring it up on USB
 power with no battery before ordering a batch. See [Getting started](./getting-started.md).
+
+:::
 
 A compact power-management and connectivity board built around the **ESP32-C5**. It takes power
 from USB-C, a small DC/solar source, or a Li-ion/Li-Po battery, charges the battery with MPPT on
@@ -131,8 +134,9 @@ EndPoint. See [Notes](./notes.md) for how the buses differ.
   charger will not charge. Fit a 103AT-type 10 kΩ NTC on the `CHGR_TS` connector, or set `ts_ignore: true` in the
   firmware, which turns temperature protection off.
 - **Charge current** is set over I2C and returns to 1 A on power-up, a watchdog timeout or a
-  register reset. Set it for your pack's capacity, and **never above 2000 mA**: it has no
-  hardware ceiling, and in buck mode it can exceed the input current.
+  register reset. Set it for your pack's capacity, and **never above 2000 mA**: the
+  input current limit only restricts it loosely, because in buck mode the charge current can
+  exceed the input current.
 - **Ship mode and shutdown** open the battery ship FET to disconnect the battery. They can only be
   entered with no adapter present; with USB or solar connected the charger ignores them.
 - **The `WAKE` button.** Holding it about 1 s wakes the charger from ship mode; a brief tap does
