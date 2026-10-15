@@ -56,8 +56,8 @@
         },
         {
           "feature": "Prevent Deep Sleep survives a reboot",
-          "status": "untested",
-          "notes": "The switch reads a flag kept in flash, so it should hold through resets and power cycles."
+          "status": "tested",
+          "notes": "It held through a power cycle, and the board was still awake 200 s later. An earlier version lost it because the switch restored itself to off at boot and cleared the flag; a fix is waiting to be merged."
         }
       ]
     },
