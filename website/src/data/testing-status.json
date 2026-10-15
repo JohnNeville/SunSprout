@@ -152,8 +152,8 @@
         },
         {
           "feature": "Temperature reading",
-          "status": "issue",
-          "notes": "Reads implausibly cold without a thermistor on its connector."
+          "status": "tested",
+          "notes": "With a thermistor fitted it reads sensibly (25.0 C, against 25.4 C from the charger). Without one it reads implausibly cold, so a thermistor has to be fitted."
         },
         {
           "feature": "Learned capacity and calibration",
@@ -161,9 +161,14 @@
           "notes": "Run the current and board offset calibrations with the pack at rest, and compare the gauge's battery current with the charger's."
         },
         {
-          "feature": "Thermistors on `J302` and `J401`",
+          "feature": "Thermistor readings (`J302` and `J401`)",
+          "status": "tested",
+          "notes": "With thermistors fitted the charger reads 25.4 C and the gauge 25.0 C, within half a degree of each other, and the gauge no longer reports \"Charge inhibited\"."
+        },
+        {
+          "feature": "Charging with the thermistor check on (`ts_ignore` off)",
           "status": "untested",
-          "notes": "Both temperatures read sensibly, charging works with `ts_ignore` off, and the gauge stops reporting \"Charge inhibited\"."
+          "notes": "Confirm that charging still starts and stops normally when the charger qualifies it against the battery temperature."
         },
         {
           "feature": "`FG_ALERT` input and wake from deep sleep",
