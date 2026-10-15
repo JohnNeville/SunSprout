@@ -17,8 +17,8 @@
         },
         {
           "feature": "Source selection between USB-C and DC",
-          "status": "untested",
-          "notes": ""
+          "status": "tested",
+          "notes": "With a USB wall charger (5.1 V) and a solar panel (13.5 V) both connected, the board ran from either input and the host could switch between them in either direction. Force Solar stayed on solar with USB valid, and Off cut both. Which input the charger picks by itself when both appear at the same moment was not tested; the datasheet gives USB (port 1) priority. A battery bank is a poor test source: it switches its output off at low load and the charger then sees about 2.3 V."
         },
         {
           "feature": "USB input FET pair (`Q301`, `Q302`)",
