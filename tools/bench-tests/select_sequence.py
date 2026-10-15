@@ -14,7 +14,8 @@ steps = sys.argv[4:]
 key = next(re.match(r'\s*(?:esphome|api)_encryption_key:\s*"?([^"\s]+)"?', l).group(1)
            for l in open(secrets_path, encoding="utf-8") if re.match(r'\s*(?:esphome|api)_encryption_key:', l))
 WATCH = ("Input Selection", "Active Input", "Input Present", "USB Input Present", "Solar Input Present",
-         "Input Current", "Charging", "Battery Current", "Enable USB Input", "Enable Solar Input")
+         "Input Current", "Charging", "Battery Current", "Enable USB Input", "Enable Solar Input",
+         "Input Voltage", "USB Input Voltage", "Solar Input Voltage")
 
 
 async def main():
@@ -54,7 +55,7 @@ async def main():
         api.select_command(sel.key, opt)
         await asyncio.sleep(wait_s)
         print(f"{stamp()}  --- after '{opt}': selection={state.get('Input Selection')} active={state.get('Active Input')} "
-              f"input_current={state.get('Input Current')} charging={state.get('Charging')}", flush=True)
+              f"Vbus={state.get('Input Voltage')} Vusb={state.get('USB Input Voltage')} Vsolar={state.get('Solar Input Voltage')} Iin={state.get('Input Current')} charging={state.get('Charging')}", flush=True)
     await api.disconnect()
 
 
