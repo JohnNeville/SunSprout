@@ -97,6 +97,3 @@ __pycache__
 
 # Scratch analysis scripts and downloads
 /scratch/
-
-# ESPHome secrets (WiFi credentials, API key)
-firmware/secrets.yaml
