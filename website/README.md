@@ -42,6 +42,14 @@ GIT_USER=<Your GitHub username> npm run deploy
 
 If you are using GitHub Pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
 
+## Firmware status data
+
+The [Firmware status](docs/firmware-status.md) page works the same way as the testing status page
+below, with its own data: the live copy is
+[this Gist](https://gist.github.com/JohnNeville/bd1472ca2b73abff4d63a43e4ac1da1d) (`firmware-status.json`), the
+bundled fallback is `src/data/firmware-status.json`, and `FIRMWARE_STATUS_URL` overrides the URL at
+build time. The `status` values are `tested`, `issue` and `untested`.
+
 ## Testing status data
 
 The [Testing status](docs/testing-status.md) page is rendered from JSON, not written by hand.

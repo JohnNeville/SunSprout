@@ -28,6 +28,10 @@ const config: Config = {
     testingStatusUrl:
       process.env.TESTING_STATUS_URL ||
       'https://gist.githubusercontent.com/JohnNeville/31635451e342c20357f21a530f6bacda/raw/testing-status.json',
+    // The same for the firmware features page, from its own Gist.
+    firmwareStatusUrl:
+      process.env.FIRMWARE_STATUS_URL ||
+      'https://gist.githubusercontent.com/JohnNeville/bd1472ca2b73abff4d63a43e4ac1da1d/raw/firmware-status.json',
   },
 
   // The .ico carries 16/32/48/64 raster sizes for broad compatibility; the SVG is
