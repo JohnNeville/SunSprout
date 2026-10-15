@@ -1,0 +1,123 @@
+# FG_ALERT test: does the fuel gauge pull FG_ALERT (GPIO4) low, and does that wake the board
+# from deep sleep?
+#
+# Two halves, tested separately:
+#   A. Gauge to pin. The "Fuel Gauge Alert" input follows GPIO4 and can be compared with the
+#      gauge's own "Battery Low" and "Battery Critically Low" flags.
+#   B. Pin to wake. Deep sleep is set to 6 h with GPIO4 as an ext1 wake source (any low).
+#      Timer wakes are 6 h apart, so a wake sooner than that came from the pin, and
+#      "Wake Reason" says which it was.
+#
+# The gauge ships with its Alert Configuration register at 0, so FG_ALERT never goes low until
+# `alert_configuration` is written. That needs `apply_configuration: true`, which also writes
+# the cell values below to the gauge's data flash, so set them for the cell on the board.
+
+substitutions:
+  name: sunsprout-fg-alert
+  friendly_name: Sunsprout FG Alert
+
+  cell_chemistry: "li_ion"
+  battery_capacity: "2000"
+  battery_energy_mwh: "7400"
+  lifepo4_relax: "false"
+  charge_current: "500"
+
+packages:
+  hub: !include sunsprout-hub.yaml
+  common: !include sunsprout-common.yaml
+  deep_sleep: !include sunsprout-deep-sleep.yaml
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  on_boot:
+    # Show the pin level at boot, before anything has had a chance to clear the alert.
+    - priority: 100
+      then:
+        - logger.log:
+            format: "FG_ALERT (GPIO4) is %s at boot"
+            args: ['id(fuel_gauge_alert).state ? "LOW (asserted)" : "HIGH (idle)"']
+            tag: fg_alert
+
+logger:
+  level: DEBUG
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  fast_connect: true
+
+bq25798:
+  # No thermistor fitted. Without this the charger suspends charging when it reads "too cold".
+  ts_ignore: true
+
+sensor:
+  - id: !extend fuel_gauge
+    apply_configuration: true
+    # `discharging` makes the test easy: unplug USB and the pin goes low.
+    alert_configuration: [discharging, low_charge, critical_charge]
+
+# Awake for 60 s, then asleep for 6 h unless GPIO4 goes low. Use "Prevent Deep Sleep" to stay
+# awake for half A.
+deep_sleep:
+  run_duration: 60s
+  sleep_duration: 6h
+  esp32_ext1_wakeup:
+    pins:
+      # The same pin is also read as the "Fuel Gauge Alert" input, so both must allow it.
+      - pin:
+          number: GPIO4
+          allow_other_uses: true
+    mode: ANY_LOW
+
+binary_sensor:
+  # The board package leaves this off by default.
+  - id: !extend fuel_gauge_alert
+    disabled_by_default: false
+    pin:
+      allow_other_uses: true
+    on_press:
+      - logger.log:
+          format: "FG_ALERT went low"
+          tag: fg_alert
+    on_release:
+      - logger.log:
+          format: "FG_ALERT went high"
+          tag: fg_alert
+
+text_sensor:
+  - platform: template
+    name: "Wake Reason"
+    lambda: |-
+      switch (esp_sleep_get_wakeup_cause()) {
+        case ESP_SLEEP_WAKEUP_EXT1:  return std::string("ext1 (GPIO4 low)");
+        case ESP_SLEEP_WAKEUP_TIMER: return std::string("timer");
+        case ESP_SLEEP_WAKEUP_UNDEFINED: return std::string("power-on or reset");
+        default: return std::string("other");
+      }
+    update_interval: 5s
+
+# Steps
+# -----
+# In Home Assistant, enable the disabled-by-default entities "Clear Fuel Gauge Alert" and
+# "Gauge Status", and keep "Battery Low", "Battery Critically Low" and "Fuel Gauge Alert" in view.
+#
+# A. Gauge to pin (awake). Turn "Prevent Deep Sleep" on.
+#    1. Unplug USB. The discharge flag sets and "Fuel Gauge Alert" should go on.
+#    2. With the cell low (at or below about 10 %), "Battery Low" is on and so is the alert.
+#    3. Press "Clear Fuel Gauge Alert". The pin should release while "Battery Low" stays on, but
+#       the driver also clears it whenever it reads the gauge's flags, so it may drop sooner.
+#
+# B. Pin to wake (asleep). Turn "Prevent Deep Sleep" off, clear any alert, and wait for the
+#    board to drop off the API.
+#    1. Short the FG_ALERT net to ground briefly (for example the alert side of R401).
+#    2. The board should come back within a few seconds, and "Wake Reason" should read
+#       "ext1 (GPIO4 low)". A wake after 6 h reads "timer" instead.
+#    3. If it wakes straight away every time, FG_ALERT is still asserted at sleep: clear it.
