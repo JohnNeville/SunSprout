@@ -12,13 +12,18 @@
         },
         {
           "feature": "DC / solar input",
-          "status": "untested",
-          "notes": ""
+          "status": "tested",
+          "notes": "A 10 W panel (about 14 V open-circuit) in direct sun powered the board and charged a lithium-ion cell at up to 5.3 W, with the charger die at about 32 C. A 6 W panel in shade was reported as an \"Unqualified adapter\" and did not charge. The charger checks the source when it first connects, so a weak panel can fail that check."
         },
         {
           "feature": "Source selection between USB-C and DC",
           "status": "untested",
           "notes": ""
+        },
+        {
+          "feature": "USB input FET pair (`Q301`, `Q302`)",
+          "status": "tested",
+          "notes": "With `DIS_ACDRV` set, the gate drive between `ACDRV1_NODE` and `MUX1_MID` fell from about 5.5 V to about 0 V, `VBUS` lost its 5 V and charging stopped. Clearing it brought the input back."
         },
         {
           "feature": "Solar MPPT",
@@ -78,12 +83,12 @@
         {
           "feature": "End of charge",
           "status": "tested",
-          "notes": "Charging stopped with \"Charge terminated\" at about 4.19 V, \"Battery Fully Charged\" turned on, and the gauge reported 100%."
+          "notes": "Charging stopped with \"Charge terminated\" at about 4.19 V, \"Battery Fully Charged\" turned on, and the gauge reported 100%. A LiFePO4 cell also finished with \"Charge terminated\", after reaching its 3.65 V limit."
         },
         {
           "feature": "Charge current setting",
           "status": "tested",
-          "notes": "Set to 180 mA, the battery charged at 178 mA. Raising it to 1050 mA raised the charge current well above that. Board temperature at higher currents has not been checked."
+          "notes": "Set to 180 mA, the battery charged at 178 mA. Raising it to 1050 mA raised the charge current well above that. On a LiFePO4 cell, limits of 500, 1000 and 1500 mA gave about 463, 1035 and 1552 mA into the cell. At 2000 mA the cell reached its 3.65 V limit and the current tapered from about 1.7 A. The charger die reached 37.5 C with no thermal regulation and no fault."
         },
         {
           "feature": "Input current limit",
@@ -96,9 +101,14 @@
           "notes": "On battery only, \"Charger Shutdown\" turns the board off and plugging in USB wakes it."
         },
         {
-          "feature": "Charger temperature and thermal regulation",
+          "feature": "Charger temperature reading",
+          "status": "tested",
+          "notes": "\"Charger Temperature\" read 16 to 38 C while charging at up to 1.7 A."
+        },
+        {
+          "feature": "Charger thermal regulation",
           "status": "untested",
-          "notes": "\"Charger Temperature\" reads sensibly while charging."
+          "notes": "The charger reduces its current when it gets hot. It did not trigger in the tests so far."
         },
         {
           "feature": "Enable USB / Enable Solar Input switches",
@@ -107,18 +117,18 @@
         },
         {
           "feature": "Charger HIZ mode",
-          "status": "untested",
-          "notes": "The input stops supplying the board."
+          "status": "tested",
+          "notes": "With it on, the input current fell from about 430 mA to about 30 mA, charging stopped and the board ran on the battery. The input FETs stay on; only the converter stops."
         },
         {
           "feature": "Charger status LED switch",
-          "status": "untested",
-          "notes": "\"Enable Charger Status LED\" off turns the LED dark."
+          "status": "tested",
+          "notes": "Turning \"Enable Charger Status LED\" off turns the LED dark."
         },
         {
           "feature": "Reset Charger Registers",
-          "status": "untested",
-          "notes": "The firmware restores its settings afterwards, including the charge voltage limit and the ship-FET setting."
+          "status": "tested",
+          "notes": "Charging carried on without a break, and the charge current limit and input selection were unchanged. The charge voltage limit and the ship-FET setting were not read back."
         },
         {
           "feature": "Charger interrupt (`CHG_INT`)",
@@ -161,9 +171,14 @@
           "notes": "Both temperatures read sensibly, charging works with `ts_ignore` off, and the gauge stops reporting \"Charge inhibited\"."
         },
         {
-          "feature": "Fuel-gauge alert (`FG_ALERT`)",
-          "status": "untested",
-          "notes": "An alert such as low charge fires, and can wake the board from deep sleep."
+          "feature": "`FG_ALERT` input and wake from deep sleep",
+          "status": "tested",
+          "notes": "The \"Fuel Gauge Alert\" input follows the pin, and pulling `FG_ALERT` low woke the board from deep sleep (an ext1 wake on GPIO4). The pin was grounded by hand; the gauge was not the source."
+        },
+        {
+          "feature": "Fuel gauge asserting `FG_ALERT`",
+          "status": "tested",
+          "notes": "With low and critical charge selected in `alert_configuration`, the \"Fuel Gauge Alert\" input went on while the gauge reported low and critical charge, on two boards. The gauge ships with that register at 0 and never asserts the pin until it is written, so the option must be set. Releasing the pin with \"Clear Fuel Gauge Alert\" has not been checked."
         }
       ]
     },
