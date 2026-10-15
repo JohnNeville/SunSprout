@@ -1,9 +1,9 @@
 # Firmware
 
-The board runs ESPHome. The configuration is in [`firmware/`](../../firmware/).
+The board runs ESPHome. The configuration is in the [SunSprout-firmware](https://github.com/JohnNeville/SunSprout-firmware) repository.
 
 This page explains the firmware decisions. It does not explain how to flash a board. See
-[firmware/README.md](../../firmware/README.md) for that.
+the [firmware README](https://github.com/JohnNeville/SunSprout-firmware#readme) for that.
 
 ## Why ESPHome
 
@@ -18,7 +18,7 @@ The configuration is split into two parts.
 | Part | Location |
 |---|---|
 | Chip drivers for the BQ25798 and the BQ34Z100 | A separate repository, [esphome-bq-drivers](https://github.com/JohnNeville/esphome-bq-drivers) |
-| Board configuration | `firmware/sunsprout-hub.yaml` in this repository |
+| Board configuration | `sunsprout-hub.yaml` in the [SunSprout-firmware](https://github.com/JohnNeville/SunSprout-firmware) repository |
 
 The two chips are stock Texas Instruments parts. The drivers talk to the chips. They do not
 know about this board. A separate repository lets other designs use them. It also matches the

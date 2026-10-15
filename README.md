@@ -47,7 +47,7 @@ ICs, and one for sensors, buffered onto a differential pair so it can drive a lo
 | Build one | [Order from JLCPCB](website/docs/fabrication/ordering-jlcpcb.md) and [Getting started](website/docs/getting-started.md) — fabrication settings, assembly checks, first flash |
 | Design files | [hardware/hub/](hardware/hub/) — KiCad 10 project, hand-routed |
 | Why it is built this way | [docs/hub/modules/](docs/hub/modules/) — per-IC design notes |
-| Firmware | [firmware/](firmware/) — ESPHome configuration; [docs/hub/firmware.md](docs/hub/firmware.md) for the reasoning |
+| Firmware | [SunSprout-firmware](https://github.com/JohnNeville/SunSprout-firmware) — ESPHome configuration; [docs/hub/firmware.md](docs/hub/firmware.md) for the reasoning |
 | Off-board parts you need | [docs/hub/extra-components.md](docs/hub/extra-components.md) |
 
 Every IC's datasheet-required external components are drawn directly into the schematic rather
@@ -115,7 +115,7 @@ The prose documentation is split by audience:
   for someone reading the design cold. Start at the [index](docs/hub/modules/README.md).
 - **[docs/hub/firmware.md](docs/hub/firmware.md)** explains the firmware decisions — why the
   watchdog is off, why the charge voltage comes from the declared chemistry, and what the
-  `SFET_PRESENT` bit unlocks. The configuration itself is in [firmware/](firmware/); the chip
+  `SFET_PRESENT` bit unlocks. The configuration itself is in [SunSprout-firmware](https://github.com/JohnNeville/SunSprout-firmware); the chip
   drivers live in [esphome-bq-drivers](https://github.com/JohnNeville/esphome-bq-drivers).
 - **[website/](website/)** is the source for the user-facing documentation site, published at
   **[johnneville.github.io/SunSprout](https://johnneville.github.io/SunSprout/)**: pinout,

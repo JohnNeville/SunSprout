@@ -22,9 +22,9 @@ the air after the first flash.
 
 | | |
 |---|---|
-| Board configuration | [`firmware/sunsprout-hub.yaml`](https://github.com/JohnNeville/SunSprout/blob/main/firmware/sunsprout-hub.yaml) |
-| Example device | [`firmware/example-device.yaml`](https://github.com/JohnNeville/SunSprout/blob/main/firmware/example-device.yaml) |
-| Factory image (setup mode) | [`firmware/sunsprout-factory.yaml`](https://github.com/JohnNeville/SunSprout/blob/main/firmware/sunsprout-factory.yaml) |
+| Board configuration | [`sunsprout-hub.yaml`](https://github.com/JohnNeville/SunSprout-firmware/blob/main/sunsprout-hub.yaml) |
+| Example device | [`example-device.yaml`](https://github.com/JohnNeville/SunSprout-firmware/blob/main/example-device.yaml) |
+| Factory image (setup mode) | [`sunsprout-factory.yaml`](https://github.com/JohnNeville/SunSprout-firmware/blob/main/sunsprout-factory.yaml) |
 | Chip drivers | [esphome-bq-drivers](https://github.com/JohnNeville/esphome-bq-drivers) |
 | Why it is configured this way | [docs/hub/firmware.md](https://github.com/JohnNeville/SunSprout/blob/main/docs/hub/firmware.md) |
 
@@ -41,11 +41,11 @@ board.
 pip install esphome
 ```
 
-Create a `secrets.yaml` beside your device file containing `wifi_ssid`, `wifi_password`,
+From a clone of the [firmware repository](https://github.com/JohnNeville/SunSprout-firmware), create a `secrets.yaml` beside your device file containing `wifi_ssid`, `wifi_password`,
 `fallback_password` and `api_encryption_key`, then:
 
 ```bash
-esphome run firmware/example-device.yaml
+esphome run example-device.yaml
 ```
 
 If the first upload does not start, put the board in download mode: hold the BOOT button, press
@@ -91,7 +91,7 @@ substitutions:
 
 The gauge's default profile is lithium-ion, so a standard 4.2 V cell does not need the gauge
 chemistry bench step below. Fit the battery thermistor either way. See the
-[firmware README](https://github.com/JohnNeville/SunSprout/blob/main/firmware/README.md#using-a-standard-lithium-ion-cell)
+[firmware README](https://github.com/JohnNeville/SunSprout-firmware#using-a-standard-lithium-ion-cell)
 for the full table.
 
 ## Battery size

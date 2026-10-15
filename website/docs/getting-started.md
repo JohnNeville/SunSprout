@@ -32,16 +32,15 @@ Do steps 1 to 4 with **no battery connected**.
 
 ## 1. Download the configuration
 
-The ESPHome files are in the [`firmware/`](https://github.com/JohnNeville/SunSprout/tree/main/firmware)
-folder of the repository.
+The ESPHome files are in their own repository, [SunSprout-firmware](https://github.com/JohnNeville/SunSprout-firmware).
 
 ```bash
-git clone https://github.com/JohnNeville/SunSprout.git
-cd SunSprout
+git clone https://github.com/JohnNeville/SunSprout-firmware.git
+cd SunSprout-firmware
 pip install esphome
 ```
 
-Copy `firmware/example-device.yaml` as your starting point, and create a `secrets.yaml` next
+Copy `example-device.yaml` as your starting point, and create a `secrets.yaml` next
 to it with `wifi_ssid`, `wifi_password`, `fallback_password` and `api_encryption_key`.
 
 ## 2. Connect the board
@@ -53,7 +52,7 @@ chip or driver to install.
 ## 3. Start the flash
 
 ```bash
-esphome run firmware/example-device.yaml
+esphome run example-device.yaml
 ```
 
 If ESPHome cannot find the board, or the upload does not start, put the board into download
