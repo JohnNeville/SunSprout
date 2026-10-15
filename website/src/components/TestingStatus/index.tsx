@@ -41,10 +41,20 @@ function isValid(data: unknown): data is TestingStatusData {
   return !!d && typeof d.updated === 'string' && Array.isArray(d.sections);
 }
 
-export default function TestingStatus(): React.ReactElement {
+interface Props {
+  /** Copy bundled with the site, shown until (or unless) the live data loads. */
+  data?: TestingStatusData;
+  /** Name of the `customFields` entry that holds the live data URL. */
+  urlField?: string;
+}
+
+export default function TestingStatus({
+  data: bundledData = bundled as TestingStatusData,
+  urlField = 'testingStatusUrl',
+}: Props): React.ReactElement {
   const { siteConfig } = useDocusaurusContext();
-  const url = siteConfig.customFields?.testingStatusUrl as string | undefined;
-  const [data, setData] = useState<TestingStatusData>(bundled as TestingStatusData);
+  const url = siteConfig.customFields?.[urlField] as string | undefined;
+  const [data, setData] = useState<TestingStatusData>(bundledData);
   const [source, setSource] = useState<'bundled' | 'live'>('bundled');
 
   useEffect(() => {

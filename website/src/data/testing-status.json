@@ -111,11 +111,6 @@
           "notes": "The charger reduces its current when it gets hot. It did not trigger in the tests so far."
         },
         {
-          "feature": "Enable USB / Enable Solar Input switches",
-          "status": "untested",
-          "notes": "Turning one off drops the board to the other source or the battery."
-        },
-        {
           "feature": "Charger HIZ mode",
           "status": "tested",
           "notes": "With it on, the input current fell from about 430 mA to about 30 mA, charging stopped and the board ran on the battery. The input FETs stay on; only the converter stops."
@@ -257,8 +252,8 @@
         },
         {
           "feature": "Wi-Fi range on the external antenna",
-          "status": "untested",
-          "notes": "Signal at the real install distance."
+          "status": "tested",
+          "notes": "With the external antenna fitted, two boards near the access point read -44 and -49 dBm. A third, through several walls, reads about -73 dBm on 2.4 GHz and drops its connection now and then. Forcing 2.4 GHz did not change the signal."
         }
       ]
     }
