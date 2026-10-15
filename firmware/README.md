@@ -260,6 +260,22 @@ leaves the **Fuel Gauge Alert** input disabled by default; enable it in Home Ass
 pin. The driver clears a pending alert whenever it reads the gauge's flags, so the pin can go
 high again at the next poll.
 
+## Choosing which input powers the board
+
+**Input Selection** is a drop-down with Auto, Force USB, Force Solar and Off. It replaces the
+old per-port switches, which only decided whether an input could turn on and did nothing to an
+input that was already live. **Active Input** shows which port is feeding the board.
+
+- **Off** forces both input drivers off. The board runs from the battery and does not charge,
+  and with no battery fitted it loses power.
+- **Force USB** and **Force Solar** are preferences, not locks. The charger turns an input on by
+  itself when it sees a valid one, and nothing can make it refuse one, so with USB plugged in
+  Force Solar cannot hold. The drop-down then falls back to Auto and the log says so.
+- Changing the selection can briefly cut the supply, because the input has to be opened and
+  the charger has to wait for `VBUS` to fall before the drivers come back. A change that keeps
+  the port already feeding the board does not.
+- The choice is not remembered over a restart. The charger starts in Auto.
+
 ## Solar tracking
 
 The BQ25798 tracks the panel's maximum power point itself. It stops switching every couple

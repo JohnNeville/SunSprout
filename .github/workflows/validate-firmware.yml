@@ -53,6 +53,11 @@ jobs:
       - name: Validate the factory image
         run: esphome config firmware/sunsprout-factory.yaml
 
+      - name: Validate the test images
+        run: |
+          esphome config firmware/battery-burn-test.yaml
+          esphome config firmware/fg-alert-test.yaml
+
       - name: Validate a standard lithium-ion build
         # The substitutions documented in firmware/README.md must keep building.
         run: |

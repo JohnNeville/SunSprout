@@ -192,12 +192,15 @@ bq25798:
     restore_mode: RESTORE_DEFAULT_ON
     entity_category: config
     disabled_by_default: true
-  enable_acdrv1:
-    name: "Enable USB Input"
-    restore_mode: RESTORE_DEFAULT_ON
-  enable_acdrv2:
-    name: "Enable Solar Input"
-    restore_mode: RESTORE_DEFAULT_ON
+  # Which input may power the board. This replaces the per-port "Enable USB Input" and
+  # "Enable Solar Input" switches, which only decide whether a driver may turn on and do not
+  # open an input that is already live. Force USB and Force Solar are preferences: the charger
+  # turns an input on by itself when it sees a valid one, and the drop-down falls back to Auto
+  # when that happens. See the driver README.
+  input_selection:
+    name: "Input Selection"
+  active_input:
+    name: "Active Input"
   enable_hiz:
     name: "Charger HIZ Mode"
     disabled_by_default: true
