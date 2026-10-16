@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-14",
+  "updated": "2026-10-16",
   "prototype_commit": "1645733",
   "sections": [
     {
@@ -27,8 +27,8 @@
         },
         {
           "feature": "Solar MPPT",
-          "status": "untested",
-          "notes": ""
+          "status": "tested",
+          "notes": "On a 6 W panel in dim, changing light the charger started charging once the panel could supply it and kept charging as the light varied. The panel voltage follows the MPPT ratio (about 9.3 to 10 V at 0.8125, 10.2 to 11 V at 0.875). The two ratios have not been compared for power: the light changed too much to tell them apart."
         },
         {
           "feature": "Charging a battery",
@@ -167,8 +167,8 @@
         },
         {
           "feature": "Charging with the thermistor check on (`ts_ignore` off)",
-          "status": "untested",
-          "notes": "Confirm that charging still starts and stops normally when the charger qualifies it against the battery temperature."
+          "status": "tested",
+          "notes": "With thermistors taped to the cell, charging started with `ts_ignore` off and ran without a fault or a \"Charge inhibited\" message. Stopping at the end of charge has not been checked with the thermistor check on."
         },
         {
           "feature": "`FG_ALERT` input and wake from deep sleep",
