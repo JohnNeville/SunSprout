@@ -62,6 +62,21 @@
       ]
     },
     {
+      "title": "Cell settings",
+      "items": [
+        {
+          "feature": "Cell Chemistry, Battery Capacity, Battery Energy and Default Charge Current",
+          "status": "tested",
+          "notes": "Changed from the device page on two boards. The charger took the new charge voltage limit, termination current and charge current; the gauge's design capacity and energy were written once and left alone on later boots. The values survive a reboot, including a reset 12 s after the change. A gauge on a board with no battery is not reachable, so the gauge side was only checked on the board with a battery."
+        },
+        {
+          "feature": "`bq25798.configure_battery` and `bq34z100.configure_pack` actions",
+          "status": "tested",
+          "notes": "Used by the factory image at every boot. An unknown chemistry name changes nothing. The relax bits can now be cleared as well as set."
+        }
+      ]
+    },
+    {
       "title": "Test images",
       "items": [
         {
@@ -96,8 +111,33 @@
         },
         {
           "feature": "Factory image and setup mode",
+          "status": "tested",
+          "notes": "Flashed over USB to a bench board, which came up in setup mode with its own access point and took WiFi credentials."
+        },
+        {
+          "feature": "WiFi setup over USB (Improv serial)",
+          "status": "tested",
+          "notes": "Credentials sent from the browser setup page and from a script over the serial port; the board joined the network both times."
+        },
+        {
+          "feature": "WiFi setup from a phone over Bluetooth (Improv BLE)",
           "status": "untested",
-          "notes": "The configuration validates. It has not been flashed to a board and run through setup."
+          "notes": "The board advertises, and the BOOT button is meant to authorise a change. No phone has connected yet."
+        },
+        {
+          "feature": "Five-minute setup window",
+          "status": "tested",
+          "notes": "With no network the window closed exactly 5:00 after power-up and the timeout action ran. The slow pulse of the status LED after the timeout has not been seen on the current build."
+        },
+        {
+          "feature": "Hold BOOT for 10 s to factory-reset",
+          "status": "tested",
+          "notes": "The hold was detected at 10 s, the saved settings were erased and the board restarted in setup mode. The fast flash of the status LED before the restart has not been checked."
+        },
+        {
+          "feature": "Status LED stays off while the board is fine",
+          "status": "tested",
+          "notes": "It uses ESPHome's own status LED. A board with no battery leaves the fuel gauge unpowered, which used to make the LED flash fast; that flag is now cleared at boot and the LED stays off."
         }
       ]
     }
