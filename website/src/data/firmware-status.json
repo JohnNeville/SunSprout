@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-15",
+  "updated": "2026-10-16",
   "sections": [
     {
       "title": "Input control",
@@ -36,13 +36,13 @@
         },
         {
           "feature": "Offset calibration buttons and Enable Impedance Track",
-          "status": "untested",
-          "notes": "Planned on a lithium-ion board: calibrate with the charger off and the pack at rest, then enable Impedance Track and run a charge and discharge cycle."
+          "status": "tested",
+          "notes": "On a lithium-ion board at rest (0 mA, charging off) both calibration buttons and Enable Impedance Track ran without error. The gauge read 0 mA before and after, so the offsets were already small. Afterwards the gauge and the charger agreed on battery current to within about 10 to 30 mA while charging. A full learning cycle has not been run yet."
         },
         {
           "feature": "`expected_chem_id` mismatch warning",
-          "status": "untested",
-          "notes": "The driver should log an error at boot if the gauge is running a different chemistry."
+          "status": "tested",
+          "notes": "With a lithium-ion gauge (0x0107) and `expected_chem_id: 0x0423`, the boot log carried an error naming both IDs. A matching ID staying silent has not been checked."
         }
       ]
     },
