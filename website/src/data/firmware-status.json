@@ -71,8 +71,8 @@
         },
         {
           "feature": "`battery-burn-test`: deep sleep after the cutoff",
-          "status": "untested",
-          "notes": "Added because the radio kept drawing about 135 mA after the cutoff."
+          "status": "tested",
+          "notes": "On a 4000 mAh LiFePO4 cell with a 3.0 V cutoff, the last report was 2.998 V; after that the board dropped off the network for at least 53 minutes with its status LED off. The sleep current was not measured, and waking it has not been checked. It was added because the radio kept drawing about 135 mA after the cutoff."
         },
         {
           "feature": "`fg-alert-test`",
