@@ -127,8 +127,8 @@
         },
         {
           "feature": "Charger interrupt (`CHG_INT`)",
-          "status": "untested",
-          "notes": "\"Charger Interrupt\" fires when USB is plugged or unplugged."
+          "status": "tested",
+          "notes": "The pin pulses are too short for the normal \"Charger Interrupt\" input to see: it reads the pin level in the main loop and missed them in the earlier try. A test image that counts pulses in an interrupt handler counted none while USB was steady, then bursts of pulses around unplugging and replugging USB (about 9 within a few seconds of the unplug, then about 10 in a second at the replug), and about two a second for the next 20 s while the charger settled into taper charge. The pin and its routing to the ESP32-C5 work."
         }
       ]
     },
