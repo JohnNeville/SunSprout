@@ -98,7 +98,7 @@
         {
           "feature": "Charger shutdown mode",
           "status": "tested",
-          "notes": "With the USB cable unplugged and the board running from a 4.15 V Li-ion cell, pressing \"Charger Shutdown\" over WiFi took the board off the network within seconds. Plugging USB back in woke it, and it answered a ping about 8 s later with its settings intact."
+          "notes": "With the USB cable unplugged and the board running from a 4.15 V Li-ion cell, pressing \"Charger Shutdown\" over WiFi took the board off the network within seconds. Plugging USB back in woke it, and it answered a ping about 8 s later with its settings intact. With USB connected the same command does nothing: the board stayed up and kept its 5.1 V input."
         },
         {
           "feature": "Charger temperature reading",
