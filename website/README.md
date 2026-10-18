@@ -50,6 +50,13 @@ below, with its own data: the live copy is
 bundled fallback is `src/data/firmware-status.json`, and `FIRMWARE_STATUS_URL` overrides the URL at
 build time. The `status` values are `tested`, `issue` and `untested`.
 
+## Satellite testing status data
+
+The [Satellite testing status](docs/satellite-testing-status.md) page is rendered the same way, with its own data: the live
+copy is [this Gist](https://gist.github.com/JohnNeville/eacff73d29d7911e817be3d7b3e75add) (`satellite-testing-status.json`),
+the bundled fallback is `src/data/satellite-testing-status.json`, and `SATELLITE_TESTING_STATUS_URL` overrides the URL at
+build time. The `status` values are `tested`, `fixed_in_design`, `issue` and `untested`.
+
 ## Testing status data
 
 The [Testing status](docs/testing-status.md) page is rendered from JSON, not written by hand.

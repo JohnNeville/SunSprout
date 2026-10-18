@@ -32,6 +32,10 @@ const config: Config = {
     firmwareStatusUrl:
       process.env.FIRMWARE_STATUS_URL ||
       'https://gist.githubusercontent.com/JohnNeville/bd1472ca2b73abff4d63a43e4ac1da1d/raw/firmware-status.json',
+    // The same for the satellite testing page, from its own Gist.
+    satelliteTestingStatusUrl:
+      process.env.SATELLITE_TESTING_STATUS_URL ||
+      'https://gist.githubusercontent.com/JohnNeville/eacff73d29d7911e817be3d7b3e75add/raw/satellite-testing-status.json',
   },
 
   // The .ico carries 16/32/48/64 raster sizes for broad compatibility; the SVG is

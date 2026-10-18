@@ -49,6 +49,7 @@ const sidebars: SidebarsConfig = {
         'satellite-overview',
         'satellite-pinout',
         'satellite-dimensions',
+        'satellite-testing-status',
       ],
     },
   ],
