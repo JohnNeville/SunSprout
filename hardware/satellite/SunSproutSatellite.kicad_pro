@@ -706,6 +706,24 @@
           "label": "FT Rotation Offset",
           "name": "FT Rotation Offset",
           "show": true
+        },
+        {
+          "group_by": false,
+          "label": "Supplier Part Site",
+          "name": "Supplier Part Site",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Supplier",
+          "name": "Supplier",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Manufacturer Product Page",
+          "name": "Manufacturer Product Page",
+          "show": false
         }
       ],
       "filter_string": "",
@@ -786,7 +804,7 @@
     ]
   ],
   "text_variables": {
-    "REV_NUM": "1.0"
+    "REV_NUM": "1.1"
   },
   "tuning_profiles": {
     "meta": {
