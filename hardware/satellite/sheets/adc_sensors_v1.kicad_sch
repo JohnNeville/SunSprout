@@ -1116,7 +1116,7 @@
 				(pin passive line
 					(at 5.08 -1.27 180)
 					(length 2.54)
-					(name "0x4B"
+					(name "0x4A"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1134,7 +1134,7 @@
 				(pin passive line
 					(at 5.08 -3.81 180)
 					(length 2.54)
-					(name "0x4A"
+					(name "0x4B"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1449,6 +1449,28 @@
 			)
 		)
 	)
+	(global_label "SDA_LOCAL"
+		(shape input)
+		(at 177.8 52.07 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1b3bbac1-bc5c-4023-95d6-7a98ab43f539")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 177.8 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
 	(global_label "GND"
 		(shape input)
 		(at 40.64 63.5 180)
@@ -1571,28 +1593,6 @@
 		(uuid "6a65f8e9-51b0-41d7-8186-3a22fce125a9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 161.29 92.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
-	(global_label "SCL_LOCAL"
-		(shape input)
-		(at 177.8 52.07 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "6d06fa4e-f1d4-4651-8fee-e3ea32dc0fdc")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 177.8 52.07 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1735,28 +1735,6 @@
 			)
 		)
 	)
-	(global_label "SDA_LOCAL"
-		(shape input)
-		(at 177.8 54.61 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "a124d334-1729-4ee2-9f1d-d6c386471612")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 177.8 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
 	(global_label "GND"
 		(shape input)
 		(at 101.6 96.52 270)
@@ -1769,6 +1747,28 @@
 		(uuid "a7f0b26d-81f5-419a-b024-48e169f380da")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 101.6 96.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "SCL_LOCAL"
+		(shape input)
+		(at 177.8 54.61 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b521359b-7a39-4523-b2be-ed12364f8245")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 177.8 54.61 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2107,7 +2107,7 @@
 				)
 			)
 		)
-		(property "Usage" "4-way address selector solder jumper block (Pin 1: ADDR; Pin 2: GND for 0x48 default bridged; Pin 3: SAT_3V3 for 0x49; Pin 4: SCL for 0x4B; Pin 5: SDA for 0x4A)"
+		(property "Usage" "4-way address selector solder jumper block (Pin 1: ADDR; Pin 2: GND for 0x48 default bridged; Pin 3: SAT_3V3 for 0x49; Pin 4: SDA for 0x4A; Pin 5: SCL for 0x4B)"
 			(at 162.56 50.8 0)
 			(hide yes)
 			(show_name no)

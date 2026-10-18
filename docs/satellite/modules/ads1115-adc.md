@@ -24,14 +24,14 @@ runs everything off one rail.
 The `ADDR` pin sets the I2C address. TI's mapping: tied to `GND` gives `0x48`, `VDD` gives
 `0x49`, `SDA` gives `0x4A`, `SCL` gives `0x4B`.
 
-This board uses a custom 4-way solder jumper block (**`JP1`**, footprint `project:SolderJumper-4_P1.3mm_Bridged12_RoundedPad1.0x1.5mm`) so one bare board serves any of the four addresses:
+This board uses a custom 4-way solder jumper block (**`JP1`**, footprint `project:ADCAddrJumper1mmPads`) so one bare board serves any of the four addresses:
 
 | Position | Pins | Target Net | Address | Default State | Configuration Procedure |
 |---|---|---|---|---|---|
 | 1 | 1 ↔ 2 | `ADDR` ↔ `GND` | **`0x48`** | **Bridged / Closed** | Factory default (copper bridge on trace) |
 | 2 | 1 ↔ 3 | `ADDR` ↔ `SAT_3V3` | **`0x49`** | Open | Cut bridge 1-2, solder bridge 1-3 |
-| 3 | 1 ↔ 4 | `ADDR` ↔ `SCL_LOCAL` | **`0x4B`** | Open | Cut bridge 1-2, solder bridge 1-4 |
-| 4 | 1 ↔ 5 | `ADDR` ↔ `SDA_LOCAL` | **`0x4A`** | Open | Cut bridge 1-2, solder bridge 1-5 |
+| 3 | 1 ↔ 4 | `ADDR` ↔ `SDA_LOCAL` | **`0x4A`** | Open | Cut bridge 1-2, solder bridge 1-4 |
+| 4 | 1 ↔ 5 | `ADDR` ↔ `SCL_LOCAL` | **`0x4B`** | Open | Cut bridge 1-2, solder bridge 1-5 |
 
 Cut the factory bridge between pads 1 and 2 before bridging any alternative position. Bridge exactly one position at a time — shorting `ADDR` to two straps at once creates a bus conflict. Silkscreen clearly labels each position on the PCB with its resulting I2C address (`0x48`, `0x49`, `0x4A`, `0x4B`).
 

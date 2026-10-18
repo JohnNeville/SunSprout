@@ -3081,16 +3081,6 @@
 				)
 			)
 		)
-		(property "ki_locked" ""
-			(at 0 0 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "ki_keywords" "PCA9615DPZ"
 			(at 0 0 0)
 			(show_name no)
@@ -3102,7 +3092,7 @@
 				)
 			)
 		)
-		(property "ki_fp_filters" "TSSOP10_SOT552-1_NXP TSSOP10_SOT552-1_NXP-M TSSOP10_SOT552-1_NXP-L"
+		(property "ki_fp_filters" "TSSOP10_SOT552-1_NXP TSSOP10_SOT552-1_NXP-M TSSOP10_SOT552-1_NXP-L project:TSSOP10_SOT552-1_NXP*"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4236,7 +4226,7 @@
 			(pin passive line
 				(at 5.08 -1.27 180)
 				(length 2.54)
-				(name "0x4B"
+				(name "0x4A"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -4254,7 +4244,7 @@
 			(pin passive line
 				(at 5.08 -3.81 180)
 				(length 2.54)
-				(name "0x4A"
+				(name "0x4B"
 					(effects
 						(font
 							(size 1.27 1.27)
