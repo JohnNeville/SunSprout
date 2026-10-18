@@ -19,6 +19,7 @@ built yet.
 | **Issue** | Misbehaves, with no fix yet. |
 | **Not yet tested** | No result yet. |
 
-Features not listed here have not been tested.
+Features not listed here have not been tested. Results for the SunSprout Satellite board are on the
+[Satellite testing status](./satellite-testing-status.md) page.
 
 <TestingStatus />
