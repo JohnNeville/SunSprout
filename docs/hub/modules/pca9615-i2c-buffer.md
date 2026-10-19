@@ -93,11 +93,13 @@ cut. The intent is to support satellite sensors (e.g. soil-moisture ADCs) that m
 
 Pin 3 was added in a later revision of the hub, for two reasons:
 
-- **Feeding a second satellite.** A jumper from pin 3 to pin 2 puts the always-on rail on
-  `VCC_2`, so the 3.3 V that powers this board also powers a satellite or an EndPoint that takes
-  its supply from the green pair. Without it, a second satellite needs its own supply. Cut `JP2`
-  first. While `JP2` is bridged, `VCC_2` is tied to the switched `3V3_USER` rail, and a link from
-  `3V3_SYS` would defeat the load switch.
+- **Always-on power for other hardware.** The switched `3V3_USER` rail is cut whenever firmware
+  turns it off, including during deep sleep. `3V3_SYS` stays on, so any hardware that needs
+  continuous power instead of power interrupted by sleep can take it from pin 3. For hardware on
+  the cable, such as a satellite or an EndPoint that takes its supply from the green pair, put a
+  jumper from pin 3 to pin 2 so the always-on rail reaches `VCC_2`. Cut `JP2` first. While `JP2`
+  is bridged, `VCC_2` is tied to `3V3_USER`, and a link from `3V3_SYS` would defeat the load
+  switch.
 - **Powering the board from test clips.** `3V3_SYS` is on a header pin, so a bench supply or a
   pair of test clips can power the board at 3.3 V instead of through the USB port. This is for
   bench and production-test use, where the board would otherwise have to be plugged in to be
