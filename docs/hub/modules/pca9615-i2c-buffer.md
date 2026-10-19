@@ -78,11 +78,34 @@ layout rather than collapsing them into one rail:
 `JP2` and `JP3` are cuttable solder-jumper bridges, shorted as fabricated. Cutting both fully
 isolates `VCC_2`/`GRN_N` from this board's 3.3 V rail and ground.
 
-`J2` sits on the `VCC_2`/`GRN_N` pair with no other connection on this board. It was added late,
-specifically so that an external supply — a 5 V or 12 V boost converter, for example — can be
-injected onto `VCC_2` later without changing this sheet, once `JP2` and `JP3` are cut. The intent
-is to support satellite sensors (e.g. soil-moisture ADCs) that may need more than 3.3 V, without
-making that a first-class part of this revision.
+`J2` is a three-pin header marked `VCC_2 INJ`:
+
+| Pin | Net | Use |
+|---|---|---|
+| 1 | `GRN_N` | Return path for `VCC_2`. |
+| 2 | `VCC_2` | The second power rail on the cable. |
+| 3 | `3V3_SYS` | The board's always-on 3.3 V rail. |
+
+`J2` was added late, specifically so that an external supply, a 5 V or 12 V boost converter for
+example, can be injected onto `VCC_2` later without changing this sheet, once `JP2` and `JP3` are
+cut. The intent is to support satellite sensors (e.g. soil-moisture ADCs) that may need more than
+3.3 V, without making that a first-class part of this revision.
+
+Pin 3 was added in a later revision of the hub, for two reasons:
+
+- **Feeding a second satellite.** A jumper from pin 3 to pin 2 puts the always-on rail on
+  `VCC_2`, so the 3.3 V that powers this board also powers a satellite or an EndPoint that takes
+  its supply from the green pair. Without it, a second satellite needs its own supply. Cut `JP2`
+  first. While `JP2` is bridged, `VCC_2` is tied to the switched `3V3_USER` rail, and a link from
+  `3V3_SYS` would defeat the load switch.
+- **Powering the board from test clips.** `3V3_SYS` is on a header pin, so a bench supply or a
+  pair of test clips can power the board at 3.3 V instead of through the USB port. This is for
+  bench and production-test use, where the board would otherwise have to be plugged in to be
+  powered. The buck-boost regulator also drives this rail, so use it only while the board has no
+  other power source, and only with a regulated 3.3 V supply.
+
+Neither use has been tested on a board yet. The injection header is tracked as untested on the
+testing status page.
 
 Cutting the jumpers only isolates the rail on this board. The EndPoint at the far end of the
 cable needs its own BP/PSEL jumpers (see the SparkFun QwiicBus EndPoint schematic) set to accept
