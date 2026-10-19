@@ -35,6 +35,26 @@ The `ON` pin connects to GPIO23 on the MCU and to `R23`.
 power-up. Firmware must drive GPIO23 high to enable the rail. This order is deliberate: an
 unprogrammed board must not power a bus that nothing controls.
 
+### Firmware must switch the rail on before it sets up the user I2C bus
+
+With the rail off, `R201` and `R202` pull the user bus lines up to a rail that the load switch is
+holding at 0 V, so both lines sit low. Firmware that sets up the bus in that state and only then
+switches the rail on can find that the chips on the bus do not come up.
+
+This was seen on a prototype waking from deep sleep with a satellite attached. The ESPHome hub
+package turned the rail on after it had set up the user bus. On every wake the ADS1115 failed its
+setup, which ESPHome treats as permanent for that boot, and the DS2482 1-Wire probe was never read.
+No sensor on the satellite reported for the whole awake period, although the same chips answered an
+address scan a few seconds later. Switching the rail on first, then waiting 50 ms before the bus is
+set up, fixed it. The exact mechanism inside the ESP32 I2C driver was not isolated.
+
+The chips themselves are quick. With the rail off for 1.5 s, each of the four satellite chips
+answered a real register read 13 to 16 ms after the rail came on, in ten of ten cycles.
+
+The hub firmware does this in `sunsprout-common.yaml`. If you write your own firmware, drive
+`GPIO23` high before you initialise the user I2C bus (`GPIO9` and `GPIO10`), and wait at least
+20 ms before the first transfer.
+
 ## Rise-time capacitor — C17
 
 | Item | Value |
