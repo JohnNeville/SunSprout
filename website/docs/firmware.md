@@ -121,6 +121,26 @@ Dozens of entities, many of them hidden by default. The ones you will actually l
 Controls include **Enable Charging**, **Enable MPPT**, **Charge Current Limit**, the user-rail
 switch, and a **Power Cycle Board** button. Ship mode and shutdown are hidden by default.
 
+## The user 3V3 rail
+
+The **User 3V3 Rail** switch powers the `Qwiic User` port and the two 8P8C jacks, so it also
+powers any satellite. The hardware default is off, but the firmware switches it on at every boot,
+before it sets up the user I2C bus, and again after waking from deep sleep. Turning the switch off
+in Home Assistant cuts the power until the next boot. The deep-sleep package turns it off before
+the board sleeps and floats the bus pins.
+
+Two things to know:
+
+- **Order matters.** If you write your own firmware, switch the rail on before the user I2C bus is
+  set up. A bus set up while the rail is off left the satellite's ADS1115 and 1-Wire probe unusable for
+  the whole boot after a deep-sleep wake. See
+  [the load switch notes](https://github.com/JohnNeville/SunSprout/blob/main/docs/hub/modules/tps22918-load-switch.md)
+  for the details. The hub package already does this.
+- **A cut rail looks different per sensor.** With the rail off, 1-Wire temperature probes show as
+  unavailable, but ADS1115 inputs and anything calculated from them, such as a moisture percentage,
+  keep showing their last value. After the rail is back, everything reports again within one update
+  interval, with no reboot.
+
 ## Two things need a bench visit
 
 **The fuel gauge chemistry profile.** The gauge ships set up for lithium-ion. LiFePO4 needs a
