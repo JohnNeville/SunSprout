@@ -50,6 +50,13 @@ address scan a few seconds later. Switching the rail on first, then setting up t
 The chips themselves are quick. With the rail off for 1.5 s, each of the four satellite chips
 answered a real register read 13 to 16 ms after the rail came on, in ten of ten cycles.
 
+Components that sit on the user bus need to set up after it. Most ESPHome I2C devices do (they set up
+at priority 600, after the bus at 700), but the DS2484 1-Wire bridge sets up at priority 999 by
+default, before the bus and before the rail. On the satellite test the bridge then reported "1-wire
+bus is held low" and found no devices, so no temperature probe was read, while the ADS1115 beside it
+worked. Give the bridge a `setup_priority` below 700 (the test used 500, which leaves time for the
+satellite to power up) and the Dallas sensors one below that (450).
+
 The hub firmware does this through ESPHome's setup order. The rail switch is `ALWAYS_ON`, so it is
 switched on when the switch is set up (priority 800), and the user bus has a later `setup_priority`
 of 700 in `sunsprout-hub.yaml`. If you write your own firmware, drive `GPIO23` high before you
