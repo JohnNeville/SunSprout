@@ -23,7 +23,7 @@ not intermate.
 | STEMMA QT port (`Qwiic Sys`) | JST SH, 4-pin | Internal I2C bus (3.3 V from the always-on rail), for sensors that should share the always-on power-management bus | Any STEMMA QT / Qwiic cable |
 | STEMMA QT port (`Qwiic User`) | JST SH, 4-pin | User I2C bus (3.3 V from the switched rail), for sensors on the switched bus that also feeds the differential buffer | Any STEMMA QT / Qwiic cable |
 | Two 8P8C jacks (`J201`, `J202`) | 8P8C (RJ45-style) | Differential I2C, to a [SparkFun QwiicBus EndPoint](https://www.sparkfun.com/products/16988) for remote sensors | Standard Ethernet patch cable |
-| `VCC_2` injection header (`VCC_2 INJ`; not fitted) | 2.54mm header | Optional external supply for the `VCC_2` rail on the 8P8C jacks (pin 1 `VCC_2`, pin 2 its return). See [Notes](./notes.md#vcc_2-is-a-separate-cuttable-power-rail-on-the-8p8c-jacks) | Standard 2.54mm header strip, hand-soldered |
+| `VCC_2` injection header (`VCC_2 INJ`, `J2`; not fitted) | 2.54mm header, 3-pin | Optional external supply for the `VCC_2` rail on the 8P8C jacks (pin 2 `VCC_2`, pin 3 its return), plus an always-on `3V3_SYS` pin (pin 1) for powering other hardware. See [Notes](./notes.md#vcc_2-is-a-separate-cuttable-power-rail-on-the-8p8c-jacks) | Standard 2.54mm header strip, hand-soldered |
 | Charger thermistor (`CHGR_TS`) | JST PA, 2-pin (`S02B-PASK-2`) | Charger thermistor input (pin 1 ground, pin 2 the charger's `TS` sense node) | Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), mounted on the battery pack. See [below](#terminating-your-own-thermistor-probe) |
 | Fuel-gauge thermistor (`FG_TS`) | JST PA, 2-pin (`S02B-PASK-2`) | Fuel-gauge thermistor input (pin 1 the gauge's 2.5 V bias output, pin 2 its `TS` sense node) | A **second, separate** Semitec 103AT-11 NTC thermistor (10kΩ @ 25°C), also mounted on the pack |
 | Expansion headers (`J7`, `J8`; not fitted) | 2.54mm header | Spare/expansion GPIO breakout, plus the debug UART | Standard 2.54mm header strip, hand-soldered |
@@ -61,7 +61,7 @@ connecting anything.
 | 3 | `VCC_2` (`GRN_P`) | 7 | `DSDA−` |
 | 4 | `VCC_1` (`3V3_USER`) | 8 | `DSDA+` |
 
-**`VCC_2 INJ` header (unfitted):** pin 1 `VCC_2`, pin 2 its return.
+**`VCC_2 INJ` header, `J2` (unfitted):** pin 1 `3V3_SYS` (always-on 3.3 V), pin 2 `VCC_2`, pin 3 the `VCC_2` return (`GRN_N`). Pin 1 is next to pin 2 so a jumper joins them, which puts the always-on rail on `VCC_2` (cut `JP2` first).
 
 **Expansion headers `J7` and `J8` (unfitted, 9 pins each)**
 

@@ -82,9 +82,9 @@ isolates `VCC_2`/`GRN_N` from this board's 3.3 V rail and ground.
 
 | Pin | Net | Use |
 |---|---|---|
-| 1 | `GRN_N` | Return path for `VCC_2`. |
+| 1 | `3V3_SYS` | The board's always-on 3.3 V rail. |
 | 2 | `VCC_2` | The second power rail on the cable. |
-| 3 | `3V3_SYS` | The board's always-on 3.3 V rail. |
+| 3 | `GRN_N` | Return path for `VCC_2`. |
 
 `J2` was added late, specifically so that an external supply, a 5 V or 12 V boost converter for
 example, can be injected onto `VCC_2` later without changing this sheet, once `JP2` and `JP3` are
@@ -95,9 +95,9 @@ Pin 3 was added in a later revision of the hub, for two reasons:
 
 - **Always-on power for other hardware.** The switched `3V3_USER` rail is cut whenever firmware
   turns it off, including during deep sleep. `3V3_SYS` stays on, so any hardware that needs
-  continuous power instead of power interrupted by sleep can take it from pin 3. For hardware on
+  continuous power instead of power interrupted by sleep can take it from pin 1. For hardware on
   the cable, such as a satellite or an EndPoint that takes its supply from the green pair, put a
-  jumper from pin 3 to pin 2 so the always-on rail reaches `VCC_2`. Cut `JP2` first. While `JP2`
+  jumper from pin 1 to pin 2 so the always-on rail reaches `VCC_2`. Cut `JP2` first. While `JP2`
   is bridged, `VCC_2` is tied to `3V3_USER`, and a link from `3V3_SYS` would defeat the load
   switch.
 - **Powering the board from test clips.** `3V3_SYS` is on a header pin, so a bench supply or a
