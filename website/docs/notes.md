@@ -45,9 +45,25 @@ shorted as shipped.
 This mirrors the SparkFun QwiicBus reference layout, and it exists for one reason: to leave the
 door open for powering hungrier sensors — soil-moisture ADCs, for example — at something other
 than 3.3V, without a board revision. Cut `JP2` and `JP3` and `VCC_2` is fully isolated from this
-board's own supply and ground. An unpopulated 2-pin header, `J2` (pin 1 `VCC_2`, pin 2 the
-`VCC_2` return), sits on that same net pair, ready to accept an external 5V or 12V boost
-converter once the jumpers are cut.
+board's own supply and ground. An unpopulated 3-pin header, `J2` (`VCC_2 INJ`), sits on that same net pair, ready to accept
+an external 5V or 12V boost converter once the jumpers are cut. Its pins are `3V3_SYS` (1),
+`VCC_2` (2) and the `VCC_2` return (3).
+
+### Always-on power from `J2`
+
+Pin 1 of `J2` is the board's always-on `3V3_SYS` rail. The switched `3V3_USER` rail is cut
+whenever firmware turns it off, including during deep sleep, so anything that is fed from it gets
+power that comes and goes. Any hardware that needs continuous power can take it from `J2` pin 1
+instead. For hardware on the cable, such as a satellite or EndPoint that takes its supply from
+the green pair, a jumper from pin 1 to pin 2 puts the always-on rail on `VCC_2`. Cut `JP2`
+first: while it is bridged, `VCC_2` is tied to `3V3_USER` and the jumper would defeat the load
+switch.
+
+The same pin lets a bench supply or test clips power the board at 3.3 V instead of through USB,
+which suits bench and production-test setups. The buck-boost regulator also drives this rail, so
+use it only while the board has no other power source, and only with a regulated 3.3 V supply.
+
+Neither use has been tested on a board yet.
 
 Cutting the jumpers only isolates the rail here. The EndPoint at the far end of the cable needs
 its own jumpers set to accept the injected voltage instead of drawing `VCC_2` from its own
