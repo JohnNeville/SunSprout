@@ -136,6 +136,10 @@ Two things to know:
   the whole boot after a deep-sleep wake. See
   [the load switch notes](https://github.com/JohnNeville/SunSprout/blob/main/docs/hub/modules/tps22918-load-switch.md)
   for the details. The hub package already does this.
+- **Sensors on the user bus need a late setup priority.** The bus is set up after the rail, so an
+  ADS1115 or similar I2C sensor just works. The DS2484 1-Wire bridge sets itself up much earlier by
+  default, so on a satellite give it `setup_priority: 500` (and its Dallas sensors `450`), or it
+  finds no probes after a wake.
 - **A cut rail looks different per sensor.** With the rail off, 1-Wire temperature probes show as
   unavailable, but ADS1115 inputs and anything calculated from them, such as a moisture percentage,
   keep showing their last value. After the rail is back, everything reports again within one update
