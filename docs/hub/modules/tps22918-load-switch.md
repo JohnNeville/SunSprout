@@ -45,15 +45,16 @@ This was seen on a prototype waking from deep sleep with a satellite attached. T
 package turned the rail on after it had set up the user bus. On every wake the ADS1115 failed its
 setup, which ESPHome treats as permanent for that boot, and the DS2482 1-Wire probe was never read.
 No sensor on the satellite reported for the whole awake period, although the same chips answered an
-address scan a few seconds later. Switching the rail on first, then waiting 50 ms before the bus is
-set up, fixed it. The exact mechanism inside the ESP32 I2C driver was not isolated.
+address scan a few seconds later. Switching the rail on first, then setting up the bus, fixed it. The exact mechanism inside the ESP32 I2C driver was not isolated.
 
 The chips themselves are quick. With the rail off for 1.5 s, each of the four satellite chips
 answered a real register read 13 to 16 ms after the rail came on, in ten of ten cycles.
 
-The hub firmware does this in `sunsprout-common.yaml`. If you write your own firmware, drive
-`GPIO23` high before you initialise the user I2C bus (`GPIO9` and `GPIO10`), and wait at least
-20 ms before the first transfer.
+The hub firmware does this through ESPHome's setup order. The rail switch is `ALWAYS_ON`, so it is
+switched on when the switch is set up (priority 800), and the user bus has a later `setup_priority`
+of 700 in `sunsprout-hub.yaml`. If you write your own firmware, drive `GPIO23` high before you
+initialise the user I2C bus (`GPIO9` and `GPIO10`), and leave at least 20 ms before the first
+transfer.
 
 ## Rise-time capacitor — C17
 
