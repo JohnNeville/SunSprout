@@ -771,7 +771,7 @@
 		(uuid "08b9f42a-ecc9-4874-a302-36599320e956")
 	)
 	(embedded_fonts no)
-	(model "${KICAD_3RD_PARTY}/Snapeda.3dshapes/TSSOP10_SOT552-1_NXP.step"
+	(model "${KIPRJMOD}/../libraries/3dmodels/TSSOP10_SOT552-1_NXP.step"
 		(offset
 			(xyz 0 0 0)
 		)
