@@ -2048,6 +2048,180 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Switch:SW_DIP_x01"
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "SW"
+				(at 0 3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SW_DIP_x01"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "1x DIP Switch, Single Pole Single Throw (SPST) switch, small symbol"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "dip switch"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SW?DIP?x1*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "SW_DIP_x01_0_0"
+				(circle
+					(center -2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 0.127) (xy 2.3622 1.1684)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "SW_DIP_x01_0_1"
+				(rectangle
+					(start -3.81 2.54)
+					(end 3.81 -2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "SW_DIP_x01_1_1"
+				(pin passive line
+					(at -7.62 0 0)
+					(length 5.08)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 7.62 0 180)
+					(length 5.08)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:PWR_FLAG"
 			(power global)
 			(pin_numbers
@@ -3234,6 +3408,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "72ab2612-63a2-44e7-89a0-20efc418b522")
+	)
+	(junction
+		(at 119.38 66.04)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "846f694f-3b05-4605-96db-9c56a0511ddd")
 	)
 	(junction
 		(at 92.71 101.6)
@@ -4957,7 +5137,7 @@
 	)
 	(global_label "GND"
 		(shape input)
-		(at 119.38 74.93 270)
+		(at 119.38 81.28 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4967,7 +5147,7 @@
 		)
 		(uuid "99edd7c3-4c03-49d8-a280-9c4e6f5f9df3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 119.38 81.7857 90)
+			(at 119.38 88.1357 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8828,19 +9008,19 @@
 		)
 	)
 	(symbol
-		(lib_id "Jumper:SolderJumper_2_Bridged")
-		(at 119.38 69.85 270)
+		(lib_id "Switch:SW_DIP_x01")
+		(at 119.38 73.66 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
-		(in_pos_files no)
+		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d843b20a-37e3-4e85-908e-1cc4ed0af571")
 		(property "Reference" "JP19"
-			(at 121.92 69.8499 90)
+			(at 121.92 73.6599 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8850,8 +9030,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SolderJumper_2_Bridged"
-			(at 125.73 62.23 0)
+		(property "Value" "DIP_x01_1,27mm"
+			(at 125.73 66.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8861,8 +9041,8 @@
 				)
 			)
 		)
-		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
-			(at 119.38 69.85 0)
+		(property "Footprint" "project:SW_DIP_x1_XUNPU_DSHP-01-TJ-GER_Slide_JLead"
+			(at 119.38 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8872,8 +9052,8 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
-			(at 119.38 69.85 0)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C7471388.pdf"
+			(at 119.38 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8883,8 +9063,8 @@
 				)
 			)
 		)
-		(property "Description" ""
-			(at 119.38 69.85 0)
+		(property "Description" "XUNPU DSHP-01-TJ-GER"
+			(at 119.38 73.66 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8893,8 +9073,8 @@
 				)
 			)
 		)
-		(property "Usage" "Cuttable trace jumper bridging cable GND_2 (GRN_N) to system GND (default bridged; cut if using isolated secondary supply)"
-			(at 119.38 69.85 0)
+		(property "Usage" "DIP Switch connecting PWR LED to GND allowing it to be used or disabled without soldering"
+			(at 119.38 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8904,8 +9084,8 @@
 				)
 			)
 		)
-		(property "LCSC Part" ""
-			(at 119.38 69.85 0)
+		(property "LCSC Part" "C7471388"
+			(at 119.38 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8916,7 +9096,7 @@
 			)
 		)
 		(property "FT Position Offset" ""
-			(at 119.38 69.85 0)
+			(at 119.38 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8927,7 +9107,7 @@
 			)
 		)
 		(property "FT Rotation Offset" ""
-			(at 119.38 69.85 0)
+			(at 119.38 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
