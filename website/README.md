@@ -46,14 +46,14 @@ If you are using GitHub Pages for hosting, this command is a convenient way to b
 
 The [Firmware status](docs/firmware-status.md) page works the same way as the testing status page
 below, with its own data: the live copy is
-[this Gist](https://gist.github.com/JohnNeville/bd1472ca2b73abff4d63a43e4ac1da1d) (`firmware-status.json`), the
+[this Gist](https://gist.github.com/JohnNeville/31635451e342c20357f21a530f6bacda) (`firmware-status.json`), the
 bundled fallback is `src/data/firmware-status.json`, and `FIRMWARE_STATUS_URL` overrides the URL at
 build time. The `status` values are `tested`, `issue` and `untested`.
 
 ## Satellite testing status data
 
 The [Satellite testing status](docs/satellite-testing-status.md) page is rendered the same way, with its own data: the live
-copy is [this Gist](https://gist.github.com/JohnNeville/eacff73d29d7911e817be3d7b3e75add) (`satellite-testing-status.json`),
+copy is [this Gist](https://gist.github.com/JohnNeville/31635451e342c20357f21a530f6bacda) (`satellite-testing-status.json`),
 the bundled fallback is `src/data/satellite-testing-status.json`, and `SATELLITE_TESTING_STATUS_URL` overrides the URL at
 build time. The `status` values are `tested`, `fixed_in_design`, `issue` and `untested`.
 
