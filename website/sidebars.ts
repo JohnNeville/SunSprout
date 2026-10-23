@@ -35,6 +35,7 @@ const sidebars: SidebarsConfig = {
         'firmware',
         'notes',
         'testing-status',
+        'current-measurements',
         'firmware-status',
         'use-cases',
         'design-files',
