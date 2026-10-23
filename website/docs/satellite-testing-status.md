@@ -4,7 +4,6 @@ title: Satellite testing status
 ---
 
 import TestingStatus from '@site/src/components/TestingStatus';
-import satellite from '@site/src/data/satellite-testing-status.json';
 
 # Satellite testing status
 
@@ -22,4 +21,4 @@ page.
 
 Features not listed here have not been tested.
 
-<TestingStatus data={satellite} urlField="satelliteTestingStatusUrl" />
+<TestingStatus urlField="satelliteTestingStatusUrl" />

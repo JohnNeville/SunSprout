@@ -23,8 +23,8 @@ const config: Config = {
 
   customFields: {
     // Live testing-status data, fetched in the browser so it can be updated without a
-    // release. The page falls back to src/data/testing-status.json if this is empty or
-    // the fetch fails.
+    // release. There is no bundled copy: the page shows an error if this is empty or the
+    // fetch fails.
     testingStatusUrl:
       process.env.TESTING_STATUS_URL ||
       'https://gist.githubusercontent.com/JohnNeville/31635451e342c20357f21a530f6bacda/raw/testing-status.json',
