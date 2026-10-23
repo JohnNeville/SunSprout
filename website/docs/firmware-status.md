@@ -4,7 +4,6 @@ title: Firmware status
 ---
 
 import TestingStatus from '@site/src/components/TestingStatus';
-import firmware from '@site/src/data/firmware-status.json';
 
 # Firmware status
 
@@ -20,4 +19,4 @@ results are on the [Testing status](./testing-status.md) page, and the firmware 
 
 Features not listed here have not been tested.
 
-<TestingStatus data={firmware} urlField="firmwareStatusUrl" />
+<TestingStatus urlField="firmwareStatusUrl" />

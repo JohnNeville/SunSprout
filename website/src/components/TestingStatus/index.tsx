@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import bundled from '@site/src/data/testing-status.json';
 import styles from './styles.module.css';
 
 type Status = 'tested' | 'fixed_in_design' | 'issue' | 'untested';
@@ -42,40 +41,61 @@ function isValid(data: unknown): data is TestingStatusData {
 }
 
 interface Props {
-  /** Copy bundled with the site, shown until (or unless) the live data loads. */
-  data?: TestingStatusData;
-  /** Name of the `customFields` entry that holds the live data URL. */
+  /** Name of the `customFields` entry that holds the data URL. */
   urlField?: string;
 }
 
-export default function TestingStatus({
-  data: bundledData = bundled as TestingStatusData,
-  urlField = 'testingStatusUrl',
-}: Props): React.ReactElement {
+type Load =
+  | { state: 'loading' }
+  | { state: 'error'; message: string }
+  | { state: 'ready'; data: TestingStatusData };
+
+export default function TestingStatus({ urlField = 'testingStatusUrl' }: Props): React.ReactElement {
   const { siteConfig } = useDocusaurusContext();
   const url = siteConfig.customFields?.[urlField] as string | undefined;
-  const [data, setData] = useState<TestingStatusData>(bundledData);
-  const [source, setSource] = useState<'bundled' | 'live'>('bundled');
+  const [load, setLoad] = useState<Load>({ state: 'loading' });
 
   useEffect(() => {
-    if (!url) return;
+    if (!url) {
+      setLoad({ state: 'error', message: 'No data URL is configured for this page.' });
+      return;
+    }
     let cancelled = false;
+    setLoad({ state: 'loading' });
     fetch(url, { cache: 'no-store' })
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`The server answered ${r.status}.`))))
       .then((json) => {
-        if (!cancelled && isValid(json)) {
-          setData(json);
-          setSource('live');
+        if (cancelled) return;
+        if (isValid(json)) {
+          setLoad({ state: 'ready', data: json });
+        } else {
+          setLoad({ state: 'error', message: 'The file is not in the expected format.' });
         }
       })
-      .catch(() => {
-        // Keep the copy bundled with the site.
+      .catch((err) => {
+        if (!cancelled) {
+          setLoad({ state: 'error', message: err instanceof Error ? err.message : String(err) });
+        }
       });
     return () => {
       cancelled = true;
     };
   }, [url]);
 
+  if (load.state === 'loading') {
+    return <p className={styles.meta}>Loading the status data…</p>;
+  }
+
+  if (load.state === 'error') {
+    return (
+      <div className="alert alert--danger" role="alert">
+        <strong>The status data could not be loaded.</strong> {load.message} It is read from{' '}
+        {url ? <a href={url}>{url}</a> : 'a URL that is not set'}.
+      </div>
+    );
+  }
+
+  const { data } = load;
   return (
     <div>
       <p className={styles.meta}>
@@ -89,7 +109,7 @@ export default function TestingStatus({
           </>
         )}
         Last updated {data.updated}
-        {source === 'bundled' ? ' (copy bundled with the site)' : ''}.
+        .
       </p>
       {data.sections.map((section) => (
         <section key={section.title}>
