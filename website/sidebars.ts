@@ -21,6 +21,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'getting-started',
         'fabrication/ordering-jlcpcb',
+        'solar-sizing',
       ],
     },
     {
