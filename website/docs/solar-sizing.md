@@ -22,8 +22,9 @@ starting point and check it against a few weeks of your own data.
 
 The fields start from the stock firmware configuration: a 6000 mAh LiFePO4 pack, a 1000 mA charge
 limit, and deep sleep with 120 s awake then 15 min asleep. Change anything your setup does
-differently. The sleep current is a bench measurement from one hub with no sensors attached, and
-the awake current is a placeholder, so replace both with your own readings.
+differently. The sleep and awake currents are bench measurements (PPK2) from one hub with no sensors
+or satellites attached, and the awake figure leaves out boot and WiFi connect, so replace both with
+your own readings.
 
 <SolarSizing />
 

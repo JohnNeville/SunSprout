@@ -26,6 +26,10 @@ export const FIRMWARE_DEFAULTS = {
 // attached. Settled 0.47 mA plus a periodic burst, about 0.63 mA on average.
 export const MEASURED_SLEEP_MA = 0.63;
 
+// Same hub and set-up: awake with WiFi connected and idle, 36.4 mA mean over 30 s (2026-10-23). The capture
+// began once the API was up, so boot and WiFi connect are not included.
+export const MEASURED_AWAKE_MA = 36.4;
+
 export const CHEM = {
   liion: { label: 'Li-ion / Li-Po', nominalV: 3.7, fullV: 4.2, usable: 0.8 },
   lifepo4: { label: 'LiFePO4', nominalV: 3.2, fullV: 3.65, usable: 0.9 },

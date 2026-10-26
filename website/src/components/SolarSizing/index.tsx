@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CHEM, Chemistry, FIRMWARE_DEFAULTS as FW, MEASURED_SLEEP_MA, averageMa, size } from './model';
+import { CHEM, Chemistry, FIRMWARE_DEFAULTS as FW, MEASURED_AWAKE_MA, MEASURED_SLEEP_MA, averageMa, size } from './model';
 import styles from './styles.module.css';
 
 function Num({ label, hint, value, set, step = 1, min = 0 }: {
@@ -24,9 +24,9 @@ const f = (n: number, d = 1) => (Number.isFinite(n) ? n.toFixed(d) : '∞');
 
 export default function SolarSizing(): React.ReactElement {
   const [mode, setMode] = useState<'measured' | 'estimated'>('estimated');
-  const [measuredMa, setMeasuredMa] = useState(10);
+  const [measuredMa, setMeasuredMa] = useState(4.8);
   const [sleepMa, setSleepMa] = useState(MEASURED_SLEEP_MA);
-  const [activeMa, setActiveMa] = useState(80);
+  const [activeMa, setActiveMa] = useState(MEASURED_AWAKE_MA);
   const [activeS, setActiveS] = useState(FW.awakeS);
   const [sleepMin, setSleepMin] = useState(FW.sleepMin);
   const [chemistry, setChemistry] = useState<Chemistry>(FW.chemistry);
@@ -71,7 +71,7 @@ export default function SolarSizing(): React.ReactElement {
           <Num label="Sleep current (mA)" value={sleepMa} set={setSleepMa} step={0.01}
             hint="Bench-measured on one hub with no sensors. Yours will be higher with sensors fitted." />
           <Num label="Awake current (mA)" value={activeMa} set={setActiveMa}
-            hint="Placeholder, not measured. Replace it with your own reading." />
+            hint="Bench-measured, WiFi connected and idle, no sensors. Boot and WiFi connect are not included." />
           <Num label="Awake time per wake (s)" value={activeS} set={setActiveS}
             hint="Firmware default: run_duration 120 s." />
           <Num label="Sleep time between wakes (min)" value={sleepMin} set={setSleepMin}
