@@ -20,6 +20,11 @@ starting point and check it against a few weeks of your own data.
 
 ## The calculator
 
+The fields start from the stock firmware configuration: a 6000 mAh LiFePO4 pack, a 1000 mA charge
+limit, and deep sleep with 120 s awake then 15 min asleep. Change anything your setup does
+differently. The sleep current is a bench measurement from one hub with no sensors attached, and
+the awake current is a placeholder, so replace both with your own readings.
+
 <SolarSizing />
 
 ## How it works
@@ -37,9 +42,9 @@ A bigger battery lowers the panel you need for the cloudy stretch but raises the
 refill it. If the cloudy figure dominates, add battery or cut the load. If the recovery figure
 dominates, add panel or allow longer to refill.
 
-The charge current limit also caps what a panel can deliver. With the default of 1000 mA a Li-ion
-pack accepts about 4 W, which is roughly a 7 W panel after losses, so a 20 W panel mostly helps in weak light. The limit may never
-exceed 2000 mA.
+The charge current limit also caps what a panel can deliver. At the default of 1000 mA a LiFePO4
+pack accepts about 3.7 W (4.2 W for Li-ion), which is roughly a 6 to 7 W panel after losses, so a
+20 W panel mostly helps in weak light. The limit may never exceed 2000 mA.
 
 ## What to measure
 

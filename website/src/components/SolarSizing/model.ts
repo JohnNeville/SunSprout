@@ -12,6 +12,20 @@ export interface Inputs {
   chargeLimitMa: number; // firmware charge current limit
 }
 
+// Defaults come from the SunSprout-firmware packages (modules/hub.yaml and modules/deep-sleep.yaml),
+// so the calculator starts from a hub running the stock configuration. Keep them in step with it.
+export const FIRMWARE_DEFAULTS = {
+  chemistry: 'lifepo4' as Chemistry, // cell_chemistry
+  batteryMah: 6000, // battery_capacity
+  chargeLimitMa: 1000, // charge_current (hard maximum is 2000)
+  awakeS: 120, // deep_sleep run_duration
+  sleepMin: 15, // deep_sleep sleep_duration
+};
+
+// Measured on one hub (PPK2, 2026-10-23): the charger ADC is switched off before sleep, no sensors
+// attached. Settled 0.47 mA plus a periodic burst, about 0.63 mA on average.
+export const MEASURED_SLEEP_MA = 0.63;
+
 export const CHEM = {
   liion: { label: 'Li-ion / Li-Po', nominalV: 3.7, fullV: 4.2, usable: 0.8 },
   lifepo4: { label: 'LiFePO4', nominalV: 3.2, fullV: 3.65, usable: 0.9 },
@@ -55,7 +69,9 @@ export function size(i: Inputs): Result {
   };
 }
 
-export function averageMa(sleepMa: number, activeMa: number, activeS: number, intervalMin: number): number {
-  const cycle = intervalMin * 60;
-  return (sleepMa * Math.max(0, cycle - activeS) + activeMa * activeS) / cycle;
+// One cycle is the awake time followed by the sleep time, as in the deep_sleep component.
+export function averageMa(sleepMa: number, activeMa: number, activeS: number, sleepMin: number): number {
+  const sleepS = sleepMin * 60;
+  const cycle = activeS + sleepS;
+  return cycle > 0 ? (sleepMa * sleepS + activeMa * activeS) / cycle : 0;
 }

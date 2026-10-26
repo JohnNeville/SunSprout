@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CHEM, Chemistry, averageMa, size } from './model';
+import { CHEM, Chemistry, FIRMWARE_DEFAULTS as FW, MEASURED_SLEEP_MA, averageMa, size } from './model';
 import styles from './styles.module.css';
 
 function Num({ label, hint, value, set, step = 1, min = 0 }: {
@@ -23,22 +23,22 @@ function Num({ label, hint, value, set, step = 1, min = 0 }: {
 const f = (n: number, d = 1) => (Number.isFinite(n) ? n.toFixed(d) : '∞');
 
 export default function SolarSizing(): React.ReactElement {
-  const [mode, setMode] = useState<'measured' | 'estimated'>('measured');
-  const [measuredMa, setMeasuredMa] = useState(1.3);
-  const [sleepMa, setSleepMa] = useState(0.6);
+  const [mode, setMode] = useState<'measured' | 'estimated'>('estimated');
+  const [measuredMa, setMeasuredMa] = useState(10);
+  const [sleepMa, setSleepMa] = useState(MEASURED_SLEEP_MA);
   const [activeMa, setActiveMa] = useState(80);
-  const [activeS, setActiveS] = useState(8);
-  const [intervalMin, setIntervalMin] = useState(15);
-  const [chemistry, setChemistry] = useState<Chemistry>('liion');
-  const [batteryMah, setBatteryMah] = useState(2000);
+  const [activeS, setActiveS] = useState(FW.awakeS);
+  const [sleepMin, setSleepMin] = useState(FW.sleepMin);
+  const [chemistry, setChemistry] = useState<Chemistry>(FW.chemistry);
+  const [batteryMah, setBatteryMah] = useState(FW.batteryMah);
   const [autonomyDays, setAutonomyDays] = useState(7);
   const [recoveryDays, setRecoveryDays] = useState(5);
   const [normalPsh, setNormalPsh] = useState(3);
   const [cloudyFraction, setCloudyFraction] = useState(0.2);
   const [efficiency, setEfficiency] = useState(0.6);
-  const [chargeLimitMa, setChargeLimitMa] = useState(1000);
+  const [chargeLimitMa, setChargeLimitMa] = useState(FW.chargeLimitMa);
 
-  const avgMa = mode === 'measured' ? measuredMa : averageMa(sleepMa, activeMa, activeS, intervalMin);
+  const avgMa = mode === 'measured' ? measuredMa : averageMa(sleepMa, activeMa, activeS, sleepMin);
   const inputs = (cloudy: number) => ({
     avgMa,
     chemistry,
@@ -68,10 +68,14 @@ export default function SolarSizing(): React.ReactElement {
           hint="Mean over at least 24 h, from the gauge's average current or an energy log." />
       ) : (
         <div className={styles.grid}>
-          <Num label="Sleep current (mA)" value={sleepMa} set={setSleepMa} step={0.1} />
-          <Num label="Awake current (mA)" value={activeMa} set={setActiveMa} />
-          <Num label="Awake time per wake (s)" value={activeS} set={setActiveS} />
-          <Num label="Wake interval (min)" value={intervalMin} set={setIntervalMin} />
+          <Num label="Sleep current (mA)" value={sleepMa} set={setSleepMa} step={0.01}
+            hint="Bench-measured on one hub with no sensors. Yours will be higher with sensors fitted." />
+          <Num label="Awake current (mA)" value={activeMa} set={setActiveMa}
+            hint="Placeholder, not measured. Replace it with your own reading." />
+          <Num label="Awake time per wake (s)" value={activeS} set={setActiveS}
+            hint="Firmware default: run_duration 120 s." />
+          <Num label="Sleep time between wakes (min)" value={sleepMin} set={setSleepMin}
+            hint="Firmware default: sleep_duration 15 min." />
         </div>
       )}
 
@@ -83,9 +87,10 @@ export default function SolarSizing(): React.ReactElement {
             {Object.entries(CHEM).map(([k, v]) => <option key={k} value={k}>{v.label}</option>)}
           </select>
         </label>
-        <Num label="Capacity (mAh)" value={batteryMah} set={setBatteryMah} step={100} />
+        <Num label="Capacity (mAh)" value={batteryMah} set={setBatteryMah} step={100}
+          hint="Firmware default: battery_capacity 6000, LiFePO4." />
         <Num label="Charge current limit (mA)" value={chargeLimitMa} set={setChargeLimitMa} step={100}
-          hint="The firmware setting. Never above 2000." />
+          hint="Firmware default: charge_current 1000. Never above 2000." />
       </div>
 
       <h3>3. Weather and site</h3>
