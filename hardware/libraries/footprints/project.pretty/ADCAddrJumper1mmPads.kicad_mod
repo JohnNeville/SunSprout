@@ -114,8 +114,8 @@
 	(net_tie_pad_groups "1,2")
 	(duplicate_pad_numbers_are_jumpers no)
 	(fp_rect
-		(start -0.5 -3.6)
-		(end 0.5 -2.4)
+		(start -0.15 -3.6)
+		(end 0.15 -2.4)
 		(stroke
 			(width 0)
 			(type default)
@@ -125,8 +125,8 @@
 		(uuid "5ca2fff6-196f-4907-a73a-03685a63a00d")
 	)
 	(fp_rect
-		(start -0.5 -1.6)
-		(end 0.5 -0.4)
+		(start -0.15 -1.6)
+		(end 0.15 -0.4)
 		(stroke
 			(width 0)
 			(type default)
@@ -136,8 +136,8 @@
 		(uuid "32f588d5-a086-4f86-9be8-d3e1b8827fe1")
 	)
 	(fp_rect
-		(start -0.5 0.4)
-		(end 0.5 1.6)
+		(start -0.15 0.4)
+		(end 0.15 1.6)
 		(stroke
 			(width 0)
 			(type default)
@@ -147,8 +147,8 @@
 		(uuid "1c7b6c7b-bcae-488a-9366-e5af8f2fd37e")
 	)
 	(fp_rect
-		(start -0.5 2.4)
-		(end 0.5 3.6)
+		(start -0.15 2.4)
+		(end 0.15 3.6)
 		(stroke
 			(width 0)
 			(type default)
@@ -231,7 +231,8 @@
 		(at -1.15 0)
 		(size 2 7.2)
 		(layers "F.Cu" "F.Mask")
-		(zone_connect 2)
+		(solder_mask_margin -0.075)
+		(zone_connect 1)
 		(thermal_bridge_angle 45)
 		(options
 			(clearance outline)
@@ -251,6 +252,7 @@
 		(at 1.15 -3)
 		(size 2 1.2)
 		(layers "F.Cu" "F.Mask")
+		(solder_mask_margin -0.075)
 		(roundrect_rratio 0.25)
 		(uuid "45034fe2-0b48-407a-80e1-9a6ae3e4460d")
 	)
@@ -258,6 +260,7 @@
 		(at 1.15 -1)
 		(size 2 1.2)
 		(layers "F.Cu" "F.Mask")
+		(solder_mask_margin -0.075)
 		(roundrect_rratio 0.25)
 		(uuid "61ad0465-7a38-45fd-9570-8e5fea33c930")
 	)
@@ -265,6 +268,7 @@
 		(at 1.15 1)
 		(size 2 1.2)
 		(layers "F.Cu" "F.Mask")
+		(solder_mask_margin -0.075)
 		(roundrect_rratio 0.25)
 		(uuid "13bda67b-5db4-44db-8a73-be0f9f5b2c60")
 	)
@@ -272,6 +276,7 @@
 		(at 1.15 3)
 		(size 2 1.2)
 		(layers "F.Cu" "F.Mask")
+		(solder_mask_margin -0.075)
 		(roundrect_rratio 0.25)
 		(uuid "eee01f06-b6c3-416b-b3bd-b4d062308244")
 	)

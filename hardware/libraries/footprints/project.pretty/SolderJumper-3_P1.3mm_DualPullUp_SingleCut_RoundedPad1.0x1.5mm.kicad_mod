@@ -78,8 +78,8 @@
 		(uuid "95420c06-c978-4338-9153-f4ea713443af")
 	)
 	(fp_rect
-		(start -1.225 -0.4)
-		(end -0.725 0.4)
+		(start -1.225 -0.3)
+		(end -0.725 0.3)
 		(stroke
 			(width 0)
 			(type solid)
@@ -89,8 +89,8 @@
 		(uuid "3b1984f1-6b3f-4b53-9146-d7aa0f5fbb32")
 	)
 	(fp_rect
-		(start 0.725 -0.4)
-		(end 1.225 0.4)
+		(start 0.725 -0.3)
+		(end 1.225 0.3)
 		(stroke
 			(width 0)
 			(type solid)
@@ -188,6 +188,7 @@
 		(at 0 -0.9)
 		(size 3.35 1.2)
 		(layers "F.Cu" "F.Mask")
+		(solder_mask_margin -0.075)
 		(roundrect_rratio 0.25)
 		(uuid "8365d8db-9b28-41ea-a541-80178e40adde")
 	)
@@ -195,6 +196,7 @@
 		(at -0.975 0.9)
 		(size 1.4 1.2)
 		(layers "F.Cu" "F.Mask")
+		(solder_mask_margin -0.075)
 		(roundrect_rratio 0.25)
 		(uuid "3d89b909-d05b-4890-a947-8f1cb1fdc73b")
 	)
@@ -202,6 +204,7 @@
 		(at 0.975 0.9)
 		(size 1.4 1.2)
 		(layers "F.Cu" "F.Mask")
+		(solder_mask_margin -0.075)
 		(roundrect_rratio 0.25)
 		(uuid "fe492d26-5df7-4e20-823e-c0acc26bdf86")
 	)
