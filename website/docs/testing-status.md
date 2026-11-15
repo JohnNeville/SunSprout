@@ -19,6 +19,15 @@ built yet.
 | **Issue** | Misbehaves, with no fix yet. |
 | **Not yet tested** | No result yet. |
 
+## Test hardware
+
+| Item | Details |
+|---|---|
+| LiFePO4 cell | CBAK 26650FS4: 4000 mAh, 3.2 V nominal, 12.8 Wh. Charged to 3.6 V (the cell's charge cut-off), discharged to 2.75–2.8 V. |
+| Lithium-ion cells | Samsung INR18650-25R (2500 mAh, 4.2 V charge), a 2000 mAh cell, and earlier a 1200 mAh LiPo pouch. |
+| Fuel gauge | BQ34Z100-G1, firmware 0x0016, 10 mΩ sense resistor. TI's chemistry profile for each cell. On this firmware the LiFePO4 relax handling only switches on for chemistry IDs 0x04xx, so the CBAK profile is loaded under such an ID. |
+| Load and supplies | LED strip load at about 0.75–1.1 A for discharge tests; FNIRSI DPS-150 bench supply on the DC input; Nordic PPK2 for current measurements. |
+
 Features not listed here have not been tested. Results for the SunSprout Satellite board are on the
 [Satellite testing status](./satellite-testing-status.md) page.
 
