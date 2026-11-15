@@ -68,8 +68,8 @@ This document tracks electrical, power integrity, thermal, signal integrity, and
     - 52 acute 45° corners and 0° trace hairpins/reversals were previously identified across the board.
   - **Resolution:** Straightened trace geometries and verified clean DRC pass under the 90-degree track angle rule.
 
-- [ ] **Test Charger BC1.2 Detection with 10 kΩ Fitted in `R9` / `R11` While Keeping USB Flashing Working**
-  - **Status:** **Planned.** `R9` and `R11` currently ship unpopulated so the charger is off the USB data lines.
+- [x] **Test Charger BC1.2 Detection with 10 kΩ Fitted in `R9` / `R11` While Keeping USB Flashing Working**
+  - **Status:** **Closed: decided, not tested (2026-11-15).** `R9` and `R11` stay unpopulated in rev 2. The charger gets no BC1.2 detection, and the firmware sets the input current limit instead. The pads remain for anyone who wants to try the 10 kΩ test below.
   - **Issue:** With the pads empty the charger gets no BC1.2 detection from the host. A 0 Ω link on these positions disturbed USB enumeration while flashing over the native USB port (`error -71` / disconnect loop). Removing the links fixed it, so the charger's connection to the data lines was the cause.
   - **Test:** Hand-solder a 10 kΩ 0603 resistor onto each of `R9` and `R11`, leave `JUMP_CHGR_GND2` open, then check both:
     - USB enumeration and flashing stay stable (no `error -71` / disconnect loop in `dmesg`).
