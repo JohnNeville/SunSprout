@@ -31,3 +31,14 @@
   background: var(--ifm-color-emphasis-200);
   color: var(--ifm-color-emphasis-800);
 }
+
+/* Test-hardware reference in a note, e.g. [^LFP] -> superscript link to the Test hardware table. */
+.ref {
+  margin-left: 0.15em;
+  font-size: 0.7em;
+  white-space: nowrap;
+}
+
+.ref a {
+  text-decoration: none;
+}
