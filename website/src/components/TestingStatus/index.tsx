@@ -28,28 +28,64 @@ const LABELS: Record<Status, string> = {
   untested: 'Not yet tested',
 };
 
-// Renders `code` spans and test-hardware references in the notes; everything else is plain text. A reference is written
-// [^LFP] in the data and shown as a superscript link to the row with id "hw-lfp" in the page's Test hardware table.
 export function hardwareId(ref: string): string {
   return `hw-${ref.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 }
 
+// Inline formatting in the data: `code`, **bold**, [text](https://link) and test-hardware references. A reference is
+// written [^LFP] and shown as a superscript link to the row with id "hw-lfp" in the page's Test hardware table.
+// Everything else is plain text (never HTML).
+const INLINE = /(`[^`]+`|\*\*[^*]+\*\*|\[\^[^\]\s]+\]|\[[^\]]+\]\(https?:\/\/[^)\s]+\))/g;
+
 function renderInline(text: string): React.ReactNode[] {
-  return text.split(/(`[^`]+`|\[\^[^\]\s]+\])/g).map((part, i) => {
-    if (part.startsWith('`') && part.endsWith('`')) return <code key={i}>{part.slice(1, -1)}</code>;
+  return text.split(INLINE).map((part, i) => {
+    if (part.startsWith('`') && part.endsWith('`') && part.length > 1) return <code key={i}>{part.slice(1, -1)}</code>;
+    if (part.startsWith('**') && part.endsWith('**') && part.length > 4) {
+      return <strong key={i}>{renderInline(part.slice(2, -2))}</strong>;
+    }
     const ref = part.match(/^\[\^([^\]\s]+)\]$/);
     if (ref) {
-      const id = hardwareId(ref[1]);
       return (
         <sup key={i} className={styles.ref}>
-          <a href={`#${id}`} aria-label={`Test hardware: ${ref[1]}`}>
+          <a href={`#${hardwareId(ref[1])}`} aria-label={`Test hardware: ${ref[1]}`}>
             {ref[1]}
           </a>
         </sup>
       );
     }
+    const link = part.match(/^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/);
+    if (link) return <a key={i} href={link[2]}>{renderInline(link[1])}</a>;
     return part;
   });
+}
+
+// Block formatting: each line of the text is its own paragraph, and consecutive lines starting with "- " form a list.
+function renderText(text: string): React.ReactNode {
+  const blocks: React.ReactNode[] = [];
+  let list: string[] = [];
+  const flush = () => {
+    if (list.length) {
+      blocks.push(
+        <ul key={`l${blocks.length}`} className={styles.list}>
+          {list.map((li, i) => (
+            <li key={i}>{renderInline(li)}</li>
+          ))}
+        </ul>,
+      );
+      list = [];
+    }
+  };
+  for (const raw of text.split('\n')) {
+    const line = raw.trim();
+    if (line.startsWith('- ')) {
+      list.push(line.slice(2));
+    } else {
+      flush();
+      if (line) blocks.push(<p key={`p${blocks.length}`} className={styles.para}>{renderInline(line)}</p>);
+    }
+  }
+  flush();
+  return blocks;
 }
 
 function isValid(data: unknown): data is TestingStatusData {
@@ -159,7 +195,7 @@ export default function TestingStatus({ urlField = 'testingStatusUrl' }: Props):
                       {LABELS[item.status] ?? item.status}
                     </span>
                   </td>
-                  <td>{item.notes ? renderInline(item.notes) : null}</td>
+                  <td>{item.notes ? renderText(item.notes) : null}</td>
                 </tr>
               ))}
             </tbody>
@@ -217,7 +253,7 @@ export function TestHardware({ urlField = 'testHardwareUrl' }: Props): React.Rea
               <strong>{h.ref}</strong>
             </td>
             <td>{renderInline(h.item)}</td>
-            <td>{renderInline(h.details)}</td>
+            <td>{renderText(h.details)}</td>
           </tr>
         ))}
       </tbody>
