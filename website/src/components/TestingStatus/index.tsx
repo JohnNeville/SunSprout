@@ -28,11 +28,24 @@ const LABELS: Record<Status, string> = {
   untested: 'Not yet tested',
 };
 
-// Renders `code` spans in the notes; everything else is plain text.
+// Renders `code` spans and test-hardware references in the notes; everything else is plain text. A reference is written
+// [^LFP] in the data and shown as a superscript link to the row with id "hw-lfp" in the page's Test hardware table.
 function renderInline(text: string): React.ReactNode[] {
-  return text.split(/(`[^`]+`)/g).map((part, i) =>
-    part.startsWith('`') && part.endsWith('`') ? <code key={i}>{part.slice(1, -1)}</code> : part,
-  );
+  return text.split(/(`[^`]+`|\[\^[^\]\s]+\])/g).map((part, i) => {
+    if (part.startsWith('`') && part.endsWith('`')) return <code key={i}>{part.slice(1, -1)}</code>;
+    const ref = part.match(/^\[\^([^\]\s]+)\]$/);
+    if (ref) {
+      const id = `hw-${ref[1].toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+      return (
+        <sup key={i} className={styles.ref}>
+          <a href={`#${id}`} aria-label={`Test hardware: ${ref[1]}`}>
+            {ref[1]}
+          </a>
+        </sup>
+      );
+    }
+    return part;
+  });
 }
 
 function isValid(data: unknown): data is TestingStatusData {
