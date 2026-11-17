@@ -51,3 +51,23 @@
 .hardwareRow:target {
   background: var(--ifm-color-emphasis-200);
 }
+
+/* Notes: one paragraph per line, "- " lines as a compact list. */
+.para {
+  margin: 0;
+}
+
+.para + .para,
+.para + .list,
+.list + .para {
+  margin-top: 0.4rem;
+}
+
+.list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.list li + li {
+  margin-top: 0.25rem;
+}
