@@ -1,12 +1,43 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import fs from 'node:fs';
+import path from 'node:path';
+import sidebars from './sidebars';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 // Served from root on Cloudflare Pages (https://sunsprout.pages.dev), with env fallback.
 const baseUrl = process.env.BASE_URL || '/';
 const url = process.env.URL || 'https://sunsprout.pages.dev';
+
+// Main menu: one dropdown per sidebar group (Hub, Satellite, Build your own) listing every page, so the navbar and the
+// mobile menu show the same pages as the sidebar and the home page. Built from sidebars.ts; each label is the doc's
+// sidebar_label or title, read from its front matter, with a leading "Satellite " dropped inside the Satellite menu.
+type SidebarCategory = {type: 'category'; label: string; items: string[]};
+function docLabel(id: string, dropPrefix?: string): string {
+  const text = fs.readFileSync(path.join(__dirname, 'docs', `${id}.md`), 'utf8');
+  const front = text.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '';
+  const field = (name: string) => front.match(new RegExp(`^${name}:\\s*(.+)$`, 'm'))?.[1].trim().replace(/^['"]|['"]$/g, '');
+  const label = field('sidebar_label') ?? field('title') ?? id;
+  if (!dropPrefix || !label.startsWith(dropPrefix)) return label;
+  const rest = label.slice(dropPrefix.length);
+  return rest.charAt(0).toUpperCase() + rest.slice(1);
+}
+const menuLabels: Record<string, string> = {'SunSprout Hub': 'Hub', 'SunSprout Satellite': 'Satellite'};
+// Same order as the home page buttons: Hub, Satellite, Build your own.
+const menuOrder = ['SunSprout Hub', 'SunSprout Satellite', 'Build your own'];
+const docMenus = [...(sidebars.hardwareSidebar as SidebarCategory[])]
+  .sort((a, b) => menuOrder.indexOf(a.label) - menuOrder.indexOf(b.label))
+  .map((category) => {
+    const dropPrefix = category.label === 'SunSprout Satellite' ? 'Satellite ' : undefined;
+    return {
+      type: 'dropdown' as const,
+      label: menuLabels[category.label] ?? category.label,
+      position: 'left' as const,
+      items: category.items.map((id) => ({type: 'doc' as const, docId: id, label: docLabel(id, dropPrefix)})),
+    };
+  });
 
 const config: Config = {
   title: 'SunSprout',
@@ -109,12 +140,7 @@ const config: Config = {
         srcDark: 'img/logo_lines_dark.svg',
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'hardwareSidebar',
-          position: 'left',
-          label: 'Docs',
-        },
+        ...docMenus,
         {
           href: 'https://github.com/JohnNeville/SunSprout',
           label: 'GitHub',
