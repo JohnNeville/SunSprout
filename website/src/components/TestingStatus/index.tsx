@@ -30,12 +30,16 @@ const LABELS: Record<Status, string> = {
 
 // Renders `code` spans and test-hardware references in the notes; everything else is plain text. A reference is written
 // [^LFP] in the data and shown as a superscript link to the row with id "hw-lfp" in the page's Test hardware table.
+export function hardwareId(ref: string): string {
+  return `hw-${ref.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+}
+
 function renderInline(text: string): React.ReactNode[] {
   return text.split(/(`[^`]+`|\[\^[^\]\s]+\])/g).map((part, i) => {
     if (part.startsWith('`') && part.endsWith('`')) return <code key={i}>{part.slice(1, -1)}</code>;
     const ref = part.match(/^\[\^([^\]\s]+)\]$/);
     if (ref) {
-      const id = `hw-${ref[1].toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+      const id = hardwareId(ref[1]);
       return (
         <sup key={i} className={styles.ref}>
           <a href={`#${id}`} aria-label={`Test hardware: ${ref[1]}`}>
@@ -58,15 +62,16 @@ interface Props {
   urlField?: string;
 }
 
-type Load =
+type Load<T> =
   | { state: 'loading' }
   | { state: 'error'; message: string }
-  | { state: 'ready'; data: TestingStatusData };
+  | { state: 'ready'; data: T };
 
-export default function TestingStatus({ urlField = 'testingStatusUrl' }: Props): React.ReactElement {
+// Fetches a JSON file named by a `customFields` entry, in the browser, so the data can be updated without a release.
+function useLiveJson<T>(urlField: string, valid: (data: unknown) => data is T): { url?: string; load: Load<T> } {
   const { siteConfig } = useDocusaurusContext();
   const url = siteConfig.customFields?.[urlField] as string | undefined;
-  const [load, setLoad] = useState<Load>({ state: 'loading' });
+  const [load, setLoad] = useState<Load<T>>({ state: 'loading' });
 
   useEffect(() => {
     if (!url) {
@@ -79,7 +84,7 @@ export default function TestingStatus({ urlField = 'testingStatusUrl' }: Props):
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`The server answered ${r.status}.`))))
       .then((json) => {
         if (cancelled) return;
-        if (isValid(json)) {
+        if (valid(json)) {
           setLoad({ state: 'ready', data: json });
         } else {
           setLoad({ state: 'error', message: 'The file is not in the expected format.' });
@@ -95,17 +100,27 @@ export default function TestingStatus({ urlField = 'testingStatusUrl' }: Props):
     };
   }, [url]);
 
+  return { url, load };
+}
+
+function LoadError({ url, message }: { url?: string; message: string }): React.ReactElement {
+  return (
+    <div className="alert alert--danger" role="alert">
+      <strong>The status data could not be loaded.</strong> {message} It is read from{' '}
+      {url ? <a href={url}>{url}</a> : 'a URL that is not set'}.
+    </div>
+  );
+}
+
+export default function TestingStatus({ urlField = 'testingStatusUrl' }: Props): React.ReactElement {
+  const { url, load } = useLiveJson(urlField, isValid);
+
   if (load.state === 'loading') {
     return <p className={styles.meta}>Loading the status data…</p>;
   }
 
   if (load.state === 'error') {
-    return (
-      <div className="alert alert--danger" role="alert">
-        <strong>The status data could not be loaded.</strong> {load.message} It is read from{' '}
-        {url ? <a href={url}>{url}</a> : 'a URL that is not set'}.
-      </div>
-    );
+    return <LoadError url={url} message={load.message} />;
   }
 
   const { data } = load;
@@ -152,5 +167,60 @@ export default function TestingStatus({ urlField = 'testingStatusUrl' }: Props):
         </section>
       ))}
     </div>
+  );
+}
+
+interface HardwareItem {
+  ref: string;
+  item: string;
+  details: string;
+}
+
+interface TestHardwareData {
+  items: HardwareItem[];
+}
+
+function isHardware(data: unknown): data is TestHardwareData {
+  const d = data as TestHardwareData;
+  return !!d && Array.isArray(d.items) && d.items.every((i) => typeof i?.ref === 'string');
+}
+
+// The Test hardware table that [^REF] references in the status notes link to. Each row gets the id hardwareId(ref).
+export function TestHardware({ urlField = 'testHardwareUrl' }: Props): React.ReactElement {
+  const { url, load } = useLiveJson(urlField, isHardware);
+
+  // The rows only exist once the data has loaded, so a link that opens the page at #hw-... scrolls once they do.
+  useEffect(() => {
+    if (load.state !== 'ready' || !window.location.hash.startsWith('#hw-')) return;
+    document.getElementById(decodeURIComponent(window.location.hash.slice(1)))?.scrollIntoView();
+  }, [load.state]);
+
+  if (load.state === 'loading') {
+    return <p className={styles.meta}>Loading the test hardware…</p>;
+  }
+  if (load.state === 'error') {
+    return <LoadError url={url} message={load.message} />;
+  }
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Ref</th>
+          <th>Item</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        {load.data.items.map((h) => (
+          <tr key={h.ref} id={hardwareId(h.ref)} className={styles.hardwareRow}>
+            <td>
+              <strong>{h.ref}</strong>
+            </td>
+            <td>{renderInline(h.item)}</td>
+            <td>{renderInline(h.details)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }

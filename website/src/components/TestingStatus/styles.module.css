@@ -42,3 +42,12 @@
 .ref a {
   text-decoration: none;
 }
+
+/* Keep a referenced hardware row clear of the sticky navbar and show which one was jumped to. */
+.hardwareRow {
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 0.5rem);
+}
+
+.hardwareRow:target {
+  background: var(--ifm-color-emphasis-200);
+}

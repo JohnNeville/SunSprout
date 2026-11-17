@@ -28,6 +28,10 @@ const config: Config = {
     testingStatusUrl:
       process.env.TESTING_STATUS_URL ||
       'https://gist.githubusercontent.com/JohnNeville/31635451e342c20357f21a530f6bacda/raw/testing-status.json',
+    // The Test hardware table on the testing-status page, from the same gist.
+    testHardwareUrl:
+      process.env.TEST_HARDWARE_URL ||
+      'https://gist.githubusercontent.com/JohnNeville/31635451e342c20357f21a530f6bacda/raw/test-hardware.json',
     // The same for the firmware features page, from another file in the same Gist.
     firmwareStatusUrl:
       process.env.FIRMWARE_STATUS_URL ||
