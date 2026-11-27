@@ -16,7 +16,7 @@ title: Design Files & Key Components
 | U1 | ESP32-C5-WROOM-1U | Main MCU, Wi-Fi 6 / Bluetooth 5 / 802.15.4 / CAN FD radio module |
 | U8 | BQ25798 | Li-ion/Li-Po battery charger |
 | U3 | BQ34Z100 | Fuel gauge |
-| U4 | TPS631000 | Buck-boost regulator, 3.3V system rail |
+| U4 | TPS63070 | Buck-boost regulator, 3.3V system rail |
 | U5 | TPS22918 | Load switch, switched 3.3V user rail |
 | U201 | PCA9615 | Differential I2C buffer, drives the two 8P8C jacks |
 | D5, D201 | USBLC6-4SC6-ES | USB-C data and I2C-buffer ESD protection |
