@@ -62,10 +62,20 @@ At 3.0 V in and 1.5 A out the calculated peak current is about 1.9 A.
 
 | Reference | Value | Function |
 |---|---|---|
-| `C13`, `C20`, `C22` | 10 µF, 25 V | Input capacitors at `VIN`. |
+| `C13` | 10 µF, 25 V | Input capacitor directly at `VIN`. |
+| `C20` | 10 µF, 25 V | Not fitted. A spare position beside `C13`. |
 | `C30` | 10 µF, 25 V | Output capacitor next to the `VOUT` pins. |
 | `C14`, `C24`, `C29` | 47 µF, 6.3 V | Output bulk capacitance. |
 | `C23` | 100 nF | The internal supply, pin `VAUX`. Nothing else connects to it. |
+
+### Input capacitance
+
+The input pins share the SYS rail with the charger's output capacitors, `C308` to `C312`, five
+10 µF parts at 25 V. Together with `C13` that is 60 µF nominal, against a datasheet minimum of
+4.7 µF effective. The regulator therefore needs only one capacitor of its own, to carry the fast
+switching current at the pins. Fit `C20` if the input ripple measures high.
+
+### Output capacitance
 
 Above about 11 V in, the buck duty cycle is below 30 percent. The datasheet then asks for at
 least 40 µF of effective output capacitance. Ceramic capacitors lose much of their value under a
@@ -109,7 +119,9 @@ is below 3 V it needs 3.0 V at the input to start.
 
 ## Layout notes
 
-- Place `C30` and one input capacitor directly at the `VOUT`, `VIN` and ground pins.
+- Place `C13` directly across the `VIN` and `PGND` pins with the shortest possible loop, and `C20` beside it.
+- Place `C30` directly across the `VOUT` and ground pins.
+- Run a wide copper area from the charger's SYS capacitors to the `VIN` pins.
 - Keep the `L1` and `L2` traces short and wide.
 - Connect `PGND` and `GND` at the ground plane under the part.
 - The footprint follows TI drawing RNM0015A. It uses the drawn opening sizes as copper pads with a

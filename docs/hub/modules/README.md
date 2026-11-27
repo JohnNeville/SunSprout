@@ -52,8 +52,8 @@ Worked examples, all visible in the schematic's per-part notes:
   a placement but no new part number.
 - One 100 nF 0402 part covers every high-frequency decoupling position on the board.
 
-The result is **61 distinct part numbers across 119 placements**, with the passives at 27
-part numbers covering 77 placements — roughly 2.9 placements per unique passive.
+The result is **61 distinct part numbers across 117 placements**, with the passives at 27
+part numbers covering 75 placements — roughly 2.8 placements per unique passive.
 
 **If you are building this at volume, reverse these decisions.** Once per-unit cost dominates,
 the calculus inverts: fit the cheapest adequate part in each position, accept more distinct

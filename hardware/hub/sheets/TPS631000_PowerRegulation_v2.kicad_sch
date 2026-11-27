@@ -1700,12 +1700,6 @@
 		(uuid "8fc99682-150f-4ed2-9704-766fff975f04")
 	)
 	(junction
-		(at 58.42 71.12)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "92019294-cf31-4b86-8d8d-5cd0b8d4f249")
-	)
-	(junction
 		(at 30.48 71.12)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1755,7 +1749,7 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 71.12) (xy 58.42 71.12)
+			(xy 48.26 71.12) (xy 63.5 71.12)
 		)
 		(stroke
 			(width 0)
@@ -1772,16 +1766,6 @@
 			(type default)
 		)
 		(uuid "14778e02-e766-4498-9630-4e76404470c8")
-	)
-	(wire
-		(pts
-			(xy 58.42 71.12) (xy 63.5 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1ea0a8a5-0bcf-4ffa-86be-2b873a4792dd")
 	)
 	(wire
 		(pts
@@ -2836,7 +2820,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "12ae99ef-0b6b-4860-8cad-4cfa48f25f60")
 		(property "Reference" "C20"
 			(at 50.8 66.04 0)
@@ -2890,7 +2874,7 @@
 				)
 			)
 		)
-		(property "Usage" "U4 VIN input cap"
+		(property "Usage" "Optional extra U4 VIN capacitor, not fitted: fit if input ripple measures high"
 			(at 48.26 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -3566,83 +3550,6 @@
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/bf276da2-a934-469c-a14b-6d2edeb698fa"
 					(reference "#PWR104")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 58.42 63.5 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "316acea7-4303-4531-92e3-8b14e1d5d730")
-		(property "Reference" "#PWR103"
-			(at 58.42 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 58.42 58.42 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 58.42 63.5 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 58.42 63.5 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 58.42 63.5 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e96ce4cc-e736-4da1-8c9d-bea2ad77a524")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/bf276da2-a934-469c-a14b-6d2edeb698fa"
-					(reference "#PWR103")
 					(unit 1)
 				)
 			)
@@ -5055,162 +4962,6 @@
 			(project "SunSproutHub"
 				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/bf276da2-a934-469c-a14b-6d2edeb698fa"
 					(reference "#PWR105")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 58.42 67.31 0)
-		(mirror x)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a40f2694-d62c-445d-bc4e-591eba542980")
-		(property "Reference" "C22"
-			(at 60.96 66.04 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10uF"
-			(at 60.96 68.58 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 58.42 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/24d8eb2e4bec5cc4dad0f294a4a8fd8e.pdf?productCode=C96446"
-			(at 58.42 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 58.42 67.31 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Usage" "U4 VIN input cap"
-			(at 58.42 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part" "C96446"
-			(at 58.42 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer Product Page" ""
-			(at 58.42 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier" "JLCPCB"
-			(at 58.42 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier Part Site" ""
-			(at 58.42 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "CL10A106MA8NRNC"
-			(at 58.42 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Samsung Electro-Mechanics"
-			(at 58.42 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c3912daf-356d-48fb-a39c-9d86d7b16709")
-		)
-		(pin "2"
-			(uuid "59dbdae3-3c62-4fcb-aa1c-20d002204ca2")
-		)
-		(instances
-			(project "SunSproutHub"
-				(path "/a73062bd-90e7-442f-aac6-ee7677f83b11/bf276da2-a934-469c-a14b-6d2edeb698fa"
-					(reference "C22")
 					(unit 1)
 				)
 			)
